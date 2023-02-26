@@ -1,4 +1,4 @@
-[Home](README.md) | [Projects](Projects.md) | [Education](Education.md) | [Experience](Experience.md)
+[Home](README.md) | [Projects](Projects.md) | [Experience](Experience.md) | [Education](Education.md)
 
 # Experience
 

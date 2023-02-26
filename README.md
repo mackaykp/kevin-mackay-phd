@@ -1,4 +1,4 @@
-[Home](README.md) | [Projects](Projects.md) | [Education](Education.md) | [Experience](Experience.md)
+[Home](README.md) | [Projects](Projects.md) | [Experience](Experience.md) | [Education](Education.md)
 
 <img src="images/KMackay_Headshot_low-res.jpg" alt="Headshot of Kevin Mackay, man smiling wearing a grey suit and navy tie, and glasses" style="width:300px;">
 
