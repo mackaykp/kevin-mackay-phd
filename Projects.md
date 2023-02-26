@@ -3,10 +3,9 @@
 # List of projects
 
 ## Professional and academic work
-- R
-- Python
-    - [Backup school work](Backup-school-work.md): Developed a script to create a scheduled task on Windows that runs weekly and backs up school work to a RAID folder, ensuring data protection and version control.
+- [Backup school work [Python]](Backup-school-work.md): Developed a script to back up school work to a RAID folder weekly, ensuring data protection and version control.
 
-## Personal projects
+## Personal
 - Generating a filterable databse of videos with metadata from a website requiring login
-- 
+
+## Creative

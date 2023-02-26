@@ -1,3 +1,7 @@
+## [Home](README.md) | [Projects](Projects.md) | [Experience](Experience.md) | [Education](Education.md)
+
+#
+
 #  Project background
 To ensure that my school work and dissertation were protected from hardware failures and enable version control, I developed a solution using a Python script. The script creates a compressed backup of my work and saves it onto a RAID drive, streamlining the backup process. To make the backup process automatic and consistent, I integrated the Python script into a batch file that can be scheduled to run on a weekly basis through Windows. As a result, I was able to rely on consistent and reliable backups of my work.
 
