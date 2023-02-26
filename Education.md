@@ -51,7 +51,6 @@ lead concentration proposed by Lanphear et al. (2005) and referenced by Gould (2
 significantly higher than what we found in our meta-analysis. Thus, the projected ROI
 proposed by Gould (2009) may be much lower than previously calculated.
 
-
 In the final chapter, the cost associated with permanent lead abatement is
 investigated based on ROI projections as a case study in Hamilton, Ontario. We show
 that, in most cases, permanent lead remediation is far too expensive for a municipal
