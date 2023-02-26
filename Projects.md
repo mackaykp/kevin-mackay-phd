@@ -4,6 +4,7 @@
 
 ## Professional and academic work
 - [Backup school work [Python]](Backup-school-work.md): Developed a script to back up school work to a RAID folder weekly, ensuring data protection and version control.
+- [Teaching, Spatial Statistics: Descriptive statistics](spatial_descriptive-statistics.html)
 
 ## Personal
 - Generating a filterable databse of videos with metadata from a website requiring login
