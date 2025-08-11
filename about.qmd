@@ -1,0 +1,9 @@
+---
+title: "About"
+format:
+  html:
+    page-layout: article
+---
+
+About this site
+

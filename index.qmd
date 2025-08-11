@@ -1,0 +1,53 @@
+---
+title: "Welcome"
+format:
+  html:
+    page-layout: article
+---
+
+# Hello, Quarto + tidyverse 👋
+
+This starter site is generated with **Quarto** and uses **tidyverse**-compliant packages.
+
+## Quick example
+
+```{r}
+#| label: load-pkgs
+library(tidyverse)
+library(palmerpenguins)
+library(janitor)
+```
+
+
+```{r}
+#| label: summarize
+penguins_clean <-
+  penguins |>
+  clean_names() |>
+  drop_na(bill_length_mm, flipper_length_mm, species, island)
+
+penguins_clean |>
+  group_by(species, island) |>
+  summarize(
+    n = n(),
+    mean_bill = mean(bill_length_mm),
+    mean_flipper = mean(flipper_length_mm),
+    .groups = "drop"
+  ) |>
+  arrange(species, island)
+
+
+```
+
+```{r}
+#| label: plot
+#| fig-cap: "Bill length vs flipper length by species"
+penguins_clean |>
+  ggplot(aes(bill_length_mm, flipper_length_mm)) +
+  geom_point(alpha = 0.7) +
+  facet_wrap(~ species) +
+  labs(x = "Bill length (mm)", y = "Flipper length (mm)")
+
+
+```
+
