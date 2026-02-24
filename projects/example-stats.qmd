@@ -21,7 +21,9 @@ Below is a minimal R chunk to show how code will render. Use your real analysis 
 ```{r}
 #| label: fig-placeholder
 #| fig-cap: "Placeholder: replace with your own plot"
-library(tidyverse)
+library(tibble)
+library(magrittr)
+library(ggplot2)
 tibble(x = 1:20, y = cumsum(rnorm(20))) %>%
   ggplot(aes(x, y)) +
   geom_line(linewidth = 1.2) +

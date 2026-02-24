@@ -6,14 +6,12 @@ A professional portfolio site built with **R** and **Quarto**, designed for GitH
 - **About:** Background, interests, expertise, contact
 - **Resume:** Experience, education, skills (placeholder content)
 - **Projects:** Multi-category sidebar — Statistics & Data, Mapping & GIS, Automation, Other
-- **Leaflet demo:** Example R + tidyverse + leaflet map in the Mapping section
 - **Responsive layout:** Bootstrap-based; navbar collapses to a menu on smaller screens
 
 ## Build locally
 
 1. Install [Quarto](https://quarto.org/docs/get-started/) and ensure R is installed with:
    - `tidyverse`
-   - `leaflet`
 2. In the project directory, run:
 
    ```bash

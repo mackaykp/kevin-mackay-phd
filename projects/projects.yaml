@@ -15,12 +15,6 @@ projects:
     tags: ["Statistics", "R", "tidyverse"]
     image: ""
 
-  - title: "Leaflet Map Demo"
-    description: "Interactive map built with R, leaflet, and tidyverse—placeholder for spatial projects."
-    href: "leaflet-demo.html"
-    tags: ["Spatial", "Mapping", "R", "leaflet"]
-    image: ""
-
   - title: "Example Automation Project"
     description: "Scripts and pipelines for automated reporting or data workflows."
     href: "example-automation.html"

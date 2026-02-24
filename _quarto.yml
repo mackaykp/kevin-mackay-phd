@@ -47,7 +47,6 @@ website:
             - href: projects/yoga-video-catalog/index.qmd
             - text: "Final Product (browse)"
               href: projects/yoga-video-catalog/browse.qmd
-        - href: projects/leaflet-demo.qmd
         - href: projects/example-stats.qmd
         - href: projects/example-automation.qmd
         - href: projects/example-other.qmd
