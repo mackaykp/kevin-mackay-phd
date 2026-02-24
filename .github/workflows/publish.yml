@@ -14,7 +14,7 @@ jobs:
     permissions:
       contents: write
     env:
-      R_LIBS_USER: ${{ runner.tool_cache }}/R-libs
+      R_LIBS_USER: ${{ github.workspace }}/R-libs
 
     steps:
       - name: Checkout
