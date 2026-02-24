@@ -80,3 +80,27 @@ No changes needed unless you rename the repo or your username.
 | 4 | Check **Actions** tab; site at **https://mackaykp.github.io/kevin-mackay-phd/** |
 
 After this, every push to `main` will rebuild and update the site automatically.
+
+---
+
+## Test the site build locally (before pushing)
+
+To avoid long CI cycles, you can confirm the site renders on your machine first:
+
+1. **Render the site** (same as CI):
+   ```bash
+   quarto render
+   ```
+   If this fails (e.g. missing R package), fix it locally; CI will then succeed.
+
+2. **Preview** (optional):
+   ```bash
+   quarto preview
+   ```
+   Open the URL it prints and check the site.
+
+3. **Run the full workflow locally with act** (optional, needs [Docker](https://www.docker.com/) and [act](https://github.com/nektos/act)):
+   ```bash
+   act push
+   ```
+   This runs the GitHub Actions workflow in Docker. The first run is slow (installs R + tidyverse); later runs are faster with cache.
