@@ -1,0 +1,424 @@
+[
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html",
+    "href": "GITHUB_PAGES_STEPS.html",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "Your Quarto site is already configured for GitHub Pages. Your repository is:\nhttps://github.com/mackaykp/kevin-mackay-phd\nFollow these steps to push this local project to that repo and publish the site.\n\n\n\nIn your project folder, open Git Bash or PowerShell (use Git Bash if PowerShell says git is not recognized—e.g. right after installing Git).\ncd \"c:\\Users\\macka\\OneDrive\\Documents\\Cursor-Projects\\Github_Pages_Website\"\n\ngit init\ngit add .\ngit status\ngit commit -m \"Initial commit: Quarto portfolio site for GitHub Pages\"\n\n\n\n\nAdd your repo as the remote and push. Your repo is mackaykp/kevin-mackay-phd, so use:\ngit branch -M main\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git\ngit push -u origin main\nWhen prompted, sign in with your GitHub account (browser or token).\nNote: The repo mackaykp/kevin-mackay-phd already has some files (e.g. .Rhistory, styles.css, website.Rproj). If this is a fresh push of your full local site, you may need to force-push once (git push -u origin main --force) to replace the repo contents with your local project. Only do that if you’re sure the local version is the one you want to keep.\n\n\n\n\n\nOpen https://github.com/mackaykp/kevin-mackay-phd\nGo to Settings → Pages (left sidebar).\nUnder Build and deployment:\n\nSource: choose GitHub Actions.\n\nSave. You don’t need to create a workflow — this project already has .github/workflows/publish.yml.\n\n\n\n\n\n\nOpen the Actions tab: https://github.com/mackaykp/kevin-mackay-phd/actions\nYou should see a workflow run (e.g. “Publish site to GitHub Pages”). Wait until it finishes (green check).\nYour site will be live at:\nhttps://mackaykp.github.io/kevin-mackay-phd/\n\n\n\n\n\nYour _quarto.yml already has the right URLs for this repo:\n\nsite-url: \"https://mackaykp.github.io/kevin-mackay-phd\"\nrepo-url: \"https://github.com/mackaykp/kevin-mackay-phd\"\n\nNo changes needed unless you rename the repo or your username.\n\n\n\n\n\n\n\n\n\n\n\nStep\nAction\n\n\n\n\n1\ngit init, git add ., git commit -m \"Initial commit: ...\"\n\n\n2\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git, git push -u origin main\n\n\n3\nIn repo Settings → Pages → Source: GitHub Actions\n\n\n4\nCheck Actions tab; site at https://mackaykp.github.io/kevin-mackay-phd/\n\n\n\nAfter this, every push to main will rebuild and update the site automatically.\n\n\n\n\nTo avoid long CI cycles, you can confirm the site renders on your machine first:\n\nRender the site (same as CI):\nquarto render\nIf this fails (e.g. missing R package), fix it locally; CI will then succeed.\nPreview (optional):\nquarto preview\nOpen the URL it prints and check the site.\nRun the full workflow locally with act (optional, needs Docker and act):\nact push\nThis runs the GitHub Actions workflow in Docker. The first run is slow (installs R + tidyverse); later runs are faster with cache."
+  },
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html#initialize-git-and-make-the-first-commit",
+    "href": "GITHUB_PAGES_STEPS.html#initialize-git-and-make-the-first-commit",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "In your project folder, open Git Bash or PowerShell (use Git Bash if PowerShell says git is not recognized—e.g. right after installing Git).\ncd \"c:\\Users\\macka\\OneDrive\\Documents\\Cursor-Projects\\Github_Pages_Website\"\n\ngit init\ngit add .\ngit status\ngit commit -m \"Initial commit: Quarto portfolio site for GitHub Pages\""
+  },
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html#connect-to-github-and-push",
+    "href": "GITHUB_PAGES_STEPS.html#connect-to-github-and-push",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "Add your repo as the remote and push. Your repo is mackaykp/kevin-mackay-phd, so use:\ngit branch -M main\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git\ngit push -u origin main\nWhen prompted, sign in with your GitHub account (browser or token).\nNote: The repo mackaykp/kevin-mackay-phd already has some files (e.g. .Rhistory, styles.css, website.Rproj). If this is a fresh push of your full local site, you may need to force-push once (git push -u origin main --force) to replace the repo contents with your local project. Only do that if you’re sure the local version is the one you want to keep."
+  },
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html#turn-on-github-pages",
+    "href": "GITHUB_PAGES_STEPS.html#turn-on-github-pages",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "Open https://github.com/mackaykp/kevin-mackay-phd\nGo to Settings → Pages (left sidebar).\nUnder Build and deployment:\n\nSource: choose GitHub Actions.\n\nSave. You don’t need to create a workflow — this project already has .github/workflows/publish.yml."
+  },
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html#wait-for-the-first-build",
+    "href": "GITHUB_PAGES_STEPS.html#wait-for-the-first-build",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "Open the Actions tab: https://github.com/mackaykp/kevin-mackay-phd/actions\nYou should see a workflow run (e.g. “Publish site to GitHub Pages”). Wait until it finishes (green check).\nYour site will be live at:\nhttps://mackaykp.github.io/kevin-mackay-phd/"
+  },
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html#quarto.yml-is-already-correct",
+    "href": "GITHUB_PAGES_STEPS.html#quarto.yml-is-already-correct",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "Your _quarto.yml already has the right URLs for this repo:\n\nsite-url: \"https://mackaykp.github.io/kevin-mackay-phd\"\nrepo-url: \"https://github.com/mackaykp/kevin-mackay-phd\"\n\nNo changes needed unless you rename the repo or your username."
+  },
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html#summary",
+    "href": "GITHUB_PAGES_STEPS.html#summary",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "Step\nAction\n\n\n\n\n1\ngit init, git add ., git commit -m \"Initial commit: ...\"\n\n\n2\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git, git push -u origin main\n\n\n3\nIn repo Settings → Pages → Source: GitHub Actions\n\n\n4\nCheck Actions tab; site at https://mackaykp.github.io/kevin-mackay-phd/\n\n\n\nAfter this, every push to main will rebuild and update the site automatically."
+  },
+  {
+    "objectID": "GITHUB_PAGES_STEPS.html#test-the-site-build-locally-before-pushing",
+    "href": "GITHUB_PAGES_STEPS.html#test-the-site-build-locally-before-pushing",
+    "title": "Step-by-step: Push this website to GitHub Pages",
+    "section": "",
+    "text": "To avoid long CI cycles, you can confirm the site renders on your machine first:\n\nRender the site (same as CI):\nquarto render\nIf this fails (e.g. missing R package), fix it locally; CI will then succeed.\nPreview (optional):\nquarto preview\nOpen the URL it prints and check the site.\nRun the full workflow locally with act (optional, needs Docker and act):\nact push\nThis runs the GitHub Actions workflow in Docker. The first run is slow (installs R + tidyverse); later runs are faster with cache."
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Placeholder: Replace sections with your real experience, education, and skills. You can also embed a PDF or link to an external resume."
+  },
+  {
+    "objectID": "resume.html#experience",
+    "href": "resume.html#experience",
+    "title": "Resume",
+    "section": "Experience",
+    "text": "Experience\nJob Title — Company Name\nMonth Year – Present\n\nPlaceholder: Key responsibility or achievement using data or code.\nPlaceholder: Another bullet (e.g., built dashboards, automated reports).\nPlaceholder: Impact (e.g., improved accuracy, saved time).\n\nPrevious Role — Previous Company\nMonth Year – Month Year\n\nPlaceholder: Responsibility or project.\nPlaceholder: Tools used (R, SQL, etc.)."
+  },
+  {
+    "objectID": "resume.html#education",
+    "href": "resume.html#education",
+    "title": "Resume",
+    "section": "Education",
+    "text": "Education\nDegree Name — Institution\nYear\n\nPlaceholder: Relevant coursework, thesis, or focus (e.g., statistics, GIS).\n\nOther credential or degree — Institution\nYear"
+  },
+  {
+    "objectID": "resume.html#skills",
+    "href": "resume.html#skills",
+    "title": "Resume",
+    "section": "Skills",
+    "text": "Skills\n\n\n\nCategory\nDetails\n\n\n\n\nLanguages\nR, SQL, Python (placeholder)\n\n\nR ecosystem\ntidyverse, leaflet, Quarto, Shiny\n\n\nData\nCleaning, visualization, spatial data\n\n\nTools\nGit, GitHub, reproducible workflows"
+  },
+  {
+    "objectID": "resume.html#download",
+    "href": "resume.html#download",
+    "title": "Resume",
+    "section": "Download",
+    "text": "Download\nOptional: Add a link to a PDF version of your resume.\nDownload resume (PDF) — Replace # with your PDF URL."
+  },
+  {
+    "objectID": "projects/example-stats.html",
+    "href": "projects/example-stats.html",
+    "title": "Example Stats Project",
+    "section": "",
+    "text": "Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.\nThis example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#overview",
+    "href": "projects/example-stats.html#overview",
+    "title": "Example Stats Project",
+    "section": "",
+    "text": "Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.\nThis example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#methods",
+    "href": "projects/example-stats.html#methods",
+    "title": "Example Stats Project",
+    "section": "Methods",
+    "text": "Methods\n\nData: Placeholder source (e.g., survey, administrative data).\nTools: R, tidyverse, relevant packages (e.g., broom, infer).\nOutput: Summary tables, plots, or a short report.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#code-snippet-placeholder",
+    "href": "projects/example-stats.html#code-snippet-placeholder",
+    "title": "Example Stats Project",
+    "section": "Code snippet (placeholder)",
+    "text": "Code snippet (placeholder)\nBelow is a minimal R chunk to show how code will render. Use your real analysis when you add content.\n\nlibrary(tibble)\nlibrary(magrittr)\nlibrary(ggplot2)\ntibble(x = 1:20, y = cumsum(rnorm(20))) %&gt;%\n  ggplot(aes(x, y)) +\n  geom_line(linewidth = 1.2) +\n  theme_minimal() +\n  labs(x = \"Step\", y = \"Cumulative value\")\n\n\n\n\n\n\n\nFigure 1: Placeholder: replace with your own plot",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#takeaways",
+    "href": "projects/example-stats.html#takeaways",
+    "title": "Example Stats Project",
+    "section": "Takeaways",
+    "text": "Takeaways\nPlaceholder: 2–3 bullet points summarizing what you did and what you learned.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/browse.html",
+    "href": "projects/yoga-video-catalog/browse.html",
+    "title": "Yoga catalog",
+    "section": "",
+    "text": "Filters\n      Clear all filters\n    \n    \n      \n        Duration\n        \n          Video length in minutes\n          \n            \n            \n              \n              \n              \n              \n              \n            \n            \n              \n                Minimum\n                \n                  \n                  min\n                \n              \n              \n                Maximum\n                \n                  \n                  min\n                \n              \n            \n          \n        \n        \n          Clear\n        \n      \n      \n      \n        Upload Year\n        \n          Note: Minimum and maximum dates are based on January 1\n          \n            \n            \n              \n              \n              \n              \n              \n            \n            \n              \n                Minimum\n                \n                  \n                  year\n                \n              \n              \n                Maximum\n                \n                  \n                  year\n                \n              \n            \n          \n        \n        \n          Clear\n        \n      \n    \n    \n      Focus\n      Click to include · double-click to exclude · triple-click to reset\n      \n        Clear\n      \n      \n    \n    \n      Channel\n      Click to include · double-click to exclude · triple-click to reset\n      \n        Clear\n      \n      \n    \n    \n      Search\n      \n        \n      \n      \n        Clear\n      \n    \n  \n  \n    \n      \n        My List\n        Drag to reorder. Click a title to open full-screen in a new tab.\n        0 video(s) · Total: —\n        \n      \n      \n        Clear all\n      \n    \n    \n  \n  \n    Videos\n    \n  \n  \n  No videos match your filters. Try clearing some filters or search.",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Final Product (browse)"
+    ]
+  },
+  {
+    "objectID": "projects/example-automation.html",
+    "href": "projects/example-automation.html",
+    "title": "Example Automation Project",
+    "section": "",
+    "text": "Placeholder: Describe one automation project — what it does, how it runs, and what it produces.\nExample topics: daily report generation, data pulls from an API, or file processing pipelines.",
+    "crumbs": [
+      "Home",
+      "Example Automation Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-automation.html#overview",
+    "href": "projects/example-automation.html#overview",
+    "title": "Example Automation Project",
+    "section": "",
+    "text": "Placeholder: Describe one automation project — what it does, how it runs, and what it produces.\nExample topics: daily report generation, data pulls from an API, or file processing pipelines.",
+    "crumbs": [
+      "Home",
+      "Example Automation Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-automation.html#tools",
+    "href": "projects/example-automation.html#tools",
+    "title": "Example Automation Project",
+    "section": "Tools",
+    "text": "Tools\n\nR or Python scripts\nScheduling (e.g., cron, GitHub Actions)\nQuarto or R Markdown for reports",
+    "crumbs": [
+      "Home",
+      "Example Automation Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-automation.html#takeaways",
+    "href": "projects/example-automation.html#takeaways",
+    "title": "Example Automation Project",
+    "section": "Takeaways",
+    "text": "Takeaways\nPlaceholder: What you automated and what you’d do differently next time.",
+    "crumbs": [
+      "Home",
+      "Example Automation Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-other.html",
+    "href": "projects/example-other.html",
+    "title": "Example Other Project",
+    "section": "",
+    "text": "Placeholder: Short description of a miscellaneous project.\nThis is where you can add write-ups that don’t fit the other categories. Use the sidebar to navigate back to a category or the projects overview.",
+    "crumbs": [
+      "Home",
+      "Example Other Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-other.html#overview",
+    "href": "projects/example-other.html#overview",
+    "title": "Example Other Project",
+    "section": "",
+    "text": "Placeholder: Short description of a miscellaneous project.\nThis is where you can add write-ups that don’t fit the other categories. Use the sidebar to navigate back to a category or the projects overview.",
+    "crumbs": [
+      "Home",
+      "Example Other Project"
+    ]
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Filter by Tech stack, Methodology, or Domain—click a tag to filter. Each project can span multiple areas.\n\n\n\n\n  \n    \n    Clear filters\n  \n  \n  \n  No projects match the selected tags. Clear filters to see all.",
+    "crumbs": [
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html",
+    "href": "projects/yoga-video-catalog/index.html",
+    "title": "Yoga Video Catalog",
+    "section": "",
+    "text": "Final product\n\n\nProject Overview\n\n\nScripts & Code",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#overview",
+    "href": "projects/yoga-video-catalog/index.html#overview",
+    "title": "Yoga Video Catalog",
+    "section": "Overview",
+    "text": "Overview\nThis project is a filterable yoga video catalog built from YouTube channel data. It demonstrates an end-to-end data workflow: web scraping, automation, ETL (extract–transform–load), and an interactive front end. The goal was to collect videos from chosen channels, enrich them with metadata (duration, upload date, focus areas), and present a single place to filter by duration, focus, channel, and keyword and to build a personal queue.\nFinal product: The Browse catalog page is the main deliverable — a full-screen filterable catalog with duration/year sliders, focus and channel chips, keyword search, and a “My List” queue (stored in the browser).",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#pipeline-overview",
+    "href": "projects/yoga-video-catalog/index.html#pipeline-overview",
+    "title": "Yoga Video Catalog",
+    "section": "Pipeline overview",
+    "text": "Pipeline overview\nThe pipeline runs in the source project (see “Project files” below). High-level flow:\n\n\n\n\n\n\n\nStep\nWhat it does\n\n\n\n\n1. Configure\nChannel list lives in data/channel_urls.json (display name → channel Videos page URL).\n\n\n2. Scrape\nscrape_channel.py uses Playwright to open each channel’s Videos page, scroll to load all items, and extract video IDs, titles, and durations into a CSV.\n\n\n3. Enrich\nenrich_videos.py uses yt-dlp (no YouTube API key) to fetch metadata (title, description, duration, upload date, view count, etc.) and derives a focus column from title/description using a keyword map.\n\n\n4. Categorize\ncategorize_data.py adds derived columns: duration buckets, upload year, and view-count bands.\n\n\n5. Focus\nupdate_focus.py refreshes the focus column using the same keyword logic (e.g. after config changes).\n\n\n6. Update (orchestrator)\nupdate_from_channels.py runs the full flow: for each channel, scrapes only new videos (not already in the CSV), enriches and appends them, then runs categorize and focus on the full file.\n\n\n7. Publish\nThe catalog is built with Quarto: browse.qmd reads data/yoga_videos_enriched.csv and config/focus_map.json / config/exclude_keywords.json, then renders the interactive browse page (R + JSON + client-side JS).\n\n\n\nSo: scraping → enrichment (ETL) → categorization → focus update → Quarto render = automation from channel list to live catalog.",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#project-files",
+    "href": "projects/yoga-video-catalog/index.html#project-files",
+    "title": "Yoga Video Catalog",
+    "section": "Project files",
+    "text": "Project files\nThese files are included in this portfolio for reference. In the full project they live in the Yoga repo and are run from the project root.\n\nData and config\n\n\n\n\n\n\n\nPath\nPurpose\n\n\n\n\nyoga-video-catalog/data/yoga_videos_enriched.csv\nMain catalog data (video_id, title, channel, duration, focus, upload_date, url, etc.). Built by the pipeline.\n\n\nyoga-video-catalog/config/focus_map.json\nMaps canonical focus labels (e.g. “Core”, “Hips”) to keyword variations used to detect focus from title/description.\n\n\nyoga-video-catalog/config/exclude_keywords.json\nKeywords used to exclude videos (e.g. vlogs, announcements). Plus a focus-based filter so only videos with at least one focus tag appear.\n\n\n\n\n\nScripts (in yoga-video-catalog/scripts/)\n\n\n\n\n\n\n\nScript\nRole\n\n\n\n\nupdate_from_channels.py\nMain entry point. Reads channel config and existing CSV; for each channel scrapes only new videos, enriches them, appends to CSV; runs categorize and focus on the full file.\n\n\nscrape_channel.py\nPlaywright-based scraper: loads a channel’s Videos page, scrolls to load all, parses video links and durations. Can run standalone or via update_from_channels.py.\n\n\nenrich_videos.py\nyt-dlp enrichment: reads a CSV of video IDs, fetches metadata, derives focus from title/description using focus_map.json, writes enriched CSV (or appends to existing).\n\n\ncategorize_data.py\nAdds duration buckets, upload year, and view-count categories to the enriched CSV.\n\n\nupdate_focus.py\nRecomputes the focus column from title/description using the same keyword map (no re-fetch from YouTube).",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#tech-stack",
+    "href": "projects/yoga-video-catalog/index.html#tech-stack",
+    "title": "Yoga Video Catalog",
+    "section": "Tech stack",
+    "text": "Tech stack\n\n\n\n\n\n\n\nLayer\nTools\n\n\n\n\nScraping\nPython, Playwright (Chromium)\n\n\nEnrichment\nyt-dlp, pandas\n\n\nConfig\nJSON (channel list, focus map, exclude keywords)\n\n\nCatalog UI\nQuarto, R (read CSV + inject JSON), vanilla JS (filters, queue, preview)",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#takeaways",
+    "href": "projects/yoga-video-catalog/index.html#takeaways",
+    "title": "Yoga Video Catalog",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nSingle command to add new channels or pull new videos from existing channels (update_from_channels.py), then re-render the catalog.\nNo YouTube API — scraping + yt-dlp keeps the pipeline simple and key-free.\nConfig-driven focus and exclusion make it easy to tune what appears in the catalog without changing code.\nEnd-to-end showcase: from raw channel pages to a polished, filterable catalog and queue, demonstrating web scraping, ETL, automation, and reproducible reporting with Quarto.",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#script-update-from-channels",
+    "href": "projects/yoga-video-catalog/index.html#script-update-from-channels",
+    "title": "Yoga Video Catalog",
+    "section": "update_from_channels.py",
+    "text": "update_from_channels.py\nWhat it does: Orchestrates the full update. Loads data/channel_urls.json and the existing enriched CSV; for each channel, calls the Playwright scraper to get only new videos (stops when it hits the first video already in the catalog). Writes new rows to a temp CSV, runs enrich_videos.py to fetch metadata via yt-dlp and append to the main CSV, then runs categorize_data.py and update_focus.py on the full file. Single entry point for “pull new videos and refresh the catalog.”\n\"\"\"\nUpdate the catalog with only NEW videos from each configured channel.\n\n- Reads data/channel_urls.json for channel name -&gt; videos page URL.\n- Reads data/yoga_videos_enriched.csv to get existing video_ids.\n- For each channel: scrapes the channel page, keeps only video_ids not already\n  in the spreadsheet, enriches those new videos, and appends them.\n- Then runs categorize_data.py and update_focus.py on the full file (categories + focus).\n\nRun without re-pulling or re-processing videos you already have.\n\nUsage:\n  python update_from_channels.py\n  python update_from_channels.py --headless\n  python update_from_channels.py --no-categorize   # skip categorize and body-parts steps\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport subprocess\nimport sys\nfrom pathlib import Path\n\nimport pandas as pd\n\nfrom scrape_channel import scrape_channel_new_only\n\nDATA_DIR = Path(__file__).parent / \"data\"\nCHANNEL_URLS_JSON = DATA_DIR / \"channel_urls.json\"\nENRICHED_CSV = DATA_DIR / \"yoga_videos_enriched.csv\"\nENRICHED_XLSX = DATA_DIR / \"yoga_videos_enriched.xlsx\"\n\n\ndef load_channel_config() -&gt; dict[str, str]:\n    \"\"\"Load channel display name -&gt; videos page URL.\"\"\"\n    path = CHANNEL_URLS_JSON.resolve()\n    if not path.exists():\n        print(f\"Config not found: {path}\")\n        print(\"Create it with JSON: {\\\"Channel Name\\\": \\\"https://www.youtube.com/@handle/videos\\\", ...}\")\n        return {}\n    with open(path, encoding=\"utf-8\") as f:\n        out = json.load(f)\n    if not isinstance(out, dict):\n        print(f\"Invalid config: {path} should be a JSON object.\")\n        return {}\n    return out\n\n\ndef load_existing_video_ids() -&gt; set[str]:\n    \"\"\"Return set of video_ids already in the enriched CSV.\"\"\"\n    if not ENRICHED_CSV.exists():\n        return set()\n    df = pd.read_csv(ENRICHED_CSV)\n    if \"video_id\" not in df.columns:\n        return set()\n    return set(df[\"video_id\"].astype(str).dropna().unique())\n\n\ndef main() -&gt; None:\n    parser = argparse.ArgumentParser(description=\"Update catalog with new videos only from configured channels\")\n    parser.add_argument(\"--headless\", action=\"store_true\", help=\"Run browser headless when scraping\")\n    parser.add_argument(\"--no-categorize\", action=\"store_true\", help=\"Skip categorize_data and update_focus\")\n    args = parser.parse_args()\n\n    print(\"Loading channel config...\")\n    print(f\"  Config path: {CHANNEL_URLS_JSON.resolve()}\")\n    channels = load_channel_config()\n    if not channels:\n        return\n    channel_list = list(channels.items())\n    print(f\"  Found {len(channel_list)} channel(s) to check.\")\n    for idx, (name, _) in enumerate(channel_list, 1):\n        print(f\"    {idx}. {name}\")\n\n    print(\"\\nLoading existing catalog...\")\n    existing_ids = load_existing_video_ids()\n    print(f\"  Existing videos in catalog: {len(existing_ids)}\")\n\n    script_dir = Path(__file__).resolve().parent\n    python_exe = sys.executable\n    any_new = False\n\n    for idx, (channel_name, channel_url) in enumerate(channel_list, 1):\n        print(f\"\\n--- Channel {idx}/{len(channel_list)}: {channel_name} ---\")\n        print(f\"  URL: {channel_url}\")\n        try:\n            new_videos = scrape_channel_new_only(\n                existing_ids,\n                channel_url,\n                channel_name=channel_name,\n                headless=args.headless,\n                log=print,\n            )\n        except Exception as e:\n            print(f\"  Scrape failed: {e}\")\n            import traceback\n            traceback.print_exc()\n            continue\n\n        print(f\"  New videos to add: {len(new_videos)}\")\n\n        if not new_videos:\n            print(\"  Nothing to add for this channel.\")\n            continue\n\n        any_new = True\n        temp_csv = DATA_DIR / f\"_new_{channel_name.replace(' ', '_')}.csv\"\n        fieldnames = [\"channel\", \"video_id\", \"title\", \"duration\", \"metadata_line\", \"url\"]\n        print(f\"  Writing {len(new_videos)} rows to temp file...\")\n        with open(temp_csv, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n            writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction=\"ignore\")\n            writer.writeheader()\n            writer.writerows(new_videos)\n\n        print(f\"  Enriching {len(new_videos)} new videos (yt-dlp)...\")\n        subprocess.run(\n            [\n                python_exe,\n                str(script_dir / \"enrich_videos.py\"),\n                \"--input\", str(temp_csv),\n                \"--append-to\", str(ENRICHED_CSV),\n                \"--channel\", channel_name,\n            ],\n            check=True,\n            cwd=str(script_dir),\n        )\n        temp_csv.unlink(missing_ok=True)\n        existing_ids.update(v[\"video_id\"] for v in new_videos)\n        print(f\"  Appended to {ENRICHED_CSV}.\")\n\n    if not any_new:\n        print(\"\\nNo new videos to add. Catalog is up to date.\")\n        return\n\n    if args.no_categorize:\n        print(\"\\nSkipping categorize and body-parts (--no-categorize).\")\n        print(\"Done.\")\n        return\n\n    print(\"\\nUpdating categories on full file (categorize_data.py)...\")\n    subprocess.run([python_exe, str(script_dir / \"categorize_data.py\")], check=True, cwd=str(script_dir))\n    print(\"Updating focus (update_focus.py)...\")\n    subprocess.run([python_exe, str(script_dir / \"update_focus.py\")], check=True, cwd=str(script_dir))\n    print(\"\\nDone. Re-run quarto render yoga_catalog.qmd to refresh the catalog page.\")\n\n\nif __name__ == \"__main__\":\n    main()",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#script-scrape-channel",
+    "href": "projects/yoga-video-catalog/index.html#script-scrape-channel",
+    "title": "Yoga Video Catalog",
+    "section": "scrape_channel.py",
+    "text": "scrape_channel.py\nWhat it does: Uses Playwright (Chromium) to open a YouTube channel’s Videos page, scrolls until all videos are loaded, and extracts video ID, title, duration, metadata line, and URL from each item. Exposes scrape_channel_to_list() for a full scrape and scrape_channel_new_only() which stops scrolling once it finds the first video already in a given set (used by the orchestrator to fetch only new videos). Can be run standalone with --url and --output for one-off scrapes.\n\"\"\"\nScrape a YouTube channel's videos page using Playwright.\nRun with: python scrape_channel.py [--url URL] [--output FILE] [--channel-name NAME]\nBrowser runs visible (headless=False) so you can watch it work.\n\"\"\"\n\nimport argparse\nimport csv\nimport re\nimport time\nfrom pathlib import Path\n\nfrom playwright.sync_api import sync_playwright\n\nDATA_DIR = Path(__file__).parent / \"data\"\nDEFAULT_URL = \"https://www.youtube.com/@yogawithadriene/videos\"\nDEFAULT_OUTPUT = DATA_DIR / \"yoga_videos.csv\"\n# How long to wait for the grid to load and between scrolls\nPAGE_LOAD_WAIT_MS = 4000\nSCROLL_PAUSE_SEC = 1.2\n# Stop after this many scrolls with no new videos\nMAX_EMPTY_SCROLLS = 5\n\n\ndef scroll_to_load_all(page) -&gt; None:\n    \"\"\"Scroll the page until no new videos appear.\"\"\"\n    last_count = 0\n    empty_scrolls = 0\n\n    while empty_scrolls &lt; MAX_EMPTY_SCROLLS:\n        # Scroll the main content (YouTube uses #content or the scrollable container)\n        page.evaluate(\"window.scrollBy(0, window.innerHeight)\")\n        time.sleep(SCROLL_PAUSE_SEC)\n\n        # Count current video links (links to /watch?v=)\n        count = page.locator('a[href^=\"/watch?v=\"]').count()\n        if count &gt; last_count:\n            last_count = count\n            empty_scrolls = 0\n        else:\n            empty_scrolls += 1\n\n    # One more scroll and wait to catch any final items\n    page.evaluate(\"window.scrollTo(0, document.body.scrollHeight)\")\n    time.sleep(SCROLL_PAUSE_SEC)\n\n\ndef scroll_once(page) -&gt; None:\n    \"\"\"Scroll down one viewport height to load more content.\"\"\"\n    page.evaluate(\"window.scrollBy(0, window.innerHeight)\")\n    time.sleep(SCROLL_PAUSE_SEC)\n\n\ndef parse_duration(text: str) -&gt; str:\n    \"\"\"Return duration as-is (e.g. '12:34' or '1:23:45').\"\"\"\n    if not text or not text.strip():\n        return \"\"\n    return text.strip()\n\n\ndef parse_views(text: str) -&gt; str:\n    \"\"\"Return view count string as-is (e.g. '1.2M views').\"\"\"\n    if not text or not text.strip():\n        return \"\"\n    return text.strip()\n\n\ndef extract_videos(page) -&gt; list[dict]:\n    \"\"\"Extract video entries from the current page.\"\"\"\n    videos = []\n    # Video links in the grid (exclude sidebar/other links by using the grid context)\n    # YouTube shows each video in a rich-item-renderer with a link containing /watch?v=\n    links = page.locator('a[href^=\"/watch?v=\"]').all()\n\n    seen_ids = set()\n\n    for link in links:\n        try:\n            href = link.get_attribute(\"href\") or \"\"\n            if \"&\" in href:\n                video_id = href.split(\"&\")[0].replace(\"/watch?v=\", \"\")\n            else:\n                video_id = href.replace(\"/watch?v=\", \"\").strip()\n            if not video_id or video_id in seen_ids:\n                continue\n            seen_ids.add(video_id)\n\n            url = f\"https://www.youtube.com{href}\" if href.startswith(\"/\") else href\n\n            # Title: often in the link's title attribute or in an inner text element\n            title = link.get_attribute(\"title\") or \"\"\n            if not title:\n                title_el = link.locator(\"yt-formatted-string#video-title\").first\n                if title_el.count():\n                    title = title_el.text_content() or \"\"\n\n            # Duration: in a span that usually has time or duration (overlay on thumbnail)\n            duration = \"\"\n            container = link.locator(\"xpath=ancestor::ytd-rich-item-renderer\").first\n            if container.count():\n                duration_el = container.locator(\n                    \"span.ytd-thumbnail-overlay-time-status-renderer, \"\n                    \"#text.ytd-thumbnail-overlay-time-status-renderer, \"\n                    \"ytd-thumbnail-overlay-time-status-renderer span\"\n                ).first\n                if duration_el.count():\n                    duration = parse_duration(duration_el.text_content() or \"\")\n\n            # Views and date: in metadata line (e.g. \"1.2M views · 2 years ago\")\n            metadata = \"\"\n            if container.count():\n                meta_el = container.locator(\n                    \"ytd-video-meta-block #metadata-line span, \"\n                    \"span.ytd-video-meta-block\"\n                ).first\n                if meta_el.count():\n                    metadata = meta_el.text_content() or \"\"\n\n            videos.append({\n                \"video_id\": video_id,\n                \"title\": title.strip(),\n                \"duration\": duration,\n                \"metadata_line\": metadata.strip(),\n                \"url\": url,\n            })\n        except Exception as e:\n            print(f\"Skip one entry: {e}\")\n            continue\n\n    return videos\n\n\ndef slug_from_url(url: str) -&gt; str:\n    \"\"\"Return a short slug for the channel URL (e.g. @yogawithadriene -&gt; yogawithadriene).\"\"\"\n    if not url:\n        return \"channel\"\n    u = url.rstrip(\"/\").replace(\"https://www.youtube.com/\", \"\").replace(\"https://youtube.com/\", \"\")\n    return u.replace(\"@\", \"\").replace(\"/videos\", \"\").replace(\"/\", \"_\") or \"channel\"\n\n\ndef scrape_channel_to_list(\n    url: str,\n    channel_name: str = \"\",\n    headless: bool = False,\n) -&gt; list[dict]:\n    \"\"\"\n    Scrape a channel's videos page and return a list of video dicts.\n    Each dict has: video_id, title, duration, metadata_line, url; plus \"channel\" if channel_name is set.\n    \"\"\"\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=headless)\n        context = browser.new_context(\n            viewport={\"width\": 1280, \"height\": 720},\n            user_agent=(\n                \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) \"\n                \"AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n            ),\n        )\n        page = context.new_page()\n        try:\n            page.goto(url, wait_until=\"domcontentloaded\", timeout=60000)\n            page.wait_for_timeout(PAGE_LOAD_WAIT_MS)\n            scroll_to_load_all(page)\n            videos = extract_videos(page)\n            by_id = {}\n            for v in videos:\n                if v[\"video_id\"] not in by_id:\n                    by_id[v[\"video_id\"]] = v\n            videos = list(by_id.values())\n            if channel_name:\n                for v in videos:\n                    v[\"channel\"] = channel_name\n            return videos\n        finally:\n            browser.close()\n\n\ndef scrape_channel_new_only(\n    existing_ids: set[str],\n    url: str,\n    channel_name: str = \"\",\n    headless: bool = False,\n    log=None,\n) -&gt; list[dict]:\n    \"\"\"\n    Scrape a channel's videos page (newest first) and return only videos that are\n    not in existing_ids. Stops loading as soon as the first already-cataloged video\n    is found, since everything below it is older and already in the spreadsheet.\n    \"\"\"\n    if log is None:\n        log = print\n\n    with sync_playwright() as p:\n        browser = p.chromium.launch(headless=headless)\n        context = browser.new_context(\n            viewport={\"width\": 1280, \"height\": 720},\n            user_agent=(\n                \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) \"\n                \"AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n            ),\n        )\n        page = context.new_page()\n        try:\n            log(\"  Opening channel page...\")\n            page.goto(url, wait_until=\"domcontentloaded\", timeout=60000)\n            page.wait_for_timeout(PAGE_LOAD_WAIT_MS)\n\n            prev_count = 0\n            empty_scrolls = 0\n\n            while empty_scrolls &lt; MAX_EMPTY_SCROLLS:\n                log(\"  Reading video list from page...\")\n                videos = extract_videos(page)\n                count = len(videos)\n                log(f\"  Loaded {count} videos so far (newest at top).\")\n\n                # Walk top-to-bottom (newest first); stop at first video already in catalog\n                for i, v in enumerate(videos):\n                    if v[\"video_id\"] in existing_ids:\n                        log(f\"  Found first cataloged video at position {i + 1} — stopping (all above are new).\")\n                        new_list = videos[:i]\n                        if channel_name:\n                            for u in new_list:\n                                u[\"channel\"] = channel_name\n                        return new_list\n\n                if count == prev_count and prev_count &gt; 0:\n                    empty_scrolls += 1\n                else:\n                    empty_scrolls = 0\n                prev_count = count\n\n                log(\"  No match yet — scrolling to load more...\")\n                scroll_once(page)\n\n            # Reached end of channel (no more videos load); all we have are new\n            log(\"  Reached end of channel list; treating all as new.\")\n            if channel_name:\n                for v in videos:\n                    v[\"channel\"] = channel_name\n            return videos\n        finally:\n            browser.close()\n\n\ndef main() -&gt; None:\n    parser = argparse.ArgumentParser(description=\"Scrape a YouTube channel's videos page\")\n    parser.add_argument(\"--url\", default=DEFAULT_URL, help=f\"Channel videos URL (default: {DEFAULT_URL})\")\n    parser.add_argument(\"--output\", type=Path, default=None, help=\"Output CSV path (default: data/yoga_videos_&lt;slug&gt;.csv for custom URL, else data/yoga_videos.csv)\")\n    parser.add_argument(\"--channel-name\", type=str, default=\"\", help=\"Channel display name (stored in 'channel' column if provided)\")\n    args = parser.parse_args()\n\n    url = args.url\n    channel_name = (args.channel_name or \"\").strip()\n    if args.output is not None:\n        output_csv = Path(args.output)\n    else:\n        if url == DEFAULT_URL:\n            output_csv = DEFAULT_OUTPUT\n        else:\n            slug = slug_from_url(url)\n            output_csv = DATA_DIR / f\"yoga_videos_{slug}.csv\"\n\n    output_csv.parent.mkdir(parents=True, exist_ok=True)\n\n    print(f\"Opening {url} ...\")\n    videos = scrape_channel_to_list(url, channel_name=channel_name, headless=False)\n    print(f\"Found {len(videos)} videos.\")\n\n    if not videos:\n        print(\"No videos extracted. Check the page structure or selectors.\")\n        return\n\n    fieldnames = [\"video_id\", \"title\", \"duration\", \"metadata_line\", \"url\"]\n    if channel_name:\n        fieldnames = [\"channel\"] + fieldnames\n\n    with open(output_csv, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction=\"ignore\")\n        writer.writeheader()\n        writer.writerows(videos)\n\n    print(f\"Saved to {output_csv}\")\n\n\nif __name__ == \"__main__\":\n    main()",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#script-enrich-videos",
+    "href": "projects/yoga-video-catalog/index.html#script-enrich-videos",
+    "title": "Yoga Video Catalog",
+    "section": "enrich_videos.py",
+    "text": "enrich_videos.py\nWhat it does: Reads a CSV of yoga videos (with a url column), uses yt-dlp (no API key) to fetch each video’s metadata (title, description, duration, upload_date, view_count, etc.), and derives a focus column by matching title and description against config/focus_map.json. Supports --append-to and --channel to add a new channel’s enriched rows to an existing CSV. Writes both CSV and optional Excel.\n\"\"\"\nEnrich a yoga videos CSV with per-video metadata using yt-dlp (no YouTube API).\nFetches: title, description, duration, upload_date, view_count, like_count, etc.\nAdds a focus column by parsing title + description with focus keywords.\n\nUsage:\n  python enrich_videos.py                           # process data/yoga_videos.csv -&gt; data/yoga_videos_enriched.csv\n  python enrich_videos.py --input data/foo.csv --output data/foo_enriched.csv --channel \"My Channel\"\n  python enrich_videos.py --input data/new.csv --append-to data/yoga_videos_enriched.csv --channel \"New Channel\"\n  python enrich_videos.py --limit 20 --delay 2\n\"\"\"\n\nimport argparse\nimport json\nimport re\nimport time\nfrom pathlib import Path\n\nimport pandas as pd\nimport yt_dlp\n\nDATA_DIR = Path(__file__).parent / \"data\"\nCONFIG_DIR = Path(__file__).parent / \"config\"\nDEFAULT_INPUT = DATA_DIR / \"yoga_videos.csv\"\nDEFAULT_OUTPUT = DATA_DIR / \"yoga_videos_enriched.csv\"\nDEFAULT_XLSX = DATA_DIR / \"yoga_videos_enriched.xlsx\"\n\nwith open(CONFIG_DIR / \"focus_map.json\", encoding=\"utf-8\") as f:\n    FOCUS_MAP = json.load(f)\n\nFOCUS_KEYWORDS = [(canonical, variations) for canonical, variations in FOCUS_MAP.items()]\n\n_SEPARATOR_RE = re.compile(\n    r\"^[\\s]*\"\n    r\"([-]{3,}|[—]{3,}|[-\\s]{5,}|[*]{3,}|[_]{3,}|[=]{3,}|[═]{3,}|[─]{3,})\"\n    r\"[\\s]*$\",\n    re.MULTILINE,\n)\n\n\ndef truncate_at_separator(desc: str) -&gt; str:\n    \"\"\"Return description text above the first visual separator line.\"\"\"\n    if not desc:\n        return \"\"\n    m = _SEPARATOR_RE.search(desc)\n    return desc[: m.start()].strip() if m else desc\n\n\ndef extract_focus(text: str) -&gt; list[str]:\n    \"\"\"Return list of canonical focus names found in text (lowercase).\"\"\"\n    if not text or not isinstance(text, str):\n        return []\n    text_lower = text.lower()\n    found = []\n    # Check in order (more specific first due to FOCUS_MAP ordering)\n    for canonical, variations in FOCUS_KEYWORDS:\n        if canonical in found:\n            continue\n        for variation in variations:\n            if variation in text_lower:\n                found.append(canonical)\n                break\n    return found\n\n\ndef fetch_video_metadata(url: str, ydl_opts: dict) -&gt; dict | None:\n    \"\"\"Return a flat dict of fields we want, or None on failure.\"\"\"\n    try:\n        with yt_dlp.YoutubeDL(ydl_opts) as ydl:\n            info = ydl.extract_info(url, download=False)\n            if not info:\n                return None\n            # Normalize to dict and take only the keys we need\n            if hasattr(ydl, \"sanitize_info\"):\n                info = ydl.sanitize_info(info)\n            elif hasattr(info, \"get\"):\n                info = dict(info)\n            else:\n                info = dict(info) if info else {}\n    except Exception as e:\n        print(f\"  Error: {e}\")\n        return None\n\n    title = info.get(\"title\") or \"\"\n    description = (info.get(\"description\") or \"\")[:10000]  # cap size\n    duration = info.get(\"duration\")\n    upload_date = info.get(\"upload_date\")  # YYYYMMDD\n    view_count = info.get(\"view_count\")\n    like_count = info.get(\"like_count\")\n    categories = info.get(\"categories\")\n    tags = info.get(\"tags\")\n\n    # Format duration as M:SS or H:MM:SS\n    duration_str = \"\"\n    if duration is not None and duration &gt;= 0:\n        h = int(duration) // 3600\n        m = (int(duration) % 3600) // 60\n        s = int(duration) % 60\n        if h &gt; 0:\n            duration_str = f\"{h}:{m:02d}:{s:02d}\"\n        else:\n            duration_str = f\"{m}:{s:02d}\"\n\n    # Format upload_date as YYYY-MM-DD\n    upload_date_str = \"\"\n    if upload_date and len(str(upload_date)) &gt;= 8:\n        u = str(upload_date)[:8]\n        upload_date_str = f\"{u[:4]}-{u[4:6]}-{u[6:8]}\"\n\n    focus_list = extract_focus(title + \" \" + truncate_at_separator(description))\n    focus_str = \" | \".join(focus_list) if focus_list else \"\"\n\n    return {\n        \"title\": title,\n        \"description\": description,\n        \"duration_seconds\": duration if duration is not None else \"\",\n        \"duration\": duration_str or \"\",\n        \"upload_date\": upload_date_str,\n        \"view_count\": view_count if view_count is not None else \"\",\n        \"like_count\": like_count if like_count is not None else \"\",\n        \"categories\": \" | \".join(categories) if isinstance(categories, list) else (categories or \"\"),\n        \"tags\": \" | \".join(tags) if isinstance(tags, list) else (tags or \"\"),\n        \"focus\": focus_str,\n    }\n\n\ndef main() -&gt; None:\n    parser = argparse.ArgumentParser(description=\"Enrich yoga videos CSV with yt-dlp metadata\")\n    parser.add_argument(\"--input\", type=Path, default=DEFAULT_INPUT, help=\"Input CSV path\")\n    parser.add_argument(\"--output\", type=Path, default=None, help=\"Output CSV path (default: data/yoga_videos_enriched.csv or same as --append-to)\")\n    parser.add_argument(\"--append-to\", type=Path, default=None, help=\"Append enriched rows to this CSV (and update same-name .xlsx). Use with --input and --channel to add a new channel.\")\n    parser.add_argument(\"--channel\", type=str, default=\"\", help=\"Channel display name (added as 'channel' column; required when using --append-to for new channel)\")\n    parser.add_argument(\"--limit\", type=int, default=None, help=\"Process only first N rows (for testing)\")\n    parser.add_argument(\"--delay\", type=float, default=1.5, help=\"Seconds between requests (default 1.5)\")\n    parser.add_argument(\"--no-excel\", action=\"store_true\", help=\"Skip writing .xlsx file\")\n    args = parser.parse_args()\n\n    input_csv = Path(args.input)\n    append_to = Path(args.append_to) if args.append_to else None\n    channel_name = (args.channel or \"\").strip()\n\n    if append_to:\n        output_csv = append_to\n        output_xlsx = append_to.with_suffix(\".xlsx\")\n    else:\n        output_csv = Path(args.output) if args.output else DEFAULT_OUTPUT\n        output_xlsx = output_csv.with_suffix(\".xlsx\") if not args.no_excel else None\n\n    if not input_csv.exists():\n        print(f\"Input not found: {input_csv}\")\n        return\n\n    df = pd.read_csv(input_csv)\n    if \"url\" not in df.columns:\n        print(\"CSV must have a 'url' column\")\n        return\n\n    if append_to and not channel_name:\n        print(\"When using --append-to you must set --channel so rows are labeled.\")\n        return\n\n    urls = df[\"url\"].astype(str).tolist()\n    if args.limit:\n        urls = urls[: args.limit]\n        df = df.iloc[: len(urls)].copy()\n\n    if channel_name and \"channel\" not in df.columns:\n        df.insert(0, \"channel\", channel_name)\n\n    ydl_opts = {\n        \"quiet\": True,\n        \"no_warnings\": True,\n        \"extract_flat\": False,\n        \"skip_download\": True,\n    }\n\n    enriched_rows = []\n    for i, url in enumerate(urls):\n        if not url or not url.startswith(\"http\"):\n            enriched_rows.append({k: \"\" for k in (\"title\", \"description\", \"duration_seconds\", \"duration\", \"upload_date\", \"view_count\", \"like_count\", \"categories\", \"tags\", \"focus\")})\n            continue\n        print(f\"[{i + 1}/{len(urls)}] {url[:60]}...\")\n        row = fetch_video_metadata(url, ydl_opts)\n        if row:\n            enriched_rows.append(row)\n        else:\n            enriched_rows.append({k: \"\" for k in (\"title\", \"description\", \"duration_seconds\", \"duration\", \"upload_date\", \"view_count\", \"like_count\", \"categories\", \"tags\", \"focus\")})\n        time.sleep(args.delay)\n\n    enrich_df = pd.DataFrame(enriched_rows)\n    out = df.copy()\n    for col in enrich_df.columns:\n        out[col] = enrich_df[col].values\n    original_cols = [c for c in df.columns]\n    new_cols = [c for c in enrich_df.columns if c not in df.columns]\n    out = out[original_cols + new_cols]\n\n    if append_to and append_to.exists():\n        existing = pd.read_csv(append_to)\n        if \"channel\" not in existing.columns:\n            existing.insert(0, \"channel\", \"Yoga With Adriene\")\n        out = pd.concat([existing, out], ignore_index=True)\n\n    DATA_DIR.mkdir(parents=True, exist_ok=True)\n    out.to_csv(output_csv, index=False, encoding=\"utf-8\")\n    print(f\"Saved {output_csv}\")\n\n    if not args.no_excel and output_xlsx:\n        out.to_excel(output_xlsx, index=False, engine=\"openpyxl\")\n        print(f\"Saved {output_xlsx}\")\n\n    print(\"Done.\")\n\n\nif __name__ == \"__main__\":\n    main()",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#script-categorize-data",
+    "href": "projects/yoga-video-catalog/index.html#script-categorize-data",
+    "title": "Yoga Video Catalog",
+    "section": "categorize_data.py",
+    "text": "categorize_data.py\nWhat it does: Reads data/yoga_videos_enriched.csv and adds derived columns: duration_mins and duration_bucket (rounded to nearest 5 min, capped at 120), duration_category for display; upload_year from upload_date; views_category (Under 500k, 500k–1M, 1M–2.5M, etc.) and views_category_order for sorting. Overwrites the CSV and optional Excel. Run after enrichment so the catalog filters have consistent buckets.\n\"\"\"\nAdd category columns to yoga_videos_enriched.csv:\n  - duration_bucket: round to nearest 5 min (0-5 min rounds to 5, then normal rounding)\n  - upload_year: year only\n  - views_category: one of Under 500k, 500k–1M, 1M–2.5M, 2.5M–10M, 10M+\n  - views_category_order: 1–5 for sorting\n\nRun after enrich_videos.py. Overwrites the CSV with added columns (keeps all existing columns).\n\"\"\"\n\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nDATA_DIR = Path(__file__).parent / \"data\"\nINPUT_CSV = DATA_DIR / \"yoga_videos_enriched.csv\"\nOUTPUT_CSV = DATA_DIR / \"yoga_videos_enriched.csv\"\nOUTPUT_XLSX = DATA_DIR / \"yoga_videos_enriched.xlsx\"\n\nVIEWS_BREAKS = [0, 500_000, 1_000_000, 2_500_000, 10_000_000]\nVIEWS_LABELS = [\"Under 500k\", \"500k–1M\", \"1M–2.5M\", \"2.5M–10M\", \"10M+\"]\n\n\ndef duration_to_mins(s):\n    \"\"\"Parse 'M:SS' or 'H:MM:SS'. For 3 parts: if value as H:MM:SS would be &gt; 1:59:59 (120 min), assume MM:SS:xx (e.g. 2:00:00 = 2 min); else H:MM:SS.\"\"\"\n    if pd.isna(s) or str(s).strip() == \"\":\n        return None\n    parts = str(s).strip().split(\":\")\n    parts = [float(x) for x in parts if x.replace(\".\", \"\").isdigit()]\n    if not parts:\n        return None\n    if len(parts) == 2:\n        return parts[0] + parts[1] / 60\n    if len(parts) == 3:\n        as_hms = parts[0] * 60 + parts[1] + parts[2] / 60\n        if as_hms &gt;= 120:\n            return parts[0] + parts[1] / 60  # MM:SS:xx (e.g. 25:42:00 or 2:00:00)\n        return as_hms  # H:MM:SS (1:59:59 or less)\n    return None\n\n\ndef main():\n    if not INPUT_CSV.exists():\n        print(f\"Not found: {INPUT_CSV}\")\n        return\n\n    df = pd.read_csv(INPUT_CSV)\n\n    # Duration: round to nearest 5 min (but 0-5 min rounds to 5, not 0)\n    if \"duration_seconds\" in df.columns:\n        sec = pd.to_numeric(df[\"duration_seconds\"], errors=\"coerce\")\n        df[\"duration_mins\"] = sec / 60\n    else:\n        df[\"duration_mins\"] = df[\"duration\"].map(duration_to_mins)\n    df[\"duration_mins\"] = df[\"duration_mins\"].fillna(0)\n    # Round to nearest 5, but if result is 0 and original &gt; 0, set to 5; cap at 120 so bad/very long durations don't show as 999\n    df[\"duration_bucket\"] = (np.round(df[\"duration_mins\"] / 5) * 5).clip(upper=120).astype(int)\n    df.loc[(df[\"duration_bucket\"] == 0) & (df[\"duration_mins\"] &gt; 0), \"duration_bucket\"] = 5\n    df[\"duration_category\"] = np.where(\n        df[\"duration_bucket\"] == 0, \"—\",\n        np.where(df[\"duration_bucket\"] == 120,\n                 np.where(df[\"duration_mins\"] &gt; 120, \"120+ min\", \"120 min\"),\n                 df[\"duration_bucket\"].astype(str) + \" min\")\n    )\n\n    # Upload date -&gt; year\n    df[\"upload_year\"] = pd.to_datetime(df[\"upload_date\"], errors=\"coerce\").dt.year\n    df[\"upload_year\"] = df[\"upload_year\"].fillna(0).astype(int)\n    df[\"upload_year_display\"] = df[\"upload_year\"].replace(0, \"\").astype(str).replace(\"\", \"—\")\n\n    # Views: 5 categories\n    views = pd.to_numeric(df[\"view_count\"], errors=\"coerce\").fillna(-1)\n    order = np.searchsorted(VIEWS_BREAKS[1:] + [np.inf], views, side=\"left\") + 1\n    order[views &lt; 0] = 0\n    order = np.clip(order, 0, 5)\n    df[\"views_category_order\"] = order.astype(int)\n    df[\"views_category\"] = [VIEWS_LABELS[i - 1] if 1 &lt;= i &lt;= 5 else \"—\" for i in df[\"views_category_order\"]]\n    df.loc[df[\"view_count\"].isna(), \"views_category\"] = \"—\"\n\n    df.to_csv(OUTPUT_CSV, index=False, encoding=\"utf-8\")\n    print(f\"Updated {OUTPUT_CSV} with duration_category, upload_year, views_category.\")\n    try:\n        df.to_excel(OUTPUT_XLSX, index=False, engine=\"openpyxl\")\n        print(f\"Updated {OUTPUT_XLSX}.\")\n    except Exception as e:\n        print(f\"Note: Could not update Excel: {e}\")\n\n\nif __name__ == \"__main__\":\n    main()",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/index.html#script-update-focus",
+    "href": "projects/yoga-video-catalog/index.html#script-update-focus",
+    "title": "Yoga Video Catalog",
+    "section": "update_focus.py",
+    "text": "update_focus.py\nWhat it does: Recomputes the focus column in the enriched CSV using the same keyword logic as enrich_videos.py (reads config/focus_map.json, matches title + description). Does not call YouTube or yt-dlp — use this after changing the focus map or exclude keywords so existing rows get updated focus tags without re-fetching.\n\"\"\"\nUpdate focus column in yoga_videos_enriched.csv using the focus keyword list\n(same as enrich_videos.py).\n\nRun this to update existing enriched data without re-fetching from YouTube.\nThe CSV must have a column named **focus** (see INSTRUCTIONS.md if yours says body_part_focus).\n\"\"\"\n\nimport json\nimport re\nfrom pathlib import Path\n\nimport pandas as pd\n\nDATA_DIR = Path(__file__).parent / \"data\"\nCONFIG_DIR = Path(__file__).parent / \"config\"\nCSV_FILE = DATA_DIR / \"yoga_videos_enriched.csv\"\n\nwith open(CONFIG_DIR / \"focus_map.json\", encoding=\"utf-8\") as f:\n    FOCUS_MAP = json.load(f)\n\nFOCUS_KEYWORDS = [(canonical, variations) for canonical, variations in FOCUS_MAP.items()]\n\n_SEPARATOR_RE = re.compile(\n    r\"^[\\s]*\"\n    r\"([-]{3,}|[—]{3,}|[-\\s]{5,}|[*]{3,}|[_]{3,}|[=]{3,}|[═]{3,}|[─]{3,})\"\n    r\"[\\s]*$\",\n    re.MULTILINE,\n)\n\n\ndef truncate_at_separator(desc: str) -&gt; str:\n    \"\"\"Return description text above the first visual separator line.\"\"\"\n    if not desc:\n        return \"\"\n    m = _SEPARATOR_RE.search(desc)\n    return desc[: m.start()].strip() if m else desc\n\n\ndef extract_focus(text: str) -&gt; list[str]:\n    \"\"\"Return list of canonical focus names found in text (lowercase).\"\"\"\n    if not text or not isinstance(text, str):\n        return []\n    text_lower = text.lower()\n    found = []\n    for canonical, variations in FOCUS_KEYWORDS:\n        if canonical in found:\n            continue\n        for variation in variations:\n            if variation in text_lower:\n                found.append(canonical)\n                break\n    return found\n\n\ndef main():\n    if not CSV_FILE.exists():\n        print(f\"Not found: {CSV_FILE}\")\n        return\n\n    df = pd.read_csv(CSV_FILE, na_values=[\"\", \"NA\"])\n\n    # CSV must use \"focus\" column (rename body_part_focus in the CSV header if needed — see INSTRUCTIONS.md)\n    if \"focus\" not in df.columns and \"body_part_focus\" in df.columns:\n        print(\"The CSV has 'body_part_focus' but this script expects 'focus'.\")\n        print(\"Rename the column: open data/yoga_videos_enriched.csv, change the header in the first row from body_part_focus to focus, save, then run this again.\")\n        return\n    if \"body_part_focus\" in df.columns:\n        df = df.drop(columns=[\"body_part_focus\"])\n\n    titles = df[\"title\"].fillna(\"\")\n    descs = df[\"description\"].fillna(\"\").apply(truncate_at_separator)\n    title_desc = (titles + \" \" + descs).str[:10000]\n\n    # Extract focus from keywords\n    focus_lists = title_desc.apply(extract_focus)\n    df[\"focus\"] = focus_lists.apply(lambda x: \" | \".join(x) if x else \"\")\n\n    df.to_csv(CSV_FILE, index=False, encoding=\"utf-8\")\n    print(f\"Updated focus in {CSV_FILE}\")\n    print(f\"Videos with focus tags: {(df['focus'] != '').sum()} / {len(df)}\")\n\n\nif __name__ == \"__main__\":\n    main()",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Yoga Video Catalog"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Kevin Mackay, PhD — Data professional & developer\nI combine analysis, mapping, and automation to turn data into clear, actionable insights.\nExplore my About page to learn more, or jump to Projects to see selected work."
+  },
+  {
+    "objectID": "index.html#quick-links",
+    "href": "index.html#quick-links",
+    "title": "Home",
+    "section": "Quick links",
+    "text": "Quick links\n\n\n\nSection\nDescription\n\n\n\n\nAbout\nBackground, interests, and expertise\n\n\nResume\nExperience, education, and skills\n\n\nProjects\nStats, mapping, automation, and more"
+  },
+  {
+    "objectID": "index.html#featured",
+    "href": "index.html#featured",
+    "title": "Home",
+    "section": "Featured",
+    "text": "Featured\nThis site is built with Quarto and R (tidyverse, leaflet). Placeholder content is used here so you can see layout and responsiveness; replace it with your own copy and projects when you’re ready."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Placeholder: Replace with a short professional bio (2–4 paragraphs) covering who you are, what you do, and what you care about.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About",
+    "section": "",
+    "text": "Placeholder: Replace with a short professional bio (2–4 paragraphs) covering who you are, what you do, and what you care about.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  {
+    "objectID": "about.html#interests",
+    "href": "about.html#interests",
+    "title": "About",
+    "section": "Interests",
+    "text": "Interests\nPlaceholder: List your main interests (e.g., reproducible research, spatial analysis, open data, automation).\n\nReproducible research — Scripts, Quarto, and version control\nSpatial analysis & mapping — GIS, leaflet, and geodata\nData automation — Pipelines, APIs, and reporting\nOpen source — R, Python, and sharing code"
+  },
+  {
+    "objectID": "about.html#expertise",
+    "href": "about.html#expertise",
+    "title": "About",
+    "section": "Expertise",
+    "text": "Expertise\nPlaceholder: Summarize tools and domains (R, tidyverse, SQL, etc.).\n\n\n\nDomain\nTools & methods\n\n\n\n\nData analysis\nR, tidyverse, statistical modeling\n\n\nMapping\nLeaflet, sf, spatial data\n\n\nAutomation\nScripts, Quarto, Git\n\n\nCollaboration\nCode review, documentation"
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About",
+    "section": "Contact",
+    "text": "Contact\nPlaceholder: Add your preferred contact (email, LinkedIn, GitHub).\n\nEmail: mackaykp@gmail.com\n\nGitHub: mackaykp\n\nLinkedIn: Kevin Mackay, PhD"
+  }
+]
