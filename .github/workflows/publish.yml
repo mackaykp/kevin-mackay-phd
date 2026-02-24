@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      R_LIBS_USER: ${{ runner.tool_cache }}/R-libs
 
     steps:
       - name: Checkout
@@ -28,7 +30,8 @@ jobs:
 
       - name: Install R dependencies
         run: |
-          Rscript -e "install.packages(c('tidyverse', 'leaflet', 'jsonlite', 'yaml'), repos = 'https://cloud.r-project.org')"
+          Rscript -e "dir.create(Sys.getenv('R_LIBS_USER'), recursive = TRUE, showWarnings = FALSE)"
+          Rscript -e "install.packages(c('tidyverse', 'leaflet', 'jsonlite', 'yaml'), repos = 'https://cloud.r-project.org', lib = Sys.getenv('R_LIBS_USER'))"
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
