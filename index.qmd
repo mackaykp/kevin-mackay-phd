@@ -1,0 +1,24 @@
+---
+title: "Home"
+---
+
+::: {.quarto-title-banner .bg-body}
+# Welcome
+
+**Kevin Mackay, PhD** — Data professional & developer
+
+I combine **analysis**, **mapping**, and **automation** to turn data into clear, actionable insights.  
+Explore my [About](/about.html) page to learn more, or jump to [Projects](/projects/index.html) to see selected work.
+:::
+
+## Quick links
+
+| Section | Description |
+|--------|-------------|
+| [About](/about.html) | Background, interests, and expertise |
+| [Resume](/resume.html) | Experience, education, and skills |
+| [Projects](/projects/index.html) | Stats, mapping, automation, and more |
+
+## Featured
+
+This site is built with **Quarto** and **R** (tidyverse, leaflet). Placeholder content is used here so you can see layout and responsiveness; replace it with your own copy and projects when you’re ready.

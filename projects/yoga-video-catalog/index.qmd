@@ -1,0 +1,209 @@
+---
+title: "Yoga Video Catalog"
+sidebar: false
+toc: false
+body-class: yoga-project-page
+execute:
+  dir: document
+---
+
+::: {.yoga-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
+:::
+
+::: {#yoga-final-product .yoga-view-panel}
+::: {.yoga-embed-bar}
+[Open catalog in new tab](browse.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+::: {#yoga-iframe-wrap .yoga-embed-full}
+<iframe src="browse.html" title="Yoga Video Catalog — browse" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+:::
+:::
+
+::: {#yoga-overview .yoga-view-panel .d-none}
+## Overview
+
+This project is a **filterable yoga video catalog** built from YouTube channel data. It demonstrates an end-to-end **data workflow**: web scraping, automation, ETL (extract–transform–load), and an interactive front end. The goal was to collect videos from chosen channels, enrich them with metadata (duration, upload date, focus areas), and present a single place to filter by duration, focus, channel, and keyword and to build a personal queue.
+
+**Final product:** The [**Browse catalog**](browse.html) page is the main deliverable — a full-screen filterable catalog with duration/year sliders, focus and channel chips, keyword search, and a "My List" queue (stored in the browser).
+
+---
+
+## Pipeline overview
+
+The pipeline runs in the source project (see "Project files" below). High-level flow:
+
+| Step | What it does |
+|------|----------------|
+| **1. Configure** | Channel list lives in `data/channel_urls.json` (display name → channel Videos page URL). |
+| **2. Scrape** | `scrape_channel.py` uses **Playwright** to open each channel's Videos page, scroll to load all items, and extract video IDs, titles, and durations into a CSV. |
+| **3. Enrich** | `enrich_videos.py` uses **yt-dlp** (no YouTube API key) to fetch metadata (title, description, duration, upload date, view count, etc.) and derives a **focus** column from title/description using a keyword map. |
+| **4. Categorize** | `categorize_data.py` adds derived columns: duration buckets, upload year, and view-count bands. |
+| **5. Focus** | `update_focus.py` refreshes the focus column using the same keyword logic (e.g. after config changes). |
+| **6. Update (orchestrator)** | `update_from_channels.py` runs the full flow: for each channel, scrapes only **new** videos (not already in the CSV), enriches and appends them, then runs categorize and focus on the full file. |
+| **7. Publish** | The catalog is built with **Quarto**: `browse.qmd` reads `data/yoga_videos_enriched.csv` and `config/focus_map.json` / `config/exclude_keywords.json`, then renders the interactive browse page (R + JSON + client-side JS). |
+
+So: **scraping → enrichment (ETL) → categorization → focus update → Quarto render** = automation from channel list to live catalog.
+
+---
+
+## Project files
+
+These files are included in this portfolio for reference. In the full project they live in the Yoga repo and are run from the project root.
+
+### Data and config
+
+| Path | Purpose |
+|------|---------|
+| `yoga-video-catalog/data/yoga_videos_enriched.csv` | Main catalog data (video_id, title, channel, duration, focus, upload_date, url, etc.). Built by the pipeline. |
+| `yoga-video-catalog/config/focus_map.json` | Maps canonical focus labels (e.g. "Core", "Hips") to keyword variations used to detect focus from title/description. |
+| `yoga-video-catalog/config/exclude_keywords.json` | Keywords used to exclude videos (e.g. vlogs, announcements). Plus a focus-based filter so only videos with at least one focus tag appear. |
+
+### Scripts (in `yoga-video-catalog/scripts/`)
+
+| Script | Role |
+|--------|------|
+| **update_from_channels.py** | Main entry point. Reads channel config and existing CSV; for each channel scrapes only new videos, enriches them, appends to CSV; runs categorize and focus on the full file. |
+| **scrape_channel.py** | Playwright-based scraper: loads a channel's Videos page, scrolls to load all, parses video links and durations. Can run standalone or via `update_from_channels.py`. |
+| **enrich_videos.py** | yt-dlp enrichment: reads a CSV of video IDs, fetches metadata, derives focus from title/description using `focus_map.json`, writes enriched CSV (or appends to existing). |
+| **categorize_data.py** | Adds duration buckets, upload year, and view-count categories to the enriched CSV. |
+| **update_focus.py** | Recomputes the focus column from title/description using the same keyword map (no re-fetch from YouTube). |
+
+---
+
+## Tech stack
+
+| Layer | Tools |
+|-------|--------|
+| Scraping | Python, **Playwright** (Chromium) |
+| Enrichment | **yt-dlp**, pandas |
+| Config | JSON (channel list, focus map, exclude keywords) |
+| Catalog UI | **Quarto**, R (read CSV + inject JSON), vanilla JS (filters, queue, preview) |
+
+---
+
+## Takeaways
+
+- **Single command** to add new channels or pull new videos from existing channels (`update_from_channels.py`), then re-render the catalog.
+- **No YouTube API** — scraping + yt-dlp keeps the pipeline simple and key-free.
+- **Config-driven** focus and exclusion make it easy to tune what appears in the catalog without changing code.
+- **End-to-end showcase**: from raw channel pages to a polished, filterable catalog and queue, demonstrating web scraping, ETL, automation, and reproducible reporting with Quarto.
+:::
+
+::: {#yoga-scripts .yoga-view-panel .d-none}
+::: {.row}
+::: {.col-lg-8 .yoga-scripts-content}
+## update_from_channels.py {#script-update-from-channels}
+
+**What it does:** Orchestrates the full update. Loads `data/channel_urls.json` and the existing enriched CSV; for each channel, calls the Playwright scraper to get only *new* videos (stops when it hits the first video already in the catalog). Writes new rows to a temp CSV, runs `enrich_videos.py` to fetch metadata via yt-dlp and append to the main CSV, then runs `categorize_data.py` and `update_focus.py` on the full file. Single entry point for "pull new videos and refresh the catalog."
+
+```{python}
+#| file: scripts/update_from_channels.py
+#| eval: false
+```
+
+---
+
+## scrape_channel.py {#script-scrape-channel}
+
+**What it does:** Uses Playwright (Chromium) to open a YouTube channel's Videos page, scrolls until all videos are loaded, and extracts video ID, title, duration, metadata line, and URL from each item. Exposes `scrape_channel_to_list()` for a full scrape and `scrape_channel_new_only()` which stops scrolling once it finds the first video already in a given set (used by the orchestrator to fetch only new videos). Can be run standalone with `--url` and `--output` for one-off scrapes.
+
+```{python}
+#| file: scripts/scrape_channel.py
+#| eval: false
+```
+
+---
+
+## enrich_videos.py {#script-enrich-videos}
+
+**What it does:** Reads a CSV of yoga videos (with a `url` column), uses **yt-dlp** (no API key) to fetch each video's metadata (title, description, duration, upload_date, view_count, etc.), and derives a **focus** column by matching title and description against `config/focus_map.json`. Supports `--append-to` and `--channel` to add a new channel's enriched rows to an existing CSV. Writes both CSV and optional Excel.
+
+```{python}
+#| file: scripts/enrich_videos.py
+#| eval: false
+```
+
+---
+
+## categorize_data.py {#script-categorize-data}
+
+**What it does:** Reads `data/yoga_videos_enriched.csv` and adds derived columns: **duration_mins** and **duration_bucket** (rounded to nearest 5 min, capped at 120), **duration_category** for display; **upload_year** from upload_date; **views_category** (Under 500k, 500k–1M, 1M–2.5M, etc.) and **views_category_order** for sorting. Overwrites the CSV and optional Excel. Run after enrichment so the catalog filters have consistent buckets.
+
+```{python}
+#| file: scripts/categorize_data.py
+#| eval: false
+```
+
+---
+
+## update_focus.py {#script-update-focus}
+
+**What it does:** Recomputes the **focus** column in the enriched CSV using the same keyword logic as `enrich_videos.py` (reads `config/focus_map.json`, matches title + description). Does not call YouTube or yt-dlp — use this after changing the focus map or exclude keywords so existing rows get updated focus tags without re-fetching.
+
+```{python}
+#| file: scripts/update_focus.py
+#| eval: false
+```
+:::
+
+::: {.col-lg-4 .yoga-scripts-toc-column}
+::: {.yoga-scripts-toc}
+**On this page**
+
+- [update_from_channels.py](#script-update-from-channels)
+- [scrape_channel.py](#script-scrape-channel)
+- [enrich_videos.py](#script-enrich-videos)
+- [categorize_data.py](#script-categorize-data)
+- [update_focus.py](#script-update-focus)
+:::
+:::
+:::
+:::
+
+<script>
+(function() {
+  var productPanel = document.getElementById('yoga-final-product');
+  var overviewPanel = document.getElementById('yoga-overview');
+  var scriptsPanel = document.getElementById('yoga-scripts');
+  var btnProduct = document.querySelector('.yoga-btn-product');
+  var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnScripts = document.querySelector('.yoga-btn-scripts');
+  if (!productPanel || !overviewPanel || !scriptsPanel || !btnProduct || !btnOverview || !btnScripts) return;
+
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnScripts].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showScripts() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    scriptsPanel.classList.remove('d-none');
+    setActive(btnScripts);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnScripts.addEventListener('click', showScripts);
+})();
+</script>

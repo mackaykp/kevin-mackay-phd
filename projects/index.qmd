@@ -1,0 +1,268 @@
+---
+title: "Projects"
+sidebar: false
+execute:
+  dir: project
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
+::: {.projects-intro}
+Filter by **Tech stack**, **Methodology**, or **Domain**—click a tag to filter. Each project can span multiple areas.
+:::
+
+```{r}
+#| label: load-projects
+#| include: false
+library(yaml)
+# Works from project root (full render) or from projects/ (e.g. preview)
+yaml_path <- if (file.exists("projects/projects.yaml")) "projects/projects.yaml" else "projects.yaml"
+projects_list <- yaml.load_file(yaml_path)
+if (is.null(projects_list$projects)) projects_list <- list(projects = list())
+# Ensure each project has tags (character vector)
+for (i in seq_along(projects_list$projects)) {
+  p <- projects_list$projects[[i]]
+  if (is.null(p$tags)) p$tags <- character(0)
+  if (is.null(p$image)) p$image <- ""
+  projects_list$projects[[i]] <- p
+}
+
+# Tag categories for the filter UI (order = display order)
+# "Tech stack" = languages, frameworks, tools. "Methodology" = how you work. "Domain" = application area.
+tag_categories <- list(
+  list(name = "Tech stack", tags = c("R", "Python", "Quarto", "leaflet", "tidyverse")),
+  list(name = "Methodology", tags = c("Automation", "ETL", "Web scraping")),
+  list(name = "Domain", tags = c("Statistics", "Spatial", "Mapping", "Documentation", "Health data"))
+)
+```
+
+```{r}
+#| label: inject-projects-json
+#| echo: false
+#| results: asis
+cat("<script type=\"application/json\" id=\"projects-data\">")
+cat(jsonlite::toJSON(projects_list$projects, auto_unbox = TRUE))
+cat("</script>\n")
+cat("<script type=\"application/json\" id=\"tag-categories\">")
+cat(jsonlite::toJSON(tag_categories, auto_unbox = TRUE))
+cat("</script>\n")
+```
+
+```{=html}
+<div class="projects-page" id="projects-page">
+  <div class="projects-filters" id="projects-filters">
+    <div class="projects-filter-groups" id="projects-filter-groups"></div>
+    <button type="button" class="projects-clear-btn" id="projects-clear-btn" style="display: none;">Clear filters</button>
+  </div>
+  <p class="projects-count" id="projects-count"></p>
+  <div class="projects-grid" id="projects-grid"></div>
+  <p class="projects-empty" id="projects-empty" style="display: none;">No projects match the selected tags. Clear filters to see all.</p>
+</div>
+```
+
+<style>
+/* Projects page — card grid + tag filter (distinct from yoga catalog) */
+.projects-page { max-width: 1200px; margin: 0 auto; padding: 0 0 2rem 0; }
+.projects-intro {
+  font-size: 1rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.6;
+}
+.projects-filters {
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem;
+  margin-bottom: 1rem; padding: 1.25rem 1.5rem; background: #fff;
+  border: 1px solid #e2e8f0; border-radius: 0.75rem; box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+.projects-filter-groups { flex: 1; min-width: 0; }
+.projects-filter-group { margin-bottom: 0.75rem; }
+.projects-filter-group:last-child { margin-bottom: 0; }
+.projects-filter-group-label {
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b;
+  margin-bottom: 0.4rem; display: block;
+}
+.projects-tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.projects-tag-btn {
+  display: inline-flex; align-items: center; padding: 0.35rem 0.75rem; border-radius: 9999px;
+  font-size: 0.8125rem; font-weight: 500; border: 1px solid #e2e8f0; background: #f8fafc;
+  color: #475569; cursor: pointer; transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.projects-tag-btn:hover { background: #f1f5f9; border-color: #cbd5e1; color: #334155; }
+.projects-tag-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; }
+.projects-clear-btn {
+  font-size: 0.8125rem; font-weight: 500; color: #64748b; background: transparent;
+  border: 1px solid #e2e8f0; padding: 0.35rem 0.65rem; border-radius: 0.5rem;
+  cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.projects-clear-btn:hover { background: #f1f5f9; color: #334155; }
+.projects-count { font-size: 0.875rem; color: #64748b; margin: 0 0 1rem 0; }
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;
+}
+.projects-card {
+  background: #fff; border-radius: 0.75rem; border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.06); overflow: hidden;
+  display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+}
+.projects-card:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+  border-color: rgba(99, 102, 241, 0.25);
+}
+.projects-card-visual {
+  height: 140px; background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.projects-card-visual img { width: 100%; height: 100%; object-fit: cover; }
+.projects-card-visual-placeholder {
+  color: #94a3b8; font-size: 2rem; opacity: 0.8;
+}
+.projects-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.projects-card-title {
+  font-size: 1.1rem; font-weight: 700; margin: 0 0 0.5rem 0; line-height: 1.3;
+}
+.projects-card-title a { color: #0f172a; text-decoration: none; }
+.projects-card-title a:hover { color: #6366f1; }
+.projects-card-desc {
+  font-size: 0.875rem; color: #64748b; line-height: 1.5; margin: 0 0 1rem 0; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.projects-card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.projects-card-tag {
+  font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.5rem; border-radius: 0.375rem;
+  background: #f1f5f9; color: #475569; border: 1px solid transparent;
+}
+.projects-card-tag.filter-tag { cursor: pointer; }
+.projects-card-tag.filter-tag:hover { background: #e2e8f0; color: #6366f1; }
+.projects-empty { text-align: center; color: #64748b; padding: 2rem 1rem; font-size: 0.9375rem; }
+</style>
+
+<script>
+(function() {
+  var dataEl = document.getElementById('projects-data');
+  var catEl = document.getElementById('tag-categories');
+  if (!dataEl || !catEl) return;
+  var projects = JSON.parse(dataEl.textContent);
+  var tagCategories = JSON.parse(catEl.textContent);
+  var grid = document.getElementById('projects-grid');
+  var filterGroupsEl = document.getElementById('projects-filter-groups');
+  var countEl = document.getElementById('projects-count');
+  var clearBtn = document.getElementById('projects-clear-btn');
+  var emptyEl = document.getElementById('projects-empty');
+  // Links are relative to projects/ (we're on projects/index.html), so no prefix
+  var baseHref = '';
+
+  var tagsInProjects = [];
+  projects.forEach(function(p) {
+    (p.tags || []).forEach(function(t) {
+      if (tagsInProjects.indexOf(t) === -1) tagsInProjects.push(t);
+    });
+  });
+
+  var tagToCategory = {};
+  tagCategories.forEach(function(cat) {
+    (cat.tags || []).forEach(function(t) { tagToCategory[t] = cat.name; });
+  });
+  var categoryOrder = tagCategories.map(function(cat) { return cat.name; });
+  categoryOrder.push('Other');
+
+  var state = { activeTags: [] };
+
+  function toggleTag(tag) {
+    var i = state.activeTags.indexOf(tag);
+    if (i === -1) state.activeTags.push(tag);
+    else state.activeTags.splice(i, 1);
+    renderTagButtons();
+    filterAndRender();
+  }
+
+  function clearFilters() {
+    state.activeTags = [];
+    renderTagButtons();
+    filterAndRender();
+  }
+
+  function renderTagButtons() {
+    filterGroupsEl.innerHTML = '';
+    var byCategory = {};
+    tagsInProjects.forEach(function(tag) {
+      var cat = tagToCategory[tag] || 'Other';
+      if (!byCategory[cat]) byCategory[cat] = [];
+      byCategory[cat].push(tag);
+    });
+    categoryOrder.forEach(function(catName) {
+      var tags = byCategory[catName];
+      if (!tags || tags.length === 0) return;
+      tags.sort();
+      var group = document.createElement('div');
+      group.className = 'projects-filter-group';
+      var label = document.createElement('span');
+      label.className = 'projects-filter-group-label';
+      label.textContent = catName;
+      group.appendChild(label);
+      var list = document.createElement('div');
+      list.className = 'projects-tag-list';
+      tags.forEach(function(tag) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'projects-tag-btn' + (state.activeTags.indexOf(tag) !== -1 ? ' active' : '');
+        btn.textContent = tag;
+        btn.addEventListener('click', function() { toggleTag(tag); });
+        list.appendChild(btn);
+      });
+      group.appendChild(list);
+      filterGroupsEl.appendChild(group);
+    });
+    clearBtn.style.display = state.activeTags.length > 0 ? 'inline-block' : 'none';
+  }
+
+  function filteredProjects() {
+    if (state.activeTags.length === 0) return projects.slice();
+    return projects.filter(function(p) {
+      var pt = p.tags || [];
+      return state.activeTags.some(function(t) { return pt.indexOf(t) !== -1; });
+    });
+  }
+
+  function filterAndRender() {
+    var list = filteredProjects();
+    countEl.textContent = list.length + ' project' + (list.length !== 1 ? 's' : '');
+    emptyEl.style.display = list.length === 0 ? 'block' : 'none';
+    grid.innerHTML = '';
+    list.forEach(function(p) {
+      var raw = (p.href || '').trim();
+      var href = raw.indexOf('/') === 0 ? raw : (baseHref + raw);
+      var card = document.createElement('article');
+      card.className = 'projects-card';
+      card.setAttribute('data-tags', (p.tags || []).join(','));
+      var visual = '';
+      if (p.image && p.image.trim()) {
+        visual = '<div class="projects-card-visual"><img src="' + p.image.replace(/"/g, '&quot;') + '" alt="" loading="lazy"></div>';
+      } else {
+        visual = '<div class="projects-card-visual"><span class="projects-card-visual-placeholder" aria-hidden="true">◇</span></div>';
+      }
+      var titleEsc = (p.title || 'Project').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      var descEsc = (p.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      var tagHtml = (p.tags || []).map(function(t) {
+        return '<span class="projects-card-tag filter-tag" data-tag="' + t.replace(/"/g, '&quot;') + '">' + t.replace(/</g, '&lt;') + '</span>';
+      }).join('');
+      card.innerHTML =
+        visual +
+        '<div class="projects-card-body">' +
+          '<h3 class="projects-card-title"><a href="' + href.replace(/"/g, '&quot;') + '">' + titleEsc + '</a></h3>' +
+          '<p class="projects-card-desc">' + descEsc + '</p>' +
+          '<div class="projects-card-tags">' + tagHtml + '</div>' +
+        '</div>';
+      card.querySelectorAll('.projects-card-tag.filter-tag').forEach(function(t) {
+        t.addEventListener('click', function(e) {
+          e.preventDefault();
+          toggleTag(t.getAttribute('data-tag'));
+        });
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  clearBtn.addEventListener('click', clearFilters);
+  renderTagButtons();
+  filterAndRender();
+})();
+</script>

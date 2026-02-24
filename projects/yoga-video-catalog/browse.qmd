@@ -1,0 +1,2224 @@
+---
+title: "Yoga catalog"
+subtitle: "Browse the catalog and create a list"
+sidebar: false
+execute:
+  dir: document
+body-class: yoga-browse-page
+format:
+  html:
+    number-sections: false
+    toc: false
+    page-layout: full
+---
+
+<style>
+/* Design tokens — browse */
+:root {
+  --br-bg: #ffffff;
+  --br-surface: #ffffff;
+  --br-border: #e5e7eb;
+  --br-text: #111827;
+  --br-text-muted: #6b7280;
+  --br-accent: #2563eb;
+  --br-accent-soft: rgba(37, 99, 235, 0.08);
+  --br-radius: 10px;
+  --br-radius-sm: 6px;
+  --br-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --br-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --br-chip: #f3f4f6;
+  --br-chip-active: #2563eb;
+  --br-chip-active-bg: rgba(37, 99, 235, 0.1);
+}
+#quarto-content.page-columns { padding: 1.5rem clamp(1rem, 4vw, 2rem) 2rem !important; background: var(--br-bg) !important; max-width: none !important; }
+.quarto-title-block.default { margin-bottom: 1.5rem !important; }
+.quarto-title-block.default .title {
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--br-text) !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.quarto-title-block.default .subtitle {
+  font-size: 1rem !important;
+  color: var(--br-text-muted) !important;
+  margin-top: 0.35rem !important;
+  font-weight: 400 !important;
+}
+
+/* Layout */
+.browse-wrap { max-width: 1400px; margin: 0 auto; }
+.browse-intro { font-size: 0.9375rem; color: var(--br-text-muted); margin-bottom: 1.25rem; line-height: 1.5; }
+
+/* Preview bar */
+.browse-preview {
+  background: var(--br-surface);
+  border: 1px solid var(--br-border);
+  border-radius: var(--br-radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--br-shadow);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.browse-preview-placeholder { color: var(--br-text-muted); font-size: 0.9rem; }
+.browse-preview iframe { border-radius: var(--br-radius-sm); width: 320px; max-width: 100%; height: 180px; flex-shrink: 0; }
+.browse-preview-info { flex: 1; min-width: 200px; }
+.browse-preview-info h3 { margin: 0 0 0.35em 0; font-size: 1rem; font-weight: 600; color: var(--br-text); }
+.browse-preview-info p { margin: 0; font-size: 0.875rem; color: var(--br-text-muted); }
+.browse-preview-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.browse-preview-actions a, .browse-preview-actions button {
+  font-size: 0.8125rem; padding: 0.4rem 0.75rem; border-radius: var(--br-radius-sm);
+  text-decoration: none; border: none; cursor: pointer; font-family: inherit;
+}
+.browse-preview-actions .btn-watch { background: var(--br-accent); color: white !important; }
+.browse-preview-actions .btn-yt { background: var(--br-chip); color: var(--br-text); }
+
+.browse-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.browse-chip {
+  display: inline-block; padding: 0.4rem 0.85rem; border-radius: 999px; font-size: 0.875rem;
+  background: var(--br-chip); color: var(--br-text); border: 1px solid transparent;
+  cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s;
+  user-select: none;
+}
+.browse-chip:hover { background: #d1d5db; }
+.browse-chip.active { background: var(--br-chip-active-bg); color: var(--br-chip-active); border-color: var(--br-chip-active); font-weight: 500; }
+.browse-chip[data-filter="duration"],
+.browse-chip[data-filter="focus"],
+.browse-chip[data-filter="year"] { margin: 0; }
+
+/* Focus category colors (filter chips & card tags) */
+:root {
+  --focus-upper: #0ea5e9;
+  --focus-upper-soft: rgba(14, 165, 233, 0.14);
+  --focus-core: #ea580c;
+  --focus-core-soft: rgba(234, 88, 12, 0.14);
+  --focus-lower: #059669;
+  --focus-lower-soft: rgba(5, 150, 105, 0.14);
+  --focus-style: #7c3aed;
+  --focus-style-soft: rgba(124, 58, 237, 0.14);
+  --focus-default: #64748b;
+  --focus-default-soft: rgba(100, 116, 139, 0.14);
+}
+/* Unselected: ghost style (light bg, colored border/text). Selected: solid fill, white text. */
+.browse-chip[data-focus-category="upper"] { background: rgba(14, 165, 233, 0.08); color: #0284c7; border: 1px solid rgba(14, 165, 233, 0.35); }
+.browse-chip[data-focus-category="upper"]:hover { background: rgba(14, 165, 233, 0.18); }
+.browse-chip[data-focus-category="upper"].active { background: #0ea5e9; color: #fff; border-color: #0ea5e9; font-weight: 600; box-shadow: 0 1px 3px rgba(14, 165, 233, 0.35); }
+.browse-chip[data-focus-category="core"] { background: rgba(234, 88, 12, 0.08); color: #c2410c; border: 1px solid rgba(234, 88, 12, 0.35); }
+.browse-chip[data-focus-category="core"]:hover { background: rgba(234, 88, 12, 0.18); }
+.browse-chip[data-focus-category="core"].active { background: #ea580c; color: #fff; border-color: #ea580c; font-weight: 600; box-shadow: 0 1px 3px rgba(234, 88, 12, 0.35); }
+.browse-chip[data-focus-category="lower"] { background: rgba(5, 150, 105, 0.08); color: #047857; border: 1px solid rgba(5, 150, 105, 0.35); }
+.browse-chip[data-focus-category="lower"]:hover { background: rgba(5, 150, 105, 0.18); }
+.browse-chip[data-focus-category="lower"].active { background: #059669; color: #fff; border-color: #059669; font-weight: 600; box-shadow: 0 1px 3px rgba(5, 150, 105, 0.35); }
+.browse-chip[data-focus-category="style"] { background: rgba(124, 58, 237, 0.08); color: #6d28d9; border: 1px solid rgba(124, 58, 237, 0.35); }
+.browse-chip[data-focus-category="style"]:hover { background: rgba(124, 58, 237, 0.18); }
+.browse-chip[data-focus-category="style"].active { background: #7c3aed; color: #fff; border-color: #7c3aed; font-weight: 600; box-shadow: 0 1px 3px rgba(124, 58, 237, 0.35); }
+.browse-chip[data-focus-category="default"] { background: rgba(100, 116, 139, 0.08); color: #475569; border: 1px solid rgba(100, 116, 139, 0.35); }
+.browse-chip[data-focus-category="default"]:hover { background: rgba(100, 116, 139, 0.18); }
+.browse-chip[data-focus-category="default"].active { background: #64748b; color: #fff; border-color: #64748b; font-weight: 600; box-shadow: 0 1px 3px rgba(100, 116, 139, 0.35); }
+.browse-chip.excluded { background: rgba(239, 68, 68, 0.10); color: #b91c1c; border: 1px solid rgba(239, 68, 68, 0.45); text-decoration: line-through; font-weight: 600; box-shadow: 0 1px 3px rgba(239, 68, 68, 0.18); }
+
+.browse-card-tag[data-focus-category="upper"] { background: var(--focus-upper-soft); color: var(--focus-upper); }
+.browse-card-tag[data-focus-category="core"] { background: var(--focus-core-soft); color: var(--focus-core); }
+.browse-card-tag[data-focus-category="lower"] { background: var(--focus-lower-soft); color: var(--focus-lower); }
+.browse-card-tag[data-focus-category="style"] { background: var(--focus-style-soft); color: var(--focus-style); }
+.browse-card-tag[data-focus-category="default"] { background: var(--focus-default-soft); color: var(--focus-default); }
+
+.browse-focus-filters { display: flex; flex-direction: column; gap: 0.65rem; flex-wrap: wrap; }
+.browse-focus-group { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.85rem; }
+.browse-focus-group-label {
+  font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--br-text-muted); min-width: 5.25rem; flex-shrink: 0;
+}
+
+/* Filter section — modern card, clear hierarchy */
+.browse-filters {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--br-surface);
+  border: 1px solid var(--br-border);
+  border-radius: var(--br-radius);
+  box-shadow: var(--br-shadow);
+}
+.browse-filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid var(--br-border);
+}
+.browse-filters-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--br-text);
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+}
+.browse-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem 1.25rem;
+  padding: 0.85rem 0 1.35rem;
+  border-bottom: 1px solid var(--br-border);
+}
+.browse-filter-row:first-child { padding-top: 0; }
+.browse-filter-row:last-child { border-bottom: none; padding-bottom: 0; }
+.browse-filter-row-actions { margin-left: auto; flex-shrink: 0; }
+.browse-filter-row-split {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.browse-filter-split-col {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem 1rem;
+}
+.browse-filter-split-col .browse-filter-label { flex-basis: 100%; }
+.browse-filter-split-col .browse-duration-slider,
+.browse-filter-split-col .browse-year-slider { flex: 1; min-width: 0; max-width: 100%; }
+.browse-filter-split-col .browse-filter-row-actions { margin-left: auto; }
+.browse-filter-split-divider {
+  width: 1px;
+  background: var(--br-border);
+  align-self: stretch;
+  margin: 0 1.25rem;
+  flex-shrink: 0;
+}
+@media (max-width: 700px) {
+  .browse-filter-row-split { flex-direction: column; }
+  .browse-filter-split-divider { width: 100%; height: 1px; margin: 0.5rem 0; }
+}
+.browse-filter-clear-btn,
+#clear-all-filters-btn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--br-text-muted);
+  background: transparent;
+  border: 1px solid var(--br-border);
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--br-radius-sm);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.browse-filter-clear-btn:hover,
+#clear-all-filters-btn:hover {
+  background: var(--br-chip);
+  color: var(--br-text);
+}
+.browse-filter-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #000;
+  min-width: 4rem;
+  padding-top: 0.15rem;
+}
+.browse-filter-hint {
+  margin: 0;
+  font-size: 0.68rem;
+  color: var(--br-text-muted);
+  font-style: italic;
+  flex: 1 1 auto;
+}
+.browse-focus-filters,
+#filter-channel {
+  flex-basis: 100%;
+}
+.browse-search-wrap { flex: 1; min-width: 200px; max-width: 400px; }
+.browse-search-wrap input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--br-border);
+  border-radius: var(--br-radius-sm);
+  font-size: 0.9rem;
+  background: var(--br-bg);
+}
+.browse-search-wrap input:focus { outline: none; border-color: var(--br-accent); box-shadow: 0 0 0 2px var(--br-accent-soft); }
+/* Duration range: title, subtitle, histogram, dual-thumb track, value pills */
+.browse-duration-slider { width: 100%; max-width: 340px; --duration-thumb-size: 10px; }
+.browse-duration-slider-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--br-text);
+  margin: 0 0 0.1rem 0;
+}
+.browse-duration-slider-subtitle {
+  font-size: 0.75rem;
+  color: var(--br-text-muted);
+  margin: 0 0 0.5rem 0;
+}
+.browse-duration-viz { position: relative; }
+.browse-duration-histogram {
+  display: flex;
+  align-items: flex-end;
+  height: 40px;
+  margin-bottom: 6px;
+  gap: 2px;
+}
+.browse-duration-histogram .histogram-bar {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0,0,0,0.07);
+  border-radius: 3px 3px 0 0;
+  transition: background 0.2s ease;
+}
+.browse-duration-histogram .histogram-bar.in-range {
+  background: var(--br-accent);
+  opacity: 0.85;
+}
+.browse-duration-track-wrap {
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+.browse-duration-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  top: 10px;
+  background: var(--br-chip);
+  border-radius: 4px;
+}
+.browse-duration-fill {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  height: 8px;
+  background: var(--br-accent);
+  border-radius: 4px;
+  transition: left 0.1s ease, width 0.1s ease;
+}
+.browse-duration-slider input[type="range"] {
+  position: absolute;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+.browse-duration-slider #duration-min { z-index: 1; left: 0; }
+.browse-duration-slider #duration-max { z-index: 2; }
+.browse-duration-slider #duration-min-grab-zone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 28px;
+  z-index: 3;
+  cursor: grab;
+  pointer-events: auto;
+}
+.browse-duration-slider #duration-min-grab-zone:active { cursor: grabbing; }
+.browse-duration-slider input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background: transparent;
+}
+/* Slider thumb grabbable size: edit --duration-thumb-size above (e.g. 12px, 18px, 22px) to test */
+.browse-duration-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--duration-thumb-size);
+  height: var(--duration-thumb-size);
+  margin-top: calc((8px - var(--duration-thumb-size)) / 2);
+  border-radius: 50%;
+  background: var(--br-surface);
+  border: 2px solid var(--br-accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: grab;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.browse-duration-slider input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+}
+.browse-duration-slider input[type="range"]:active::-webkit-slider-thumb { cursor: grabbing; }
+.browse-duration-slider input[type="range"]:focus { outline: none; }
+.browse-duration-slider input[type="range"]::-moz-range-track { height: 8px; background: transparent; }
+.browse-duration-slider input[type="range"]::-moz-range-thumb {
+  width: var(--duration-thumb-size);
+  height: var(--duration-thumb-size);
+  border-radius: 50%;
+  background: var(--br-surface);
+  border: 2px solid var(--br-accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: grab;
+}
+.browse-duration-slider input[type="range"]::-moz-focus-outer { border: none; }
+.browse-duration-pills {
+  position: relative;
+  min-height: 48px;
+  margin-top: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+.browse-duration-pill {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 0.35rem 0.6rem;
+  background: var(--br-surface);
+  border: 1px solid var(--br-border);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--br-text);
+  white-space: nowrap;
+  box-shadow: var(--br-shadow);
+  pointer-events: auto;
+}
+#duration-pill-min { align-self: stretch; }
+#duration-pill-max { align-self: stretch; }
+.browse-duration-pill-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--br-text-muted);
+  margin-bottom: 0.15rem;
+}
+.browse-duration-pill-input-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+.browse-duration-pill input.duration-value-input {
+  width: 6.5ch;
+  min-width: 6.5ch;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--br-text);
+  border: 1px solid var(--br-border);
+  border-radius: 4px;
+  background: var(--br-surface);
+  text-align: right;
+  box-sizing: border-box;
+}
+.browse-duration-pill input.duration-value-input:focus {
+  outline: none;
+  border-color: var(--br-accent);
+  box-shadow: 0 0 0 2px var(--br-accent-soft);
+}
+.browse-duration-pill .duration-value-unit {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--br-text-muted);
+}
+
+/* Year range: same structure as duration */
+.browse-year-slider { width: 100%; max-width: 340px; --year-thumb-size: 10px; }
+.browse-year-slider-title { font-size: 0.9rem; font-weight: 600; color: var(--br-text); margin: 0 0 0.1rem 0; }
+.browse-year-slider-subtitle { font-size: 0.75rem; color: var(--br-text-muted); margin: 0 0 0.5rem 0; }
+.browse-year-viz { position: relative; }
+.browse-year-histogram {
+  display: flex;
+  align-items: flex-end;
+  height: 40px;
+  margin-bottom: 6px;
+  gap: 2px;
+}
+.browse-year-histogram .histogram-bar {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0,0,0,0.07);
+  border-radius: 3px 3px 0 0;
+  transition: background 0.2s ease;
+}
+.browse-year-histogram .histogram-bar.in-range { background: var(--br-accent); opacity: 0.85; }
+.browse-year-track-wrap { position: relative; height: 28px; display: flex; align-items: center; }
+.browse-year-track {
+  position: absolute; left: 0; right: 0; height: 8px; top: 10px;
+  background: var(--br-chip); border-radius: 4px;
+}
+.browse-year-fill {
+  position: absolute; left: 0; top: 10px; height: 8px;
+  background: var(--br-accent); border-radius: 4px;
+  transition: left 0.1s ease, width 0.1s ease;
+}
+.browse-year-slider input[type="range"] {
+  position: absolute; height: 28px; margin: 0; background: transparent;
+  -webkit-appearance: none; appearance: none; box-sizing: border-box;
+}
+.browse-year-slider #year-min { z-index: 1; left: 0; }
+.browse-year-slider #year-max { z-index: 2; }
+.browse-year-slider #year-min-grab-zone {
+  position: absolute; left: 0; top: 0; height: 28px; z-index: 3;
+  cursor: grab; pointer-events: auto;
+}
+.browse-year-slider #year-min-grab-zone:active { cursor: grabbing; }
+.browse-year-slider input[type="range"]::-webkit-slider-runnable-track { height: 8px; background: transparent; }
+.browse-year-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: var(--year-thumb-size); height: var(--year-thumb-size);
+  margin-top: calc((8px - var(--year-thumb-size)) / 2);
+  border-radius: 50%;
+  background: var(--br-surface); border: 2px solid var(--br-accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: grab; transition: transform 0.12s, box-shadow 0.12s;
+}
+.browse-year-slider input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+}
+.browse-year-slider input[type="range"]:active::-webkit-slider-thumb { cursor: grabbing; }
+.browse-year-slider input[type="range"]:focus { outline: none; }
+.browse-year-slider input[type="range"]::-moz-range-track { height: 8px; background: transparent; }
+.browse-year-slider input[type="range"]::-moz-range-thumb {
+  width: var(--year-thumb-size); height: var(--year-thumb-size);
+  border-radius: 50%;
+  background: var(--br-surface); border: 2px solid var(--br-accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: grab;
+}
+.browse-year-slider input[type="range"]::-moz-focus-outer { border: none; }
+.browse-year-pills {
+  position: relative; min-height: 48px; margin-top: 0.6rem;
+  display: flex; justify-content: space-between; align-items: stretch; gap: 0.5rem;
+}
+.browse-year-pill {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-start;
+  min-width: 0; padding: 0.35rem 0.6rem;
+  background: var(--br-surface); border: 1px solid var(--br-border);
+  border-radius: 6px; font-size: 0.8125rem; font-weight: 600;
+  color: var(--br-text); white-space: nowrap;
+  box-shadow: var(--br-shadow); pointer-events: auto;
+}
+#year-pill-min { align-self: stretch; }
+#year-pill-max { align-self: stretch; }
+.browse-year-pill-label {
+  display: block; font-size: 0.65rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--br-text-muted); margin-bottom: 0.15rem;
+}
+.browse-year-pill-input-wrap { display: flex; align-items: baseline; gap: 0.2rem; }
+.browse-year-pill input.year-value-input {
+  width: 7.75ch; min-width: 7.75ch; padding: 0.2rem 0.35rem;
+  font-size: 0.8125rem; font-weight: 600; color: var(--br-text);
+  border: 1px solid var(--br-border); border-radius: 4px;
+  background: var(--br-surface); text-align: right; box-sizing: border-box;
+}
+.browse-year-pill input.year-value-input:focus {
+  outline: none; border-color: var(--br-accent);
+  box-shadow: 0 0 0 2px var(--br-accent-soft);
+}
+.browse-year-pill .year-value-unit {
+  font-size: 0.8125rem; font-weight: 600; color: var(--br-text-muted);
+}
+
+/* Card grid */
+.browse-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+.browse-card {
+  background: var(--br-surface); border-radius: var(--br-radius); overflow: hidden;
+  border: 1px solid var(--br-border); box-shadow: var(--br-shadow);
+  transition: box-shadow 0.2s, transform 0.15s; display: flex; flex-direction: column;
+}
+.browse-card:hover { box-shadow: var(--br-shadow-md); }
+.browse-card-thumb { position: relative; aspect-ratio: 16/9; background: #1f2937; }
+.browse-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.browse-card-thumb .thumb-fallback {
+  position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+  background: #374151; color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 500;
+  padding: 1rem; text-align: center; border-radius: var(--br-radius-sm);
+}
+.browse-card-thumb img[data-failed="true"] { display: none; }
+.browse-card-thumb img[data-failed="true"] ~ .thumb-fallback { display: flex; }
+.browse-card-duration {
+  position: absolute; bottom: 6px; right: 6px;
+  background: rgba(0,0,0,0.75); color: white; font-size: 0.75rem; font-weight: 600;
+  padding: 0.2rem 0.5rem; border-radius: 4px;
+}
+.browse-card-body { padding: 0.65rem 0.85rem 0.75rem; flex: 1; display: flex; flex-direction: column; }
+.browse-card-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.2em;
+}
+.browse-card-title { font-size: 0.9rem; font-weight: 600; color: var(--br-text); margin: 0; line-height: 1.3; flex: 1; min-width: 0; }
+.browse-card-title a { color: inherit; text-decoration: none; }
+.browse-card-title a:hover { color: var(--br-accent); }
+.browse-card-actions { flex-shrink: 0; display: flex; align-items: center; }
+.browse-card-channel { font-size: 0.75rem; color: var(--br-text-muted); margin-bottom: 0.35rem; }
+.browse-card-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.5rem; }
+.browse-card-tag { font-size: 0.65rem; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: 500; }
+.browse-card-actions .btn-queue {
+  padding: 0.4rem 0.6rem; border-radius: var(--br-radius-sm); font-size: 0.8125rem;
+  background: var(--br-chip); color: var(--br-text); border: none; cursor: pointer;
+  font-family: inherit; transition: background 0.2s; min-height: 2rem; min-width: 5rem;
+  box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center;
+  white-space: nowrap;
+}
+.browse-card-actions .btn-queue:hover { background: #d1d5db; }
+.browse-card-actions .btn-queue.queued { background: #dcfce7; color: #166534; }
+
+/* In-card preview: one iframe moved into the active card */
+.browse-card-preview {
+  display: none;
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #111;
+  overflow: hidden;
+}
+.browse-card-preview.is-open { display: block; }
+.browse-card-preview iframe {
+  width: 100%;
+  height: calc(100% + 28px);
+  margin-top: -14px;
+  display: block;
+  border: none;
+}
+.browse-card-thumb.is-hidden { display: none !important; }
+.browse-card .card-close-preview {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: none;
+}
+.browse-card-preview.is-open .card-close-preview { display: block; }
+.browse-card-preview.is-open .card-close-preview:hover { background: rgba(0,0,0,0.9); }
+
+.browse-empty { text-align: center; padding: 3rem 1rem; color: var(--br-text-muted); font-size: 1rem; }
+
+/* My List section */
+.browse-queue {
+  background: var(--br-surface);
+  border: 1px solid var(--br-border);
+  border-radius: var(--br-radius);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--br-shadow);
+}
+.browse-queue-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.browse-queue-header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.browse-queue-header .queue-hint {
+  margin: 0 0 0.3em 0; font-size: 0.75rem; color: var(--br-text-muted); font-style: italic;
+}
+.browse-queue-header h3 {
+  margin: 0 0 0.2em 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #000;
+}
+.browse-videos-header {
+  margin-bottom: 1rem;
+}
+.browse-videos-title {
+  margin: 0 0 0.2em 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #000;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+}
+.browse-videos-subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--br-text-muted);
+  font-weight: 500;
+}
+.browse-queue .queue-card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--br-text);
+  margin: 0 0 0.4em 0;
+  line-height: 1.35;
+  text-transform: none;
+  letter-spacing: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.browse-queue #queue-summary {
+  margin: 0;
+  font-size: 0.875rem;
+}
+.browse-queue .queue-focuses {
+  margin: 0.35em 0 0 0;
+  font-size: 0.8125rem;
+  color: var(--br-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+}
+.browse-queue .queue-focuses .queue-focuses-label { margin-right: 0.15rem; }
+.browse-queue .queue-focuses .browse-card-tag {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.browse-queue #clear-queue-btn {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--br-border);
+  background: transparent;
+  color: var(--br-text-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.browse-queue #clear-queue-btn:hover {
+  background: rgba(220, 53, 69, 0.08);
+  color: #b91c1c;
+  border-color: rgba(220, 53, 69, 0.4);
+}
+.browse-queue #queue-list { margin-top: 0; }
+.browse-queue .queue-cards {
+  padding-bottom: 0.5rem;
+}
+.browse-queue .queue-cards-inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.browse-queue .queue-drop-indicator {
+  display: none;
+}
+.browse-queue .queue-drop-placeholder {
+  flex: 0 0 auto;
+  width: 220px;
+  min-height: 140px;
+  border: 2px dashed var(--br-accent);
+  border-radius: var(--br-radius);
+  background: var(--br-accent-soft);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--br-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-sizing: border-box;
+  z-index: 5;
+}
+.browse-queue .queue-card.queue-card-row-start {
+  border-top: 1px solid var(--br-border);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+.browse-queue .queue-card.queue-card-row-start:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+.browse-queue .queue-card {
+  flex: 0 0 auto;
+  width: 220px;
+  background: var(--br-surface);
+  border-radius: var(--br-radius);
+  overflow: hidden;
+  border: 1px solid var(--br-border);
+  box-shadow: var(--br-shadow);
+  transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+.browse-queue .queue-card:hover { box-shadow: var(--br-shadow-md); }
+.browse-queue .queue-card.queue-card-dragging {
+  opacity: 0.7;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border-color: var(--br-accent);
+  transform: scale(1.02);
+}
+.browse-queue .queue-card-thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #1f2937;
+}
+.browse-queue .queue-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.browse-queue .queue-card-thumb .thumb-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #374151;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 0.5rem;
+}
+.browse-queue .queue-card-thumb img[data-failed="true"] { display: none; }
+.browse-queue .queue-card-thumb img[data-failed="true"] ~ .thumb-fallback { display: flex; }
+.browse-queue .queue-card-duration {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+.browse-queue .queue-card-grab,
+.browse-queue .queue-card-close-btn {
+  position: absolute;
+  top: 8px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.browse-queue .queue-card-grab {
+  left: 8px;
+  cursor: grab;
+}
+.browse-queue .queue-card-grab:hover {
+  background: rgba(0,0,0,0.75);
+  transform: scale(1.05);
+}
+.browse-queue .queue-card-grab:active { cursor: grabbing; }
+.browse-queue .queue-card-close-btn {
+  right: 8px;
+}
+.browse-queue .queue-card-close-btn:hover {
+  background: rgba(220, 53, 69, 0.9);
+  transform: scale(1.05);
+}
+.browse-queue .queue-card-body {
+  padding: 0.65rem 0.75rem 0.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.browse-queue .queue-card-title { margin-bottom: 0; }
+.browse-queue .queue-card-title a { color: inherit; text-decoration: none; }
+.browse-queue .queue-card-title a:hover { color: var(--br-accent); }
+.browse-queue .queue-empty-msg {
+  color: var(--br-text-muted);
+  font-size: 0.875rem;
+  margin: 0;
+  padding: 1.25rem 0;
+  font-style: italic;
+}
+
+/* Floating back-to-cards button */
+.browse-back-to-cards {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--br-surface);
+  color: var(--br-text);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s, visibility 0.25s, transform 0.25s, background 0.2s;
+}
+.browse-back-to-cards.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.browse-back-to-cards:hover {
+  background: var(--br-accent);
+  color: white;
+}
+.browse-back-to-cards:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--br-accent-soft);
+}
+</style>
+
+```{=html}
+<div id="browse-yt-frame-holder" style="display: none;" aria-hidden="true"></div>
+```
+
+```{=html}
+<div class="browse-wrap">
+  <div class="browse-filters">
+    <div class="browse-filters-header">
+      <h2 class="browse-filters-title">Filters</h2>
+      <button type="button" id="clear-all-filters-btn" aria-label="Clear all filters">Clear all filters</button>
+    </div>
+    <div class="browse-filter-row browse-filter-row-split">
+      <div class="browse-filter-split-col">
+        <span class="browse-filter-label">Duration</span>
+        <div class="browse-duration-slider">
+          <p class="browse-duration-slider-subtitle">Video length in minutes</p>
+          <div class="browse-duration-viz">
+            <div class="browse-duration-histogram" id="duration-histogram"></div>
+            <div class="browse-duration-track-wrap">
+              <div class="browse-duration-track"></div>
+              <div class="browse-duration-fill" id="duration-fill"></div>
+              <input type="range" id="duration-min" min="0" max="120" value="0" step="5" aria-label="Minimum duration (minutes)">
+              <input type="range" id="duration-max" min="0" max="120" value="120" step="5" aria-label="Maximum duration (minutes)">
+              <div id="duration-min-grab-zone" aria-hidden="true" title="Drag to set minimum"></div>
+            </div>
+            <div class="browse-duration-pills">
+              <div class="browse-duration-pill" id="duration-pill-min">
+                <span class="browse-duration-pill-label">Minimum</span>
+                <div class="browse-duration-pill-input-wrap">
+                  <input type="number" id="duration-min-value" class="duration-value-input" min="0" max="120" value="0" step="5" aria-label="Minimum minutes">
+                  <span class="duration-value-unit">min</span>
+                </div>
+              </div>
+              <div class="browse-duration-pill" id="duration-pill-max">
+                <span class="browse-duration-pill-label">Maximum</span>
+                <div class="browse-duration-pill-input-wrap">
+                  <input type="number" id="duration-max-value" class="duration-value-input" min="0" max="120" value="120" step="5" aria-label="Maximum minutes">
+                  <span class="duration-value-unit">min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="browse-filter-row-actions">
+          <button type="button" class="browse-filter-clear-btn" data-clear="duration" aria-label="Clear duration">Clear</button>
+        </span>
+      </div>
+      <div class="browse-filter-split-divider" aria-hidden="true"></div>
+      <div class="browse-filter-split-col">
+        <span class="browse-filter-label">Upload Year</span>
+        <div class="browse-year-slider">
+          <p class="browse-year-slider-subtitle">Note: Minimum and maximum dates are based on January 1</p>
+          <div class="browse-year-viz">
+            <div class="browse-year-histogram" id="year-histogram"></div>
+            <div class="browse-year-track-wrap">
+              <div class="browse-year-track"></div>
+              <div class="browse-year-fill" id="year-fill"></div>
+              <input type="range" id="year-min" min="2000" max="2030" value="2000" step="1" aria-label="Minimum year">
+              <input type="range" id="year-max" min="2000" max="2030" value="2030" step="1" aria-label="Maximum year">
+              <div id="year-min-grab-zone" aria-hidden="true" title="Drag to set minimum year"></div>
+            </div>
+            <div class="browse-year-pills">
+              <div class="browse-year-pill" id="year-pill-min">
+                <span class="browse-year-pill-label">Minimum</span>
+                <div class="browse-year-pill-input-wrap">
+                  <input type="number" id="year-min-value" class="year-value-input" min="2000" max="2030" value="2000" step="1" aria-label="Minimum year">
+                  <span class="year-value-unit">year</span>
+                </div>
+              </div>
+              <div class="browse-year-pill" id="year-pill-max">
+                <span class="browse-year-pill-label">Maximum</span>
+                <div class="browse-year-pill-input-wrap">
+                  <input type="number" id="year-max-value" class="year-value-input" min="2000" max="2030" value="2030" step="1" aria-label="Maximum year">
+                  <span class="year-value-unit">year</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="browse-filter-row-actions">
+          <button type="button" class="browse-filter-clear-btn" data-clear="year" aria-label="Clear year">Clear</button>
+        </span>
+      </div>
+    </div>
+    <div class="browse-filter-row">
+      <span class="browse-filter-label">Focus</span>
+      <p class="browse-filter-hint">Click to include · double-click to exclude · triple-click to reset</p>
+      <span class="browse-filter-row-actions">
+        <button type="button" class="browse-filter-clear-btn" data-clear="focus" aria-label="Clear focus">Clear</button>
+      </span>
+      <div class="browse-focus-filters" id="filter-focus"></div>
+    </div>
+    <div class="browse-filter-row">
+      <span class="browse-filter-label">Channel</span>
+      <p class="browse-filter-hint">Click to include · double-click to exclude · triple-click to reset</p>
+      <span class="browse-filter-row-actions">
+        <button type="button" class="browse-filter-clear-btn" data-clear="channel" aria-label="Clear channel">Clear</button>
+      </span>
+      <div class="browse-chips" id="filter-channel"></div>
+    </div>
+    <div class="browse-filter-row">
+      <span class="browse-filter-label">Search</span>
+      <div class="browse-search-wrap">
+        <input type="text" id="search-input" placeholder="Keyword search, e.g. climb warm up" />
+      </div>
+      <span class="browse-filter-row-actions">
+        <button type="button" class="browse-filter-clear-btn" data-clear="search" aria-label="Clear search">Clear</button>
+      </span>
+    </div>
+  </div>
+  <div class="browse-queue" id="queue-section">
+    <div class="browse-queue-header">
+      <div>
+        <h3>My List</h3>
+        <p class="queue-hint">Drag to reorder. Click a title to open full-screen in a new tab.</p>
+        <p id="queue-summary"><span id="queue-count">0</span> video(s) · Total: <span id="queue-duration-sum">—</span></p>
+        <p id="queue-focuses" class="queue-focuses" style="display: none;"></p>
+      </div>
+      <div class="browse-queue-header-actions">
+        <button type="button" id="clear-queue-btn" style="display: none;">Clear all</button>
+      </div>
+    </div>
+    <div id="queue-list"></div>
+  </div>
+  <div class="browse-videos-header" id="videos-section">
+    <h2 class="browse-videos-title">Videos</h2>
+    <p id="videos-count" class="browse-videos-subtitle"></p>
+  </div>
+  <div class="browse-cards" id="card-grid"></div>
+  <div class="browse-empty" id="empty-state" style="display: none;">No videos match your filters. Try clearing some filters or search.</div>
+</div>
+<button type="button" id="back-to-cards-btn" class="browse-back-to-cards" aria-label="Back to top of videos" title="Back to top of videos">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+```
+
+```{r}
+#| label: load-browse-data
+#| include: false
+library(jsonlite)
+
+dat <- read.csv("data/yoga_videos_enriched.csv", stringsAsFactors = FALSE, na.strings = c("", "NA"))
+dat$view_count <- suppressWarnings(as.numeric(dat$view_count))
+
+duration_to_mins <- function(s) {
+  if (is.na(s) || s == "") return(NA)
+  parts <- strsplit(trimws(s), ":")[[1]]
+  parts <- suppressWarnings(as.numeric(parts))
+  if (all(is.na(parts))) return(NA)
+  if (length(parts) == 2) return(parts[1] + parts[2] / 60)
+  if (length(parts) == 3) {
+    as_hms <- parts[1] * 60 + parts[2] + parts[3] / 60
+    if (as_hms >= 120) return(parts[1] + parts[2] / 60)
+    return(as_hms)
+  }
+  NA
+}
+from_str <- vapply(dat$duration, function(x) { r <- duration_to_mins(x); if (length(r)) r else NA_real_ }, numeric(1))
+dat$duration_mins <- if ("duration_seconds" %in% names(dat)) {
+  sec <- suppressWarnings(as.numeric(dat$duration_seconds))
+  ifelse(!is.na(sec) & sec >= 0, sec / 60, from_str)
+} else from_str
+dat$duration_mins[is.na(dat$duration_mins)] <- 0
+
+dat$duration_bucket <- round(dat$duration_mins / 5) * 5
+dat$duration_bucket[is.na(dat$duration_bucket)] <- 0
+dat$duration_bucket[(dat$duration_bucket == 0) & (dat$duration_mins > 0)] <- 5
+dat$duration_bucket <- pmin(dat$duration_bucket, 120)
+dat$duration_category <- ifelse(dat$duration_bucket == 0, "—", ifelse(dat$duration_bucket == 120 & dat$duration_mins > 120, "120+ min", paste0(dat$duration_bucket, " min")))
+
+dat$upload_year <- NA_integer_
+idx <- !is.na(dat$upload_date) & nchar(dat$upload_date) >= 4
+dat$upload_year[idx] <- as.integer(substr(dat$upload_date[idx], 1, 4))
+dat$upload_year_display <- ifelse(is.na(dat$upload_year), "—", as.character(dat$upload_year))
+
+if (!"channel" %in% names(dat)) dat$channel <- ""
+
+normalize_focus <- function(focus_str) {
+  if (is.na(focus_str) || focus_str == "") return("")
+  parts <- strsplit(focus_str, " \\| ")[[1]]
+  focus_map <- jsonlite::fromJSON("config/focus_map.json")
+  canonical_map <- unlist(lapply(names(focus_map), function(cat) setNames(rep(cat, length(focus_map[[cat]])), focus_map[[cat]])))
+  normalized <- character(0)
+  for (p in parts) {
+    p_lower <- tolower(trimws(p))
+    if (p_lower %in% names(canonical_map)) {
+      canon <- canonical_map[[p_lower]]
+      if (!canon %in% normalized) normalized <- c(normalized, canon)
+    } else if (nchar(p) > 0 && !p %in% normalized) normalized <- c(normalized, p)
+  }
+  paste(normalized, collapse = " | ")
+}
+dat$focus <- vapply(dat$focus, normalize_focus, character(1))
+dat$focus[is.na(dat$focus)] <- ""
+
+filter_config <- jsonlite::fromJSON("config/exclude_keywords.json")
+exclude_keywords <- filter_config$exclude_keywords
+title_txt <- ifelse(is.na(dat$title), "", dat$title)
+title_lower <- tolower(title_txt)
+has_exclude <- Reduce(`|`, lapply(exclude_keywords, function(k) grepl(k, title_lower, fixed = TRUE)))
+has_focus <- nzchar(trimws(ifelse(is.na(dat$focus), "", dat$focus)))
+keep_row <- (!has_exclude) & has_focus
+dat <- dat[keep_row, ]
+
+has_duration <- !is.na(dat$duration_mins) & dat$duration_mins > 0
+has_year     <- !is.na(dat$upload_year) & dat$upload_year > 0
+has_views    <- !is.na(dat$view_count)
+keep_meta    <- has_duration | has_year | has_views
+dat <- dat[keep_meta, ]
+
+dat$duration_seconds_queue <- if ("duration_seconds" %in% names(dat)) {
+  as.integer(as.numeric(dat$duration_seconds) %/% 1)
+} else {
+  as.integer(round(dat$duration_mins * 60))
+}
+
+browse_df <- data.frame(
+  video_id = dat$video_id,
+  title = dat$title,
+  channel = ifelse(nzchar(dat$channel), dat$channel, "—"),
+  duration_category = dat$duration_category,
+  duration_mins = dat$duration_mins,
+  duration_seconds = dat$duration_seconds_queue,
+  focus = dat$focus,
+  upload_year = dat$upload_year,
+  upload_year_display = dat$upload_year_display,
+  upload_date = if ("upload_date" %in% names(dat)) dat$upload_date else NA_character_,
+  url = dat$url,
+  stringsAsFactors = FALSE
+)
+
+dur_cats <- unique(browse_df$duration_category[browse_df$duration_category != "—"])
+dur_nums <- as.numeric(sub(" min|120\\+ min", "", dur_cats))
+dur_cats <- dur_cats[order(dur_nums, na.last = TRUE)]
+focus_parts <- unique(unlist(strsplit(browse_df$focus, " \\| ")))
+focus_parts <- sort(focus_parts[nzchar(focus_parts)])
+years <- unique(browse_df$upload_year_display[browse_df$upload_year_display != "—"])
+years <- sort(years, decreasing = TRUE)
+valid_years_num <- browse_df$upload_year[!is.na(browse_df$upload_year) & browse_df$upload_year > 0]
+year_min <- if (length(valid_years_num)) min(valid_years_num) else as.integer(format(Sys.Date(), "%Y"))
+year_max <- if (length(valid_years_num)) max(valid_years_num) + 1L else as.integer(format(Sys.Date(), "%Y")) + 1L
+duration_max_mins <- ceiling(max(browse_df$duration_mins, na.rm = TRUE) / 5) * 5
+if (!is.finite(duration_max_mins) || duration_max_mins < 1) duration_max_mins <- 120L
+
+channel_list <- sort(unique(browse_df$channel[nzchar(browse_df$channel) & browse_df$channel != "—"]))
+
+filter_options <- list(
+  duration_buckets = as.list(dur_cats),
+  focus_tags = as.list(focus_parts),
+  channels = as.list(channel_list),
+  years = as.list(years),
+  yearMin = year_min,
+  yearMax = year_max,
+  durationMax = as.integer(duration_max_mins)
+)
+```
+
+```{r}
+#| label: inject-json
+#| echo: false
+#| results: asis
+cat("<script type=\"application/json\" id=\"browse-data\">")
+cat(jsonlite::toJSON(browse_df, dataframe = "rows", auto_unbox = TRUE))
+cat("</script>\n<script type=\"application/json\" id=\"filter-options\">")
+cat(jsonlite::toJSON(filter_options, auto_unbox = TRUE))
+cat("</script>\n")
+```
+
+```{=html}
+<script>
+(function() {
+  var dataEl = document.getElementById('browse-data');
+  var optionsEl = document.getElementById('filter-options');
+  if (!dataEl || !optionsEl) return;
+  var allVideos = JSON.parse(dataEl.textContent);
+  var filterOptions = JSON.parse(optionsEl.textContent);
+
+  function shuffleArray(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+  shuffleArray(allVideos);
+
+  var yearRangeMin = typeof filterOptions.yearMin === 'number' ? filterOptions.yearMin : 2000;
+  var yearRangeMax = typeof filterOptions.yearMax === 'number' ? filterOptions.yearMax : new Date().getFullYear();
+  var durationRangeMax = typeof filterOptions.durationMax === 'number' && filterOptions.durationMax > 0 ? filterOptions.durationMax : 120;
+  var state = { durationMin: 0, durationMax: durationRangeMax, yearMin: yearRangeMin, yearMax: Math.max(yearRangeMin + 1, yearRangeMax), focus: [], focusExclude: [], channel: [], channelExclude: [], search: '' };
+
+  var focusCategoryMap = {
+    'Full Body': 'upper', 'Neck': 'upper', 'Shoulders': 'upper', 'Upper Back': 'upper', 'Arms': 'upper', 'Wrists': 'upper',
+    'Core': 'core', 'Spine': 'core', 'Posture': 'core', 'Lower Back': 'core', 'Back': 'core',
+    'Hips': 'lower', 'Glutes': 'lower', 'Legs': 'lower', 'Hamstrings': 'lower', 'Quads': 'lower', 'Knees': 'lower', 'Calves': 'lower', 'Ankles': 'lower', 'Feet': 'lower',
+    'Strength': 'style', 'Flexibility': 'style', 'Mobility': 'style', 'Relaxation': 'style', 'Flow': 'style'
+  };
+  var focusCategoryOrder = ['upper', 'core', 'lower', 'style'];
+  var focusCategoryLabels = { upper: 'Upper Body', core: 'Core & Spine', lower: 'Lower Body', style: 'Style' };
+
+  function getFocusCategory(tag) { return focusCategoryMap[tag] || 'default'; }
+
+  function thumbUrl(id) { return 'https://img.youtube.com/vi/' + id + '/mqdefault.jpg'; }
+  function embedUrl(id) { return 'https://www.youtube.com/embed/' + id + '?rel=0&autoplay=1&mute=1'; }
+  function openInNewTabKeepFocus(url) {
+    var a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window, detail: 1, ctrlKey: true, metaKey: true }));
+    document.body.removeChild(a);
+  }
+
+  function renderFocusChips() {
+    var container = document.getElementById('filter-focus');
+    if (!container) return;
+    var tags = filterOptions.focus_tags || [];
+    var byCategory = {};
+    focusCategoryOrder.forEach(function(cat) { byCategory[cat] = []; });
+    byCategory['default'] = [];
+    tags.forEach(function(v) {
+      var cat = getFocusCategory(v);
+      if (byCategory[cat]) byCategory[cat].push(v); else byCategory['default'].push(v);
+    });
+    container.innerHTML = '';
+    focusCategoryOrder.forEach(function(cat) {
+      var list = byCategory[cat];
+      if (list.length === 0) return;
+      var group = document.createElement('div');
+      group.className = 'browse-focus-group';
+      var label = document.createElement('span');
+      label.className = 'browse-focus-group-label';
+      label.textContent = focusCategoryLabels[cat];
+      group.appendChild(label);
+      var chipWrap = document.createElement('div');
+      chipWrap.className = 'browse-chips';
+      list.forEach(function(v) {
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'browse-chip';
+        chip.setAttribute('data-filter', 'focus');
+        chip.setAttribute('data-value', v);
+        chip.setAttribute('data-focus-category', cat);
+        chip.textContent = v;
+        chip.addEventListener('click', function() { cycleFocusChip(chip, v); });
+        chipWrap.appendChild(chip);
+      });
+      group.appendChild(chipWrap);
+      container.appendChild(group);
+    });
+    if (byCategory['default'].length) {
+      var group = document.createElement('div');
+      group.className = 'browse-focus-group';
+      var label = document.createElement('span');
+      label.className = 'browse-focus-group-label';
+      label.textContent = 'Other';
+      group.appendChild(label);
+      var chipWrap = document.createElement('div');
+      chipWrap.className = 'browse-chips';
+      byCategory['default'].forEach(function(v) {
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'browse-chip';
+        chip.setAttribute('data-filter', 'focus');
+        chip.setAttribute('data-value', v);
+        chip.setAttribute('data-focus-category', 'default');
+        chip.textContent = v;
+        chip.addEventListener('click', function() { cycleFocusChip(chip, v); });
+        chipWrap.appendChild(chip);
+      });
+      group.appendChild(chipWrap);
+      container.appendChild(group);
+    }
+    document.querySelectorAll('#filter-focus .browse-chip').forEach(function(c) {
+      var val = c.getAttribute('data-value');
+      if (state.focus.indexOf(val) !== -1) c.classList.add('active');
+      else if (state.focusExclude.indexOf(val) !== -1) c.classList.add('excluded');
+    });
+  }
+
+  function cycleFocusChip(chip, tag) {
+    var incIdx = state.focus.indexOf(tag);
+    var excIdx = state.focusExclude.indexOf(tag);
+    if (incIdx !== -1) {
+      state.focus.splice(incIdx, 1);
+      state.focusExclude.push(tag);
+      chip.classList.remove('active');
+      chip.classList.add('excluded');
+    } else if (excIdx !== -1) {
+      state.focusExclude.splice(excIdx, 1);
+      chip.classList.remove('excluded');
+    } else {
+      state.focus.push(tag);
+      chip.classList.add('active');
+    }
+    filterAndRender();
+  }
+
+  function renderChannelChips() {
+    var container = document.getElementById('filter-channel');
+    if (!container) return;
+    var channels = filterOptions.channels || [];
+    container.innerHTML = '';
+    channels.forEach(function(ch) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'browse-chip';
+      chip.setAttribute('data-filter', 'channel');
+      chip.setAttribute('data-value', ch);
+      chip.setAttribute('data-focus-category', 'default');
+      chip.textContent = ch;
+      chip.addEventListener('click', function() {
+        var incIdx = state.channel.indexOf(ch);
+        var excIdx = state.channelExclude.indexOf(ch);
+        if (incIdx !== -1) {
+          state.channel.splice(incIdx, 1);
+          state.channelExclude.push(ch);
+          chip.classList.remove('active');
+          chip.classList.add('excluded');
+        } else if (excIdx !== -1) {
+          state.channelExclude.splice(excIdx, 1);
+          chip.classList.remove('excluded');
+        } else {
+          state.channel.push(ch);
+          chip.classList.add('active');
+        }
+        filterAndRender();
+      });
+      if (state.channel.indexOf(ch) !== -1) chip.classList.add('active');
+      else if (state.channelExclude.indexOf(ch) !== -1) chip.classList.add('excluded');
+      container.appendChild(chip);
+    });
+  }
+
+  function clearChannelFilter() {
+    state.channel = [];
+    state.channelExclude = [];
+    renderChannelChips();
+    filterAndRender();
+  }
+
+  function renderChips(containerId, values, filterKey) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = '';
+    values.forEach(function(v) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'browse-chip';
+      chip.setAttribute('data-filter', filterKey);
+      chip.setAttribute('data-value', v);
+      chip.textContent = v;
+      chip.addEventListener('click', function() {
+        var arr = state[filterKey];
+        var i = arr.indexOf(v);
+        if (i === -1) arr.push(v); else arr.splice(i, 1);
+        state[filterKey] = arr;
+        chip.classList.toggle('active', arr.indexOf(v) !== -1);
+        filterAndRender();
+      });
+      container.appendChild(chip);
+    });
+  }
+
+  var durationHistogramCounts = null;
+  var durationNumBuckets = Math.ceil(durationRangeMax / 5) || 1;
+  function buildDurationHistogram() {
+    var buckets = [];
+    for (var i = 0; i < durationNumBuckets; i++) buckets.push(0);
+    allVideos.forEach(function(v) {
+      var m = parseFloat(v.duration_mins);
+      if (isNaN(m) || m < 0) return;
+      var idx = Math.min(durationNumBuckets - 1, Math.floor(m / 5));
+      buckets[idx]++;
+    });
+    durationHistogramCounts = buckets;
+    return buckets;
+  }
+
+  function renderDurationHistogram() {
+    var container = document.getElementById('duration-histogram');
+    if (!container || !durationHistogramCounts) return;
+    var maxCount = Math.max.apply(null, durationHistogramCounts) || 1;
+    container.innerHTML = '';
+    durationHistogramCounts.forEach(function(count, i) {
+      var bar = document.createElement('div');
+      bar.className = 'histogram-bar';
+      bar.setAttribute('data-bucket', i);
+      var pct = maxCount > 0 ? (count / maxCount) * 100 : 0;
+      bar.style.height = (pct * 0.85 + 15) + '%';
+      container.appendChild(bar);
+    });
+  }
+
+  function clampDuration(n) {
+    var v = parseInt(n, 10);
+    if (isNaN(v) || v < 0) return 0;
+    if (v > durationRangeMax) return durationRangeMax;
+    return v;
+  }
+
+  function updateDurationSliderUI() {
+    var min = state.durationMin;
+    var max = state.durationMax;
+    var fill = document.getElementById('duration-fill');
+    var pillMin = document.getElementById('duration-pill-min');
+    var pillMax = document.getElementById('duration-pill-max');
+    var minValIn = document.getElementById('duration-min-value');
+    var maxValIn = document.getElementById('duration-max-value');
+    var minIn = document.getElementById('duration-min');
+    var maxIn = document.getElementById('duration-max');
+    var pctMin = (min / durationRangeMax) * 100;
+    var pctMax = (max / durationRangeMax) * 100;
+    if (fill) {
+      fill.style.left = pctMin + '%';
+      fill.style.width = (pctMax - pctMin) + '%';
+    }
+    if (minValIn) minValIn.value = min;
+    if (maxValIn) maxValIn.value = max >= durationRangeMax ? durationRangeMax : max;
+    if (minIn) {
+      minIn.style.width = (max / durationRangeMax) * 100 + '%';
+      minIn.setAttribute('max', max);
+      minIn.value = min;
+    }
+    if (maxIn) {
+      maxIn.style.left = pctMin + '%';
+      maxIn.style.width = ((durationRangeMax - min) / durationRangeMax) * 100 + '%';
+      maxIn.setAttribute('min', min);
+      maxIn.value = max;
+    }
+    var bars = document.querySelectorAll('.browse-duration-histogram .histogram-bar');
+    bars.forEach(function(bar, i) {
+      var bucketStart = i * 5;
+      var bucketEnd = i === durationNumBuckets - 1 ? durationRangeMax : (i + 1) * 5;
+      var inRange = bucketEnd > min && bucketStart < max;
+      bar.classList.toggle('in-range', inRange);
+    });
+    var grabZone = document.getElementById('duration-min-grab-zone');
+    if (grabZone) {
+      var zonePct = Math.min(100, Math.max(8, pctMin + 2));
+      grabZone.style.width = zonePct + '%';
+    }
+  }
+
+  function initDurationSlider() {
+    buildDurationHistogram();
+    renderDurationHistogram();
+    var minIn = document.getElementById('duration-min');
+    var maxIn = document.getElementById('duration-max');
+    var minValIn = document.getElementById('duration-min-value');
+    var maxValIn = document.getElementById('duration-max-value');
+    var grabZone = document.getElementById('duration-min-grab-zone');
+    var trackWrap = document.querySelector('.browse-duration-track-wrap');
+    if (!minIn || !maxIn) return;
+    minIn.setAttribute('max', durationRangeMax);
+    maxIn.setAttribute('min', 0);
+    maxIn.setAttribute('max', durationRangeMax);
+    if (minValIn) { minValIn.setAttribute('max', durationRangeMax); }
+    if (maxValIn) { maxValIn.setAttribute('max', durationRangeMax); }
+    function valueFromTrackX(clientX) {
+      if (!trackWrap) return 0;
+      var r = trackWrap.getBoundingClientRect();
+      var x = clientX - r.left;
+      var pct = Math.max(0, Math.min(1, x / r.width));
+      return Math.round(pct * durationRangeMax / 5) * 5;
+    }
+    function startMinDrag(clientX) {
+      var maxVal = state.durationMax;
+      var v = Math.max(0, Math.min(maxVal, valueFromTrackX(clientX)));
+      state.durationMin = v;
+      minIn.value = v;
+      minIn.setAttribute('max', maxVal);
+      updateDurationSliderUI();
+      filterAndRender();
+    }
+    function onMinZoneMouseDown(e) {
+      e.preventDefault();
+      startMinDrag(e.clientX);
+      function onMove(e2) {
+        e2.preventDefault();
+        startMinDrag(e2.clientX);
+      }
+      function onUp() {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    }
+    function onMinZoneTouchStart(e) {
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+      startMinDrag(e.touches[0].clientX);
+      function onMove(e2) {
+        if (e2.touches.length !== 1) return;
+        e2.preventDefault();
+        startMinDrag(e2.touches[0].clientX);
+      }
+      function onEnd() {
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onEnd);
+      }
+      document.addEventListener('touchmove', onMove, { passive: false });
+      document.addEventListener('touchend', onEnd);
+    }
+    if (grabZone) {
+      grabZone.addEventListener('mousedown', onMinZoneMouseDown);
+      grabZone.addEventListener('touchstart', onMinZoneTouchStart, { passive: false });
+    }
+    function applyDuration(minVal, maxVal) {
+      minVal = clampDuration(minVal);
+      maxVal = clampDuration(maxVal);
+      if (minVal > maxVal) { var t = minVal; minVal = maxVal; maxVal = t; }
+      state.durationMin = minVal;
+      state.durationMax = maxVal >= durationRangeMax ? durationRangeMax : maxVal;
+      minIn.value = state.durationMin;
+      maxIn.value = state.durationMax;
+      updateDurationSliderUI();
+      filterAndRender();
+    }
+    function syncFromSliders() {
+      applyDuration(minIn.value, maxIn.value);
+    }
+    function syncFromMinInput() {
+      var v = clampDuration(minValIn.value);
+      if (v > state.durationMax) applyDuration(v, v);
+      else applyDuration(v, state.durationMax);
+    }
+    function syncFromMaxInput() {
+      var v = clampDuration(maxValIn.value);
+      if (v < state.durationMin) applyDuration(v, v);
+      else applyDuration(state.durationMin, v >= durationRangeMax ? durationRangeMax : v);
+    }
+    minIn.addEventListener('input', syncFromSliders);
+    maxIn.addEventListener('input', syncFromSliders);
+    if (minValIn) {
+      minValIn.addEventListener('change', syncFromMinInput);
+      minValIn.addEventListener('blur', syncFromMinInput);
+    }
+    if (maxValIn) {
+      maxValIn.addEventListener('change', syncFromMaxInput);
+      maxValIn.addEventListener('blur', syncFromMaxInput);
+    }
+    updateDurationSliderUI();
+  }
+
+  var yearHistogramCounts = null;
+  function buildYearHistogram() {
+    var yMin = yearRangeMin;
+    var yMax = yearRangeMax;
+    var span = Math.max(1, yMax - yMin);
+    var buckets = [];
+    for (var i = 0; i < span; i++) buckets.push(0);
+    allVideos.forEach(function(v) {
+      var dateStr = v.upload_date && (v.upload_date + '').trim();
+      var bucketIdx = -1;
+      if (dateStr && dateStr.length >= 10) {
+        for (var i = 0; i < span; i++) {
+          var yearStart = (yMin + i) + '-01-01';
+          var yearEnd = (yMin + i + 1) + '-01-01';
+          if (dateStr >= yearStart && dateStr < yearEnd) { bucketIdx = i; break; }
+        }
+      } else {
+        var y = parseInt(v.upload_year, 10);
+        if (!isNaN(y) && y >= yMin && y < yMax) bucketIdx = y - yMin;
+      }
+      if (bucketIdx >= 0 && bucketIdx < span) buckets[bucketIdx]++;
+    });
+    yearHistogramCounts = buckets;
+    return buckets;
+  }
+  function renderYearHistogram() {
+    var container = document.getElementById('year-histogram');
+    if (!container || !yearHistogramCounts) return;
+    var maxCount = Math.max.apply(null, yearHistogramCounts) || 1;
+    container.innerHTML = '';
+    yearHistogramCounts.forEach(function(count, i) {
+      var bar = document.createElement('div');
+      bar.className = 'histogram-bar';
+      bar.setAttribute('data-year', yearRangeMin + i);
+      var pct = maxCount > 0 ? (count / maxCount) * 100 : 0;
+      bar.style.height = (pct * 0.85 + 15) + '%';
+      container.appendChild(bar);
+    });
+  }
+  function clampYear(n) {
+    var v = parseInt(n, 10);
+    if (isNaN(v)) return yearRangeMin;
+    if (v < yearRangeMin) return yearRangeMin;
+    if (v > yearRangeMax) return yearRangeMax;
+    return v;
+  }
+  function updateYearSliderUI() {
+    var min = state.yearMin;
+    var max = state.yearMax;
+    var fill = document.getElementById('year-fill');
+    var minValIn = document.getElementById('year-min-value');
+    var maxValIn = document.getElementById('year-max-value');
+    var minIn = document.getElementById('year-min');
+    var maxIn = document.getElementById('year-max');
+    var rangeSpan = Math.max(1, yearRangeMax - yearRangeMin);
+    var pctMin = ((min - yearRangeMin) / rangeSpan) * 100;
+    var pctMax = ((max - yearRangeMin) / rangeSpan) * 100;
+    if (fill) {
+      fill.style.left = pctMin + '%';
+      fill.style.width = (pctMax - pctMin) + '%';
+    }
+    if (minValIn) {
+      minValIn.value = min;
+      minValIn.setAttribute('max', Math.max(yearRangeMin, max - 1));
+    }
+    if (maxValIn) {
+      maxValIn.value = max;
+      maxValIn.setAttribute('min', Math.min(yearRangeMax, min + 1));
+    }
+    if (minIn) {
+      minIn.style.width = (pctMax) + '%';
+      minIn.setAttribute('max', max);
+      minIn.value = min;
+    }
+    if (maxIn) {
+      maxIn.style.left = pctMin + '%';
+      maxIn.style.width = ((yearRangeMax - min) / rangeSpan) * 100 + '%';
+      maxIn.setAttribute('min', min);
+      maxIn.setAttribute('max', yearRangeMax);
+      maxIn.value = max;
+    }
+    var bars = document.querySelectorAll('.browse-year-histogram .histogram-bar');
+    bars.forEach(function(bar, i) {
+      var y = yearRangeMin + i;
+      var inRange = y >= min && y < max;
+      bar.classList.toggle('in-range', inRange);
+    });
+    var grabZone = document.getElementById('year-min-grab-zone');
+    if (grabZone) {
+      var zonePct = Math.min(100, Math.max(8, pctMin + 2));
+      grabZone.style.width = zonePct + '%';
+    }
+  }
+  function initYearSlider() {
+    var minIn = document.getElementById('year-min');
+    var maxIn = document.getElementById('year-max');
+    var minValIn = document.getElementById('year-min-value');
+    var maxValIn = document.getElementById('year-max-value');
+    var grabZone = document.getElementById('year-min-grab-zone');
+    var trackWrap = document.querySelector('.browse-year-track-wrap');
+    if (!minIn || !maxIn) return;
+    minIn.setAttribute('min', yearRangeMin);
+    minIn.setAttribute('max', yearRangeMax);
+    maxIn.setAttribute('min', yearRangeMin);
+    maxIn.setAttribute('max', yearRangeMax);
+    if (minValIn) { minValIn.setAttribute('min', yearRangeMin); minValIn.setAttribute('max', yearRangeMax); }
+    if (maxValIn) { maxValIn.setAttribute('min', yearRangeMin); maxValIn.setAttribute('max', yearRangeMax); }
+    buildYearHistogram();
+    renderYearHistogram();
+    var rangeSpan = Math.max(1, yearRangeMax - yearRangeMin);
+    function valueFromTrackX(clientX) {
+      if (!trackWrap) return yearRangeMin;
+      var r = trackWrap.getBoundingClientRect();
+      var x = clientX - r.left;
+      var pct = Math.max(0, Math.min(1, x / r.width));
+      return yearRangeMin + Math.round(pct * rangeSpan);
+    }
+    function startMinDrag(clientX) {
+      var maxVal = state.yearMax;
+      var v = Math.max(yearRangeMin, Math.min(maxVal - 1, valueFromTrackX(clientX)));
+      state.yearMin = v;
+      minIn.value = v;
+      minIn.setAttribute('max', maxVal);
+      updateYearSliderUI();
+      filterAndRender();
+    }
+    function onMinZoneMouseDown(e) {
+      e.preventDefault();
+      startMinDrag(e.clientX);
+      function onMove(e2) { e2.preventDefault(); startMinDrag(e2.clientX); }
+      function onUp() {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    }
+    function onMinZoneTouchStart(e) {
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+      startMinDrag(e.touches[0].clientX);
+      function onMove(e2) {
+        if (e2.touches.length !== 1) return;
+        e2.preventDefault();
+        startMinDrag(e2.touches[0].clientX);
+      }
+      function onEnd() {
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onEnd);
+      }
+      document.addEventListener('touchmove', onMove, { passive: false });
+      document.addEventListener('touchend', onEnd);
+    }
+    if (grabZone) {
+      grabZone.addEventListener('mousedown', onMinZoneMouseDown);
+      grabZone.addEventListener('touchstart', onMinZoneTouchStart, { passive: false });
+    }
+    function applyYear(minVal, maxVal) {
+      minVal = clampYear(minVal);
+      maxVal = clampYear(maxVal);
+      if (minVal >= maxVal) {
+        maxVal = Math.min(yearRangeMax, minVal + 1);
+        if (maxVal <= minVal) minVal = Math.max(yearRangeMin, maxVal - 1);
+      }
+      state.yearMin = minVal;
+      state.yearMax = maxVal;
+      minIn.value = state.yearMin;
+      maxIn.value = state.yearMax;
+      updateYearSliderUI();
+      filterAndRender();
+    }
+    function syncFromSliders() { applyYear(minIn.value, maxIn.value); }
+    function syncFromMinInput() {
+      var v = clampYear(minValIn.value);
+      if (v > state.yearMax) applyYear(v, v);
+      else applyYear(v, state.yearMax);
+    }
+    function syncFromMaxInput() {
+      var v = clampYear(maxValIn.value);
+      if (v < state.yearMin) applyYear(v, v);
+      else applyYear(state.yearMin, v);
+    }
+    minIn.addEventListener('input', syncFromSliders);
+    maxIn.addEventListener('input', syncFromSliders);
+    if (minValIn) {
+      minValIn.addEventListener('change', syncFromMinInput);
+      minValIn.addEventListener('blur', syncFromMinInput);
+    }
+    if (maxValIn) {
+      maxValIn.addEventListener('change', syncFromMaxInput);
+      maxValIn.addEventListener('blur', syncFromMaxInput);
+    }
+    updateYearSliderUI();
+  }
+
+  function filtered() {
+    var list = allVideos.slice();
+    if (state.search) {
+      var keywords = state.search.toLowerCase().split(/\s+/).filter(Boolean);
+      list = list.filter(function(v) {
+        var text = ((v.title || '') + ' ' + (v.channel || '') + ' ' + (v.focus || '')).toLowerCase();
+        return keywords.every(function(kw) { return text.indexOf(kw) !== -1; });
+      });
+    }
+    list = list.filter(function(v) {
+      var m = parseFloat(v.duration_mins);
+      if (isNaN(m) || m < 0) return false;
+      if (m < state.durationMin) return false;
+      if (state.durationMax >= durationRangeMax) return m >= state.durationMin;
+      return m <= state.durationMax;
+    });
+    if (state.focus.length) list = list.filter(function(v) {
+      var parts = (v.focus || '').split(' | ');
+      return state.focus.every(function(f) { return parts.indexOf(f) !== -1; });
+    });
+    if (state.focusExclude.length) list = list.filter(function(v) {
+      var parts = (v.focus || '').split(' | ');
+      return state.focusExclude.every(function(f) { return parts.indexOf(f) === -1; });
+    });
+    if (state.channel.length) list = list.filter(function(v) {
+      return state.channel.indexOf(v.channel) !== -1;
+    });
+    if (state.channelExclude.length) list = list.filter(function(v) {
+      return state.channelExclude.indexOf(v.channel) === -1;
+    });
+    list = list.filter(function(v) {
+      var dateStr = v.upload_date && (v.upload_date + '').trim();
+      var startBound = state.yearMin + '-01-01';
+      var endBound = state.yearMax + '-01-01';
+      if (dateStr && dateStr.length >= 10) {
+        return dateStr >= startBound && dateStr < endBound;
+      }
+      var y = parseInt(v.upload_year, 10);
+      if (isNaN(y) || y < 1) return false;
+      return y >= state.yearMin && y < state.yearMax;
+    });
+    return list;
+  }
+
+  function clearDurationFilter() {
+    var minIn = document.getElementById('duration-min');
+    var maxIn = document.getElementById('duration-max');
+    var minValIn = document.getElementById('duration-min-value');
+    var maxValIn = document.getElementById('duration-max-value');
+    if (minIn && maxIn) {
+      minIn.value = 0;
+      maxIn.value = durationRangeMax;
+      if (minValIn) minValIn.value = 0;
+      if (maxValIn) maxValIn.value = durationRangeMax;
+      maxIn.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
+  function clearFocusFilter() {
+    state.focus = [];
+    state.focusExclude = [];
+    renderFocusChips();
+    filterAndRender();
+  }
+  function clearYearFilter() {
+    var minIn = document.getElementById('year-min');
+    var maxIn = document.getElementById('year-max');
+    var minValIn = document.getElementById('year-min-value');
+    var maxValIn = document.getElementById('year-max-value');
+    if (minIn && maxIn) {
+      minIn.value = yearRangeMin;
+      maxIn.value = yearRangeMax;
+      if (minValIn) minValIn.value = yearRangeMin;
+      if (maxValIn) maxValIn.value = yearRangeMax;
+      maxIn.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
+  function clearSearchFilter() {
+    state.search = '';
+    var searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.value = '';
+    filterAndRender();
+  }
+  function clearAllFilters() {
+    clearDurationFilter();
+    clearFocusFilter();
+    clearChannelFilter();
+    clearYearFilter();
+    clearSearchFilter();
+  }
+
+  function getQueue() {
+    try {
+      var j = localStorage.getItem('yogaVideoQueue');
+      return j ? JSON.parse(j) : [];
+    } catch (e) { return []; }
+  }
+  function isInQueue(id) { return getQueue().some(function(item) { return item.id === id; }); }
+  function addToQueue(video) {
+    var queue = getQueue();
+    if (queue.some(function(item) { return item.id === video.video_id; })) return;
+    queue.push({
+      id: video.video_id,
+      title: (video.title && video.title.trim()) ? video.title : 'Untitled',
+      url: video.url || ('https://www.youtube.com/watch?v=' + video.video_id),
+      durationSeconds: video.duration_seconds || 0
+    });
+    localStorage.setItem('yogaVideoQueue', JSON.stringify(queue));
+    updateQueueButtons();
+    updateQueueDisplay();
+  }
+
+  function removeFromQueue(videoId) {
+    var queue = getQueue().filter(function(item) { return item.id !== videoId; });
+    localStorage.setItem('yogaVideoQueue', JSON.stringify(queue));
+    updateQueueButtons();
+    updateQueueDisplay();
+  }
+
+  function reorderQueue(fromIndex, toIndex) {
+    if (fromIndex === toIndex) return;
+    var queue = getQueue();
+    if (fromIndex < 0 || fromIndex >= queue.length || toIndex < 0 || toIndex > queue.length) return;
+    var item = queue.splice(fromIndex, 1)[0];
+    var insertAt = fromIndex < toIndex ? toIndex - 1 : toIndex;
+    queue.splice(insertAt, 0, item);
+    localStorage.setItem('yogaVideoQueue', JSON.stringify(queue));
+    updateQueueDisplay();
+  }
+
+  function clearQueue() {
+    if (confirm('Clear all videos from your queue?')) {
+      localStorage.removeItem('yogaVideoQueue');
+      updateQueueButtons();
+      updateQueueDisplay();
+    }
+  }
+
+  function formatDuration(totalSeconds) {
+    if (!totalSeconds || totalSeconds <= 0) return '—';
+    var h = Math.floor(totalSeconds / 3600);
+    var m = Math.floor((totalSeconds % 3600) / 60);
+    var s = totalSeconds % 60;
+    var parts = [];
+    if (h > 0) parts.push(h + ' hr');
+    if (m > 0) parts.push(m + ' min');
+    if (s > 0 && h === 0) parts.push(s + ' sec');
+    return parts.length ? parts.join(' ') : '—';
+  }
+
+  function updateQueueDisplay() {
+    var queue = getQueue();
+    var container = document.getElementById('queue-list');
+    var countEl = document.getElementById('queue-count');
+    var durationEl = document.getElementById('queue-duration-sum');
+    var focusesEl = document.getElementById('queue-focuses');
+    var clearBtn = document.getElementById('clear-queue-btn');
+    if (!container) return;
+    var n = queue.length;
+    var totalSeconds = 0;
+    queue.forEach(function(item) { totalSeconds += (item.durationSeconds || 0); });
+    if (countEl) countEl.textContent = n;
+    if (durationEl) durationEl.textContent = formatDuration(totalSeconds);
+    if (clearBtn) clearBtn.style.display = n > 0 ? 'inline-block' : 'none';
+    var focusSet = {};
+    queue.forEach(function(item) {
+      var video = allVideos.filter(function(v) { return v.video_id === item.id; })[0];
+      if (video && video.focus) {
+        (video.focus + '').split(/\s*\|\s*/).filter(Boolean).forEach(function(t) {
+          var tag = t.trim();
+          if (tag) focusSet[tag] = true;
+        });
+      }
+    });
+    var focusList = Object.keys(focusSet).sort();
+    if (focusesEl) {
+      if (focusList.length > 0) {
+        var label = '<span class="queue-focuses-label">Focuses:</span>';
+        var chips = focusList.map(function(tag) {
+          var cat = getFocusCategory(tag);
+          var safe = (tag + '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+          return '<span class="browse-card-tag" data-focus-category="' + cat + '">' + safe + '</span>';
+        }).join('');
+        focusesEl.innerHTML = label + chips;
+        focusesEl.style.display = 'flex';
+      } else {
+        focusesEl.innerHTML = '';
+        focusesEl.style.display = 'none';
+      }
+    }
+    if (n === 0) {
+      container.innerHTML = '<p class="queue-empty-msg">No videos in queue. Click "+ Queue" on a video to add it.</p>';
+      return;
+    }
+    var gripSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="8" y1="6" x2="8" y2="18"/><line x1="12" y1="6" x2="12" y2="18"/><line x1="16" y1="6" x2="16" y2="18"/></svg>';
+    var closeSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    var html = '<div class="queue-cards"><div class="queue-cards-inner"><div class="queue-drop-indicator" id="queue-drop-indicator" aria-hidden="true"></div>';
+    queue.forEach(function(item, index) {
+      var urlRaw = item.url || ('https://www.youtube.com/watch?v=' + item.id);
+      var url = urlRaw.replace(/&/g, '&amp;');
+      var title = (item.title || 'Video ' + (index + 1)).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      var dur = formatDuration(item.durationSeconds || 0);
+      var thumbSrc = thumbUrl(item.id);
+      var idAttr = item.id.replace(/"/g, '&quot;');
+      html += '<div class="queue-card" draggable="true" data-index="' + index + '" data-video-id="' + idAttr + '">';
+      html += '<div class="queue-card-thumb">';
+      html += '<button type="button" class="queue-card-grab" aria-label="Drag to reorder">' + gripSvg + '</button>';
+      html += '<button type="button" class="queue-card-close-btn" data-video-id="' + idAttr + '" aria-label="Remove from queue">' + closeSvg + '</button>';
+      html += '<img src="' + thumbSrc + '" alt="" loading="lazy" /><span class="thumb-fallback">Preview unavailable</span>';
+      html += '<span class="queue-card-duration">' + dur + '</span></div>';
+      html += '<div class="queue-card-body">';
+      html += '<h3 class="queue-card-title"><a href="' + url + '" target="_blank" rel="noopener">' + title + '</a></h3>';
+      html += '</div></div>';
+    });
+    html += '</div></div>';
+    container.innerHTML = html;
+    var cardsWrap = container.querySelector('.queue-cards');
+    var cardsInner = cardsWrap ? cardsWrap.querySelector('.queue-cards-inner') : null;
+    var cards = cardsWrap ? cardsWrap.querySelectorAll('.queue-card') : [];
+    for (var i = 0; i < cards.length; i++) {
+      if (i > 0 && cards[i].offsetTop > cards[i - 1].offsetTop) cards[i].classList.add('queue-card-row-start');
+    }
+    container.querySelectorAll('.queue-card-close-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) { e.stopPropagation(); removeFromQueue(btn.getAttribute('data-video-id')); });
+    });
+    container.querySelectorAll('.queue-card-thumb img').forEach(function(img) {
+      img.onerror = function() { this.setAttribute('data-failed', 'true'); };
+    });
+    var draggedIndex = null;
+    var dropIndex = null;
+    var placeholder = document.createElement('div');
+    placeholder.className = 'queue-drop-placeholder';
+    placeholder.setAttribute('aria-hidden', 'true');
+    placeholder.textContent = 'Drop here';
+    function computeDropIndex(clientX, clientY) {
+      var cards = cardsWrap.querySelectorAll('.queue-card');
+      if (cards.length === 0) return 0;
+      for (var i = 0; i < cards.length; i++) {
+        var r = cards[i].getBoundingClientRect();
+        var inRow = clientY >= r.top && clientY <= r.bottom;
+        var aboveRow = clientY < r.top;
+        if (inRow) {
+          if (clientX < r.left) return i;
+          if (clientX < r.left + r.width / 2) return i;
+          if (clientX <= r.right) return i + 1;
+        } else if (aboveRow) {
+          return i;
+        }
+      }
+      return cards.length;
+    }
+    function updateDropIndicator(clientX, clientY) {
+      if (!cardsInner || draggedIndex === null) return;
+      var cards = cardsWrap.querySelectorAll('.queue-card');
+      if (cards.length === 0) return;
+      dropIndex = computeDropIndex(clientX, clientY);
+      var samePosition = (dropIndex === draggedIndex || dropIndex === draggedIndex + 1);
+      if (placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
+      if (!samePosition) {
+        var insertBeforeCard = dropIndex < cards.length ? cards[dropIndex] : null;
+        cardsInner.insertBefore(placeholder, insertBeforeCard);
+      }
+    }
+    function hideDropIndicator() {
+      if (placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
+      dropIndex = null;
+    }
+    cardsWrap.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      updateDropIndicator(e.clientX, e.clientY);
+    });
+    cardsWrap.addEventListener('dragleave', function(e) {
+      if (!cardsWrap.contains(e.relatedTarget)) hideDropIndicator();
+    });
+    cardsWrap.addEventListener('drop', function(e) {
+      e.preventDefault();
+      if (draggedIndex === null) return;
+      var toIndex = dropIndex !== null ? dropIndex : computeDropIndex(e.clientX, e.clientY);
+      hideDropIndicator();
+      if (toIndex !== draggedIndex) reorderQueue(draggedIndex, toIndex);
+    });
+    cardsWrap.querySelectorAll('.queue-card').forEach(function(card) {
+      function onDragStart(e) {
+        if (e.target.closest('a') || e.target.closest('.queue-card-close-btn')) {
+          e.preventDefault();
+          return;
+        }
+        draggedIndex = parseInt(card.getAttribute('data-index'), 10);
+        e.dataTransfer.setData('text/plain', draggedIndex);
+        e.dataTransfer.effectAllowed = 'move';
+        card.classList.add('queue-card-dragging');
+      }
+      card.addEventListener('dragstart', onDragStart);
+      card.querySelector('.queue-card-grab').addEventListener('click', function(e) { e.preventDefault(); });
+      card.addEventListener('dragend', function() {
+        card.classList.remove('queue-card-dragging');
+        hideDropIndicator();
+        draggedIndex = null;
+      });
+    });
+  }
+
+  function updateQueueButtons() {
+    document.querySelectorAll('.btn-queue[data-video-id]').forEach(function(btn) {
+      btn.classList.toggle('queued', isInQueue(btn.getAttribute('data-video-id')));
+      btn.textContent = isInQueue(btn.getAttribute('data-video-id')) ? 'In queue' : '+ Queue';
+    });
+  }
+
+  function getOrCreateSharedIframe() {
+    var holder = document.getElementById('browse-yt-frame-holder');
+    var frame = document.getElementById('browse-yt-frame');
+    if (frame) return frame;
+    if (!holder) return null;
+    frame = document.createElement('iframe');
+    frame.id = 'browse-yt-frame';
+    frame.name = 'browse-yt-frame';
+    frame.setAttribute('title', 'YouTube preview');
+    frame.src = '';
+    holder.appendChild(frame);
+    return frame;
+  }
+
+  function collapseCardPreview(card) {
+    if (!card) return;
+    var thumb = card.querySelector('.browse-card-thumb');
+    var preview = card.querySelector('.browse-card-preview');
+    var frame = card.querySelector('.browse-card-preview iframe');
+    var holder = document.getElementById('browse-yt-frame-holder');
+    if (frame && holder) {
+      frame.src = 'about:blank';
+      holder.appendChild(frame);
+    }
+    if (thumb) thumb.classList.remove('is-hidden');
+    if (preview) preview.classList.remove('is-open');
+  }
+
+  function showPreviewInCard(card, video) {
+    window.currentPreviewId = video.video_id;
+    var allCards = document.querySelectorAll('.browse-card');
+    allCards.forEach(function(c) {
+      if (c !== card) collapseCardPreview(c);
+    });
+    var frame = getOrCreateSharedIframe();
+    if (!frame) return;
+    var thumb = card.querySelector('.browse-card-thumb');
+    var preview = card.querySelector('.browse-card-preview');
+    var closeBtn = card.querySelector('.card-close-preview');
+    if (!preview) return;
+    frame.src = embedUrl(video.video_id);
+    preview.appendChild(frame);
+    preview.classList.add('is-open');
+    if (thumb) thumb.classList.add('is-hidden');
+    if (closeBtn) {
+      closeBtn.onclick = function() {
+        collapseCardPreview(card);
+      };
+    }
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function filterAndRender() {
+    var list = filtered();
+    var countText = list.length + ' video' + (list.length !== 1 ? 's' : '');
+    var videosCountEl = document.getElementById('videos-count');
+    if (videosCountEl) videosCountEl.textContent = countText;
+    var grid = document.getElementById('card-grid');
+    var emptyEl = document.getElementById('empty-state');
+    if (!grid) return;
+    var frame = document.getElementById('browse-yt-frame');
+    var holder = document.getElementById('browse-yt-frame-holder');
+    if (frame && holder && frame.parentElement !== holder) holder.appendChild(frame);
+    grid.innerHTML = '';
+    if (list.length === 0) {
+      if (emptyEl) emptyEl.style.display = 'block';
+      return;
+    }
+    if (emptyEl) emptyEl.style.display = 'none';
+    list.forEach(function(v) {
+      var card = document.createElement('div');
+      card.className = 'browse-card';
+      var focusParts = (v.focus || '').split(' | ').filter(Boolean);
+      var titleText = (v.title && v.title.trim()) ? v.title : 'Untitled';
+      card.innerHTML =
+        '<div class="browse-card-thumb"><img src="' + thumbUrl(v.video_id) + '" alt="" loading="lazy" /><span class="thumb-fallback">Preview unavailable</span><span class="browse-card-duration">' + formatDuration(v.duration_seconds || 0) + '</span></div>' +
+        '<div class="browse-card-preview" role="region" aria-label="Video preview"><button type="button" class="card-close-preview" aria-label="Close preview">&times;</button></div>' +
+        '<div class="browse-card-body">' +
+          '<div class="browse-card-title-row">' +
+            '<h3 class="browse-card-title"><a href="' + (v.url || '#').replace(/"/g, '&quot;') + '" target="_blank" rel="noopener">' + titleText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</a></h3>' +
+            '<div class="browse-card-actions">' +
+              '<button type="button" class="btn-queue" data-video-id="' + v.video_id + '" data-video-title="' + titleText.replace(/"/g, '&quot;') + '" data-video-url="' + (v.url || '').replace(/"/g, '&quot;') + '" data-duration-seconds="' + (v.duration_seconds || 0) + '">+ Queue</button>' +
+            '</div>' +
+          '</div>' +
+          '<p class="browse-card-channel">' + (v.channel || '').replace(/</g, '&lt;') + '</p>' +
+          (focusParts.length ? '<div class="browse-card-tags">' + focusParts.map(function(t) { var cat = getFocusCategory(t); return '<span class="browse-card-tag" data-focus-category="' + cat + '">' + t.replace(/</g, '&lt;') + '</span>'; }).join('') + '</div>' : '') +
+          '</div>';
+      var thumbImg = card.querySelector('.browse-card-thumb img');
+      if (thumbImg) thumbImg.onerror = function() { this.setAttribute('data-failed', 'true'); };
+      var queueBtn = card.querySelector('.btn-queue');
+      var hoverPreviewTimer = null;
+      card.addEventListener('mouseenter', function() {
+        hoverPreviewTimer = setTimeout(function() {
+          hoverPreviewTimer = null;
+          showPreviewInCard(card, v);
+        }, 500);
+      });
+      card.addEventListener('mouseleave', function() {
+        if (hoverPreviewTimer) {
+          clearTimeout(hoverPreviewTimer);
+          hoverPreviewTimer = null;
+        } else {
+          var preview = card.querySelector('.browse-card-preview');
+          if (preview && preview.classList.contains('is-open')) collapseCardPreview(card);
+        }
+      });
+      if (queueBtn) {
+        queueBtn.classList.toggle('queued', isInQueue(v.video_id));
+        queueBtn.addEventListener('click', function() {
+          addToQueue(v);
+          updateQueueButtons();
+        });
+      }
+      grid.appendChild(card);
+    });
+  }
+
+  initDurationSlider();
+  initYearSlider();
+  renderFocusChips();
+  renderChannelChips();
+
+  var searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      state.search = searchInput.value.trim();
+      filterAndRender();
+    });
+  }
+
+  document.querySelectorAll('.browse-filter-clear-btn').forEach(function(btn) {
+    var kind = btn.getAttribute('data-clear');
+    if (kind === 'duration') btn.addEventListener('click', clearDurationFilter);
+    else if (kind === 'focus') btn.addEventListener('click', clearFocusFilter);
+    else if (kind === 'channel') btn.addEventListener('click', clearChannelFilter);
+    else if (kind === 'year') btn.addEventListener('click', clearYearFilter);
+    else if (kind === 'search') btn.addEventListener('click', clearSearchFilter);
+  });
+  var clearAllBtn = document.getElementById('clear-all-filters-btn');
+  if (clearAllBtn) clearAllBtn.addEventListener('click', clearAllFilters);
+
+  var clearQueueBtn = document.getElementById('clear-queue-btn');
+  if (clearQueueBtn) clearQueueBtn.addEventListener('click', clearQueue);
+
+  var backToCardsBtn = document.getElementById('back-to-cards-btn');
+  var videosSectionEl = document.getElementById('videos-section');
+  if (backToCardsBtn && videosSectionEl) {
+    function updateBackToCardsVisibility() {
+      var rect = videosSectionEl.getBoundingClientRect();
+      var scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      var show = rect.top < -20 || scrollY > 300;
+      if (show) backToCardsBtn.classList.add('is-visible');
+      else backToCardsBtn.classList.remove('is-visible');
+    }
+    window.addEventListener('scroll', updateBackToCardsVisibility, { passive: true });
+    document.addEventListener('scroll', updateBackToCardsVisibility, { passive: true });
+    var contentEl = document.getElementById('quarto-content');
+    if (contentEl) contentEl.addEventListener('scroll', updateBackToCardsVisibility, { passive: true });
+    updateBackToCardsVisibility();
+    setTimeout(updateBackToCardsVisibility, 500);
+    backToCardsBtn.addEventListener('click', function() {
+      videosSectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  updateQueueDisplay();
+  filterAndRender();
+})();
+</script>
+```

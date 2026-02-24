@@ -1,0 +1,37 @@
+---
+title: "About"
+---
+
+## About me
+
+*Placeholder: Replace with a short professional bio (2–4 paragraphs) covering who you are, what you do, and what you care about.*
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+## Interests
+
+*Placeholder: List your main interests (e.g., reproducible research, spatial analysis, open data, automation).*
+
+- **Reproducible research** — Scripts, Quarto, and version control
+- **Spatial analysis & mapping** — GIS, leaflet, and geodata
+- **Data automation** — Pipelines, APIs, and reporting
+- **Open source** — R, Python, and sharing code
+
+## Expertise
+
+*Placeholder: Summarize tools and domains (R, tidyverse, SQL, etc.).*
+
+| Domain | Tools & methods |
+|--------|------------------|
+| Data analysis | R, tidyverse, statistical modeling |
+| Mapping | Leaflet, sf, spatial data |
+| Automation | Scripts, Quarto, Git |
+| Collaboration | Code review, documentation |
+
+## Contact
+
+*Placeholder: Add your preferred contact (email, LinkedIn, GitHub).*
+
+- **Email:** mackaykp@gmail.com  
+- **GitHub:** [mackaykp](https://github.com/mackaykp/kevin-mackay-phd)  
+- **LinkedIn:** [Kevin Mackay, PhD](https://www.linkedin.com/in/kevin-mackay-phd/)

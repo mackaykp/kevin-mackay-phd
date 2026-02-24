@@ -1,0 +1,9 @@
+---
+title: "Example Other Project"
+---
+
+## Overview
+
+*Placeholder: Short description of a miscellaneous project.*
+
+This is where you can add write-ups that don’t fit the other categories. Use the sidebar to navigate back to a category or the projects overview.

@@ -1,0 +1,34 @@
+---
+title: "Example Stats Project"
+---
+
+## Overview
+
+*Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.*
+
+This example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.
+
+## Methods
+
+- **Data:** Placeholder source (e.g., survey, administrative data).
+- **Tools:** R, tidyverse, relevant packages (e.g., `broom`, `infer`).
+- **Output:** Summary tables, plots, or a short report.
+
+## Code snippet (placeholder)
+
+Below is a minimal R chunk to show how code will render. Use your real analysis when you add content.
+
+```{r}
+#| label: fig-placeholder
+#| fig-cap: "Placeholder: replace with your own plot"
+library(tidyverse)
+tibble(x = 1:20, y = cumsum(rnorm(20))) %>%
+  ggplot(aes(x, y)) +
+  geom_line(linewidth = 1.2) +
+  theme_minimal() +
+  labs(x = "Step", y = "Cumulative value")
+```
+
+## Takeaways
+
+*Placeholder: 2–3 bullet points summarizing what you did and what you learned.*

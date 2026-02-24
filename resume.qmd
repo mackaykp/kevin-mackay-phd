@@ -1,0 +1,51 @@
+---
+title: "Resume"
+---
+
+*Placeholder: Replace sections with your real experience, education, and skills. You can also embed a PDF or link to an external resume.*
+
+## Experience
+
+**Job Title** — *Company Name*  
+*Month Year – Present*
+
+- Placeholder: Key responsibility or achievement using data or code.
+- Placeholder: Another bullet (e.g., built dashboards, automated reports).
+- Placeholder: Impact (e.g., improved accuracy, saved time).
+
+**Previous Role** — *Previous Company*  
+*Month Year – Month Year*
+
+- Placeholder: Responsibility or project.
+- Placeholder: Tools used (R, SQL, etc.).
+
+---
+
+## Education
+
+**Degree Name** — *Institution*  
+*Year*
+
+- Placeholder: Relevant coursework, thesis, or focus (e.g., statistics, GIS).
+
+**Other credential or degree** — *Institution*  
+*Year*
+
+---
+
+## Skills
+
+| Category | Details |
+|----------|---------|
+| **Languages** | R, SQL, Python (placeholder) |
+| **R ecosystem** | tidyverse, leaflet, Quarto, Shiny |
+| **Data** | Cleaning, visualization, spatial data |
+| **Tools** | Git, GitHub, reproducible workflows |
+
+---
+
+## Download
+
+*Optional: Add a link to a PDF version of your resume.*
+
+[Download resume (PDF)](#) — *Replace # with your PDF URL.*

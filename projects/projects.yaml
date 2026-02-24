@@ -1,0 +1,34 @@
+# Project list for the Projects index (card grid + tag filter).
+# href is relative to projects/ (e.g. yoga-video-catalog.html, yoga-video-catalog/browse.html).
+# image: optional path (relative to site root) or leave blank for placeholder.
+
+projects:
+  - title: "Yoga Video Catalog"
+    description: "Filterable catalog of yoga videos: web scraping, yt-dlp enrichment, ETL pipeline, and interactive browse UI with Quarto."
+    href: "yoga-video-catalog/"
+    tags: ["Automation", "Web scraping", "ETL", "R", "Python", "Quarto"]
+    image: ""
+
+  - title: "Example Stats Project"
+    description: "Statistical analysis and data workflows with R and the tidyverse."
+    href: "example-stats.html"
+    tags: ["Statistics", "R", "tidyverse"]
+    image: ""
+
+  - title: "Leaflet Map Demo"
+    description: "Interactive map built with R, leaflet, and tidyverse—placeholder for spatial projects."
+    href: "leaflet-demo.html"
+    tags: ["Spatial", "Mapping", "R", "leaflet"]
+    image: ""
+
+  - title: "Example Automation Project"
+    description: "Scripts and pipelines for automated reporting or data workflows."
+    href: "example-automation.html"
+    tags: ["Automation", "R", "Quarto"]
+    image: ""
+
+  - title: "Example Other Project"
+    description: "Miscellaneous projects, tutorials, or experiments."
+    href: "example-other.html"
+    tags: ["Documentation", "R"]
+    image: ""

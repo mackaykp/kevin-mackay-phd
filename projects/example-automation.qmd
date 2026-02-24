@@ -1,0 +1,19 @@
+---
+title: "Example Automation Project"
+---
+
+## Overview
+
+*Placeholder: Describe one automation project — what it does, how it runs, and what it produces.*
+
+Example topics: daily report generation, data pulls from an API, or file processing pipelines.
+
+## Tools
+
+- R or Python scripts
+- Scheduling (e.g., cron, GitHub Actions)
+- Quarto or R Markdown for reports
+
+## Takeaways
+
+*Placeholder: What you automated and what you’d do differently next time.*

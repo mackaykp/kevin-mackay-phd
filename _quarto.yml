@@ -1,0 +1,72 @@
+# Quarto website configuration for GitHub Pages
+# Professional portfolio: About, Resume, Projects (tag-based card grid)
+
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Kevin Mackay, PhD | Portfolio"
+  site-url: "https://mackaykp.github.io/kevin-mackay-phd"
+  repo-url: "https://github.com/mackaykp/kevin-mackay-phd"
+  repo-actions: [edit, source]
+  page-navigation: true
+  search: true
+
+  navbar:
+    background: dark
+    collapse: true
+    collapse-below: lg
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - text: "Resume"
+        href: resume.qmd
+      - text: "Projects"
+        href: projects/index.qmd
+    right:
+      - icon: github
+        href: "https://github.com/mackaykp/kevin-mackay-phd"
+        aria-label: GitHub
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/kevin-mackay-phd/"
+        aria-label: LinkedIn
+
+  sidebar:
+    - id: projects
+      title: "Projects"
+      style: docked
+      background: light
+      collapse-level: 2
+      contents:
+        - href: projects/index.qmd
+        - section: "Yoga Video Catalog"
+          contents:
+            - href: projects/yoga-video-catalog/index.qmd
+            - text: "Final Product (browse)"
+              href: projects/yoga-video-catalog/browse.qmd
+        - href: projects/leaflet-demo.qmd
+        - href: projects/example-stats.qmd
+        - href: projects/example-automation.qmd
+        - href: projects/example-other.qmd
+
+  page-footer:
+    left: "© 2026 Kevin Mackay, PhD. Built with Quarto."
+    border: true
+    background: light
+
+format:
+  html:
+    theme:
+      light: [flatly, custom.scss]
+      dark: [darkly, custom.scss]
+    toc: true
+    toc-depth: 2
+    toc-location: right
+    code-fold: false
+    code-block-bg: true
+    code-block-border: left
+    link-external-icon: true
+    link-external-newwindow: true
