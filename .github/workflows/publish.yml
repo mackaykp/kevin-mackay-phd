@@ -31,7 +31,7 @@ jobs:
       - name: Install R dependencies
         run: |
           Rscript -e "dir.create(Sys.getenv('R_LIBS_USER'), recursive = TRUE, showWarnings = FALSE)"
-          Rscript -e "install.packages(c('tibble', 'magrittr', 'ggplot2', 'jsonlite', 'yaml'), repos = 'https://cloud.r-project.org', lib = Sys.getenv('R_LIBS_USER'))"
+          Rscript -e "install.packages(c('tibble', 'magrittr', 'ggplot2', 'jsonlite', 'yaml', 'rmarkdown'), repos = 'https://cloud.r-project.org', lib = Sys.getenv('R_LIBS_USER'))"
 
       - name: Render site
         run: quarto render
