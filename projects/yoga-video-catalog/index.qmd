@@ -99,9 +99,10 @@ These files are included in this portfolio for reference. In the full project th
 
 **What it does:** Orchestrates the full update. Loads `data/channel_urls.json` and the existing enriched CSV; for each channel, calls the Playwright scraper to get only *new* videos (stops when it hits the first video already in the catalog). Writes new rows to a temp CSV, runs `enrich_videos.py` to fetch metadata via yt-dlp and append to the main CSV, then runs `categorize_data.py` and `update_focus.py` on the full file. Single entry point for "pull new videos and refresh the catalog."
 
-```{python}
-#| file: scripts/update_from_channels.py
-#| eval: false
+```{r}
+#| echo: false
+#| results: asis
+cat("```python\n", paste(readLines("scripts/update_from_channels.py"), collapse = "\n"), "\n```\n", sep = "")
 ```
 
 ---
@@ -110,9 +111,10 @@ These files are included in this portfolio for reference. In the full project th
 
 **What it does:** Uses Playwright (Chromium) to open a YouTube channel's Videos page, scrolls until all videos are loaded, and extracts video ID, title, duration, metadata line, and URL from each item. Exposes `scrape_channel_to_list()` for a full scrape and `scrape_channel_new_only()` which stops scrolling once it finds the first video already in a given set (used by the orchestrator to fetch only new videos). Can be run standalone with `--url` and `--output` for one-off scrapes.
 
-```{python}
-#| file: scripts/scrape_channel.py
-#| eval: false
+```{r}
+#| echo: false
+#| results: asis
+cat("```python\n", paste(readLines("scripts/scrape_channel.py"), collapse = "\n"), "\n```\n", sep = "")
 ```
 
 ---
@@ -121,9 +123,10 @@ These files are included in this portfolio for reference. In the full project th
 
 **What it does:** Reads a CSV of yoga videos (with a `url` column), uses **yt-dlp** (no API key) to fetch each video's metadata (title, description, duration, upload_date, view_count, etc.), and derives a **focus** column by matching title and description against `config/focus_map.json`. Supports `--append-to` and `--channel` to add a new channel's enriched rows to an existing CSV. Writes both CSV and optional Excel.
 
-```{python}
-#| file: scripts/enrich_videos.py
-#| eval: false
+```{r}
+#| echo: false
+#| results: asis
+cat("```python\n", paste(readLines("scripts/enrich_videos.py"), collapse = "\n"), "\n```\n", sep = "")
 ```
 
 ---
@@ -132,9 +135,10 @@ These files are included in this portfolio for reference. In the full project th
 
 **What it does:** Reads `data/yoga_videos_enriched.csv` and adds derived columns: **duration_mins** and **duration_bucket** (rounded to nearest 5 min, capped at 120), **duration_category** for display; **upload_year** from upload_date; **views_category** (Under 500k, 500k–1M, 1M–2.5M, etc.) and **views_category_order** for sorting. Overwrites the CSV and optional Excel. Run after enrichment so the catalog filters have consistent buckets.
 
-```{python}
-#| file: scripts/categorize_data.py
-#| eval: false
+```{r}
+#| echo: false
+#| results: asis
+cat("```python\n", paste(readLines("scripts/categorize_data.py"), collapse = "\n"), "\n```\n", sep = "")
 ```
 
 ---
@@ -143,9 +147,10 @@ These files are included in this portfolio for reference. In the full project th
 
 **What it does:** Recomputes the **focus** column in the enriched CSV using the same keyword logic as `enrich_videos.py` (reads `config/focus_map.json`, matches title + description). Does not call YouTube or yt-dlp — use this after changing the focus map or exclude keywords so existing rows get updated focus tags without re-fetching.
 
-```{python}
-#| file: scripts/update_focus.py
-#| eval: false
+```{r}
+#| echo: false
+#| results: asis
+cat("```python\n", paste(readLines("scripts/update_focus.py"), collapse = "\n"), "\n```\n", sep = "")
 ```
 :::
 
