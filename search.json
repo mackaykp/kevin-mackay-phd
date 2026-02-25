@@ -1,161 +1,115 @@
 [
   {
-    "objectID": "GITHUB_PAGES_STEPS.html",
-    "href": "GITHUB_PAGES_STEPS.html",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "Your Quarto site is already configured for GitHub Pages. Your repository is:\nhttps://github.com/mackaykp/kevin-mackay-phd\nFollow these steps to push this local project to that repo and publish the site.\n\n\n\nIn your project folder, open Git Bash or PowerShell (use Git Bash if PowerShell says git is not recognized—e.g. right after installing Git).\ncd \"c:\\Users\\macka\\OneDrive\\Documents\\Cursor-Projects\\Github_Pages_Website\"\n\ngit init\ngit add .\ngit status\ngit commit -m \"Initial commit: Quarto portfolio site for GitHub Pages\"\n\n\n\n\nAdd your repo as the remote and push. Your repo is mackaykp/kevin-mackay-phd, so use:\ngit branch -M main\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git\ngit push -u origin main\nWhen prompted, sign in with your GitHub account (browser or token).\nNote: The repo mackaykp/kevin-mackay-phd already has some files (e.g. .Rhistory, styles.css, website.Rproj). If this is a fresh push of your full local site, you may need to force-push once (git push -u origin main --force) to replace the repo contents with your local project. Only do that if you’re sure the local version is the one you want to keep.\n\n\n\n\n\nOpen https://github.com/mackaykp/kevin-mackay-phd\nGo to Settings → Pages (left sidebar).\nUnder Build and deployment:\n\nSource: choose GitHub Actions.\n\nSave. You don’t need to create a workflow — this project already has .github/workflows/publish.yml.\n\n\n\n\n\n\nOpen the Actions tab: https://github.com/mackaykp/kevin-mackay-phd/actions\nYou should see a workflow run (e.g. “Publish site to GitHub Pages”). Wait until it finishes (green check).\nYour site will be live at:\nhttps://mackaykp.github.io/kevin-mackay-phd/\n\n\n\n\n\nYour _quarto.yml already has the right URLs for this repo:\n\nsite-url: \"https://mackaykp.github.io/kevin-mackay-phd\"\nrepo-url: \"https://github.com/mackaykp/kevin-mackay-phd\"\n\nNo changes needed unless you rename the repo or your username.\n\n\n\n\n\n\n\n\n\n\n\nStep\nAction\n\n\n\n\n1\ngit init, git add ., git commit -m \"Initial commit: ...\"\n\n\n2\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git, git push -u origin main\n\n\n3\nIn repo Settings → Pages → Source: GitHub Actions\n\n\n4\nCheck Actions tab; site at https://mackaykp.github.io/kevin-mackay-phd/\n\n\n\nAfter this, every push to main will rebuild and update the site automatically.\n\n\n\n\nTo avoid long CI cycles, you can confirm the site renders on your machine first:\n\nRender the site (same as CI):\nquarto render\nIf this fails (e.g. missing R package), fix it locally; CI will then succeed.\nPreview (optional):\nquarto preview\nOpen the URL it prints and check the site.\nRun the full workflow locally with act (optional, needs Docker and act):\nact push\nThis runs the GitHub Actions workflow in Docker. The first run is slow (installs R + tidyverse); later runs are faster with cache."
-  },
-  {
-    "objectID": "GITHUB_PAGES_STEPS.html#initialize-git-and-make-the-first-commit",
-    "href": "GITHUB_PAGES_STEPS.html#initialize-git-and-make-the-first-commit",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "In your project folder, open Git Bash or PowerShell (use Git Bash if PowerShell says git is not recognized—e.g. right after installing Git).\ncd \"c:\\Users\\macka\\OneDrive\\Documents\\Cursor-Projects\\Github_Pages_Website\"\n\ngit init\ngit add .\ngit status\ngit commit -m \"Initial commit: Quarto portfolio site for GitHub Pages\""
-  },
-  {
-    "objectID": "GITHUB_PAGES_STEPS.html#connect-to-github-and-push",
-    "href": "GITHUB_PAGES_STEPS.html#connect-to-github-and-push",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "Add your repo as the remote and push. Your repo is mackaykp/kevin-mackay-phd, so use:\ngit branch -M main\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git\ngit push -u origin main\nWhen prompted, sign in with your GitHub account (browser or token).\nNote: The repo mackaykp/kevin-mackay-phd already has some files (e.g. .Rhistory, styles.css, website.Rproj). If this is a fresh push of your full local site, you may need to force-push once (git push -u origin main --force) to replace the repo contents with your local project. Only do that if you’re sure the local version is the one you want to keep."
-  },
-  {
-    "objectID": "GITHUB_PAGES_STEPS.html#turn-on-github-pages",
-    "href": "GITHUB_PAGES_STEPS.html#turn-on-github-pages",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "Open https://github.com/mackaykp/kevin-mackay-phd\nGo to Settings → Pages (left sidebar).\nUnder Build and deployment:\n\nSource: choose GitHub Actions.\n\nSave. You don’t need to create a workflow — this project already has .github/workflows/publish.yml."
-  },
-  {
-    "objectID": "GITHUB_PAGES_STEPS.html#wait-for-the-first-build",
-    "href": "GITHUB_PAGES_STEPS.html#wait-for-the-first-build",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "Open the Actions tab: https://github.com/mackaykp/kevin-mackay-phd/actions\nYou should see a workflow run (e.g. “Publish site to GitHub Pages”). Wait until it finishes (green check).\nYour site will be live at:\nhttps://mackaykp.github.io/kevin-mackay-phd/"
-  },
-  {
-    "objectID": "GITHUB_PAGES_STEPS.html#quarto.yml-is-already-correct",
-    "href": "GITHUB_PAGES_STEPS.html#quarto.yml-is-already-correct",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "Your _quarto.yml already has the right URLs for this repo:\n\nsite-url: \"https://mackaykp.github.io/kevin-mackay-phd\"\nrepo-url: \"https://github.com/mackaykp/kevin-mackay-phd\"\n\nNo changes needed unless you rename the repo or your username."
-  },
-  {
-    "objectID": "GITHUB_PAGES_STEPS.html#summary",
-    "href": "GITHUB_PAGES_STEPS.html#summary",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "Step\nAction\n\n\n\n\n1\ngit init, git add ., git commit -m \"Initial commit: ...\"\n\n\n2\ngit remote add origin https://github.com/mackaykp/kevin-mackay-phd.git, git push -u origin main\n\n\n3\nIn repo Settings → Pages → Source: GitHub Actions\n\n\n4\nCheck Actions tab; site at https://mackaykp.github.io/kevin-mackay-phd/\n\n\n\nAfter this, every push to main will rebuild and update the site automatically."
-  },
-  {
-    "objectID": "GITHUB_PAGES_STEPS.html#test-the-site-build-locally-before-pushing",
-    "href": "GITHUB_PAGES_STEPS.html#test-the-site-build-locally-before-pushing",
-    "title": "Step-by-step: Push this website to GitHub Pages",
-    "section": "",
-    "text": "To avoid long CI cycles, you can confirm the site renders on your machine first:\n\nRender the site (same as CI):\nquarto render\nIf this fails (e.g. missing R package), fix it locally; CI will then succeed.\nPreview (optional):\nquarto preview\nOpen the URL it prints and check the site.\nRun the full workflow locally with act (optional, needs Docker and act):\nact push\nThis runs the GitHub Actions workflow in Docker. The first run is slow (installs R + tidyverse); later runs are faster with cache."
-  },
-  {
     "objectID": "resume.html",
     "href": "resume.html",
     "title": "Resume",
     "section": "",
-    "text": "Placeholder: Replace sections with your real experience, education, and skills. You can also embed a PDF or link to an external resume."
+    "text": "I am a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. I support the full lifecycle of analytical and research projects—from problem definition and data quality assessment to analysis, communication, and workflow design.\n\n\n\n\n\nSupported policy and program teams by analyzing data quality, documenting assumptions, and developing QA guidance to strengthen program oversight and evidence‑informed decision‑making.\nContributed to corporate capacity‑building by preparing a business case for analytics and digital skills training, linking emerging tools to long‑term organizational capability and efficiency.\n\n\n\n\n\nAnalyzed administrative and survey data to support program monitoring, performance measurement, and spatial analysis.\nCoordinated workflows in a secure data environment, supporting data access, documentation, and compliance.\nAdvised internal stakeholders on data limitations, methodological trade‑offs, and appropriate interpretation of analytical results.\n\n\n\n\n\nCoordinated research activities across multiple analytics initiatives, supporting planning, task tracking, and cross‑functional collaboration.\nAnalyzed large administrative and spatial datasets to support segmentation, outreach planning, and evidence‑informed service delivery.\nManaged concurrent research requests from intake through delivery, tracking scope, schedules, milestones, and risks.\nSupported ethical and procedural compliance by maintaining documentation and reinforcing standards across projects.\n\n\n\n\n\nDelivered hands‑on training in applied data analysis and spatial data science.\nDeveloped course materials, assignments, and tutorials to support skill development and tool adoption across diverse audiences.\n\n\n\n\n\nConducted spatial and analytical research to support public policy and program analysis.\nLed a Google Street View–based project from design through implementation, producing a public‑facing digital resource with over 8 million views.\n\n\n\n\n\n\nPhD in Geography, McMaster University (2020)\n\nMaster of Spatial Analysis, Toronto Metropolitan University (2013)\n\nHonours Geography & Environmental Studies (Minor in GIS), McMaster University (2012)\n\n\n\n\n\nData & Spatial Analysis — R, Python, SQL, ArcGIS, spatial modelling, administrative data\n\nResearch & Evaluation — mixed methods, evidence synthesis, policy analysis, UX research\n\nData Quality & Governance — validation, documentation, reproducibility, workflow design\n\nProject Coordination — planning, task tracking, stakeholder engagement, cross‑functional collaboration\n\nCommunication & Enablement — dashboards, reporting, training, user guides, presentations"
   },
   {
     "objectID": "resume.html#experience",
     "href": "resume.html#experience",
     "title": "Resume",
-    "section": "Experience",
-    "text": "Experience\nJob Title — Company Name\nMonth Year – Present\n\nPlaceholder: Key responsibility or achievement using data or code.\nPlaceholder: Another bullet (e.g., built dashboards, automated reports).\nPlaceholder: Impact (e.g., improved accuracy, saved time).\n\nPrevious Role — Previous Company\nMonth Year – Month Year\n\nPlaceholder: Responsibility or project.\nPlaceholder: Tools used (R, SQL, etc.)."
+    "section": "",
+    "text": "Supported policy and program teams by analyzing data quality, documenting assumptions, and developing QA guidance to strengthen program oversight and evidence‑informed decision‑making.\nContributed to corporate capacity‑building by preparing a business case for analytics and digital skills training, linking emerging tools to long‑term organizational capability and efficiency.\n\n\n\n\n\nAnalyzed administrative and survey data to support program monitoring, performance measurement, and spatial analysis.\nCoordinated workflows in a secure data environment, supporting data access, documentation, and compliance.\nAdvised internal stakeholders on data limitations, methodological trade‑offs, and appropriate interpretation of analytical results.\n\n\n\n\n\nCoordinated research activities across multiple analytics initiatives, supporting planning, task tracking, and cross‑functional collaboration.\nAnalyzed large administrative and spatial datasets to support segmentation, outreach planning, and evidence‑informed service delivery.\nManaged concurrent research requests from intake through delivery, tracking scope, schedules, milestones, and risks.\nSupported ethical and procedural compliance by maintaining documentation and reinforcing standards across projects.\n\n\n\n\n\nDelivered hands‑on training in applied data analysis and spatial data science.\nDeveloped course materials, assignments, and tutorials to support skill development and tool adoption across diverse audiences.\n\n\n\n\n\nConducted spatial and analytical research to support public policy and program analysis.\nLed a Google Street View–based project from design through implementation, producing a public‑facing digital resource with over 8 million views."
   },
   {
     "objectID": "resume.html#education",
     "href": "resume.html#education",
     "title": "Resume",
-    "section": "Education",
-    "text": "Education\nDegree Name — Institution\nYear\n\nPlaceholder: Relevant coursework, thesis, or focus (e.g., statistics, GIS).\n\nOther credential or degree — Institution\nYear"
+    "section": "",
+    "text": "PhD in Geography, McMaster University (2020)\n\nMaster of Spatial Analysis, Toronto Metropolitan University (2013)\n\nHonours Geography & Environmental Studies (Minor in GIS), McMaster University (2012)"
   },
   {
     "objectID": "resume.html#skills",
     "href": "resume.html#skills",
     "title": "Resume",
-    "section": "Skills",
-    "text": "Skills\n\n\n\nCategory\nDetails\n\n\n\n\nLanguages\nR, SQL, Python (placeholder)\n\n\nR ecosystem\ntidyverse, leaflet, Quarto, Shiny\n\n\nData\nCleaning, visualization, spatial data\n\n\nTools\nGit, GitHub, reproducible workflows"
-  },
-  {
-    "objectID": "resume.html#download",
-    "href": "resume.html#download",
-    "title": "Resume",
-    "section": "Download",
-    "text": "Download\nOptional: Add a link to a PDF version of your resume.\nDownload resume (PDF) — Replace # with your PDF URL."
-  },
-  {
-    "objectID": "projects/example-stats.html",
-    "href": "projects/example-stats.html",
-    "title": "Example Stats Project",
     "section": "",
-    "text": "Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.\nThis example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.",
-    "crumbs": [
-      "Home",
-      "Example Stats Project"
-    ]
+    "text": "Data & Spatial Analysis — R, Python, SQL, ArcGIS, spatial modelling, administrative data\n\nResearch & Evaluation — mixed methods, evidence synthesis, policy analysis, UX research\n\nData Quality & Governance — validation, documentation, reproducibility, workflow design\n\nProject Coordination — planning, task tracking, stakeholder engagement, cross‑functional collaboration\n\nCommunication & Enablement — dashboards, reporting, training, user guides, presentations"
   },
   {
-    "objectID": "projects/example-stats.html#overview",
-    "href": "projects/example-stats.html#overview",
-    "title": "Example Stats Project",
+    "objectID": "what-i-do.html",
+    "href": "what-i-do.html",
+    "title": "What I Do",
     "section": "",
-    "text": "Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.\nThis example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.",
-    "crumbs": [
-      "Home",
-      "Example Stats Project"
-    ]
+    "text": "I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. My work blends data analysis, spatial methods, research design, documentation, and cross-functional coordination to create solutions that are clear, reliable, and future‑proof.\n\n\nI work with health, housing, transportation, and administrative datasets to uncover patterns, identify risks, and support evidence‑informed decision-making. My background in medical and spatial geography allows me to integrate GIS, spatial modelling, and statistical analysis to answer real-world questions.\n\n\n\nspatial modelling and cluster analysis\n\nhealth indicators and administrative data analysis\n\nmapping, geocoding, and spatial data integration\n\n\n\n\n\nI design and conduct mixed-methods research that integrates qualitative and quantitative insights. I specialize in translating complex findings into clear, actionable recommendations for policy, programs, and service delivery.\n\n\n\nmixed-methods studies and UX research\n\nenvironmental and jurisdictional scans\n\npolicy-oriented analysis and evidence synthesis\n\n\n\n\n\nI help teams build trust in their data by validating quality, documenting assumptions, and establishing reproducible workflows. I focus on clarity, transparency, and long-term maintainability.\n\n\n\ndata validation and QA frameworks\n\ndocumentation, SOPs, and standards\n\nreproducible pipelines and workflow design\n\n\n\n\n\nI support cross-functional teams by coordinating project activities, clarifying requirements, tracking progress, and ensuring alignment across stakeholders. I bridge the gap between technical and non-technical audiences.\n\n\n\nproject planning and task tracking\n\nstakeholder coordination and communication\n\nmanaging concurrent research and analytics initiatives\n\n\n\n\n\nI translate complex analysis into clear, user-focused outputs and help teams adopt tools and practices that improve efficiency and understanding. I enjoy teaching, documentation, and building capacity.\n\n\n\ndashboards, reports, and presentations\n\ntraining, workshops, and user guides\n\nsupporting adoption of analytical and digital tools\n\n\n\n\n\nVisit the Projects page to see examples of spatial analysis, automation, research, and data-driven work across different domains."
   },
   {
-    "objectID": "projects/example-stats.html#methods",
-    "href": "projects/example-stats.html#methods",
-    "title": "Example Stats Project",
-    "section": "Methods",
-    "text": "Methods\n\nData: Placeholder source (e.g., survey, administrative data).\nTools: R, tidyverse, relevant packages (e.g., broom, infer).\nOutput: Summary tables, plots, or a short report.",
-    "crumbs": [
-      "Home",
-      "Example Stats Project"
-    ]
-  },
-  {
-    "objectID": "projects/example-stats.html#code-snippet-placeholder",
-    "href": "projects/example-stats.html#code-snippet-placeholder",
-    "title": "Example Stats Project",
-    "section": "Code snippet (placeholder)",
-    "text": "Code snippet (placeholder)\nBelow is a minimal R chunk to show how code will render. Use your real analysis when you add content.\n\nlibrary(tibble)\nlibrary(magrittr)\nlibrary(ggplot2)\ntibble(x = 1:20, y = cumsum(rnorm(20))) %&gt;%\n  ggplot(aes(x, y)) +\n  geom_line(linewidth = 1.2) +\n  theme_minimal() +\n  labs(x = \"Step\", y = \"Cumulative value\")\n\n\n\n\n\n\n\nFigure 1: Placeholder: replace with your own plot",
-    "crumbs": [
-      "Home",
-      "Example Stats Project"
-    ]
-  },
-  {
-    "objectID": "projects/example-stats.html#takeaways",
-    "href": "projects/example-stats.html#takeaways",
-    "title": "Example Stats Project",
-    "section": "Takeaways",
-    "text": "Takeaways\nPlaceholder: 2–3 bullet points summarizing what you did and what you learned.",
-    "crumbs": [
-      "Home",
-      "Example Stats Project"
-    ]
-  },
-  {
-    "objectID": "projects/yoga-video-catalog/browse.html",
-    "href": "projects/yoga-video-catalog/browse.html",
-    "title": "Yoga catalog",
+    "objectID": "what-i-do.html#health-spatial-data-analysis",
+    "href": "what-i-do.html#health-spatial-data-analysis",
+    "title": "What I Do",
     "section": "",
-    "text": "Filters\n      Clear all filters\n    \n    \n      \n        Duration\n        \n          Video length in minutes\n          \n            \n            \n              \n              \n              \n              \n              \n            \n            \n              \n                Minimum\n                \n                  \n                  min\n                \n              \n              \n                Maximum\n                \n                  \n                  min\n                \n              \n            \n          \n        \n        \n          Clear\n        \n      \n      \n      \n        Upload Year\n        \n          Note: Minimum and maximum dates are based on January 1\n          \n            \n            \n              \n              \n              \n              \n              \n            \n            \n              \n                Minimum\n                \n                  \n                  year\n                \n              \n              \n                Maximum\n                \n                  \n                  year\n                \n              \n            \n          \n        \n        \n          Clear\n        \n      \n    \n    \n      Focus\n      Click to include · double-click to exclude · triple-click to reset\n      \n        Clear\n      \n      \n    \n    \n      Channel\n      Click to include · double-click to exclude · triple-click to reset\n      \n        Clear\n      \n      \n    \n    \n      Search\n      \n        \n      \n      \n        Clear\n      \n    \n  \n  \n    \n      \n        My List\n        Drag to reorder. Click a title to open full-screen in a new tab.\n        0 video(s) · Total: —\n        \n      \n      \n        Clear all\n      \n    \n    \n  \n  \n    Videos\n    \n  \n  \n  No videos match your filters. Try clearing some filters or search.",
-    "crumbs": [
-      "Projects",
-      "Yoga Video Catalog",
-      "Final Product (browse)"
-    ]
+    "text": "I work with health, housing, transportation, and administrative datasets to uncover patterns, identify risks, and support evidence‑informed decision-making. My background in medical and spatial geography allows me to integrate GIS, spatial modelling, and statistical analysis to answer real-world questions.\n\n\n\nspatial modelling and cluster analysis\n\nhealth indicators and administrative data analysis\n\nmapping, geocoding, and spatial data integration"
+  },
+  {
+    "objectID": "what-i-do.html#research-design-evidence-synthesis",
+    "href": "what-i-do.html#research-design-evidence-synthesis",
+    "title": "What I Do",
+    "section": "",
+    "text": "I design and conduct mixed-methods research that integrates qualitative and quantitative insights. I specialize in translating complex findings into clear, actionable recommendations for policy, programs, and service delivery.\n\n\n\nmixed-methods studies and UX research\n\nenvironmental and jurisdictional scans\n\npolicy-oriented analysis and evidence synthesis"
+  },
+  {
+    "objectID": "what-i-do.html#data-quality-governance-documentation",
+    "href": "what-i-do.html#data-quality-governance-documentation",
+    "title": "What I Do",
+    "section": "",
+    "text": "I help teams build trust in their data by validating quality, documenting assumptions, and establishing reproducible workflows. I focus on clarity, transparency, and long-term maintainability.\n\n\n\ndata validation and QA frameworks\n\ndocumentation, SOPs, and standards\n\nreproducible pipelines and workflow design"
+  },
+  {
+    "objectID": "what-i-do.html#project-coordination-collaboration",
+    "href": "what-i-do.html#project-coordination-collaboration",
+    "title": "What I Do",
+    "section": "",
+    "text": "I support cross-functional teams by coordinating project activities, clarifying requirements, tracking progress, and ensuring alignment across stakeholders. I bridge the gap between technical and non-technical audiences.\n\n\n\nproject planning and task tracking\n\nstakeholder coordination and communication\n\nmanaging concurrent research and analytics initiatives"
+  },
+  {
+    "objectID": "what-i-do.html#communication-training-digital-enablement",
+    "href": "what-i-do.html#communication-training-digital-enablement",
+    "title": "What I Do",
+    "section": "",
+    "text": "I translate complex analysis into clear, user-focused outputs and help teams adopt tools and practices that improve efficiency and understanding. I enjoy teaching, documentation, and building capacity.\n\n\n\ndashboards, reports, and presentations\n\ntraining, workshops, and user guides\n\nsupporting adoption of analytical and digital tools"
+  },
+  {
+    "objectID": "what-i-do.html#explore-my-work",
+    "href": "what-i-do.html#explore-my-work",
+    "title": "What I Do",
+    "section": "",
+    "text": "Visit the Projects page to see examples of spatial analysis, automation, research, and data-driven work across different domains."
+  },
+  {
+    "objectID": "work-with-me.html",
+    "href": "work-with-me.html",
+    "title": "Work With Me",
+    "section": "",
+    "text": "I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. Whether you need help defining a problem, improving data quality, conducting analysis, or communicating results, I bring structure, clarity, and rigor to every stage of the work.\n\n\n\n\nI work across the entire analytics and research lifecycle—from requirements gathering and data validation to analysis, interpretation, and communication. I help teams move from uncertainty to clarity with solutions that are reliable, transparent, and future‑proof.\n\n\n\nI help teams clarify questions, identify constraints, and translate ideas into actionable analytical plans. This includes understanding stakeholder needs, assessing feasibility, and outlining the steps required to deliver meaningful results.\n\n\n\nI specialize in validating data, documenting assumptions, and building reproducible workflows. My focus is on creating systems that are maintainable, trustworthy, and aligned with governance requirements.\n\n\n\nI conduct spatial, statistical, and mixed‑methods analysis to support program monitoring, performance measurement, and policy‑oriented decision‑making. I translate complex findings into clear, actionable insights for technical and non‑technical audiences.\n\n\n\nI create dashboards, reports, presentations, and user guides that help teams understand and use their data effectively. I also deliver training and workshops to support adoption of analytical tools and best practices.\n\n\n\n\n\nPublic‑sector teams needing analytical support, research capacity, or workflow improvements\n\nOrganizations looking to improve data quality, documentation, or reproducibility\n\nTeams seeking help with spatial analysis, health data, or administrative datasets\n\nLeaders who need clear, decision‑ready insights grounded in rigorous analysis\n\nClients who want structured, thoughtful support on complex or interdisciplinary problems\n\n\n\n\n\nShort‑term analytical or research support\n\nProject‑based consulting\n\nWorkflow and documentation improvements\n\nTraining, workshops, and digital enablement\n\nPart‑time or full‑time employment opportunities\n\n\n\n\nIf you’d like to discuss a project, collaboration, or role, feel free to reach out:\nEmail: mackaykp@gmail.com"
+  },
+  {
+    "objectID": "work-with-me.html#how-i-can-help",
+    "href": "work-with-me.html#how-i-can-help",
+    "title": "Work With Me",
+    "section": "",
+    "text": "I work across the entire analytics and research lifecycle—from requirements gathering and data validation to analysis, interpretation, and communication. I help teams move from uncertainty to clarity with solutions that are reliable, transparent, and future‑proof.\n\n\n\nI help teams clarify questions, identify constraints, and translate ideas into actionable analytical plans. This includes understanding stakeholder needs, assessing feasibility, and outlining the steps required to deliver meaningful results.\n\n\n\nI specialize in validating data, documenting assumptions, and building reproducible workflows. My focus is on creating systems that are maintainable, trustworthy, and aligned with governance requirements.\n\n\n\nI conduct spatial, statistical, and mixed‑methods analysis to support program monitoring, performance measurement, and policy‑oriented decision‑making. I translate complex findings into clear, actionable insights for technical and non‑technical audiences.\n\n\n\nI create dashboards, reports, presentations, and user guides that help teams understand and use their data effectively. I also deliver training and workshops to support adoption of analytical tools and best practices."
+  },
+  {
+    "objectID": "work-with-me.html#who-i-work-with",
+    "href": "work-with-me.html#who-i-work-with",
+    "title": "Work With Me",
+    "section": "",
+    "text": "Public‑sector teams needing analytical support, research capacity, or workflow improvements\n\nOrganizations looking to improve data quality, documentation, or reproducibility\n\nTeams seeking help with spatial analysis, health data, or administrative datasets\n\nLeaders who need clear, decision‑ready insights grounded in rigorous analysis\n\nClients who want structured, thoughtful support on complex or interdisciplinary problems"
+  },
+  {
+    "objectID": "work-with-me.html#engagement-options",
+    "href": "work-with-me.html#engagement-options",
+    "title": "Work With Me",
+    "section": "",
+    "text": "Short‑term analytical or research support\n\nProject‑based consulting\n\nWorkflow and documentation improvements\n\nTraining, workshops, and digital enablement\n\nPart‑time or full‑time employment opportunities"
+  },
+  {
+    "objectID": "work-with-me.html#lets-connect",
+    "href": "work-with-me.html#lets-connect",
+    "title": "Work With Me",
+    "section": "",
+    "text": "If you’d like to discuss a project, collaboration, or role, feel free to reach out:\nEmail: mackaykp@gmail.com"
   },
   {
     "objectID": "projects/example-automation.html",
@@ -199,38 +153,6 @@
     "crumbs": [
       "Home",
       "Example Automation Project"
-    ]
-  },
-  {
-    "objectID": "projects/example-other.html",
-    "href": "projects/example-other.html",
-    "title": "Example Other Project",
-    "section": "",
-    "text": "Placeholder: Short description of a miscellaneous project.\nThis is where you can add write-ups that don’t fit the other categories. Use the sidebar to navigate back to a category or the projects overview.",
-    "crumbs": [
-      "Home",
-      "Example Other Project"
-    ]
-  },
-  {
-    "objectID": "projects/example-other.html#overview",
-    "href": "projects/example-other.html#overview",
-    "title": "Example Other Project",
-    "section": "",
-    "text": "Placeholder: Short description of a miscellaneous project.\nThis is where you can add write-ups that don’t fit the other categories. Use the sidebar to navigate back to a category or the projects overview.",
-    "crumbs": [
-      "Home",
-      "Example Other Project"
-    ]
-  },
-  {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Filter by Tech stack, Methodology, or Domain—click a tag to filter. Each project can span multiple areas.\n\n\n\n\n  \n    \n    Clear filters\n  \n  \n  \n  No projects match the selected tags. Clear filters to see all.",
-    "crumbs": [
-      "Projects"
     ]
   },
   {
@@ -366,59 +288,186 @@
     ]
   },
   {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Filter by Tech stack, Methodology, or Domain—click a tag to filter. Each project can span multiple areas.\n\n\n\n\n  \n    \n    Clear filters\n  \n  \n  \n  No projects match the selected tags. Clear filters to see all.",
+    "crumbs": [
+      "Projects"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Kevin Mackay, PhD — Data professional & developer\nI combine analysis, mapping, and automation to turn data into clear, actionable insights.\nExplore my About page to learn more, or jump to Projects to see selected work."
+    "text": "I help public-sector organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects—from problem definition and data quality assessment to analysis, communication, and future‑proof workflow design.\n\n\n\n\nHealth & Spatial Data Analysis — GIS, spatial modelling, administrative data, health indicators\n\nResearch Design & Evidence Synthesis — mixed methods, qualitative/quantitative integration, policy-oriented analysis\n\nData Quality & Governance — validation, documentation, assumptions, reproducibility\n\nProject Coordination & Collaboration — cross-functional work, planning, workflows, stakeholder engagement\n\nCommunication & Digital Enablement — training, documentation, dashboards, user-focused outputs\n\n\n\n\n\nAbout: Background, values, and interdisciplinary approach\n\nWhat I Do: Capability pillars and how I work\n\nProjects: Spatial analysis, automation, research, and data-driven work\nResume: Experience across municipal, federal, and academic environments\n\nWork With Me: How I support teams and consulting clients\n\n\n\n\n\nView all projects — Spatial analysis, automation, research, and data-driven work."
   },
   {
-    "objectID": "index.html#quick-links",
-    "href": "index.html#quick-links",
+    "objectID": "index.html#kevin-mackay-phd-data-spatial-research-professional",
+    "href": "index.html#kevin-mackay-phd-data-spatial-research-professional",
     "title": "Home",
-    "section": "Quick links",
-    "text": "Quick links\n\n\n\nSection\nDescription\n\n\n\n\nAbout\nBackground, interests, and expertise\n\n\nResume\nExperience, education, and skills\n\n\nProjects\nStats, mapping, automation, and more"
+    "section": "",
+    "text": "I help public-sector organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects—from problem definition and data quality assessment to analysis, communication, and future‑proof workflow design."
   },
   {
-    "objectID": "index.html#featured",
-    "href": "index.html#featured",
+    "objectID": "index.html#what-i-do",
+    "href": "index.html#what-i-do",
     "title": "Home",
-    "section": "Featured",
-    "text": "Featured\nThis site is built with Quarto and R (tidyverse, leaflet). Placeholder content is used here so you can see layout and responsiveness; replace it with your own copy and projects when you’re ready."
+    "section": "",
+    "text": "Health & Spatial Data Analysis — GIS, spatial modelling, administrative data, health indicators\n\nResearch Design & Evidence Synthesis — mixed methods, qualitative/quantitative integration, policy-oriented analysis\n\nData Quality & Governance — validation, documentation, assumptions, reproducibility\n\nProject Coordination & Collaboration — cross-functional work, planning, workflows, stakeholder engagement\n\nCommunication & Digital Enablement — training, documentation, dashboards, user-focused outputs"
+  },
+  {
+    "objectID": "index.html#explore-my-work",
+    "href": "index.html#explore-my-work",
+    "title": "Home",
+    "section": "",
+    "text": "About: Background, values, and interdisciplinary approach\n\nWhat I Do: Capability pillars and how I work\n\nProjects: Spatial analysis, automation, research, and data-driven work\nResume: Experience across municipal, federal, and academic environments\n\nWork With Me: How I support teams and consulting clients"
+  },
+  {
+    "objectID": "index.html#featured-project",
+    "href": "index.html#featured-project",
+    "title": "Home",
+    "section": "",
+    "text": "View all projects — Spatial analysis, automation, research, and data-driven work."
+  },
+  {
+    "objectID": "projects/example-stats.html",
+    "href": "projects/example-stats.html",
+    "title": "Example Stats Project",
+    "section": "",
+    "text": "Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.\nThis example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#overview",
+    "href": "projects/example-stats.html#overview",
+    "title": "Example Stats Project",
+    "section": "",
+    "text": "Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.\nThis example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#methods",
+    "href": "projects/example-stats.html#methods",
+    "title": "Example Stats Project",
+    "section": "Methods",
+    "text": "Methods\n\nData: Placeholder source (e.g., survey, administrative data).\nTools: R, tidyverse, relevant packages (e.g., broom, infer).\nOutput: Summary tables, plots, or a short report.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#code-snippet-placeholder",
+    "href": "projects/example-stats.html#code-snippet-placeholder",
+    "title": "Example Stats Project",
+    "section": "Code snippet (placeholder)",
+    "text": "Code snippet (placeholder)\nBelow is a minimal R chunk to show how code will render. Use your real analysis when you add content.\n\nlibrary(tibble)\nlibrary(magrittr)\nlibrary(ggplot2)\ntibble(x = 1:20, y = cumsum(rnorm(20))) %&gt;%\n  ggplot(aes(x, y)) +\n  geom_line(linewidth = 1.2) +\n  theme_minimal() +\n  labs(x = \"Step\", y = \"Cumulative value\")\n\n\n\n\n\n\n\nFigure 1: Placeholder: replace with your own plot",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-stats.html#takeaways",
+    "href": "projects/example-stats.html#takeaways",
+    "title": "Example Stats Project",
+    "section": "Takeaways",
+    "text": "Takeaways\nPlaceholder: 2–3 bullet points summarizing what you did and what you learned.",
+    "crumbs": [
+      "Home",
+      "Example Stats Project"
+    ]
+  },
+  {
+    "objectID": "projects/yoga-video-catalog/browse.html",
+    "href": "projects/yoga-video-catalog/browse.html",
+    "title": "Yoga catalog",
+    "section": "",
+    "text": "Filters\n      Clear all filters\n    \n    \n      \n        Duration\n        \n          Video length in minutes\n          \n            \n            \n              \n              \n              \n              \n              \n            \n            \n              \n                Minimum\n                \n                  \n                  min\n                \n              \n              \n                Maximum\n                \n                  \n                  min\n                \n              \n            \n          \n        \n        \n          Clear\n        \n      \n      \n      \n        Upload Year\n        \n          Note: Minimum and maximum dates are based on January 1\n          \n            \n            \n              \n              \n              \n              \n              \n            \n            \n              \n                Minimum\n                \n                  \n                  year\n                \n              \n              \n                Maximum\n                \n                  \n                  year\n                \n              \n            \n          \n        \n        \n          Clear\n        \n      \n    \n    \n      Focus\n      Click to include · double-click to exclude · triple-click to reset\n      \n        Clear\n      \n      \n    \n    \n      Channel\n      Click to include · double-click to exclude · triple-click to reset\n      \n        Clear\n      \n      \n    \n    \n      Search\n      \n        \n      \n      \n        Clear\n      \n    \n  \n  \n    \n      \n        My List\n        Drag to reorder. Click a title to open full-screen in a new tab.\n        0 video(s) · Total: —\n        \n      \n      \n        Clear all\n      \n    \n    \n  \n  \n    Videos\n    \n  \n  \n  No videos match your filters. Try clearing some filters or search.",
+    "crumbs": [
+      "Projects",
+      "Yoga Video Catalog",
+      "Final Product (browse)"
+    ]
+  },
+  {
+    "objectID": "projects/example-other.html",
+    "href": "projects/example-other.html",
+    "title": "Example Other Project",
+    "section": "",
+    "text": "Placeholder: Short description of a miscellaneous project.\nThis is where you can add write-ups that don’t fit the other categories. Use the sidebar to navigate back to a category or the projects overview.",
+    "crumbs": [
+      "Home",
+      "Example Other Project"
+    ]
+  },
+  {
+    "objectID": "projects/example-other.html#overview",
+    "href": "projects/example-other.html#overview",
+    "title": "Example Other Project",
+    "section": "",
+    "text": "Placeholder: Short description of a miscellaneous project.\nThis is where you can add write-ups that don’t fit the other categories. Use the sidebar to navigate back to a category or the projects overview.",
+    "crumbs": [
+      "Home",
+      "Example Other Project"
+    ]
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Projects\nPlaceholder content."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Placeholder: Replace with a short professional bio (2–4 paragraphs) covering who you are, what you do, and what you care about.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    "text": "I’m Kevin Mackay, PhD — a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. My work focuses on helping organizations make sense of complex health, spatial, and administrative data through rigorous analysis, thoughtful research design, and clear, user‑focused communication.\n\n\nI completed my PhD in Geography at McMaster University, where I specialized in medical and spatial analysis. Since then, I’ve worked across public‑sector teams supporting analytics, program monitoring, performance measurement, accessibility research, and data‑driven decision‑making. My experience spans health, housing, transportation, and user experience research, giving me a broad understanding of how data, people, and systems interact.\n\n\n\nI enjoy working across the full lifecycle of analytical and research projects: - identifying problems and clarifying requirements\n- assessing data quality and documenting assumptions\n- designing and conducting analysis\n- translating results into clear, actionable insights\n- building workflows that are reproducible, maintainable, and future‑proof\nI value clarity, rigor, and thoughtful communication. I care deeply about documentation, data quality, and helping teams adopt tools and practices that make their work more reliable and sustainable.\n\n\n\nI’m driven by curiosity and a desire to understand how systems work. I enjoy tackling complex, interdisciplinary problems and helping teams navigate uncertainty with structure and clarity. I’m especially motivated by work that supports public impact, equity, and evidence‑informed decision‑making.\n\n\n\nI enjoy hiking, climbing, gravel biking, and spending time outdoors. These interests shape my appreciation for environmental stewardship, accessibility, and community‑focused public service.\n\n\n\nYou can reach me at:\nmackaykp@gmail.com"
   },
   {
-    "objectID": "about.html#about-me",
-    "href": "about.html#about-me",
+    "objectID": "about.html#my-background",
+    "href": "about.html#my-background",
     "title": "About",
     "section": "",
-    "text": "Placeholder: Replace with a short professional bio (2–4 paragraphs) covering who you are, what you do, and what you care about.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    "text": "I completed my PhD in Geography at McMaster University, where I specialized in medical and spatial analysis. Since then, I’ve worked across public‑sector teams supporting analytics, program monitoring, performance measurement, accessibility research, and data‑driven decision‑making. My experience spans health, housing, transportation, and user experience research, giving me a broad understanding of how data, people, and systems interact."
   },
   {
-    "objectID": "about.html#interests",
-    "href": "about.html#interests",
+    "objectID": "about.html#how-i-work",
+    "href": "about.html#how-i-work",
     "title": "About",
-    "section": "Interests",
-    "text": "Interests\nPlaceholder: List your main interests (e.g., reproducible research, spatial analysis, open data, automation).\n\nReproducible research — Scripts, Quarto, and version control\nSpatial analysis & mapping — GIS, leaflet, and geodata\nData automation — Pipelines, APIs, and reporting\nOpen source — R, Python, and sharing code"
+    "section": "",
+    "text": "I enjoy working across the full lifecycle of analytical and research projects: - identifying problems and clarifying requirements\n- assessing data quality and documenting assumptions\n- designing and conducting analysis\n- translating results into clear, actionable insights\n- building workflows that are reproducible, maintainable, and future‑proof\nI value clarity, rigor, and thoughtful communication. I care deeply about documentation, data quality, and helping teams adopt tools and practices that make their work more reliable and sustainable."
   },
   {
-    "objectID": "about.html#expertise",
-    "href": "about.html#expertise",
+    "objectID": "about.html#what-motivates-me",
+    "href": "about.html#what-motivates-me",
     "title": "About",
-    "section": "Expertise",
-    "text": "Expertise\nPlaceholder: Summarize tools and domains (R, tidyverse, SQL, etc.).\n\n\n\nDomain\nTools & methods\n\n\n\n\nData analysis\nR, tidyverse, statistical modeling\n\n\nMapping\nLeaflet, sf, spatial data\n\n\nAutomation\nScripts, Quarto, Git\n\n\nCollaboration\nCode review, documentation"
+    "section": "",
+    "text": "I’m driven by curiosity and a desire to understand how systems work. I enjoy tackling complex, interdisciplinary problems and helping teams navigate uncertainty with structure and clarity. I’m especially motivated by work that supports public impact, equity, and evidence‑informed decision‑making."
+  },
+  {
+    "objectID": "about.html#outside-of-work",
+    "href": "about.html#outside-of-work",
+    "title": "About",
+    "section": "",
+    "text": "I enjoy hiking, climbing, gravel biking, and spending time outdoors. These interests shape my appreciation for environmental stewardship, accessibility, and community‑focused public service."
   },
   {
     "objectID": "about.html#contact",
     "href": "about.html#contact",
     "title": "About",
-    "section": "Contact",
-    "text": "Contact\nPlaceholder: Add your preferred contact (email, LinkedIn, GitHub).\n\nEmail: mackaykp@gmail.com\n\nGitHub: mackaykp\n\nLinkedIn: Kevin Mackay, PhD"
+    "section": "",
+    "text": "You can reach me at:\nmackaykp@gmail.com"
   }
 ]
