@@ -6,10 +6,9 @@ project:
   output-dir: _site
 
 website:
-  title: "Kevin Mackay, PhD | Portfolio"
+  title: "Kevin Mackay, PhD"
   site-url: "https://mackaykp.github.io/kevin-mackay-phd"
   repo-url: "https://github.com/mackaykp/kevin-mackay-phd"
-  repo-actions: [edit, source]
   page-navigation: true
   search: true
 
@@ -22,10 +21,14 @@ website:
         href: index.qmd
       - text: "About"
         href: about.qmd
-      - text: "Resume"
-        href: resume.qmd
+      - text: "What I Do"
+        href: what-i-do.qmd
       - text: "Projects"
         href: projects/index.qmd
+      - text: "Resume"
+        href: resume.qmd
+      - text: "Work With Me"
+        href: work-with-me.qmd
     right:
       - icon: github
         href: "https://github.com/mackaykp/kevin-mackay-phd"
@@ -52,7 +55,8 @@ website:
         - href: projects/example-other.qmd
 
   page-footer:
-    left: "© 2026 Kevin Mackay, PhD. Built with Quarto."
+    left: "© 2026 Kevin Mackay, PhD"
+    right: "Built with Quarto"
     border: true
     background: light
 

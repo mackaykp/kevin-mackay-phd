@@ -2,36 +2,34 @@
 title: "About"
 ---
 
-## About me
+# About Me
 
-*Placeholder: Replace with a short professional bio (2–4 paragraphs) covering who you are, what you do, and what you care about.*
+I'm Kevin Mackay, PhD — a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. My work focuses on helping organizations make sense of complex health, spatial, and administrative data through rigorous analysis, thoughtful research design, and clear, user‑focused communication.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+## My Background
 
-## Interests
+I completed my PhD in Geography at McMaster University, where I specialized in medical and spatial analysis. Since then, I've worked across public‑sector teams supporting analytics, program monitoring, performance measurement, accessibility research, and data‑driven decision‑making. My experience spans health, housing, transportation, and user experience research, giving me a broad understanding of how data, people, and systems interact.
 
-*Placeholder: List your main interests (e.g., reproducible research, spatial analysis, open data, automation).*
+## How I Work
 
-- **Reproducible research** — Scripts, Quarto, and version control
-- **Spatial analysis & mapping** — GIS, leaflet, and geodata
-- **Data automation** — Pipelines, APIs, and reporting
-- **Open source** — R, Python, and sharing code
+I enjoy working across the full lifecycle of analytical and research projects:
+- identifying problems and clarifying requirements  
+- assessing data quality and documenting assumptions  
+- designing and conducting analysis  
+- translating results into clear, actionable insights  
+- building workflows that are reproducible, maintainable, and future‑proof  
 
-## Expertise
+I value clarity, rigor, and thoughtful communication. I care deeply about documentation, data quality, and helping teams adopt tools and practices that make their work more reliable and sustainable.
 
-*Placeholder: Summarize tools and domains (R, tidyverse, SQL, etc.).*
+## What Motivates Me
 
-| Domain | Tools & methods |
-|--------|------------------|
-| Data analysis | R, tidyverse, statistical modeling |
-| Mapping | Leaflet, sf, spatial data |
-| Automation | Scripts, Quarto, Git |
-| Collaboration | Code review, documentation |
+I'm driven by curiosity and a desire to understand how systems work. I enjoy tackling complex, interdisciplinary problems and helping teams navigate uncertainty with structure and clarity. I'm especially motivated by work that supports public impact, equity, and evidence‑informed decision‑making.
+
+## Outside of Work
+
+I enjoy hiking, climbing, gravel biking, and spending time outdoors. These interests shape my appreciation for environmental stewardship, accessibility, and community‑focused public service.
 
 ## Contact
 
-*Placeholder: Add your preferred contact (email, LinkedIn, GitHub).*
-
-- **Email:** mackaykp@gmail.com  
-- **GitHub:** [mackaykp](https://github.com/mackaykp/kevin-mackay-phd)  
-- **LinkedIn:** [Kevin Mackay, PhD](https://www.linkedin.com/in/kevin-mackay-phd/)
+You can reach me at:  
+**mackaykp@gmail.com**

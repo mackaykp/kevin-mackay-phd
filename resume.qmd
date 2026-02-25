@@ -2,50 +2,45 @@
 title: "Resume"
 ---
 
-*Placeholder: Replace sections with your real experience, education, and skills. You can also embed a PDF or link to an external resume.*
+# Resume
+
+I am a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. I support the full lifecycle of analytical and research projects—from problem definition and data quality assessment to analysis, communication, and workflow design.
 
 ## Experience
 
-**Job Title** — *Company Name*  
-*Month Year – Present*
+### Program Analyst — City of Hamilton (2025–Present)
+- Supported policy and program teams by analyzing data quality, documenting assumptions, and developing QA guidance to strengthen program oversight and evidence‑informed decision‑making.
+- Contributed to corporate capacity‑building by preparing a business case for analytics and digital skills training, linking emerging tools to long‑term organizational capability and efficiency.
 
-- Placeholder: Key responsibility or achievement using data or code.
-- Placeholder: Another bullet (e.g., built dashboards, automated reports).
-- Placeholder: Impact (e.g., improved accuracy, saved time).
+### Data Analyst — Statistics Canada, Innovation Secretariat (2023–2025)
+- Analyzed administrative and survey data to support program monitoring, performance measurement, and spatial analysis.
+- Coordinated workflows in a secure data environment, supporting data access, documentation, and compliance.
+- Advised internal stakeholders on data limitations, methodological trade‑offs, and appropriate interpretation of analytical results.
 
-**Previous Role** — *Previous Company*  
-*Month Year – Month Year*
+### Research Coordinator — McMaster University (2021–2023)
+- Coordinated research activities across multiple analytics initiatives, supporting planning, task tracking, and cross‑functional collaboration.
+- Analyzed large administrative and spatial datasets to support segmentation, outreach planning, and evidence‑informed service delivery.
+- Managed concurrent research requests from intake through delivery, tracking scope, schedules, milestones, and risks.
+- Supported ethical and procedural compliance by maintaining documentation and reinforcing standards across projects.
 
-- Placeholder: Responsibility or project.
-- Placeholder: Tools used (R, SQL, etc.).
+### Sessional Lecturer — University of Toronto (2020–2021)
+- Delivered hands‑on training in applied data analysis and spatial data science.
+- Developed course materials, assignments, and tutorials to support skill development and tool adoption across diverse audiences.
 
----
+### Doctoral Researcher — McMaster University (2013–2020)
+- Conducted spatial and analytical research to support public policy and program analysis.
+- Led a Google Street View–based project from design through implementation, producing a public‑facing digital resource with over 8 million views.
 
 ## Education
 
-**Degree Name** — *Institution*  
-*Year*
-
-- Placeholder: Relevant coursework, thesis, or focus (e.g., statistics, GIS).
-
-**Other credential or degree** — *Institution*  
-*Year*
-
----
+- **PhD in Geography**, McMaster University (2020)  
+- **Master of Spatial Analysis**, Toronto Metropolitan University (2013)  
+- **Honours Geography & Environmental Studies (Minor in GIS)**, McMaster University (2012)
 
 ## Skills
 
-| Category | Details |
-|----------|---------|
-| **Languages** | R, SQL, Python (placeholder) |
-| **R ecosystem** | tidyverse, leaflet, Quarto, Shiny |
-| **Data** | Cleaning, visualization, spatial data |
-| **Tools** | Git, GitHub, reproducible workflows |
-
----
-
-## Download
-
-*Optional: Add a link to a PDF version of your resume.*
-
-[Download resume (PDF)](#) — *Replace # with your PDF URL.*
+- **Data & Spatial Analysis** — R, Python, SQL, ArcGIS, spatial modelling, administrative data  
+- **Research & Evaluation** — mixed methods, evidence synthesis, policy analysis, UX research  
+- **Data Quality & Governance** — validation, documentation, reproducibility, workflow design  
+- **Project Coordination** — planning, task tracking, stakeholder engagement, cross‑functional collaboration  
+- **Communication & Enablement** — dashboards, reporting, training, user guides, presentations  

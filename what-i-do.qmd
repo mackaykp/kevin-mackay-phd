@@ -1,0 +1,50 @@
+---
+title: "What I Do"
+---
+
+# What I Do
+
+I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. My work blends data analysis, spatial methods, research design, documentation, and cross-functional coordination to create solutions that are clear, reliable, and future‑proof.
+
+## Health & Spatial Data Analysis
+I work with health, housing, transportation, and administrative datasets to uncover patterns, identify risks, and support evidence‑informed decision-making. My background in medical and spatial geography allows me to integrate GIS, spatial modelling, and statistical analysis to answer real-world questions.
+
+##### **Examples of work:**
+- spatial modelling and cluster analysis  
+- health indicators and administrative data analysis  
+- mapping, geocoding, and spatial data integration  
+
+## Research Design & Evidence Synthesis
+I design and conduct mixed-methods research that integrates qualitative and quantitative insights. I specialize in translating complex findings into clear, actionable recommendations for policy, programs, and service delivery.
+
+##### **Examples of work:**
+- mixed-methods studies and UX research  
+- environmental and jurisdictional scans  
+- policy-oriented analysis and evidence synthesis  
+
+## Data Quality, Governance & Documentation
+I help teams build trust in their data by validating quality, documenting assumptions, and establishing reproducible workflows. I focus on clarity, transparency, and long-term maintainability.
+
+##### **Examples of work:**
+- data validation and QA frameworks  
+- documentation, SOPs, and standards  
+- reproducible pipelines and workflow design  
+
+## Project Coordination & Collaboration
+I support cross-functional teams by coordinating project activities, clarifying requirements, tracking progress, and ensuring alignment across stakeholders. I bridge the gap between technical and non-technical audiences.
+
+##### **Examples of work:**
+- project planning and task tracking  
+- stakeholder coordination and communication  
+- managing concurrent research and analytics initiatives  
+
+## Communication, Training & Digital Enablement
+I translate complex analysis into clear, user-focused outputs and help teams adopt tools and practices that improve efficiency and understanding. I enjoy teaching, documentation, and building capacity.
+
+##### **Examples of work:**
+- dashboards, reports, and presentations  
+- training, workshops, and user guides  
+- supporting adoption of analytical and digital tools  
+
+## Explore My Work
+Visit the [Projects](projects/index.qmd) page to see examples of spatial analysis, automation, research, and data-driven work across different domains.

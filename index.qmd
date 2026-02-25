@@ -2,23 +2,28 @@
 title: "Home"
 ---
 
-::: {.quarto-title-banner .bg-body}
 # Welcome
 
-**Kevin Mackay, PhD** — Data professional & developer
+## Kevin Mackay, PhD — Data, Spatial & Research Professional
 
-I combine **analysis**, **mapping**, and **automation** to turn data into clear, actionable insights.  
-Explore my [About](/about.html) page to learn more, or jump to [Projects](/projects/index.html) to see selected work.
+I help public-sector organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects—from problem definition and data quality assessment to analysis, communication, and future‑proof workflow design.
+
+## What I Do
+- **Health & Spatial Data Analysis** — GIS, spatial modelling, administrative data, health indicators  
+- **Research Design & Evidence Synthesis** — mixed methods, qualitative/quantitative integration, policy-oriented analysis  
+- **Data Quality & Governance** — validation, documentation, assumptions, reproducibility  
+- **Project Coordination & Collaboration** — cross-functional work, planning, workflows, stakeholder engagement  
+- **Communication & Digital Enablement** — training, documentation, dashboards, user-focused outputs  
+
+## Explore My Work
+- [About](about.qmd): Background, values, and interdisciplinary approach  
+- [What I Do](what-i-do.qmd): Capability pillars and how I work  
+- [Projects](projects/index.qmd): Spatial analysis, automation, research, and data-driven work
+- [Resume](resume.qmd): Experience across municipal, federal, and academic environments  
+- [Work With Me](work-with-me.qmd): How I support teams and consulting clients  
+
+## Featured Project
+
+::: {.card}
+[**View all projects**](projects/index.qmd) — Spatial analysis, automation, research, and data-driven work.
 :::
-
-## Quick links
-
-| Section | Description |
-|--------|-------------|
-| [About](/about.html) | Background, interests, and expertise |
-| [Resume](/resume.html) | Experience, education, and skills |
-| [Projects](/projects/index.html) | Stats, mapping, automation, and more |
-
-## Featured
-
-This site is built with **Quarto** and **R** (tidyverse, leaflet). Placeholder content is used here so you can see layout and responsiveness; replace it with your own copy and projects when you’re ready.
