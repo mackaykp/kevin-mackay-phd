@@ -5,7 +5,6 @@ execute:
   dir: project
 format:
   html:
-    toc: false
     number-sections: false
 ---
 

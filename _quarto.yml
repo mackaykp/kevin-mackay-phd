@@ -4,6 +4,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - projects/Leaflet_Mapping_Tool/vignettes/maps
 
 website:
   title: "Kevin Mackay, PhD"
@@ -37,23 +39,6 @@ website:
         href: "https://www.linkedin.com/in/kevin-mackay-phd/"
         aria-label: LinkedIn
 
-  sidebar:
-    - id: projects
-      title: "Projects"
-      style: docked
-      background: light
-      collapse-level: 2
-      contents:
-        - href: projects/index.qmd
-        - section: "Yoga Video Catalog"
-          contents:
-            - href: projects/yoga-video-catalog/index.qmd
-            - text: "Final Product (browse)"
-              href: projects/yoga-video-catalog/browse.qmd
-        - href: projects/example-stats.qmd
-        - href: projects/example-automation.qmd
-        - href: projects/example-other.qmd
-
   page-footer:
     left: "© 2026 Kevin Mackay, PhD"
     right: "Built with Quarto"
@@ -68,8 +53,9 @@ format:
     toc: true
     toc-depth: 2
     toc-location: right
-    code-fold: false
-    code-block-bg: true
+    code-fold: true
+    code-block-bg: false
     code-block-border: left
+    code-overflow: wrap
     link-external-icon: true
     link-external-newwindow: true

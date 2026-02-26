@@ -1,0 +1,241 @@
+---
+title: "Mapping examples"
+subtitle: "Income × greenspace access by place and scale"
+sidebar: false
+body-class: yoga-browse-page
+format:
+  html:
+    number-sections: false
+    page-layout: full
+---
+
+<style>
+/* Match yoga browse page — design tokens and layout */
+:root {
+  --br-bg: #ffffff;
+  --br-surface: #ffffff;
+  --br-border: #e5e7eb;
+  --br-text: #111827;
+  --br-text-muted: #6b7280;
+  --br-accent: #2563eb;
+  --br-radius: 10px;
+  --br-radius-sm: 6px;
+  --br-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+#quarto-content.page-columns { padding: 1.5rem clamp(1rem, 4vw, 2rem) 2rem !important; background: var(--br-bg) !important; max-width: none !important; }
+.quarto-title-block.default { margin-bottom: 1.5rem !important; }
+.quarto-title-block.default .title {
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--br-text) !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.quarto-title-block.default .subtitle {
+  font-size: 1rem !important;
+  color: var(--br-text-muted) !important;
+  margin-top: 0.35rem !important;
+  font-weight: 400 !important;
+}
+.quarto-content h2 { font-size: 1.35rem !important; font-weight: 700 !important; color: var(--br-text) !important; margin-top: 2rem !important; }
+.quarto-content p, .quarto-content li { color: var(--br-text); line-height: 1.6; }
+.iframe-container { margin: 1rem 0; border-radius: var(--br-radius-sm); overflow: hidden; box-shadow: var(--br-shadow); border: 1px solid var(--br-border); }
+</style>
+
+## Why these examples?
+
+The bivariate mapping tool turns census-style income data and OpenStreetMap greenspace into **Income × green area per 1,000 people** at the dissemination area (DA) level. The maps below show how different arguments change *what* you map and *where*—from a single city to amalgamated regions, from a tight urban core to a wide rural study area, and from Canada to anywhere you have equivalent data.
+
+**How this page is built.** To keep the page fast and to avoid Overpass API rate limits, the maps are **pre-generated** and embedded here. The code under each map is the exact call used to create it; you can run it yourself (see [Running the examples yourself](#running-the-examples-yourself)). We use geographically modest study areas where possible so that generating maps is quick and reliable.
+
+---
+
+## Hamilton, ON — Default run
+
+A straightforward run with only the required arguments: study area and path to the income GeoPackage. The tool clips DAs to the city, fetches greenspace for the bbox, and sums green area per DA (inside each DA plus within a 500 m walkable buffer). Good baseline for comparing with the options below.
+
+```{r}
+#| label: hamilton-default
+#| eval: false
+#| code-fold: false
+source("R/create_bivariate_map.R")
+create_bivariate_map(
+  city = "Hamilton, ON",
+  income_gpkg = "data/ses_index.gpkg"
+)
+# Output: output/maps/Hamilton_bivariate.html
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton, ON — default bivariate map"></iframe>
+:::
+
+---
+
+## Hamilton — Expanding the study area
+
+When the city boundary is tight, **edge DAs** can have much of their walkable buffer outside the default bbox, so their green area is undercounted. Use `custom_distance_km` so the bounding box is expanded by that many kilometres in all directions; the same bbox is used for clipping and for fetching OSM greenspace, so edge DAs get a fair count.
+
+```{r}
+#| label: hamilton-expanded
+#| eval: false
+create_bivariate_map(
+  city = "Hamilton, ON",
+  income_gpkg = "data/ses_index.gpkg",
+  custom_distance_km = 5
+)
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Hamilton_expanded/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton with 5 km expansion"></iframe>
+:::
+
+---
+
+## Hamilton — Walkable buffer and greenspace layers
+
+- **`green_buffer_m`** — Walkable distance (m) around each DA. Greenspace is summed *inside* the DA and *within* this distance (default 500 m). Increase it for a longer “access radius” (e.g. 1 km); decrease it for a stricter, shorter walk.
+- **`show_green_layers`** — If `TRUE`, the map adds toggleable OSM layers by type (parks, forest, meadow, etc.). Useful for exploring *what* counts as green; the main metric still uses the merged greenspace layer.
+
+```{r}
+#| label: hamilton-buffer-layers
+#| eval: false
+create_bivariate_map(
+  city = "Hamilton, ON",
+  income_gpkg = "data/ses_index.gpkg",
+  green_buffer_m = 1000,
+  show_green_layers = TRUE
+)
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Hamilton_buffer/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton 1 km buffer and green layers"></iframe>
+:::
+
+---
+
+## Canadian variety — Urban, suburban, and smaller centres
+
+The same function works across geographies. Here we use **one city per map** and keep study areas manageable to limit OSM load and rate limits.
+
+**Halifax, NS** — Urban core; default buffer and bbox usually suffice.
+
+```{r}
+#| label: halifax
+#| eval: false
+create_bivariate_map(
+  city = "Halifax, NS",
+  income_gpkg = "data/ses_index.gpkg"
+)
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Halifax_bivariate.html" width="100%" height="500" loading="lazy" title="Halifax, NS"></iframe>
+:::
+
+**Charlottetown, PE** — Small capital; compact bbox, good for testing and for showing contrast between downtown and lower-density edges.
+
+```{r}
+#| label: charlottetown
+#| eval: false
+create_bivariate_map(
+  city = "Charlottetown, PE",
+  income_gpkg = "data/ses_index.gpkg"
+)
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Charlottetown_bivariate.html" width="100%" height="500" loading="lazy" title="Charlottetown, PE"></iframe>
+:::
+
+**Brandon, MB** — Prairie city; mix of urban and suburban DAs. A small expansion can improve edge-DA counts.
+
+```{r}
+#| label: brandon
+#| eval: false
+create_bivariate_map(
+  city = "Brandon, MB",
+  income_gpkg = "data/ses_index.gpkg",
+  custom_distance_km = 3
+)
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Brandon_bivariate.html" width="100%" height="500" loading="lazy" title="Brandon, MB"></iframe>
+:::
+
+**Yellowknife, NT** — Northern, smaller footprint. Illustrates the tool in a remote context; income and greenspace patterns differ from southern cities.
+
+```{r}
+#| label: yellowknife
+#| eval: false
+create_bivariate_map(
+  city = "Yellowknife, NT",
+  income_gpkg = "data/ses_index.gpkg"
+)
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Yellowknife_bivariate.html" width="100%" height="500" loading="lazy" title="Yellowknife, NT"></iframe>
+:::
+
+---
+
+## Custom bounding box
+
+When the study area isn’t a single named place—e.g. a corridor, a watershed, **rural or remote areas** (“middle of nowhere”), or a **geologically distinct region** where people live—use **`custom_bbox`**: `c(xmin, ymin, xmax, ymax)` in WGS84. The tool uses this bbox for clipping and for fetching OSM; `city` is still used only for the output filename (use a short label that describes the area).
+
+**Example: Drumheller badlands, Alberta.** The Red Deer River valley and badlands have DAs (town of Drumheller and surrounding area) but the *interesting* unit is the valley, not “Hamilton” or a generic city. A custom bbox focuses the map on that landscape.
+
+```{r}
+#| label: custom-bbox
+#| eval: false
+create_bivariate_map(
+  city = "Drumheller, AB",
+  income_gpkg = "data/ses_index.gpkg",
+  custom_bbox = c(-112.82, 51.42, -112.55, 51.52)  # Red Deer River valley / badlands
+)
+```
+
+::: {.iframe-container style="min-height: 520px;"}
+<iframe src="maps/Vignette_maps/Drumheller_bivariate.html" width="100%" height="500" loading="lazy" title="Custom bbox — Drumheller badlands"></iframe>
+:::
+
+---
+
+## Beyond Canada — Adapting the tool
+
+The mapping pipeline is **location-agnostic**: it needs (1) a study area that `osmdata::getbb()` can resolve (or a `custom_bbox`) and (2) a GeoPackage of small-area polygons with **population** and an **income variable** (e.g. median household income or a composite index). If you have administrative data for another country, you can build an equivalent `income_gpkg` and run the same workflow.
+
+**Example (conceptual): Dublin, Ireland.** Replace Canadian census with Irish data; keep DA-like boundaries and population. Then:
+
+```{r}
+#| label: international
+#| eval: false
+# Conceptual: income_gpkg would point to your Irish (or other) data.
+# create_bivariate_map(
+#   city = "Dublin, Ireland",
+#   income_gpkg = "data/ireland_income.gpkg",
+#   green_buffer_m = 500
+# )
+```
+
+OpenStreetMap greenspace is global, so the only change is the demographic source. The tool supports any location with equivalent demographic and boundary data.*
+
+---
+
+## Summary of arguments
+
+| Argument | Required | Purpose |
+|----------|----------|--------|
+| `city` | Yes | Label for the output filename (e.g. `Hamilton_bivariate.html`). When `custom_bbox` is not set, also used to get the study-area bbox via OSM (e.g. `"Hamilton, ON"`). |
+| `income_gpkg` | Yes | Path to GeoPackage with DA polygons, `population`, and an income variable (e.g. `income_raw`). Typically from `build_ses_index.R` → `data/ses_index.gpkg`. |
+| `custom_bbox` | No | Override the study-area bbox: `c(xmin, ymin, xmax, ymax)` in WGS84. Use for corridors, watersheds, rural/remote areas, or regions without a single place name. |
+| `custom_distance_km` | No | Expand the bbox by this many km in all directions (default 0). Helps edge DAs get full greenspace counts. |
+| `green_buffer_m` | No | Walkable distance (m) around each DA; greenspace is summed inside the DA and within this distance (default 500). |
+| `show_green_layers` | No | If `TRUE`, add toggleable map layers by OSM greenspace type (parks, forest, etc.). |
+| `amalgamation_cities_list` | No | List of place names to build a combined bbox (e.g. multiple municipalities). |
+| `city_pr` | No | Province or region hint for geocoding when needed. |
+
+All maps on this page were produced with the same pipeline; only these parameters change. Please note that because so many maps were generated at once, OSM may have imposed rate limits on these maps and generated incorrect values. Under normal circumstances, OSM will not rate limit maps generated with this tool. 

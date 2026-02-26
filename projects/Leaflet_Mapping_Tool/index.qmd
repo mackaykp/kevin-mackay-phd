@@ -1,0 +1,246 @@
+---
+title: "Leaflet Mapping Tool"
+---
+
+::: {.yoga-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
+:::
+
+::: {#yoga-final-product .yoga-view-panel}
+::: {.yoga-embed-bar}
+[Open mapping tool in new tab](vignettes/vignettes.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+::: {#yoga-iframe-wrap .yoga-embed-full}
+<iframe src="vignettes/vignettes.html" title="Leaflet Mapping Tool — vignettes" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+:::
+:::
+
+::: {#yoga-overview .yoga-view-panel .d-none}
+## Problem
+
+A Statistics Canada field team needed a way to identify safe areas to stay while conducting months‑long data collection in cities across Canada. For each of the 16 survey cities, they required:\
+
+- maps detailed enough to show building‑level satellite imagery
+- 50+ static maps per city to cover different neighbourhoods and safety considerations
+- a solution that could be updated every two years and used by staff without GIS expertise
+The existing approach (i.e., manually producing dozens of static maps) was time‑consuming, difficult to maintain, and not reproducible by the client’s team.
+
+## Approach
+
+To address the scale and complexity of the request, I designed an interactive mapping tool using OpenStreetMap data and R. This approach allowed me to:\
+
+- replace hundreds of static maps with a single, dynamic map per city
+- incorporate zooming, panning, basemap switching, and layer toggling
+- allow users to click features to reveal additional information
+- build a workflow that could be run by non‑GIS staff with basic R skills
+The tool automated data retrieval, processing, and map generation, making it adaptable to any Canadian city—and scalable beyond Canada if needed.
+
+## Impact
+
+- Reduced 50+ maps per city to one interactive map, improving usability and reducing cognitive load for field teams.
+- Eliminated dependency on GIS specialists, enabling analysts with basic R skills to generate maps independently.
+- Created a future‑proof workflow that can be reused every two years for recurring surveys and adapted for other Statistics Canada programs.
+- Improved consistency and reproducibility, ensuring that all cities follow the same mapping logic and data standards.
+
+## Note
+
+Because safety and crime data are not publicly available, the public version of this tool demonstrates its capabilities using median household income and access to greenspace. The underlying workflow remains the same, and I’ve also extended the tool to support bivariate mapping to showcase its flexibility.
+If you’re interested in adapting this tool for your own project, feel free to reach out - I’m happy to help!
+:::
+
+::: {#yoga-scripts .yoga-view-panel .d-none}
+## create_bivariate_map.R {#script-create-bivariate-map}
+
+**What it does:** Main entry point for the bivariate map. Builds an **Income × Green area per 1,000 people** Leaflet map for a given city or custom bbox. Sources map_config, process_bbox, and process_green_da; clips DAs to the study area, fetches OSM greenspace (with optional walkable buffer), classifies income and greenspace into Low/Med/High (mean ± 1 SD), and renders a 3×3 bivariate choropleth with popups and legend. Supports custom_bbox, custom_distance_km, green_buffer_m, and show_green_layers.
+
+```{r}
+#| file: R/create_bivariate_map.R
+#| eval: false
+```
+
+---
+
+## mapping_functions.R {#script-mapping-functions}
+
+**What it does:** Helper functions for the Leaflet map: `create_custom_icon`, `add_markers_conditionally`, `add_polylines_conditionally`, and `add_polygons_conditionally` to add OSM features (parks, playgrounds, nature, etc.) as toggleable layers with popups. Used when `show_green_layers = TRUE`.
+
+```{r}
+#| file: R/mapping_functions.R
+#| eval: false
+```
+
+---
+
+## map_config.R {#script-map-config}
+
+**What it does:** Central configuration list for SES (income) categories and green-space settings. Defines `ses` (labels, colours, emoji, SD multipliers for 5 income bands) and `green` (thresholds for Limited/Good/Great, icon URLs for parks/playgrounds/nature). Used by build_ses_index.R and process_green.R; create_bivariate_map.R uses its own bivariate palette.
+
+```{r}
+#| file: R/map_config.R
+#| eval: false
+```
+
+---
+
+## process_green_da.R {#script-process-green-da}
+
+**What it does:** Computes green area per dissemination area (and per 1,000 people). For each DA, sums OSM greenspace (parks, gardens, meadows, etc.) inside the DA plus within a walkable buffer (e.g. 500 m). Fetches OSM for the study bbox, merges polygon types, intersects with buffered DAs, and returns DAs with `green_area_m2` and `green_area_per_1000`. Handles Overpass rate limiting and uses cache_utils for optional caching.
+
+```{r}
+#| file: R/process_green_da.R
+#| eval: false
+```
+
+---
+
+## process_green.R {#script-process-green}
+
+**What it does:** Fetches OSM green-space data (parks, playgrounds, nature reserves) for a given bbox and returns a list with green_status (Limited/Good/Great by count), plus sf layers for parks, playgrounds, and nature (as centroids for markers). Used for green-status summaries or optional marker layers; create_bivariate_map uses process_green_da for per-DA green area.
+
+```{r}
+#| file: R/process_green.R
+#| eval: false
+```
+
+---
+
+## build_ses_index.R {#script-build-ses-index}
+
+**What it does:** Builds the income/SES GeoPackage from Statistics Canada 2021 Census and DA boundaries. Reads census CSV(s) and boundary shapefiles from data/raw/, joins on DA code, computes median household income and optional SES index (mean ± SD bands), and writes data/ses_index.gpkg. Supports test mode (one region, limited rows). Run after fetch_statcan_census.py (or equivalent) has downloaded and extracted census and boundaries.
+
+```{r}
+#| file: R/build_ses_index.R
+#| eval: false
+```
+
+---
+
+## process_bbox.R {#script-process-bbox}
+
+**What it does:** Resolves the study-area bounding box (from city name via osmdata::getbb, custom_bbox, or amalgamation_cities_list), optionally expands it by custom_distance_km, clips the income GeoPackage to the bbox, and writes clipped polygons to data/clipped_income/. Caches clipped layer by bbox UID in data/cache.gpkg. Returns bbox matrix and paths needed by create_bivariate_map.
+
+```{r}
+#| file: R/process_bbox.R
+#| eval: false
+```
+
+---
+
+## cache_utils.R {#script-cache-utils}
+
+**What it does:** GeoPackage cache utilities for clipped_income, greenspace, and buffered DAs. `bbox_to_uid()` generates a stable UID from bbox coordinates; `ensure_cache()` creates the cache file and empty layers; read/write helpers avoid re-fetching OSM or re-clipping when the same bbox (and buffer) has already been processed. Reduces Overpass load and speeds up repeated runs.
+
+```{r}
+#| file: R/cache_utils.R
+#| eval: false
+```
+
+---
+
+See the [Guide](guide.qmd) in this project for setup and how to run the tool.
+:::
+
+<script>
+(function() {
+  var productPanel = document.getElementById('yoga-final-product');
+  var overviewPanel = document.getElementById('yoga-overview');
+  var scriptsPanel = document.getElementById('yoga-scripts');
+  var btnProduct = document.querySelector('.yoga-btn-product');
+  var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnScripts = document.querySelector('.yoga-btn-scripts');
+  if (!productPanel || !overviewPanel || !scriptsPanel || !btnProduct || !btnOverview || !btnScripts) return;
+
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnScripts].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showScripts() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    scriptsPanel.classList.remove('d-none');
+    setActive(btnScripts);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnScripts.addEventListener('click', showScripts);
+
+  // Fill right margin "On this page" TOC (Quarto leaves it empty for sidebar pages)
+  function buildMarginTOC() {
+    if (!document.body.classList.contains('yoga-project-page')) return;
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
+    var main = document.getElementById('quarto-document-content');
+    if (!main) return;
+    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
+    if (headings.length === 0) return;
+    var nav = document.createElement('nav');
+    nav.id = 'TOC';
+    nav.setAttribute('role', 'doc-toc');
+    nav.className = 'toc-active';
+    var title = document.createElement('h2');
+    title.id = 'toc-title';
+    title.textContent = 'On this page';
+    nav.appendChild(title);
+    var ul = document.createElement('ul');
+    ul.className = 'collapse';
+    headings.forEach(function(h2) {
+      var id = h2.getAttribute('data-anchor-id') || h2.id;
+      if (!id) return;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.id = 'toc-' + id;
+      a.className = 'nav-link';
+      a.setAttribute('data-scroll-target', '#' + id);
+      a.textContent = h2.textContent.trim();
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    nav.appendChild(ul);
+    marginSidebar.appendChild(nav);
+    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var id = link.getAttribute('data-scroll-target');
+        if (!id) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        if (overviewPanel.contains(target)) {
+          e.preventDefault();
+          showOverview();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        } else if (scriptsPanel.contains(target)) {
+          e.preventDefault();
+          showScripts();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildMarginTOC);
+  } else {
+    buildMarginTOC();
+  }
+})();
+</script>

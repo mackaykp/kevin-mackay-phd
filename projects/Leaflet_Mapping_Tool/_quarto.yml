@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Green Space & SES Explorer"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: guide.qmd
+        text: Guide
+      - href: vignettes/vignettes.qmd
+        text: Vignettes
+    right:
+      - icon: github
+        href: https://github.com
+        text: Source
+
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 2

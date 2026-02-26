@@ -25,5 +25,7 @@ I help public-sector organizations make sense of complex health, spatial, and ad
 ## Featured Project
 
 ::: {.card}
+
 [**View all projects**](projects/index.qmd) — Spatial analysis, automation, research, and data-driven work.
+
 :::

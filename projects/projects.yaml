@@ -9,20 +9,8 @@ projects:
     tags: ["Automation", "Web scraping", "ETL", "R", "Python", "Quarto"]
     image: ""
 
-  - title: "Example Stats Project"
-    description: "Statistical analysis and data workflows with R and the tidyverse."
-    href: "example-stats.html"
-    tags: ["Statistics", "R", "tidyverse"]
-    image: ""
-
-  - title: "Example Automation Project"
-    description: "Scripts and pipelines for automated reporting or data workflows."
-    href: "example-automation.html"
-    tags: ["Automation", "R", "Quarto"]
-    image: ""
-
-  - title: "Example Other Project"
-    description: "Miscellaneous projects, tutorials, or experiments."
-    href: "example-other.html"
-    tags: ["Documentation", "R"]
+  - title: "Leaflet Mapping Tool"
+    description: "Interactive map built with R, leaflet, and tidyverse—placeholder for spatial projects."
+    href: "Leaflet_Mapping_Tool/"
+    tags: ["Spatial", "Mapping", "R", "leaflet", "Python", "Quarto"]
     image: ""

@@ -1,10 +1,5 @@
 ---
 title: "Yoga Video Catalog"
-sidebar: false
-toc: false
-body-class: yoga-project-page
-execute:
-  dir: document
 ---
 
 ::: {.yoga-view-toggle role="group" aria-label="Switch view"}
@@ -93,8 +88,6 @@ These files are included in this portfolio for reference. In the full project th
 :::
 
 ::: {#yoga-scripts .yoga-view-panel .d-none}
-::: {.row}
-::: {.col-lg-8 .yoga-scripts-content}
 ## update_from_channels.py {#script-update-from-channels}
 
 **What it does:** Orchestrates the full update. Loads `data/channel_urls.json` and the existing enriched CSV; for each channel, calls the Playwright scraper to get only *new* videos (stops when it hits the first video already in the catalog). Writes new rows to a temp CSV, runs `enrich_videos.py` to fetch metadata via yt-dlp and append to the main CSV, then runs `categorize_data.py` and `update_focus.py` on the full file. Single entry point for "pull new videos and refresh the catalog."
@@ -154,20 +147,6 @@ cat("```python\n", paste(readLines("scripts/update_focus.py"), collapse = "\n"),
 ```
 :::
 
-::: {.col-lg-4 .yoga-scripts-toc-column}
-::: {.yoga-scripts-toc}
-**On this page**
-
-- [update_from_channels.py](#script-update-from-channels)
-- [scrape_channel.py](#script-scrape-channel)
-- [enrich_videos.py](#script-enrich-videos)
-- [categorize_data.py](#script-categorize-data)
-- [update_focus.py](#script-update-focus)
-:::
-:::
-:::
-:::
-
 <script>
 (function() {
   var productPanel = document.getElementById('yoga-final-product');
@@ -210,5 +189,63 @@ cat("```python\n", paste(readLines("scripts/update_focus.py"), collapse = "\n"),
   btnProduct.addEventListener('click', showProduct);
   btnOverview.addEventListener('click', showOverview);
   btnScripts.addEventListener('click', showScripts);
+
+  // Fill right margin "On this page" TOC (Quarto leaves it empty for sidebar pages)
+  function buildMarginTOC() {
+    if (!document.body.classList.contains('yoga-project-page')) return;
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
+    var main = document.getElementById('quarto-document-content');
+    if (!main) return;
+    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
+    if (headings.length === 0) return;
+    var nav = document.createElement('nav');
+    nav.id = 'TOC';
+    nav.setAttribute('role', 'doc-toc');
+    nav.className = 'toc-active';
+    var title = document.createElement('h2');
+    title.id = 'toc-title';
+    title.textContent = 'On this page';
+    nav.appendChild(title);
+    var ul = document.createElement('ul');
+    ul.className = 'collapse';
+    headings.forEach(function(h2) {
+      var id = h2.getAttribute('data-anchor-id') || h2.id;
+      if (!id) return;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.id = 'toc-' + id;
+      a.className = 'nav-link';
+      a.setAttribute('data-scroll-target', '#' + id);
+      a.textContent = h2.textContent.trim();
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    nav.appendChild(ul);
+    marginSidebar.appendChild(nav);
+    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var id = link.getAttribute('data-scroll-target');
+        if (!id) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        if (overviewPanel.contains(target)) {
+          e.preventDefault();
+          showOverview();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        } else if (scriptsPanel.contains(target)) {
+          e.preventDefault();
+          showScripts();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildMarginTOC);
+  } else {
+    buildMarginTOC();
+  }
 })();
 </script>

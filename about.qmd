@@ -1,10 +1,8 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-# About Me
-
-I'm Kevin Mackay, PhD — a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. My work focuses on helping organizations make sense of complex health, spatial, and administrative data through rigorous analysis, thoughtful research design, and clear, user‑focused communication.
+Hello!👋 I'm Kevin - a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. My work focuses on helping organizations make sense of complex health, spatial, and administrative data through rigorous analysis, thoughtful research design, and clear, user‑focused communication.
 
 ## My Background
 
@@ -12,7 +10,8 @@ I completed my PhD in Geography at McMaster University, where I specialized in m
 
 ## How I Work
 
-I enjoy working across the full lifecycle of analytical and research projects:
+I enjoy working across the full lifecycle of analytical and research projects:\
+
 - identifying problems and clarifying requirements  
 - assessing data quality and documenting assumptions  
 - designing and conducting analysis  

@@ -1,0 +1,87 @@
+---
+title: "Guide"
+format:
+  html:
+    toc: true
+---
+
+## Overview
+
+This tool builds an **interactive bivariate map**: **Income** (median household income by DA) × **green area per 1,000 people**, with greenspace from OpenStreetMap. Run from the project root.
+
+## One-time setup
+
+### 1. Python: Fetch census and boundaries
+
+From the project root:
+
+```bash
+pip install -r requirements.txt
+python scripts/fetch_statcan_census.py --all
+```
+
+This downloads 2021 DA boundaries and one Census Profile region (Atlantic). For all of Canada, run:
+
+```bash
+python scripts/fetch_statcan_census.py --boundaries --all-regions
+```
+
+### 2. R: Build income/SES GeoPackage
+
+In R (with working directory = project root):
+
+```r
+source("R/build_ses_index.R")
+```
+
+This reads `data/raw/` (census CSV and `da_boundaries/`), joins to DAs, and writes `data/ses_index.gpkg`. That file is used as `income_gpkg` when creating maps.
+
+## Creating a map
+
+In R, use `create_bivariate_map` (Income × green area per 1000 people):
+
+```r
+source("R/create_bivariate_map.R")
+
+# Example: one city
+create_bivariate_map(
+  city = "Halifax, NS",
+  income_gpkg = "data/ses_index.gpkg"
+)
+
+# With expanded bbox (km)
+create_bivariate_map(
+  city = "Hamilton, ON",
+  income_gpkg = "data/ses_index.gpkg",
+  custom_distance_km = 10
+)
+
+# Custom bounding box
+create_bivariate_map(
+  city = "Brandon, MB",
+  income_gpkg = "data/ses_index.gpkg",
+  custom_bbox = c(-100.07, 49.78, -99.82, 49.91)
+)
+```
+
+Maps are saved under `output/maps/<City>_bivariate.html`.
+
+## Data and map
+
+**build_ses_index.R** uses 2021 Census variables at the DA level (education, income, employment) and writes a GeoPackage. The **map** displays **median household income** × green area per 1,000 people (Low/Med/High by study-area ±1 SD). Status categories in the build script (Lowest/…/Highest) come from `R/map_config.R`. See `R/build_ses_index.R` for details.
+
+## Data sources
+
+- **Census/income:** Statistics Canada, [2021 Census of Population](https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/index.cfm?Lang=E), Census Profile (DA-level).
+- **Boundaries:** Statistics Canada, [2021 Dissemination area boundary file](https://www12.statcan.gc.ca/census-recensement/2021/geo/sip-pis/boundary-limites/files-fichiers/).
+- **Green space:** [OpenStreetMap](https://www.openstreetmap.org/copyright) (parks, playgrounds, nature reserves).
+
+## Rendering the Quarto site
+
+From the project root:
+
+```bash
+quarto render
+```
+
+Then open `_site/index.html` or publish the `_site/` folder to your web host.

@@ -259,24 +259,6 @@ code:not(pre sourceCode code) {
   border-bottom-color: rgba(99, 102, 241, 0.4);
 }
 
-// ---- TOC (right) ----
-.sidebar-toc .sidebar-toc-contents {
-  font-size: 0.9rem;
-}
-
-.sidebar-toc .sidebar-toc-contents a {
-  color: $secondary;
-  border-radius: $border-radius-sm;
-  padding: 0.2rem 0.5rem;
-  transition: color 0.15s ease, background-color 0.15s ease;
-}
-
-.sidebar-toc .sidebar-toc-contents a:hover,
-.sidebar-toc .sidebar-toc-contents a.active {
-  color: $primary;
-  background-color: rgba(99, 102, 241, 0.08);
-}
-
 // ---- Footer ----
 .page-footer {
   font-size: 0.875rem;
@@ -310,11 +292,9 @@ code:not(pre sourceCode code) {
   color: $primary;
 }
 
-// ---- Yoga browse page (catalog at full size, no sidebar) ----
+// ---- Yoga browse page (catalog at full size, no left sidebar; keep right TOC) ----
 body.yoga-browse-page #quarto-sidebar,
 body.yoga-browse-page .sidebar-navigation,
-body.yoga-browse-page .sidebar-toc,
-body.yoga-browse-page [id^="quarto-margin-sidebar"],
 body.yoga-browse-page .sidebar,
 body.yoga-browse-page .nav-sidebar {
   display: none !important;
@@ -332,17 +312,11 @@ body.yoga-browse-page .page-columns {
   grid-template-columns: 1fr !important;
 }
 
-// ---- Yoga project page (no sidebar, wide for catalog, three-panel toggle) ----
-body.yoga-project-page #quarto-sidebar,
-body.yoga-project-page .sidebar-navigation,
-body.yoga-project-page .sidebar-toc {
-  display: none !important;
-}
-
+// ---- Yoga project page (default layout: left sidebar + right TOC) ----
 body.yoga-project-page .quarto-layout-panel,
 body.yoga-project-page .column-body,
 body.yoga-project-page main#quarto-document-content {
-  max-width: 100rem;
+  max-width: 120rem; // 1920px at 16px — comfortable at 1080p and 1440p
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -388,59 +362,6 @@ body.yoga-project-page .yoga-view-toggle .btn {
   min-height: 0 !important;
   border: none;
   display: block;
-}
-
-// Scripts & Code: right-side TOC
-.yoga-scripts-toc-column {
-  @media (min-width: 992px) {
-    position: relative;
-  }
-}
-
-.yoga-scripts-toc {
-  font-size: 0.9rem;
-  padding: 1rem 1.25rem;
-  background: $light;
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
-  margin-bottom: 1.5rem;
-  @media (min-width: 992px) {
-    position: sticky;
-    top: 1.5rem;
-  }
-}
-
-.yoga-scripts-toc strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: $headings-color;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.yoga-scripts-toc ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.yoga-scripts-toc li {
-  margin-bottom: 0.35rem;
-}
-
-.yoga-scripts-toc a {
-  color: $secondary;
-  text-decoration: none;
-  border-radius: $border-radius-sm;
-  padding: 0.2rem 0.4rem;
-  display: block;
-  transition: color 0.15s ease, background-color 0.15s ease;
-}
-
-.yoga-scripts-toc a:hover {
-  color: $primary;
-  background-color: rgba(99, 102, 241, 0.08);
 }
 
 // ---- Responsive ----
