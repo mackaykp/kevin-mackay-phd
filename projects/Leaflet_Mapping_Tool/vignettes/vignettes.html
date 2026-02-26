@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Example Automation Project – Kevin Mackay, PhD</title>
+<title>Mapping examples – Kevin Mackay, PhD</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +20,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3664daef4cec8c8f8c2c05a3425b7620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2269a16a10f40f9c63e4d931574e2d6a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-3664daef4cec8c8f8c2c05a3425b7620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-3664daef4cec8c8f8c2c05a3425b7620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-2269a16a10f40f9c63e4d931574e2d6a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-3664daef4cec8c8f8c2c05a3425b7620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -245,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Kevin Mackay, PhD</span>
     </a>
   </div>
@@ -256,27 +291,27 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../what-i-do.html"> 
+    <a class="nav-link" href="../../../what-i-do.html"> 
 <span class="menu-text">What I Do</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../projects/index.html"> 
+    <a class="nav-link" href="../../../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resume.html"> 
+    <a class="nav-link" href="../../../resume.html"> 
 <span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../work-with-me.html"> 
+    <a class="nav-link" href="../../../work-with-me.html"> 
 <span class="menu-text">Work With Me</span></a>
   </li>  
 </ul>
@@ -300,7 +335,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -308,24 +343,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
-  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Takeaways</a></li>
+  <li><a href="#why-these-examples" id="toc-why-these-examples" class="nav-link active" data-scroll-target="#why-these-examples">Why these examples?</a></li>
+  <li><a href="#hamilton-on-default-run" id="toc-hamilton-on-default-run" class="nav-link" data-scroll-target="#hamilton-on-default-run">Hamilton, ON — Default run</a></li>
+  <li><a href="#hamilton-expanding-the-study-area" id="toc-hamilton-expanding-the-study-area" class="nav-link" data-scroll-target="#hamilton-expanding-the-study-area">Hamilton — Expanding the study area</a></li>
+  <li><a href="#hamilton-walkable-buffer-and-greenspace-layers" id="toc-hamilton-walkable-buffer-and-greenspace-layers" class="nav-link" data-scroll-target="#hamilton-walkable-buffer-and-greenspace-layers">Hamilton — Walkable buffer and greenspace layers</a></li>
+  <li><a href="#canadian-variety-urban-suburban-and-smaller-centres" id="toc-canadian-variety-urban-suburban-and-smaller-centres" class="nav-link" data-scroll-target="#canadian-variety-urban-suburban-and-smaller-centres">Canadian variety — Urban, suburban, and smaller centres</a></li>
+  <li><a href="#custom-bounding-box" id="toc-custom-bounding-box" class="nav-link" data-scroll-target="#custom-bounding-box">Custom bounding box</a></li>
+  <li><a href="#beyond-canada-adapting-the-tool" id="toc-beyond-canada-adapting-the-tool" class="nav-link" data-scroll-target="#beyond-canada-adapting-the-tool">Beyond Canada — Adapting the tool</a></li>
+  <li><a href="#summary-of-arguments" id="toc-summary-of-arguments" class="nav-link" data-scroll-target="#summary-of-arguments">Summary of arguments</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Example Automation Project</h1>
+<h1 class="title">Mapping examples</h1>
+<p class="subtitle lead">Income × greenspace access by place and scale</p>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -337,22 +378,263 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p><em>Placeholder: Describe one automation project — what it does, how it runs, and what it produces.</em></p>
-<p>Example topics: daily report generation, data pulls from an API, or file processing pipelines.</p>
+<style>
+/* Match yoga browse page — design tokens and layout */
+:root {
+  --br-bg: #ffffff;
+  --br-surface: #ffffff;
+  --br-border: #e5e7eb;
+  --br-text: #111827;
+  --br-text-muted: #6b7280;
+  --br-accent: #2563eb;
+  --br-radius: 10px;
+  --br-radius-sm: 6px;
+  --br-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+#quarto-content.page-columns { padding: 1.5rem clamp(1rem, 4vw, 2rem) 2rem !important; background: var(--br-bg) !important; max-width: none !important; }
+.quarto-title-block.default { margin-bottom: 1.5rem !important; }
+.quarto-title-block.default .title {
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--br-text) !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.quarto-title-block.default .subtitle {
+  font-size: 1rem !important;
+  color: var(--br-text-muted) !important;
+  margin-top: 0.35rem !important;
+  font-weight: 400 !important;
+}
+.quarto-content h2 { font-size: 1.35rem !important; font-weight: 700 !important; color: var(--br-text) !important; margin-top: 2rem !important; }
+.quarto-content p, .quarto-content li { color: var(--br-text); line-height: 1.6; }
+.iframe-container { margin: 1rem 0; border-radius: var(--br-radius-sm); overflow: hidden; box-shadow: var(--br-shadow); border: 1px solid var(--br-border); }
+</style>
+<section id="why-these-examples" class="level2">
+<h2 class="anchored" data-anchor-id="why-these-examples">Why these examples?</h2>
+<p>The bivariate mapping tool turns census-style income data and OpenStreetMap greenspace into <strong>Income × green area per 1,000 people</strong> at the dissemination area (DA) level. The maps below show how different arguments change <em>what</em> you map and <em>where</em>—from a single city to amalgamated regions, from a tight urban core to a wide rural study area, and from Canada to anywhere you have equivalent data.</p>
+<p><strong>How this page is built.</strong> To keep the page fast and to avoid Overpass API rate limits, the maps are <strong>pre-generated</strong> and embedded here. The code under each map is the exact call used to create it; you can run it yourself (see <a href="#running-the-examples-yourself">Running the examples yourself</a>). We use geographically modest study areas where possible so that generating maps is quick and reliable.</p>
+<hr>
 </section>
-<section id="tools" class="level2">
-<h2 class="anchored" data-anchor-id="tools">Tools</h2>
+<section id="hamilton-on-default-run" class="level2">
+<h2 class="anchored" data-anchor-id="hamilton-on-default-run">Hamilton, ON — Default run</h2>
+<p>A straightforward run with only the required arguments: study area and path to the income GeoPackage. The tool clips DAs to the city, fetches greenspace for the bbox, and sums green area per DA (inside each DA plus within a 500 m walkable buffer). Good baseline for comparing with the options below.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/create_bivariate_map.R"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Hamilton, ON"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: output/maps/Hamilton_bivariate.html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton, ON — default bivariate map">
+</iframe>
+</div>
+<hr>
+</section>
+<section id="hamilton-expanding-the-study-area" class="level2">
+<h2 class="anchored" data-anchor-id="hamilton-expanding-the-study-area">Hamilton — Expanding the study area</h2>
+<p>When the city boundary is tight, <strong>edge DAs</strong> can have much of their walkable buffer outside the default bbox, so their green area is undercounted. Use <code>custom_distance_km</code> so the bounding box is expanded by that many kilometres in all directions; the same bbox is used for clipping and for fetching OSM greenspace, so edge DAs get a fair count.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Hamilton, ON"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">custom_distance_km =</span> <span class="dv">5</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Hamilton_expanded/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton with 5 km expansion">
+</iframe>
+</div>
+<hr>
+</section>
+<section id="hamilton-walkable-buffer-and-greenspace-layers" class="level2">
+<h2 class="anchored" data-anchor-id="hamilton-walkable-buffer-and-greenspace-layers">Hamilton — Walkable buffer and greenspace layers</h2>
 <ul>
-<li>R or Python scripts</li>
-<li>Scheduling (e.g., cron, GitHub Actions)</li>
-<li>Quarto or R Markdown for reports</li>
+<li><strong><code>green_buffer_m</code></strong> — Walkable distance (m) around each DA. Greenspace is summed <em>inside</em> the DA and <em>within</em> this distance (default 500 m). Increase it for a longer “access radius” (e.g.&nbsp;1 km); decrease it for a stricter, shorter walk.</li>
+<li><strong><code>show_green_layers</code></strong> — If <code>TRUE</code>, the map adds toggleable OSM layers by type (parks, forest, meadow, etc.). Useful for exploring <em>what</em> counts as green; the main metric still uses the merged greenspace layer.</li>
 </ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Hamilton, ON"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">green_buffer_m =</span> <span class="dv">1000</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_green_layers =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Hamilton_buffer/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton 1 km buffer and green layers">
+</iframe>
+</div>
+<hr>
 </section>
-<section id="takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
-<p><em>Placeholder: What you automated and what you’d do differently next time.</em></p>
+<section id="canadian-variety-urban-suburban-and-smaller-centres" class="level2">
+<h2 class="anchored" data-anchor-id="canadian-variety-urban-suburban-and-smaller-centres">Canadian variety — Urban, suburban, and smaller centres</h2>
+<p>The same function works across geographies. Here we use <strong>one city per map</strong> and keep study areas manageable to limit OSM load and rate limits.</p>
+<p><strong>Halifax, NS</strong> — Urban core; default buffer and bbox usually suffice.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Halifax, NS"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Halifax_bivariate.html" width="100%" height="500" loading="lazy" title="Halifax, NS">
+</iframe>
+</div>
+<p><strong>Charlottetown, PE</strong> — Small capital; compact bbox, good for testing and for showing contrast between downtown and lower-density edges.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Charlottetown, PE"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Charlottetown_bivariate.html" width="100%" height="500" loading="lazy" title="Charlottetown, PE">
+</iframe>
+</div>
+<p><strong>Brandon, MB</strong> — Prairie city; mix of urban and suburban DAs. A small expansion can improve edge-DA counts.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Brandon, MB"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">custom_distance_km =</span> <span class="dv">3</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Brandon_bivariate.html" width="100%" height="500" loading="lazy" title="Brandon, MB">
+</iframe>
+</div>
+<p><strong>Yellowknife, NT</strong> — Northern, smaller footprint. Illustrates the tool in a remote context; income and greenspace patterns differ from southern cities.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Yellowknife, NT"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Yellowknife_bivariate.html" width="100%" height="500" loading="lazy" title="Yellowknife, NT">
+</iframe>
+</div>
+<hr>
+</section>
+<section id="custom-bounding-box" class="level2">
+<h2 class="anchored" data-anchor-id="custom-bounding-box">Custom bounding box</h2>
+<p>When the study area isn’t a single named place—e.g.&nbsp;a corridor, a watershed, <strong>rural or remote areas</strong> (“middle of nowhere”), or a <strong>geologically distinct region</strong> where people live—use <strong><code>custom_bbox</code></strong>: <code>c(xmin, ymin, xmax, ymax)</code> in WGS84. The tool uses this bbox for clipping and for fetching OSM; <code>city</code> is still used only for the output filename (use a short label that describes the area).</p>
+<p><strong>Example: Drumheller badlands, Alberta.</strong> The Red Deer River valley and badlands have DAs (town of Drumheller and surrounding area) but the <em>interesting</em> unit is the valley, not “Hamilton” or a generic city. A custom bbox focuses the map on that landscape.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_bivariate_map</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="st">"Drumheller, AB"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">income_gpkg =</span> <span class="st">"data/ses_index.gpkg"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">custom_bbox =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">112.82</span>, <span class="fl">51.42</span>, <span class="sc">-</span><span class="fl">112.55</span>, <span class="fl">51.52</span>)  <span class="co"># Red Deer River valley / badlands</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="iframe-container" style="min-height: 520px;">
+<iframe src="maps/Vignette_maps/Drumheller_bivariate.html" width="100%" height="500" loading="lazy" title="Custom bbox — Drumheller badlands">
+</iframe>
+</div>
+<hr>
+</section>
+<section id="beyond-canada-adapting-the-tool" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-canada-adapting-the-tool">Beyond Canada — Adapting the tool</h2>
+<p>The mapping pipeline is <strong>location-agnostic</strong>: it needs (1) a study area that <code>osmdata::getbb()</code> can resolve (or a <code>custom_bbox</code>) and (2) a GeoPackage of small-area polygons with <strong>population</strong> and an <strong>income variable</strong> (e.g.&nbsp;median household income or a composite index). If you have administrative data for another country, you can build an equivalent <code>income_gpkg</code> and run the same workflow.</p>
+<p><strong>Example (conceptual): Dublin, Ireland.</strong> Replace Canadian census with Irish data; keep DA-like boundaries and population. Then:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conceptual: income_gpkg would point to your Irish (or other) data.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create_bivariate_map(</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   city = "Dublin, Ireland",</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   income_gpkg = "data/ireland_income.gpkg",</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   green_buffer_m = 500</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>OpenStreetMap greenspace is global, so the only change is the demographic source. The tool supports any location with equivalent demographic and boundary data.*</p>
+<hr>
+</section>
+<section id="summary-of-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-arguments">Summary of arguments</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 35%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>city</code></td>
+<td>Yes</td>
+<td>Label for the output filename (e.g.&nbsp;<code>Hamilton_bivariate.html</code>). When <code>custom_bbox</code> is not set, also used to get the study-area bbox via OSM (e.g.&nbsp;<code>"Hamilton, ON"</code>).</td>
+</tr>
+<tr class="even">
+<td><code>income_gpkg</code></td>
+<td>Yes</td>
+<td>Path to GeoPackage with DA polygons, <code>population</code>, and an income variable (e.g.&nbsp;<code>income_raw</code>). Typically from <code>build_ses_index.R</code> → <code>data/ses_index.gpkg</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>custom_bbox</code></td>
+<td>No</td>
+<td>Override the study-area bbox: <code>c(xmin, ymin, xmax, ymax)</code> in WGS84. Use for corridors, watersheds, rural/remote areas, or regions without a single place name.</td>
+</tr>
+<tr class="even">
+<td><code>custom_distance_km</code></td>
+<td>No</td>
+<td>Expand the bbox by this many km in all directions (default 0). Helps edge DAs get full greenspace counts.</td>
+</tr>
+<tr class="odd">
+<td><code>green_buffer_m</code></td>
+<td>No</td>
+<td>Walkable distance (m) around each DA; greenspace is summed inside the DA and within this distance (default 500).</td>
+</tr>
+<tr class="even">
+<td><code>show_green_layers</code></td>
+<td>No</td>
+<td>If <code>TRUE</code>, add toggleable map layers by OSM greenspace type (parks, forest, etc.).</td>
+</tr>
+<tr class="odd">
+<td><code>amalgamation_cities_list</code></td>
+<td>No</td>
+<td>List of place names to build a combined bbox (e.g.&nbsp;multiple municipalities).</td>
+</tr>
+<tr class="even">
+<td><code>city_pr</code></td>
+<td>No</td>
+<td>Province or region hint for geocoding when needed.</td>
+</tr>
+</tbody>
+</table>
+<p>All maps on this page were produced with the same pipeline; only these parameters change. Please note that because so many maps were generated at once, OSM may have imposed rate limits on these maps and generated incorrect values. Under normal circumstances, OSM will not rate limit maps generated with this tool.</p>
 
 
 </section>

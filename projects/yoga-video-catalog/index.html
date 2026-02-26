@@ -65,8 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../projects/yoga-video-catalog/browse.html" rel="next">
-<link href="../../projects/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -79,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b7e3ceb5c489b7b8785ec90d220b2eae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-167d6b5d92f5ca4a15666b70963c2ae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-b7e3ceb5c489b7b8785ec90d220b2eae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3664daef4cec8c8f8c2c05a3425b7620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2269a16a10f40f9c63e4d931574e2d6a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3664daef4cec8c8f8c2c05a3425b7620.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -340,12 +338,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../projects/yoga-video-catalog/index.html">Yoga Video Catalog</a></li><li class="breadcrumb-item"><a href="../../projects/yoga-video-catalog/index.html">Yoga Video Catalog</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Yoga Video Catalog</h1>
 </div>
@@ -555,8 +555,6 @@ Scripts &amp; Code
 </section>
 </div>
 <div id="yoga-scripts" class="yoga-view-panel d-none">
-<div class="row">
-<div class="col-lg-8 yoga-scripts-content">
 <section id="script-update-from-channels" class="level2">
 <h2 class="anchored" data-anchor-id="script-update-from-channels">update_from_channels.py</h2>
 <p><strong>What it does:</strong> Orchestrates the full update. Loads <code>data/channel_urls.json</code> and the existing enriched CSV; for each channel, calls the Playwright scraper to get only <em>new</em> videos (stops when it hits the first video already in the catalog). Writes new rows to a temp CSV, runs <code>enrich_videos.py</code> to fetch metadata via yt-dlp and append to the main CSV, then runs <code>categorize_data.py</code> and <code>update_focus.py</code> on the full file. Single entry point for “pull new videos and refresh the catalog.”</p>
@@ -1410,20 +1408,6 @@ Scripts &amp; Code
 <span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
-<div class="col-lg-4 yoga-scripts-toc-column">
-<div class="yoga-scripts-toc">
-<p><strong>On this page</strong></p>
-<ul>
-<li><a href="#script-update-from-channels">update_from_channels.py</a></li>
-<li><a href="#script-scrape-channel">scrape_channel.py</a></li>
-<li><a href="#script-enrich-videos">enrich_videos.py</a></li>
-<li><a href="#script-categorize-data">categorize_data.py</a></li>
-<li><a href="#script-update-focus">update_focus.py</a></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
 <script>
 (function() {
   var productPanel = document.getElementById('yoga-final-product');
@@ -1466,6 +1450,64 @@ Scripts &amp; Code
   btnProduct.addEventListener('click', showProduct);
   btnOverview.addEventListener('click', showOverview);
   btnScripts.addEventListener('click', showScripts);
+
+  // Fill right margin "On this page" TOC (Quarto leaves it empty for sidebar pages)
+  function buildMarginTOC() {
+    if (!document.body.classList.contains('yoga-project-page')) return;
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
+    var main = document.getElementById('quarto-document-content');
+    if (!main) return;
+    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
+    if (headings.length === 0) return;
+    var nav = document.createElement('nav');
+    nav.id = 'TOC';
+    nav.setAttribute('role', 'doc-toc');
+    nav.className = 'toc-active';
+    var title = document.createElement('h2');
+    title.id = 'toc-title';
+    title.textContent = 'On this page';
+    nav.appendChild(title);
+    var ul = document.createElement('ul');
+    ul.className = 'collapse';
+    headings.forEach(function(h2) {
+      var id = h2.getAttribute('data-anchor-id') || h2.id;
+      if (!id) return;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.id = 'toc-' + id;
+      a.className = 'nav-link';
+      a.setAttribute('data-scroll-target', '#' + id);
+      a.textContent = h2.textContent.trim();
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    nav.appendChild(ul);
+    marginSidebar.appendChild(nav);
+    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var id = link.getAttribute('data-scroll-target');
+        if (!id) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        if (overviewPanel.contains(target)) {
+          e.preventDefault();
+          showOverview();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        } else if (scriptsPanel.contains(target)) {
+          e.preventDefault();
+          showScripts();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildMarginTOC);
+  } else {
+    buildMarginTOC();
+  }
 })();
 </script>
 
@@ -1892,18 +1934,6 @@ Scripts &amp; Code
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../projects/index.html" class="pagination-link" aria-label="Projects">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Projects</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../projects/yoga-video-catalog/browse.html" class="pagination-link" aria-label="Final Product (browse)">
-        <span class="nav-page-text">Final Product (browse)</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
