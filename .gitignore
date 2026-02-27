@@ -16,8 +16,7 @@ Thumbs.db
 /.quarto/
 **/*.quarto_ipynb
 
-# Leaflet_Mapping_Tool — generated maps and large data (keep source only)
+# Leaflet_Mapping_Tool — large/generated (vignettes/maps/ is committed so the site can embed maps)
 projects/Leaflet_Mapping_Tool/output/
-projects/Leaflet_Mapping_Tool/vignettes/maps/
 projects/Leaflet_Mapping_Tool/data/*.gpkg
 projects/Leaflet_Mapping_Tool/data/raw/
