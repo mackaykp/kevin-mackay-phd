@@ -28,10 +28,15 @@ jobs:
         with:
           r-version: "4.3"
 
+      - name: Install system dependencies for sf
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
+
       - name: Install R dependencies
         run: |
           Rscript -e "dir.create(Sys.getenv('R_LIBS_USER'), recursive = TRUE, showWarnings = FALSE)"
-          Rscript -e "install.packages(c('tibble', 'magrittr', 'ggplot2', 'jsonlite', 'yaml', 'rmarkdown'), repos = 'https://cloud.r-project.org', lib = Sys.getenv('R_LIBS_USER'))"
+          Rscript -e "install.packages(c('tibble', 'magrittr', 'ggplot2', 'jsonlite', 'yaml', 'rmarkdown', 'readr', 'dplyr', 'sf', 'leaflet'), repos = 'https://cloud.r-project.org', lib = Sys.getenv('R_LIBS_USER'))"
 
       - name: Render site
         run: quarto render

@@ -65,7 +65,14 @@ library(dplyr)
 sif_path <- "output/sif_data_table_2022_2023_en_geocoded.csv"
 if (!file.exists(sif_path)) sif_path <- file.path("..", sif_path)
 
-sif <- read_csv(sif_path, show_col_types = FALSE)
+if (file.exists(sif_path)) {
+  sif <- read_csv(sif_path, show_col_types = FALSE)
+} else {
+  # Placeholder when file absent (e.g. on CI); downstream chunks handle n_total = 0
+  sif <- tibble(match_type = character(), ref_Latitude = numeric(), ref_Longitude = numeric(),
+                ugc_true_lat = character(), ugc_true_lon = character(), geocode_step = character(),
+                `ugc_School Name` = character(), ugc_Street = character(), ugc_City = character())
+}
 n_total <- nrow(sif)
 n_matched <- sum(!is.na(sif$match_type) & nzchar(trimws(as.character(sif$match_type))))
 n_with_coords <- sum(!is.na(sif$ref_Latitude) & is.finite(sif$ref_Latitude))
@@ -231,7 +238,13 @@ The ODEF dataset uses different address fields and naming than SIF. The same thr
 odef_path <- "output/ODEF_v2_1_geocoded.csv"
 if (!file.exists(odef_path)) odef_path <- file.path("..", odef_path)
 
-odef <- read_csv(odef_path, show_col_types = FALSE)
+if (file.exists(odef_path)) {
+  odef <- read_csv(odef_path, show_col_types = FALSE)
+} else {
+  odef <- tibble(match_type = character(), ref_Latitude = numeric(), ref_Longitude = numeric(),
+                 ugc_true_lat = character(), ugc_true_lon = character(), geocode_step = character(),
+                 ugc_Facility_Name = character(), ugc_Street = character(), ugc_City = character())
+}
 n_odef <- nrow(odef)
 n_odef_matched <- sum(!is.na(odef$match_type) & nzchar(trimws(as.character(odef$match_type))))
 n_odef_coords <- sum(!is.na(odef$ref_Latitude) & is.finite(odef$ref_Latitude))
