@@ -6,11 +6,16 @@ project:
   output-dir: _site
   resources:
     - projects/Leaflet_Mapping_Tool/vignettes/maps
+    - projects/Offline_Geocoding_Tool/Geocoding_Tool_Showcase.html
+    - projects/Offline_Geocoding_Tool/Geocoding_Tool_Showcase_files
+    - projects/PhD_Dissertation
+    - assets
 
 website:
   title: "Kevin Mackay, PhD"
   site-url: "https://mackaykp.github.io/kevin-mackay-phd"
   repo-url: "https://github.com/mackaykp/kevin-mackay-phd"
+  favicon: assets/favicon.png
   page-navigation: true
   search: true
 
@@ -21,10 +26,6 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "About"
-        href: about.qmd
-      - text: "What I Do"
-        href: what-i-do.qmd
       - text: "Projects"
         href: projects/index.qmd
       - text: "Resume"
@@ -48,8 +49,8 @@ website:
 format:
   html:
     theme:
-      light: [flatly, custom.scss]
-      dark: [darkly, custom.scss]
+      light: [quartz, custom.scss]
+      dark: [quartz, custom.scss]
     toc: true
     toc-depth: 2
     toc-location: right

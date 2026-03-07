@@ -1,0 +1,398 @@
+---
+title: "Offline Geocoding Tool"
+format:
+  html:
+    toc: false
+    code-fold: false
+execute:
+  warning: false
+---
+
+## Problem
+
+Statistics Canada's National Address Register (NAR) provides authoritative Canadian address and location data, but there was no lightweight, offline way to geocode large spreadsheets (e.g. school or facility lists) against it. The team needed a tool that could match input addresses to NAR, assign coordinates using a clear match hierarchy, and write results to CSV without depending on external APIs or GIS software.
+
+## Approach
+
+I built an offline geocoding pipeline in R that uses a single DuckDB database of NAR (Address + Location) as the reference. The matcher follows a **single hierarchy**: exact full address → exact street (same geography) → relaxed (same province/city/postal, relaxed components) → fuzzy (narrow pool, composite score) → 6-digit postal centroid → FSA centroid → city centroid. Input is read from Excel or CSV; output is streamed to CSV with progress saved every 100 rows so runs can be resumed. The tool is designed to run with minimal setup: build the NAR DuckDB once, then point it at any file with Street, City, Province, and Postal Code columns.
+
+More detail on design, scripts, and code is on the **Project Overview** and **Scripts & Code** pages. Below is the **Final product**: the code you run, the summary results, and maps for two real datasets.
+
+```{r setup, include=FALSE}
+# Ensure we can find output/ when rendering (run from project root or parent of output/)
+if (!dir.exists("output") && dir.exists("..")) {
+  if (dir.exists(file.path("..", "output"))) setwd("..")
+}
+```
+
+---
+
+## Final product
+
+### Code to geocode
+
+To run the tool on the SIF school data (or any similar file), you set the project root, source the geocoding script, and call `geocode_excel()` with the path to your input file. Output is written to `output/` by default. No need to run this in the document—it's shown here so you can see the workflow.
+
+```{r geocode-code, eval=FALSE}
+# Set project root (adjust path for your machine)
+proj_root <- "C:/Users/macka/OneDrive/Documents/Cursor-Projects/Offline_Geocoding_Tool"
+if (dir.exists(proj_root)) setwd(proj_root)
+
+source("geocode_excel_file.R")
+
+# Paths
+xlsx_path <- file.path(proj_root, "data", "ungeocoded_files", "sif_data_table_2022_2023_en.xlsx")
+nar_db    <- file.path(proj_root, "data", "nar.duckdb")
+
+# Run geocoding (progress saved every 100 rows; re-run to resume)
+result <- geocode_excel(
+  xlsx_path,
+  address_cols    = c("Street", "City", "Province", "Postal Code"),
+  nar_duckdb_path = nar_db
+)
+# Output written to: output/sif_data_table_2022_2023_en_geocoded.csv
+```
+
+### Geocoding summary: SIF school data
+
+The SIF (School Information and Feedback) dataset contains Ontario school addresses with consistent formatting (Street, City, Province, Postal Code). The tool was developed and tuned for this use case. Summary statistics below are computed from the geocoded output file.
+
+```{r sif-summary, message=FALSE, echo=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+
+# Assumes project root is working directory when rendering
+sif_path <- "output/sif_data_table_2022_2023_en_geocoded.csv"
+if (!file.exists(sif_path)) sif_path <- file.path("..", sif_path)
+
+sif <- read_csv(sif_path, show_col_types = FALSE)
+n_total <- nrow(sif)
+n_matched <- sum(!is.na(sif$match_type) & nzchar(trimws(as.character(sif$match_type))))
+n_with_coords <- sum(!is.na(sif$ref_Latitude) & is.finite(sif$ref_Latitude))
+n_unmatched <- n_total - n_matched
+
+# By match type
+tbl <- table(sif$match_type, useNA = "ifany")
+tbl <- tbl[order(match(names(tbl), c("exact", "exact_street", "relaxed", "fuzzy", "postal_centroid", "fsa_centroid", "city_centroid", "<NA>")))]
+```
+
+**1. Match summary**  
+Overall counts: how many rows were matched, how many received coordinates, and how many stayed unmatched.
+
+| Metric | Value |
+|--------|--------|
+| Total rows | `r n_total` |
+| Matched (any type) | `r n_matched` (`r round(100 * n_matched / n_total, 1)`%) |
+| With coordinates | `r n_with_coords` (`r round(100 * n_with_coords / n_total, 1)`%) |
+| Unmatched | `r n_unmatched` (`r round(100 * n_unmatched / n_total, 1)`%) |
+
+---
+
+**2. Matches by type**  
+The matcher assigns each row to one method (exact address, street-only, relaxed, fuzzy, or a centroid fallback). This table shows how many rows fell into each category.
+
+```{r sif-by-type, message=FALSE, echo=FALSE, warning=FALSE}
+knitr::kable(
+  data.frame(
+    match_type = names(tbl),
+    count = as.integer(tbl),
+    pct = round(100 * as.integer(tbl) / n_total, 1)
+  ),
+  col.names = c("Match type", "Count", "%"),
+  align = c("l", "r", "r")
+)
+```
+
+---
+
+**3. Distance error**  
+For rows where both the true location and the geocoded location are known, this table summarizes the distance between them (in metres). Smaller values mean the geocoded point is closer to the true address.
+
+```{r sif-distance, message=FALSE, echo=FALSE, warning=FALSE}
+library(sf)
+
+sif_valid <- sif %>%
+  mutate(ulat = as.numeric(ugc_true_lat), ulon = as.numeric(ugc_true_lon)) %>%
+  filter(!is.na(ulat), is.finite(ulat), !is.na(ulon), is.finite(ulon),
+         !is.na(ref_Latitude), is.finite(ref_Latitude), !is.na(ref_Longitude), is.finite(ref_Longitude))
+n_sif_valid <- nrow(sif_valid)
+if (n_sif_valid > 0) {
+  pt_true <- st_sfc(lapply(seq_len(n_sif_valid), function(i) st_point(c(sif_valid$ulon[i], sif_valid$ulat[i]))), crs = 4326)
+  pt_ref  <- st_sfc(lapply(seq_len(n_sif_valid), function(i) st_point(c(sif_valid$ref_Longitude[i], sif_valid$ref_Latitude[i]))), crs = 4326)
+  sif_dist_m <- as.numeric(st_distance(pt_true, pt_ref, by_element = TRUE))
+  sif_mean_m   <- mean(sif_dist_m)
+  sif_median_m <- median(sif_dist_m)
+  sif_max_m    <- max(sif_dist_m)
+  sif_pct_100  <- 100 * sum(sif_dist_m <= 100) / n_sif_valid
+  sif_pct_500  <- 100 * sum(sif_dist_m <= 500) / n_sif_valid
+  sif_pct_1km  <- 100 * sum(sif_dist_m <= 1000) / n_sif_valid
+} else {
+  sif_mean_m <- sif_median_m <- sif_max_m <- NA_real_
+  sif_pct_100 <- sif_pct_500 <- sif_pct_1km <- NA_real_
+}
+```
+
+| Metric | SIF |
+|--------|-----|
+| Rows with true + geocoded | `r n_sif_valid` |
+| Mean distance error (m) | `r if (n_sif_valid > 0) round(sif_mean_m, 1) else "—"` |
+| Median distance error (m) | `r if (n_sif_valid > 0) round(sif_median_m, 1) else "—"` |
+| Max distance error (m) | `r if (n_sif_valid > 0) round(sif_max_m, 1) else "—"` |
+| % within 100 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_100, 1), "%") else "—"` |
+| % within 500 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_500, 1), "%") else "—"` |
+| % within 1 km | `r if (n_sif_valid > 0) paste0(round(sif_pct_1km, 1), "%") else "—"` |
+
+### Map: SIF geocoded results
+
+True locations (dark circles) and geocoded locations (coloured by match type) are connected by a line so you can see the offset. Exact and street-level matches are most precise; centroid fallbacks (postal, FSA, city) are coarser but still in the right area.
+
+```{r sif-map, message=FALSE, echo=FALSE}
+#| fig-height: 4
+#| warning: false
+
+library(leaflet)
+library(sf)
+
+# Filter to valid geocoded coords; keep true_lat/lon for lines
+sif_map <- sif %>%
+  filter(!is.na(ref_Latitude), is.finite(ref_Latitude), !is.na(ref_Longitude), is.finite(ref_Longitude))
+
+match_order <- c("exact", "exact_street", "relaxed", "fuzzy", "postal_centroid", "fsa_centroid", "city_centroid")
+sif_map$match_type_ord <- factor(sif_map$match_type, levels = c(match_order, NA), exclude = NULL)
+school_name_col <- "ugc_School Name"
+if (!school_name_col %in% names(sif_map)) school_name_col <- "match_type"
+sif_map$popup_text <- paste0(
+  "<b>", sif_map[[school_name_col]], "</b><br>",
+  sif_map$ugc_Street, ", ", sif_map$ugc_City, "<br>",
+  "Match: ", sif_map$geocode_step
+)
+pal <- colorFactor(
+  palette = c("#2d5016", "#4a7c23", "#6b9e3a", "#f0ad4e", "#5bc0de", "#428bca", "#9534b0"),
+  domain = c(match_order, NA),
+  na.color = "#888"
+)
+
+# Ensure true-location columns are numeric (read_csv may read them as character)
+if ("ugc_true_lat" %in% names(sif_map)) sif_map$ugc_true_lat <- as.numeric(sif_map$ugc_true_lat)
+if ("ugc_true_lon" %in% names(sif_map)) sif_map$ugc_true_lon <- as.numeric(sif_map$ugc_true_lon)
+
+# Rows with both true and geocoded: build lines (true → geocoded)
+sif_with_true <- sif_map %>%
+  filter(!is.na(ugc_true_lat), is.finite(ugc_true_lat), !is.na(ugc_true_lon), is.finite(ugc_true_lon))
+if (nrow(sif_with_true) > 0) {
+  line_geoms <- lapply(seq_len(nrow(sif_with_true)), function(i) {
+    st_linestring(matrix(
+      c(sif_with_true$ugc_true_lon[i], sif_with_true$ugc_true_lat[i],
+        sif_with_true$ref_Longitude[i], sif_with_true$ref_Latitude[i]),
+      ncol = 2, byrow = TRUE
+    ))
+  })
+  lines_sf <- st_sf(match_type_ord = sif_with_true$match_type_ord, geometry = st_sfc(line_geoms, crs = 4326))
+}
+
+m <- leaflet(sif_map, options = leafletOptions(zoomControl = TRUE)) %>%
+  addProviderTiles(providers$CartoDB.Positron)
+if (nrow(sif_with_true) > 0) {
+  m <- m %>% addPolylines(data = lines_sf, color = "#000", weight = 1, opacity = 0.6, group = "True → Geocoded")
+}
+m <- m %>%
+  addCircleMarkers(
+    lng = ~ref_Longitude, lat = ~ref_Latitude,
+    radius = 4, color = ~pal(match_type_ord), fillOpacity = 0.7,
+    popup = ~popup_text, group = "Geocoded"
+  )
+if (nrow(sif_with_true) > 0) {
+  m <- m %>% addCircleMarkers(
+    data = sif_with_true,
+    lng = ~ugc_true_lon, lat = ~ugc_true_lat,
+    radius = 3, color = "#222", fillColor = "#222", fillOpacity = 0.9, weight = 1,
+    popup = ~popup_text, group = "True location"
+  )
+}
+m %>% addLegend(
+  pal = pal, values = ~match_type_ord, title = "Match type (geocoded)",
+  position = "bottomright", na.label = "Unmatched"
+)
+```
+
+---
+
+## Generalization to other datasets
+
+The SIF data use consistent column names and address formatting aligned with how Canadian schools are recorded. **Other datasets often do not.** Address fields may be combined (e.g. "Full address" in one column), use different conventions (e.g. "Municipality" vs "City"), or contain more variation in spelling and structure. The NAR reference uses Census Subdivision (CSD) names for geography; if the input uses different place names (e.g. township names or abbreviations), the narrow pool for fuzzy matching can miss valid candidates. So the same tool, without dataset-specific tuning, typically achieves **lower match rates** on other files.
+
+The **ODEF** (Ontario Directory of Education Facilities) dataset is one such example: it includes a pre-existing "Full address" field and different column naming. Below are the same summary and map for ODEF. You can see more records falling back to postal or FSA centroids, and a lower share of exact or street-level matches. This illustrates both the tool’s **reusability** (it runs on any CSV/Excel with address-like columns) and the **importance of input format and naming** for best results.
+
+### Geocoding summary: ODEF dataset
+
+The ODEF dataset uses different address fields and naming than SIF. The same three summaries below (match counts, match types, and distance error) are computed from the geocoded ODEF output.
+
+```{r odef-summary, message=FALSE, echo=FALSE, warning=FALSE}
+odef_path <- "output/ODEF_v2_1_geocoded.csv"
+if (!file.exists(odef_path)) odef_path <- file.path("..", odef_path)
+
+odef <- read_csv(odef_path, show_col_types = FALSE)
+n_odef <- nrow(odef)
+n_odef_matched <- sum(!is.na(odef$match_type) & nzchar(trimws(as.character(odef$match_type))))
+n_odef_coords <- sum(!is.na(odef$ref_Latitude) & is.finite(odef$ref_Latitude))
+n_odef_unmatched <- n_odef - n_odef_matched
+
+tbl_odef <- table(odef$match_type, useNA = "ifany")
+tbl_odef <- tbl_odef[order(match(names(tbl_odef), c("exact", "exact_street", "relaxed", "fuzzy", "postal_centroid", "fsa_centroid", "city_centroid", "<NA>")))]
+```
+
+**1. Match summary**  
+Overall counts: how many ODEF rows were matched, how many received coordinates, and how many stayed unmatched.
+
+| Metric | Value |
+|--------|--------|
+| Total rows | `r n_odef` |
+| Matched (any type) | `r n_odef_matched` (`r round(100 * n_odef_matched / n_odef, 1)`%) |
+| With coordinates | `r n_odef_coords` (`r round(100 * n_odef_coords / n_odef, 1)`%) |
+| Unmatched | `r n_odef_unmatched` (`r round(100 * n_odef_unmatched / n_odef, 1)`%) |
+
+---
+
+**2. Matches by type**  
+Breakdown of how many rows were assigned to each match type (exact, fuzzy, centroid fallbacks, etc.).
+
+```{r odef-by-type, message=FALSE, echo=FALSE, warning=FALSE}
+knitr::kable(
+  data.frame(
+    match_type = names(tbl_odef),
+    count = as.integer(tbl_odef),
+    pct = round(100 * as.integer(tbl_odef) / n_odef, 1)
+  ),
+  col.names = c("Match type", "Count", "%"),
+  align = c("l", "r", "r")
+)
+```
+
+---
+
+**3. Distance error**  
+For rows with both true and geocoded coordinates, this table gives the distance between them (metres). Mean, median, and max describe the spread; the “% within …” rows show what share of points lie within 100 m, 500 m, or 1 km of the true location.
+
+```{r odef-distance, message=FALSE, echo=FALSE, warning=FALSE}
+library(sf)
+
+odef_valid <- odef %>%
+  mutate(ulat = as.numeric(ugc_true_lat), ulon = as.numeric(ugc_true_lon)) %>%
+  filter(!is.na(ulat), is.finite(ulat), !is.na(ulon), is.finite(ulon),
+         !is.na(ref_Latitude), is.finite(ref_Latitude), !is.na(ref_Longitude), is.finite(ref_Longitude))
+n_odef_valid <- nrow(odef_valid)
+if (n_odef_valid > 0) {
+  pt_true_o <- st_sfc(lapply(seq_len(n_odef_valid), function(i) st_point(c(odef_valid$ulon[i], odef_valid$ulat[i]))), crs = 4326)
+  pt_ref_o  <- st_sfc(lapply(seq_len(n_odef_valid), function(i) st_point(c(odef_valid$ref_Longitude[i], odef_valid$ref_Latitude[i]))), crs = 4326)
+  odef_dist_m <- as.numeric(st_distance(pt_true_o, pt_ref_o, by_element = TRUE))
+  odef_mean_m   <- mean(odef_dist_m)
+  odef_median_m <- median(odef_dist_m)
+  odef_max_m    <- max(odef_dist_m)
+  odef_pct_100  <- 100 * sum(odef_dist_m <= 100) / n_odef_valid
+  odef_pct_500  <- 100 * sum(odef_dist_m <= 500) / n_odef_valid
+  odef_pct_1km  <- 100 * sum(odef_dist_m <= 1000) / n_odef_valid
+} else {
+  odef_mean_m <- odef_median_m <- odef_max_m <- NA_real_
+  odef_pct_100 <- odef_pct_500 <- odef_pct_1km <- NA_real_
+}
+```
+
+| Metric | ODEF |
+|--------|------|
+| Rows with true + geocoded | `r n_odef_valid` |
+| Mean distance error (m) | `r if (n_odef_valid > 0) round(odef_mean_m, 1) else "—"` |
+| Median distance error (m) | `r if (n_odef_valid > 0) round(odef_median_m, 1) else "—"` |
+| Max distance error (m) | `r if (n_odef_valid > 0) round(odef_max_m, 1) else "—"` |
+| % within 100 m | `r if (n_odef_valid > 0) paste0(round(odef_pct_100, 1), "%") else "—"` |
+| % within 500 m | `r if (n_odef_valid > 0) paste0(round(odef_pct_500, 1), "%") else "—"` |
+| % within 1 km | `r if (n_odef_valid > 0) paste0(round(odef_pct_1km, 1), "%") else "—"` |
+
+### Map: ODEF geocoded results
+
+Same style as the SIF map: true locations (dark circles), geocoded locations (coloured by match type), and connecting lines showing the offset.
+
+```{r odef-map, message=FALSE, echo=FALSE}
+#| fig-height: 4
+#| warning: false
+
+library(leaflet)
+library(sf)
+
+odef_map <- odef %>%
+  filter(!is.na(ref_Latitude), is.finite(ref_Latitude), !is.na(ref_Longitude), is.finite(ref_Longitude))
+
+facility_col <- "ugc_Facility_Name"
+if (!facility_col %in% names(odef_map)) facility_col <- "match_type"
+odef_map$popup_text <- paste0(
+  "<b>", odef_map[[facility_col]], "</b><br>",
+  "Match: ", odef_map$geocode_step
+)
+odef_map$match_type_ord <- factor(odef_map$match_type, levels = c(match_order, NA), exclude = NULL)
+
+# Ensure true-location columns are numeric (read_csv may read them as character)
+if ("ugc_true_lat" %in% names(odef_map)) odef_map$ugc_true_lat <- as.numeric(odef_map$ugc_true_lat)
+if ("ugc_true_lon" %in% names(odef_map)) odef_map$ugc_true_lon <- as.numeric(odef_map$ugc_true_lon)
+
+# Rows with both true and geocoded coords: build lines and show true markers
+odef_with_true <- odef_map %>%
+  filter(!is.na(ugc_true_lat), is.finite(ugc_true_lat), !is.na(ugc_true_lon), is.finite(ugc_true_lon))
+if (nrow(odef_with_true) > 0) {
+  line_geoms_odef <- lapply(seq_len(nrow(odef_with_true)), function(i) {
+    st_linestring(matrix(
+      c(odef_with_true$ugc_true_lon[i], odef_with_true$ugc_true_lat[i],
+        odef_with_true$ref_Longitude[i], odef_with_true$ref_Latitude[i]),
+      ncol = 2, byrow = TRUE
+    ))
+  })
+  lines_sf_odef <- st_sf(match_type_ord = odef_with_true$match_type_ord, geometry = st_sfc(line_geoms_odef, crs = 4326))
+}
+
+# Same layer order and style as map 1: tiles → lines → geocoded markers → true markers → legend
+m_odef <- leaflet(odef_map, options = leafletOptions(zoomControl = TRUE)) %>%
+  addProviderTiles(providers$CartoDB.Positron)
+if (nrow(odef_with_true) > 0) {
+  m_odef <- m_odef %>% addPolylines(data = lines_sf_odef, color = "#000", weight = 1, opacity = 0.6, group = "True → Geocoded")
+}
+m_odef <- m_odef %>%
+  addCircleMarkers(
+    lng = ~ref_Longitude, lat = ~ref_Latitude,
+    radius = 4, color = ~pal(match_type_ord), fillOpacity = 0.7,
+    popup = ~popup_text, group = "Geocoded"
+  )
+if (nrow(odef_with_true) > 0) {
+  m_odef <- m_odef %>% addCircleMarkers(
+    data = odef_with_true,
+    lng = ~ugc_true_lon, lat = ~ugc_true_lat,
+    radius = 3, color = "#222", fillColor = "#222", fillOpacity = 0.9, weight = 1,
+    popup = ~popup_text, group = "True location"
+  )
+}
+m_odef %>% addLegend(
+  pal = pal, values = ~match_type_ord, title = "Match type (geocoded)",
+  position = "bottomright", na.label = "Unmatched"
+)
+```
+
+---
+
+## Comparison of the two datasets
+
+| Metric | SIF | ODEF |
+|--------|-----|------|
+| Total rows | `r n_total` | `r n_odef` |
+| Matched (%) | `r round(100 * n_matched / n_total, 1)`% | `r round(100 * n_odef_matched / n_odef, 1)`% |
+| With coordinates (%) | `r round(100 * n_with_coords / n_total, 1)`% | `r round(100 * n_odef_coords / n_odef, 1)`% |
+| Unmatched (%) | `r round(100 * n_unmatched / n_total, 1)`% | `r round(100 * n_odef_unmatched / n_odef, 1)`% |
+| Rows with true + geocoded | `r n_sif_valid` | `r n_odef_valid` |
+| Median distance error (m) | `r if (n_sif_valid > 0) round(sif_median_m, 1) else "—"` | `r if (n_odef_valid > 0) round(odef_median_m, 1) else "—"` |
+| % within 100 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_100, 1), "%") else "—"` | `r if (n_odef_valid > 0) paste0(round(odef_pct_100, 1), "%") else "—"` |
+
+SIF achieves a higher match rate and, where both true and geocoded locations exist, typically smaller distance errors. That is partly because **the tool was developed and tuned on the SIF dataset**: its column names (Street, City, Province, Postal Code) and address formatting match what the parser and match hierarchy expect. ODEF uses different fields (e.g. a combined full address, different column names) and often different place-name conventions. The same pipeline runs on both, but match quality and precision are better when the input aligns with the design assumptions.
+
+**Generalization and next steps.** The tool shows that a single codebase can geocode multiple datasets, but **generalizing to new or noisier data usually needs extra refinement**. That can include: mapping input columns to the expected names, normalizing place names (e.g. township or abbreviation to Census Subdivision), or relaxing thresholds and pool sizes for fuzzy matching. Building the tool around one primary dataset (SIF) allowed a fast, working solution; extending it robustly to many dataset types would involve more parsing options, configuration, and possibly dataset-specific rules. For design details, scripts, and how to run or adapt the tool, see the **Project Overview** and **Scripts & Code** pages.
+
+---
+
+## Note
+
+This geocoding tool was built in ~10 work days. Given that timeline, it performs well: it runs end-to-end on large files, uses a single NAR DuckDB, supports resume, and produces clear match types and coordinates. For more on the design, scripts, and how to run or adapt the tool, see the **Project Overview** and **Scripts & Code** pages.

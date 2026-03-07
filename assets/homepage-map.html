@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function () {
+  function go() {
+    var s = document.createElement('script');
+    s.src = 'assets/homepage-map.js';
+    s.async = false;
+    document.body.appendChild(s);
+  }
+  var leafletScript = document.querySelector('script[src*="leaflet.js"]');
+  if (typeof L !== 'undefined') go();
+  else if (leafletScript) leafletScript.addEventListener('load', go);
+  else setTimeout(function () { if (typeof L !== 'undefined') go(); }, 100);
+})();
+</script>

@@ -14,3 +14,15 @@ projects:
     href: "Leaflet_Mapping_Tool/"
     tags: ["Spatial", "Mapping", "R", "leaflet", "Python", "Quarto"]
     image: ""
+
+  - title: "Offline Geocoding Tool"
+    description: "Offline geocoding for Canadian addresses using Statistics Canada's National Address Register (NAR), R, DuckDB, and a single-hierarchy match pipeline."
+    href: "Offline_Geocoding_Tool/"
+    tags: ["R", "Spatial", "ETL", "tidyverse", "Automation"]
+    image: ""
+
+  - title: "PhD Dissertation"
+    description: "Identifying geographic areas where children may be at-risk of lead poisoning and assessing the need for lead abatement in urban areas: a case study in Hamilton, Ontario (McMaster, 2019)."
+    href: "PhD_Dissertation/"
+    tags: ["Spatial", "Statistics", "R", "Health data"]
+    image: ""

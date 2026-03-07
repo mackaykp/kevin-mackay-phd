@@ -1,0 +1,23 @@
+Package: OfflineGeocodingTool
+Title: Offline Geocoding Using Statistics Canada ODA
+Version: 0.1.0
+Description: Geocode Canadian addresses offline using the Open Database of
+    Addresses (ODA) with exact and fuzzy matching, composite scoring
+    (text similarity, numeric nearness, geographic proximity), and optional
+    manual review of fuzzy matches.
+License: MIT
+Depends:
+    R (>= 4.0.0)
+Imports:
+    dplyr,
+    tidyr,
+    readr,
+    stringr,
+    tibble,
+    stringdist,
+    fuzzyjoin,
+    rlang
+Suggests:
+    testthat
+Encoding: UTF-8
+RoxygenNote: 7.2.3

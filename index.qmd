@@ -1,31 +1,83 @@
 ---
 title: "Home"
+body-class: homepage
+format:
+  html:
+    toc: true
+    toc-depth: 2
 ---
 
-# Welcome
+::: {.homepage-hero-section}
+::: {.homepage-hero-content}
+![](assets/kevin-mackay.jpg){.homepage-hero-photo}
 
-## Kevin Mackay, PhD — Data, Spatial & Research Professional
-
-I help public-sector organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects—from problem definition and data quality assessment to analysis, communication, and future‑proof workflow design.
-
-## What I Do
-- **Health & Spatial Data Analysis** — GIS, spatial modelling, administrative data, health indicators  
-- **Research Design & Evidence Synthesis** — mixed methods, qualitative/quantitative integration, policy-oriented analysis  
-- **Data Quality & Governance** — validation, documentation, assumptions, reproducibility  
-- **Project Coordination & Collaboration** — cross-functional work, planning, workflows, stakeholder engagement  
-- **Communication & Digital Enablement** — training, documentation, dashboards, user-focused outputs  
-
-## Explore My Work
-- [About](about.qmd): Background, values, and interdisciplinary approach  
-- [What I Do](what-i-do.qmd): Capability pillars and how I work  
-- [Projects](projects/index.qmd): Spatial analysis, automation, research, and data-driven work
-- [Resume](resume.qmd): Experience across municipal, federal, and academic environments  
-- [Work With Me](work-with-me.qmd): How I support teams and consulting clients  
-
-## Featured Project
-
-::: {.card}
-
-[**View all projects**](projects/index.qmd) — Spatial analysis, automation, research, and data-driven work.
-
+::: {.homepage-hero-text}
+::: {.homepage-hero}
+Make sense of complexity with full‑lifecycle data insight
 :::
+
+Hello! I'm **Kevin** — a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. I help organizations make sense of complex health, spatial, and administrative data through rigorous analysis, thoughtful research design, and clear, user‑focused communication.
+:::
+:::
+:::
+
+## My background
+
+I completed my PhD in Geography at McMaster University, where I specialized in medical and spatial analysis. Since then, I've worked across public‑sector teams supporting analytics, program monitoring, performance measurement, accessibility research, and data‑driven decision‑making. My experience spans health, housing, transportation, and user experience research, giving me a broad understanding of how data, people, and systems interact.
+
+## How I work
+
+I enjoy working across the full lifecycle of analytical and research projects:
+
+- identifying problems and clarifying requirements  
+- assessing data quality and documenting assumptions  
+- designing and conducting analysis  
+- translating results into clear, actionable insights  
+- building workflows that are reproducible, maintainable, and future‑proof  
+
+I value clarity, rigor, and thoughtful communication. I care deeply about documentation, data quality, and helping teams adopt tools and practices that make their work more reliable and sustainable.
+
+## What motivates me
+
+I'm driven by curiosity and a desire to understand how systems work. I enjoy tackling complex, interdisciplinary problems and helping teams navigate uncertainty with structure and clarity. I'm especially motivated by work that supports public impact, equity, and evidence‑informed decision‑making.
+
+## What I do
+
+I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. My work blends data analysis, spatial methods, research design, documentation, and cross-functional coordination to create solutions that are clear, reliable, and future‑proof.
+
+### Health & spatial data analysis
+I work with health, housing, transportation, and administrative datasets to uncover patterns, identify risks, and support evidence‑informed decision‑making. My background in medical and spatial geography allows me to integrate GIS, spatial modelling, and statistical analysis to answer real-world questions.
+
+**Examples:** spatial modelling and cluster analysis; health indicators and administrative data analysis; mapping, geocoding, and spatial data integration.
+
+### Research design & evidence synthesis
+I design and conduct mixed-methods research that integrates qualitative and quantitative insights. I specialize in translating complex findings into clear, actionable recommendations for policy, programs, and service delivery.
+
+**Examples:** mixed-methods studies and UX research; environmental and jurisdictional scans; policy-oriented analysis and evidence synthesis.
+
+### Data quality, governance & documentation
+I help teams build trust in their data by validating quality, documenting assumptions, and establishing reproducible workflows. I focus on clarity, transparency, and long-term maintainability.
+
+**Examples:** data validation and QA frameworks; documentation, SOPs, and standards; reproducible pipelines and workflow design.
+
+### Project coordination & collaboration
+I support cross-functional teams by coordinating project activities, clarifying requirements, tracking progress, and ensuring alignment across stakeholders. I bridge the gap between technical and non-technical audiences.
+
+**Examples:** project planning and task tracking; stakeholder coordination and communication; managing concurrent research and analytics initiatives.
+
+### Communication, training & digital enablement
+I translate complex analysis into clear, user-focused outputs and help teams adopt tools and practices that improve efficiency and understanding. I enjoy teaching, documentation, and building capacity.
+
+**Examples:** dashboards, reports, and presentations; training, workshops, and user guides; supporting adoption of analytical and digital tools.
+
+## Outside of work
+
+I enjoy hiking, climbing, gravel biking, and spending time outdoors. These interests shape my appreciation for environmental stewardship, accessibility, and community‑focused public service.
+
+## Explore my work
+
+Visit the [Projects](projects/index.qmd) page to see examples of spatial analysis, automation, research, and data-driven work across different domains.
+
+## Contact
+
+You can reach me at **mackaykp@gmail.com** — or connect via [LinkedIn](https://www.linkedin.com/in/kevin-mackay-phd/) or [GitHub](https://github.com/mackaykp/kevin-mackay-phd).

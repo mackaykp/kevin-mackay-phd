@@ -16,7 +16,19 @@ Thumbs.db
 /.quarto/
 **/*.quarto_ipynb
 
-# Leaflet_Mapping_Tool — large/generated (vignettes/maps/ is committed so the site can embed maps)
+# Leaflet_Mapping_Tool — large/generated (vignettes/maps/ kept for site embed)
 projects/Leaflet_Mapping_Tool/output/
-projects/Leaflet_Mapping_Tool/data/*.gpkg
-projects/Leaflet_Mapping_Tool/data/raw/
+projects/Leaflet_Mapping_Tool/data/
+projects/Leaflet_Mapping_Tool/_site/
+
+# Offline_Geocoding_Tool — NAR data, DuckDB, ODA, archives, output
+projects/Offline_Geocoding_Tool/data/
+projects/Offline_Geocoding_Tool/output/
+projects/Offline_Geocoding_Tool/ARCHIVE/
+
+# PhD Dissertation — full PDF (large); page and abstract stay in repo
+projects/PhD_Dissertation/*.pdf
+
+# Archive / nested build output
+projects/ARCHIVE/
+projects/**/_site/

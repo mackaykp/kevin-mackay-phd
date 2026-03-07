@@ -1,0 +1,93 @@
+---
+title: "PhD Dissertation — Lead Poisoning Risk & Abatement in Hamilton, Ontario"
+---
+
+## Thesis details
+
+| Field | Details |
+|-------|---------|
+| **Title** | Identifying Geographic Areas Where Children May Be At-Risk of Lead Poisoning and Assessing the Need for Lead Abatement in Urban Areas: A Case Study in Hamilton, Ontario |
+| **Author** | Kevin P. Mackay |
+| **Degree** | Doctor of Philosophy (2020) |
+| **Institution** | McMaster University, School of Geography and Earth Sciences, Hamilton, Ontario, Canada |
+| **Supervisor** | Dr. Bruce Newbold |
+| **Previous degrees** | B.A. Geography and Environmental Studies (McMaster University, 2012); M.S.A. Master of Spatial Analysis (Ryerson University, 2013) |
+
+---
+
+## Abstract
+
+Thirty years since the removal of lead from gasoline, lead still poses a health risk. Children are most at-risk for adverse health outcomes caused by lead toxicity due to both behavioural (e.g., hand-to-mouth behaviour) and physiological differences (i.e., increased intake of lead by body weight, higher uptake rate and a higher vulnerability to the effects of lead) compared to adults (Yeoh et al., 2009). As a result, governments must identify children that may be at-risk of lead poisoning and develop practical methods to mitigate lead exposure.
+
+Before a government can develop a policy to help mitigate exposure of lead for children, we need to understand the spatial distribution of lead within the city. A popular spatial model used within air pollution research may allow more accurate, and more localized predictions than the most common interpolation method, kriging. Land use regression (LUR) is a technique leveraging multiple predictor variables to help estimate the spatial distribution of the dependent variable. By using historical sources of lead, LUR can be used to model soil lead levels (SLL) with localized variation. Unfortunately, spurious relationships can be the basis of a LUR model, which may lead to an overfitted spatial model resulting in a model with little generalizability and questionable ability to estimate the dependent variable at unobserved locations. Ultimately, Empirical Bayesian Kriging may be the best option for soil contamination research due to its ability to provide a smoothed prediction surface and its dependence on the spatial structure of the data to provide estimations.
+
+The benefit to society and the return on investment (ROI) is often the justification for lead remediation. Gould (2009) estimates a $17 to $221 ROI for every dollar spent on lead hazard control. One of the main components of this estimate of ROI comes from the decrease in intelligence quotient (IQ) that a child may experience as a consequence of lead toxicity. There are three main ways that a decrease in IQ can negatively impact the economy, (i) lower potential lifetime earnings, (ii) reduced tax revenues, and (iii) higher spending on special education (Gould, 2009). Since IQ has such a significant role in the ROI estimates, chapter 3 seeks to achieve a greater understanding of the relationship between blood lead levels (BLLs) and IQ. The loss of IQ points for an increase in blood lead concentration proposed by Lanphear et al. (2005) and referenced by Gould (2009) is significantly higher than what we found in our meta-analysis. Thus, the projected ROI proposed by Gould (2009) may be much lower than previously calculated.
+
+In the final chapter, the cost associated with permanent lead abatement is investigated based on ROI projections as a case study in Hamilton, Ontario. We show that, in most cases, permanent lead remediation is far too expensive for a municipal government. Furthermore, the capital initially invested may not be distributed back into the local economy, as the ROI suggests. We suggest that municipal governments make decisions based on need, rather than basing remediation decisions on ROI projections. Furthermore, we recommend the use of hazard quotient maps to help justify lead remediation as a more accurate representation of potential lead toxicity, instead of only looking at SLL exceedances across the city.
+
+---
+
+## Preface
+
+This thesis dissertation contains five chapters: an introduction, three main chapters, and a conclusion.
+
+- **Chapter 2** examines a relatively new interpolation method for heavy metal soil contamination research and discusses the inherent flaws in using land use regression compared to the traditional method of kriging.
+- **Chapter 3** is a meta-analysis exploring the relationship between blood lead levels in children and intelligence quotient (IQ), presenting a thorough investigation using modern meta-analysis techniques to synthesize unstandardized beta coefficients.
+- **Chapter 4** presents a cost-benefit analysis of lead remediation in Hamilton, consisting of soil, water, and paint abatement. Despite significant return on investment projections, the paper discusses reasons why a city should reconsider investing in such a large project.
+
+The first chapter is a methodological paper that contributes to a broader research audience (e.g., air pollution research) that uses land use regression for spatial modelling. The second chapter contributes to the literature by quantifying the relationship between blood lead levels in children and intelligence quotient by pooling results from 13 papers. Finally, the last paper contributes by examining the feasibility of lead remediation at a municipal level and discussing alternatives to permanent lead abatement. This dissertation seeks to challenge the necessity and benefit of lead remediation in urban cities by providing a case study in Hamilton, Ontario.
+
+---
+
+## Table of contents (dissertation structure)
+
+### Chapter 1 — Introduction
+
+- 1.1 Justification of research topic  
+- 1.2 Thesis objectives and research questions  
+- 1.3 Dissertation contents  
+
+### Chapter 2 — A Critical Assessment of Land Use Regression for Interpolating Soil Lead (Pb) Levels: A Case Study in Hamilton, Ontario
+
+- 2.1 Introduction  
+- 2.2 Data sets and sources of lead (study area, soil lead samples, historical independent variables, control variables)  
+- 2.3 Methodology  
+- 2.4 Results (distance profiles, interpolation models)  
+- 2.5 Discussion  
+- 2.6 Conclusion  
+
+### Chapter 3 — The Relationship Between Childhood Blood Lead Levels and Intelligence Quotient: A Meta-Analysis
+
+- 3.1 Introduction (measuring IQ, social outcomes, past meta-analyses, objectives)  
+- 3.2 Methods (data sources, search strategy, data extraction, pooling beta coefficients, heterogeneity, publication bias)  
+- 3.3 Results (descriptive statistics, pooled coefficients, influence/heterogeneity/outlier detection, subgroup analysis, publication bias)  
+- 3.4 Discussion  
+- 3.5 Limitations  
+- 3.6 Conclusion  
+
+### Chapter 4 — A Critical Assessment of the Return on Investment of Permanent Lead Hazard Control: A Case Study in Hamilton, Ontario
+
+- 4.1 Introduction (mitigating lead exposure, cost of remediation and social benefits)  
+- 4.2 Datasets (study area, target land uses, soil samples)  
+- 4.3 Methodology (predicting cost of abatement—sod/soil, paint, lead-pipe; calculating ROI; understanding threat to children)  
+- 4.4 Results (cost of abatement, ROI, hazard quotient)  
+- 4.5 Discussion  
+- 4.6 Conclusion  
+
+### Chapter 5 — Conclusions and Future Research
+
+- 5.1 Contributions  
+- 5.2 Limitations  
+- 5.3 Future work  
+
+### Chapter 6 — Appendix
+
+Appendices A–P (study area maps, distance profiles, LUR/EBK/OK predictions, forest plots, funnel plots, hazard quotient maps, and related materials).
+
+---
+
+## Full dissertation (PDF)
+
+The complete dissertation (xxi, 192 pages) is available as a PDF. 
+
+[Download full dissertation (PDF)](mackay_kevin_p_finalsubmission202009_phd.pdf){target="_blank" .btn .btn-primary}

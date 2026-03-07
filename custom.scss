@@ -1,69 +1,206 @@
-// Modern portfolio UI — distinctive palette, clear hierarchy, polished UX
-// Design: generous spacing, subtle depth, smooth motion, accessible contrast
+// Custom theme using provided color palette
+// Colors: Dark Teal (#012626), Burnt Orange (#BF532C), Peach (#F2AD94), Dark Red (#731702), Black (#000000), Beige (#F3EAE7)
 
 /*-- scss:defaults --*/
-// Modern color palette (indigo/slate with warm accent)
-$primary:       #6366f1;
-$primary-dark: #4f46e5;
-$secondary:    #64748b;
-$success:      #10b981;
-$info:         #0ea5e9;
-$warning:      #f59e0b;
-$danger:       #ef4444;
-$light:        #f1f5f9;
-$dark:         #0f172a;
+// Color palette
+$primary:       #BF532C;  // Burnt Orange — main brand color
+$secondary:    #012626;  // Dark Teal — complementary
+$success:      #10b981;  // Keep default green for success
+$info:          #012626;  // Dark Teal for info
+$warning:      #F2AD94;  // Peach for warnings
+$danger:       #731702;  // Dark Red for errors
+$light:        #F3EAE7;  // Light Beige
+$dark:         #012626;  // Dark Teal
 
-$body-bg:      #f8fafc;
-$body-color:  #334155;
-$headings-color: #0f172a;
-$link-color:  $primary;
-$link-hover-color: $primary-dark;
-$code-color:  #7c3aed;
-$code-bg:     #f5f3ff;
-$border-color: #e2e8f0;
+// Backgrounds
+$body-bg:      #F3EAE7;  // Light Beige background
+$body-color:   #000000;  // Black text
+$headings-color: #012626; // Dark Teal headings
 
-// Typography — clear hierarchy
+// Links
+$link-color:   #BF532C;  // Burnt Orange links
+$link-hover-color: #731702; // Dark Red on hover
+
+// Borders & subtle elements
+$border-color: rgba(1, 38, 38, 0.15); // Light teal border
+$code-color:   #731702;  // Dark Red for code
+$code-bg:      rgba(243, 234, 231, 0.8); // Light beige for code background
+
+// Typography — Gelasio for headings, Inter for body
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
 $font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-$font-family-base: $font-family-sans-serif;
+$font-family-headings: "Gelasio", Georgia, "Times New Roman", serif;
 $headings-font-weight: 700;
-$headings-letter-spacing: -0.025em;
 $line-height-base: 1.6;
-$line-height-heading: 1.25;
 
-// Spacing & radius — modern, soft
-$border-radius:    0.75rem;
-$border-radius-sm: 0.5rem;
-$border-radius-lg: 1rem;
-$spacer: 1rem;
-$input-btn-padding-y: 0.5rem;
-$input-btn-padding-x: 1rem;
-
-// Shadows — subtle depth
-$box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
-$box-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-$box-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+// Spacing & radius
+$border-radius: 0.5rem;
+$border-radius-sm: 0.375rem;
+$border-radius-lg: 0.75rem;
 
 /*-- scss:rules --*/
 // ---- Base ----
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-feature-settings: "kern" 1, "liga" 1;
-  background-color: $body-bg;
-  color: $body-color;
+  background-color: $body-bg !important;
+  color: $body-color !important;
+}
+
+// Override Quartz theme gradients and backgrounds (exclude project pages)
+#quarto-content,
+.quarto-layout-panel,
+.page-columns,
+.column-page,
+.column-body,
+main#quarto-document-content,
+.quarto-title-block,
+.quarto-title-banner {
+  background-color: $body-bg !important;
+  background-image: none !important;
+}
+
+// Exclude project pages from background overrides
+body.yoga-project-page #quarto-content,
+body.yoga-project-page .quarto-layout-panel,
+body.yoga-project-page .page-columns,
+body.yoga-project-page .column-page,
+body.yoga-project-page .column-body,
+body.yoga-project-page main#quarto-document-content,
+body.yoga-project-page .quarto-title-block,
+body.yoga-project-page .quarto-title-banner,
+body.yoga-browse-page #quarto-content,
+body.yoga-browse-page .quarto-layout-panel,
+body.yoga-browse-page .page-columns,
+body.yoga-browse-page .column-page,
+body.yoga-browse-page .column-body,
+body.yoga-browse-page main#quarto-document-content,
+body.yoga-browse-page .quarto-title-block,
+body.yoga-browse-page .quarto-title-banner {
+  background-color: inherit !important;
+  background-image: inherit !important;
+}
+
+// Remove any pseudo-element gradients
+.page-columns::before,
+.page-columns::after,
+.quarto-title-block::before,
+.quarto-title-block::after {
+  display: none !important;
+}
+
+// Exclude project pages from global body styles
+body.yoga-project-page,
+body.yoga-browse-page {
+  background-color: inherit !important;
+  color: inherit !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $headings-color;
-  letter-spacing: $headings-letter-spacing;
+  color: $headings-color !important;
+  font-family: $font-family-headings !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+
+// Exclude project pages from font changes (keep their own styles)
+body.yoga-project-page h1,
+body.yoga-project-page h2,
+body.yoga-project-page h3,
+body.yoga-project-page h4,
+body.yoga-project-page h5,
+body.yoga-project-page h6,
+body.yoga-browse-page h1,
+body.yoga-browse-page h2,
+body.yoga-browse-page h3,
+body.yoga-browse-page h4,
+body.yoga-browse-page h5,
+body.yoga-browse-page h6 {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  color: inherit !important;
+}
+
+// Global text color (but exclude navbar and project pages)
+p, li, td, th {
+  color: $body-color !important;
+}
+
+// Exclude project pages from global text color
+body.yoga-project-page p,
+body.yoga-project-page li,
+body.yoga-project-page td,
+body.yoga-project-page th,
+body.yoga-project-page div,
+body.yoga-project-page span,
+body.yoga-browse-page p,
+body.yoga-browse-page li,
+body.yoga-browse-page td,
+body.yoga-browse-page th,
+body.yoga-browse-page div,
+body.yoga-browse-page span {
+  color: inherit !important;
+}
+
+// Exclude navbar from global color rules
+.navbar p,
+.navbar li,
+.navbar td,
+.navbar th,
+.navbar div,
+.navbar span {
+  color: inherit !important;
 }
 
 a {
-  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  color: $link-color !important;
+  transition: color 0.15s ease;
+  
+  &:hover {
+    color: $link-hover-color !important;
+  }
+}
+
+// Exclude navbar and project pages from global link color
+.navbar a {
+  color: inherit !important;
+}
+
+body.yoga-project-page a,
+body.yoga-browse-page a {
+  color: inherit !important;
+}
+
+// Override TOC sidebar
+#quarto-margin-sidebar {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+#TOC {
+  background-color: transparent !important;
+  background-image: none !important;
+  
+  h2#toc-title {
+    color: $headings-color !important;
+  }
+  
+  ul li a {
+    color: $body-color !important;
+    
+    &:hover {
+      color: $primary !important;
+    }
+    
+    &.active {
+      color: $primary !important;
+      font-weight: 600;
+    }
+  }
 }
 
 a:focus-visible {
@@ -71,225 +208,454 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-// ---- Navbar — modern dark with accent ----
+// ---- Homepage — hero section + scrollable content ----
+body.homepage main#quarto-document-content,
+body.homepage .quarto-layout-panel {
+  padding: 2rem 1.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Hero: photo + tagline + short blurb
+.homepage-hero-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $border-color;
+}
+
+.homepage-hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.homepage-hero-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid $primary;
+  flex-shrink: 0;
+}
+
+.homepage-hero-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.homepage-hero-text .homepage-hero {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.homepage-hero-text .homepage-hero::before {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+// Hide the "Home" title so the tagline is the focus
+body.homepage .quarto-title-block .title {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Optional: keep title block visible but compact (no text)
+body.homepage .quarto-title-block {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+// Hero tagline — the main visual focus
+body.homepage .homepage-hero {
+  font-family: $font-family-headings !important;
+  font-size: clamp(2rem, 5vw, 3.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+  color: $headings-color !important;
+  max-width: 720px;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+// Subtle accent line above the tagline for visual interest
+body.homepage .homepage-hero::before {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 4px;
+  background: linear-gradient(90deg, $primary, transparent);
+  margin: 0 auto 2rem auto;
+  border-radius: 2px;
+}
+
+// Optional: first line or phrase in primary color for emphasis
+body.homepage .homepage-hero strong {
+  color: $primary !important;
+}
+
+// Homepage insight section (e.g. NYC Airbnb price–POI)
+body.homepage .homepage-insight {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+body.homepage .homepage-insight h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+// Homepage: allow TOC for "On this page" navigation
+body.homepage .column-page {
+  max-width: 100%;
+}
+
+// Homepage: simple map container (R-rendered Leaflet) — full width
+body.homepage .map-container-simple {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5rem 0;
+}
+body.homepage .map-container-simple .leaflet,
+body.homepage .map-container-simple .html-widget {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 70vh !important;
+  min-height: 400px;
+}
+
+// Homepage scroll-driven map narrative (kept for any future use; main map is .map-container-simple now)
+body.homepage .homepage-map-narrative {
+  width: 100%;
+  max-width: 100%;
+}
+body.homepage .homepage-map-narrative .map-scroll-wrap {
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
+  margin-left: calc(50% - 50vw);
+  position: relative;
+}
+body.homepage .map-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #c8d4d4;
+}
+body.homepage .map-container #homepage-map,
+body.homepage .map-container .homepage-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+body.homepage .map-container .leaflet {
+  height: 100% !important;
+  min-height: 100%;
+}
+body.homepage .map-container .html-widget {
+  height: 100% !important;
+  min-height: 100%;
+}
+body.homepage .map-blur-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: backdrop-filter 0.6s ease, background-color 0.6s ease;
+}
+body.homepage .map-steps {
+  position: relative;
+  z-index: 2;
+}
+body.homepage .map-step {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  scroll-margin-top: 0;
+}
+body.homepage .map-card {
+  max-width: 28rem;
+  padding: 1.5rem 2rem;
+  background: rgba(243, 234, 231, 0.96);
+  color: #012626;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 32px rgba(1, 38, 38, 0.15);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  border: 1px solid rgba(1, 38, 38, 0.08);
+}
+body.homepage .map-card strong {
+  color: #BF532C;
+  display: block;
+  margin-bottom: 0.35em;
+  font-size: 1.1em;
+}
+
+// ---- Global overrides to remove Quartz gradients ----
+// Override any gradient backgrounds from Quartz (targeted selectors only)
+.quarto-title-block,
+.quarto-title-banner {
+  background-image: none !important;
+}
+
+// ---- Navbar ----
 .navbar {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
-  padding: 0.5rem 0;
+  background-color: $dark !important;
+  background-image: none !important;
+  border-bottom: 1px solid rgba(191, 83, 44, 0.2);
+}
+
+// Force light text color for all navbar elements (highest specificity)
+.navbar,
+.navbar *,
+.navbar-brand,
+.navbar-brand *,
+.navbar .nav-link,
+.navbar .nav-link *,
+.navbar .navbar-nav,
+.navbar .navbar-nav * {
+  color: $light !important;
 }
 
 .navbar-brand {
+  color: $light !important;
   font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #fff !important;
+  
+  &:hover,
+  &:focus {
+    color: $light !important;
+  }
 }
 
 .navbar .nav-link {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.85) !important;
-  border-radius: $border-radius-sm;
-  padding: 0.4rem 0.75rem !important;
-  transition: color 0.15s ease, background-color 0.15s ease;
-}
-
-.navbar .nav-link:hover {
-  color: #fff !important;
-  background-color: rgba(99, 102, 241, 0.2);
-}
-
-.navbar .nav-link[aria-current="page"] {
-  color: #fff !important;
-  background-color: rgba(99, 102, 241, 0.35);
-}
-
-.navbar .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.2);
-  border-radius: $border-radius-sm;
-}
-
-.navbar .navbar-toggler-icon {
-  filter: brightness(0) invert(1);
-}
-
-// ---- Sidebar — clean, clear active state ----
-.sidebar-item-container .sidebar-item-text {
-  font-weight: 500;
-  color: $body-color;
-  border-radius: $border-radius-sm;
-  padding: 0.35rem 0.6rem;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.sidebar-item-container:hover .sidebar-item-text {
-  background-color: $light;
-  color: $primary;
-}
-
-.sidebar-item-container .sidebar-item-text[href]:active,
-.sidebar-item-container a.active .sidebar-item-text {
-  background-color: rgba(99, 102, 241, 0.12);
-  color: $primary;
-  font-weight: 600;
-  border-left: 3px solid $primary;
-  margin-left: -3px;
-  padding-left: calc(0.6rem + 3px);
-}
-
-.sidebar-header {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: $headings-color;
-}
-
-// ---- Content area ----
-.quarto-layout-panel {
-  background: #fff;
-  border-radius: $border-radius-lg;
-  box-shadow: $box-shadow;
-  border: 1px solid $border-color;
-  padding: 1.5rem 2rem;
-}
-
-@media (min-width: 992px) {
-  .column-page .column-body {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  color: $light !important;
+  
+  &:hover,
+  &:focus {
+    color: $primary !important;
+  }
+  
+  &[aria-current="page"] {
+    color: $primary !important;
   }
 }
 
-// ---- Hero / Home ----
-.quarto-title-banner {
-  padding: 3.5rem 0;
-  margin-bottom: 2.5rem;
-  background: linear-gradient(180deg, rgba(99, 102, 241, 0.06) 0%, transparent 100%);
-  border-radius: 0 0 $border-radius-lg $border-radius-lg;
+// Navbar icons (GitHub, LinkedIn, etc.) - make them light colored
+.navbar .navbar-nav .nav-link i,
+.navbar .navbar-nav .nav-link svg,
+.navbar .nav-link[aria-label] i,
+.navbar .nav-link[aria-label] svg {
+  color: $light !important;
+  fill: $light !important;
+  filter: brightness(0) invert(1) !important; // Make icons white/light
 }
 
-.quarto-title-banner .title {
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: $headings-color;
+.navbar .navbar-nav .nav-link:hover i,
+.navbar .navbar-nav .nav-link:hover svg,
+.navbar .navbar-nav .nav-link:focus i,
+.navbar .navbar-nav .nav-link:focus svg {
+  color: $primary !important;
+  fill: $primary !important;
+  filter: none !important; // Remove filter on hover to show orange
 }
 
-.quarto-title-banner .subtitle,
-.quarto-title-banner .description {
-  color: $secondary;
-  font-size: 1.1rem;
-}
-
-@media (min-width: 768px) {
-  .quarto-title-banner {
-    padding: 4.5rem 0;
+// Navbar toggler (mobile menu button)
+.navbar-toggler {
+  border-color: rgba(243, 234, 231, 0.5) !important;
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(243, 234, 231, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
   }
 }
 
-// ---- Cards & blocks ----
+// ---- Buttons ----
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #fff !important; // Ensure label is visible on primary background (links inherit $link-color otherwise)
+
+  &:hover {
+    background-color: $link-hover-color;
+    border-color: $link-hover-color;
+    color: #fff !important;
+  }
+}
+
+.btn-outline-primary {
+  color: $primary;
+  border-color: $primary;
+  
+  &:hover {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+}
+
+// ---- Cards ----
 .card {
-  border-radius: $border-radius;
-  border: 1px solid $border-color;
-  box-shadow: $box-shadow-sm;
-  transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
-  background: #fff;
-}
-
-.card:hover {
-  box-shadow: $box-shadow-lg;
-  border-color: rgba(99, 102, 241, 0.2);
-}
-
-// ---- Tables ----
-.quarto-content table {
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: $box-shadow-sm;
-  border: 1px solid $border-color;
-}
-
-.quarto-content thead {
-  background: $light;
-  color: $headings-color;
-  font-weight: 600;
-}
-
-.quarto-content tbody tr:hover {
-  background-color: rgba(99, 102, 241, 0.04);
+  background-color: #fff !important;
+  background-image: none !important;
+  border-color: $border-color;
+  color: $body-color !important;
+  
+  &:hover {
+    border-color: rgba(191, 83, 44, 0.3);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: $headings-color !important;
+  }
+  
+  p, li {
+    color: $body-color !important;
+  }
 }
 
 // ---- Code blocks ----
 pre.sourceCode {
-  border-radius: $border-radius;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid $border-color;
-  box-shadow: $box-shadow-sm;
-  background: #fff !important;
+  background-color: $code-bg !important;
+  border-left: 3px solid $code-color;
 }
 
 code:not(pre sourceCode code) {
   background-color: $code-bg;
   color: $code-color;
   padding: 0.2em 0.4em;
-  border-radius: 0.375rem;
-  font-size: 0.9em;
+  border-radius: 0.25rem;
 }
 
-// ---- Buttons & links in content ----
-.btn-primary {
-  background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
-  border: none;
-  border-radius: $border-radius-sm;
+// ---- Tables ----
+.quarto-content table {
+  border-color: $border-color;
+  background-color: $body-bg !important;
+  background-image: none !important;
+}
+
+.quarto-content thead {
+  background-color: rgba(1, 38, 38, 0.05) !important;
+  background-image: none !important;
+  color: $headings-color !important;
+}
+
+.quarto-content tbody {
+  background-color: $body-bg !important;
+  color: $body-color !important;
+}
+
+.quarto-content td,
+.quarto-content th {
+  color: $body-color !important;
+}
+
+// ---- Sidebar ----
+#quarto-sidebar {
+  background-color: $body-bg !important;
+  background-image: none !important;
+}
+
+.sidebar-item-container .sidebar-item-text {
+  color: $body-color !important;
+  
+  &:hover {
+    color: $primary !important;
+  }
+}
+
+.sidebar-item-container a.active .sidebar-item-text {
+  color: $primary !important;
   font-weight: 600;
-  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
-  transition: transform 0.1s ease, box-shadow 0.2s ease;
 }
 
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.35);
+.sidebar-header {
+  color: $headings-color !important;
 }
 
-.quarto-content a {
-  color: $primary;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+// Override sidebar nav links
+.nav-sidebar a {
+  color: $body-color !important;
+  
+  &:hover {
+    color: $primary !important;
+  }
+  
+  &.active {
+    color: $primary !important;
+  }
 }
 
-.quarto-content a:hover {
-  color: $primary-dark;
-  border-bottom-color: rgba(99, 102, 241, 0.4);
-}
-
-// ---- Footer ----
-.page-footer {
-  font-size: 0.875rem;
-  padding: 2rem 0;
-  background: #fff;
-  border-top: 1px solid $border-color;
-  color: $secondary;
-}
-
-// ---- Search ----
-.aa-Form {
-  border-radius: $border-radius-sm;
+// ---- Projects page specific colors ----
+.projects-filters {
+  background-color: #fff;
   border: 1px solid $border-color;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.aa-Form:focus-within {
-  border-color: $primary;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-}
-
-// ---- Page navigation (prev/next) ----
-.quarto-navigation .page-navigation a {
-  border-radius: $border-radius-sm;
-  padding: 0.5rem 0.75rem;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.quarto-navigation .page-navigation a:hover {
+.projects-tag-btn {
+  border-color: $border-color;
   background-color: $light;
-  color: $primary;
+  color: $body-color;
+  
+  &:hover {
+    border-color: $primary;
+    background-color: rgba(191, 83, 44, 0.1);
+    color: $primary;
+  }
+  
+  &.active {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+}
+
+.projects-card {
+  background-color: #fff;
+  border: 1px solid $border-color;
+  
+  &:hover {
+    border-color: rgba(191, 83, 44, 0.3);
+    box-shadow: 0 4px 12px rgba(1, 38, 38, 0.1);
+  }
+}
+
+.projects-card-title a {
+  color: $headings-color;
+  
+  &:hover {
+    color: $primary;
+  }
+}
+
+.projects-card-tag {
+  background-color: $light;
+  color: $body-color;
+  border-color: $border-color;
+  
+  &.filter-tag:hover {
+    background-color: rgba(191, 83, 44, 0.1);
+    color: $primary;
+    border-color: $primary;
+  }
 }
 
 // ---- Yoga browse page (catalog at full size, no left sidebar; keep right TOC) ----
@@ -347,9 +713,6 @@ body.yoga-project-page .yoga-view-toggle .btn {
   height: calc(100vh - 260px) !important;
   min-height: 600px !important;
   position: relative;
-  border: 1px solid $border-color;
-  border-radius: $border-radius-lg;
-  box-shadow: $box-shadow;
   overflow: hidden;
 }
 
@@ -364,26 +727,157 @@ body.yoga-project-page .yoga-view-toggle .btn {
   display: block;
 }
 
-// ---- Responsive ----
-@media (max-width: 991.98px) {
-  .navbar-collapse {
-    padding: 0.75rem 0;
-    margin-top: 0.5rem;
-    border-radius: $border-radius-sm;
-    background: rgba(15, 23, 42, 0.98);
-  }
+// ---- Projects page (card grid + tag filter) ----
+.projects-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0 2rem 0;
+}
 
-  .navbar .nav-link {
-    padding: 0.5rem 1rem !important;
+.projects-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.projects-filter-groups {
+  flex: 1;
+  min-width: 0;
+}
+
+.projects-filter-group {
+  margin-bottom: 0.75rem;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
-@media (max-width: 767.98px) {
-  .quarto-title-banner {
-    padding: 2.5rem 0;
-  }
+.projects-filter-group-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+  display: block;
+}
 
-  .quarto-layout-panel {
-    padding: 1rem 1.25rem;
+.projects-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.projects-tag-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.projects-clear-btn {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.projects-count {
+  font-size: 0.875rem;
+  margin: 0 0 1rem 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.projects-card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+}
+
+.projects-card-visual {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
+}
+
+.projects-card-visual-placeholder {
+  font-size: 2rem;
+  opacity: 0.8;
+}
+
+.projects-card-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.projects-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.projects-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.projects-card-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+
+  &.filter-tag {
+    cursor: pointer;
+  }
+}
+
+.projects-empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9375rem;
 }

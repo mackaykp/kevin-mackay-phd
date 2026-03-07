@@ -2,8 +2,6 @@
 title: "Work With Me"
 ---
 
-# Work With Me
-
 I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. Whether you need help defining a problem, improving data quality, conducting analysis, or communicating results, I bring structure, clarity, and rigor to every stage of the work.
 
 ## How I Can Help

@@ -1,0 +1,259 @@
+---
+title: "Offline Geocoding Tool"
+---
+
+::: {.yoga-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
+:::
+
+::: {#yoga-final-product .yoga-view-panel}
+::: {.yoga-embed-bar}
+[Open geocoding showcase in new tab](Geocoding_Tool_Showcase.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+::: {#yoga-iframe-wrap .yoga-embed-full}
+<iframe src="Geocoding_Tool_Showcase.html" title="Offline Geocoding Tool — Showcase" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+:::
+:::
+
+::: {#yoga-overview .yoga-view-panel .d-none}
+## Problem
+
+Statistics Canada's National Address Register (NAR) provides authoritative Canadian address and location data, but there was no lightweight, offline way to geocode large spreadsheets (e.g. school or facility lists) against it. The team needed a tool that could match input addresses to NAR, assign coordinates using a clear match hierarchy, and write results to CSV without depending on external APIs or GIS software.
+
+## Approach
+
+I built an offline geocoding pipeline in R that uses a single DuckDB database of NAR (Address + Location) as the reference. The matcher follows a **single hierarchy** (literature-based): exact full address → exact street only (within same geography) → relaxed (same province/city/postal, attribute relaxation) → fuzzy (narrow pool: province + city + full 6-digit postal or FSA, with composite scoring) → 6-digit postal centroid → FSA centroid → city centroid. Geography is constrained so there are no cross-FSA or cross-city point matches.
+
+- **Reference build:** NAR Address and Location CSVs are joined on `LOC_GUID`, normalized (city, postal, street types), and written to one DuckDB table `ref`. Built once; all geocoding queries run against this file.
+- **Input:** Excel or CSV with address columns (e.g. Street, City, Province, Postal Code). Rows are processed in batches with progress saved every 100 rows so runs can be resumed.
+- **Scoring:** Fuzzy matches use a composite of text similarity (Jaro–Winkler), numeric nearness (civic numbers), and geographic agreement (province, city, postal). Street-type and direction normalization (including bilingual and abbreviations) keeps matching consistent.
+
+The tool is designed to run with minimal setup: build the NAR DuckDB once, then point it at any file with the expected address columns.
+
+## Impact
+
+- **Fully offline:** No API keys or internet required; suitable for sensitive or air-gapped environments.
+- **Reproducible:** Single reference DB and deterministic hierarchy make results auditable and repeatable.
+- **Scalable:** Single DuckDB connection, batched fuzzy queries (configurable pool size), and streamed CSV output keep memory use manageable for large files.
+- **Flexible:** Tunable fuzzy threshold and optional city-in-pool behaviour; works with English and French address styles via street-type normalization.
+
+If you're interested in adapting this tool for your own project, feel free to reach out—I'm happy to help.
+:::
+
+::: {#yoga-scripts .yoga-view-panel .d-none}
+## build_nar_duckdb.R {#script-build-nar}
+
+**What it does:** One-time build of the NAR DuckDB. Reads all Location CSVs into a temporary `loc` table (LOC_GUID, lat/lon), then streams Address CSVs in chunks, joins to `loc` on LOC_GUID, normalizes province (SGC → 2-letter), city, postal, FSA, and full address. Writes table `ref` with columns expected by the geocoder (Latitude, Longitude, Full_Address, Civic_Number, street fields, city_norm, fsa, address_norm, street_only_norm). Drops `loc` when done.
+
+```{r}
+#| file: R/build_nar_duckdb.R
+#| eval: false
+```
+
+---
+
+## query_ref_duckdb.R {#script-query-ref}
+
+**What it does:** DuckDB query helpers for the geocoder. `get_ref_empty_template()` returns a 0-row tibble with ref schema. `query_ref_exact()` and `query_ref_exact_street()` match on normalized full address or street-only norm. `query_ref_exact_street_in_geography()` restricts exact-street matches to the same province + city + postal/FSA. `query_ref_candidates_narrow()` fetches the candidate pool for fuzzy matching (province, city, full postal or FSA; optional street prefix). `query_ref_postal_centroid()`, `query_ref_fsa_centroid()`, and `query_ref_city_centroid()` return one centroid row each for fallback matching.
+
+```{r}
+#| file: R/query_ref_duckdb.R
+#| eval: false
+```
+
+---
+
+## utils_geocode.R {#script-utils-geocode}
+
+**What it does:** Normalization and scoring utilities. Province and city name normalization (including StatCan CSD suffixes and "City of" prefixes); street-type normalization via STREET_TYPE_MAP; cardinal directions; Canadian postal (6-char). `parse_address_components()` splits an address string into civic number, street part, city, province, postal. `build_relaxed_address_norms()` builds variants (drop trailing direction, then street type) for relaxed matching. Text similarity (Jaro–Winkler), numeric nearness (civic numbers), and geographic score feed into `composite_score()` for fuzzy ranking.
+
+```{r}
+#| file: R/utils_geocode.R
+#| eval: false
+```
+
+---
+
+## street_type_map.R {#script-street-type-map}
+
+**What it does:** Canonical street-type map: full words and abbreviations (English and French) to a single lowercase code (Canada Post / StatCan NAR). Used by `normalize_street_types_in_string()` so "avenue", "av", "ave" and "rue" match consistently across input and reference.
+
+```{r}
+#| file: R/street_type_map.R
+#| eval: false
+```
+
+---
+
+## geocode_ref.R {#script-geocode-ref}
+
+**What it does:** Core geocoding function. Implements the full hierarchy: (1) exact full address, (2) exact street within same geography, (3) relaxed (variant norms in narrow pool), (4) fuzzy (narrow pool, composite score, configurable threshold and min street score), (5) 6-digit postal centroid, (6) FSA centroid, (7) city centroid. Uses optional first-character filter and street-direction filter to shrink the candidate set. Returns a tibble with match_type, scores, and ref columns. Single DuckDB connection; batched by (province, city, postal/FSA) for low memory.
+
+```{r}
+#| file: R/geocode_ref.R
+#| eval: false
+```
+
+---
+
+## geocode_excel_file.R {#script-geocode-excel}
+
+**What it does:** User-facing entry point. Reads Excel or CSV from a given path, drops rows with no usable address, calls `geocode_ref()` in chunks (e.g. 100 rows), and appends to output CSV after each chunk so progress is saved and runs can be resumed. Column names for address parts are configurable (`address_cols`). Output is written to `output/<basename>_geocoded.csv` by default. Forwards options (e.g. `fuzzy_threshold`, `max_candidate_pool`) to `geocode_ref()`.
+
+```{r}
+#| file: geocode_excel_file.R
+#| eval: false
+```
+
+---
+
+## run_build_nar_duckdb.R {#script-run-build}
+
+**What it does:** One-time runner. Sets project root, sources `R/utils_geocode.R` and `R/build_nar_duckdb.R`, and calls `build_nar_duckdb(nar_dir, db_path)` to produce `data/nar.duckdb`. Run once (or when NAR data changes).
+
+```{r}
+#| file: run_build_nar_duckdb.R
+#| eval: false
+```
+
+---
+
+## run_test_geocode.R {#script-run-test}
+
+**What it does:** Test run. Sources `geocode_excel_file.R` and runs `geocode_excel()` on `data/ungeocoded_files/test_addresses.csv` (or .xlsx), writing to `output/test_addresses_geocoded.csv`. Use after building the NAR DB and creating test addresses (e.g. via `create_test_addresses.R`).
+
+```{r}
+#| file: run_test_geocode.R
+#| eval: false
+```
+
+---
+
+## run_geocode.R {#script-run-geocode}
+
+**What it does:** Production run. Sources `geocode_excel_file.R` and runs `geocode_excel()` on the SIF school data file (or another configured path), writing to `output/<basename>_geocoded.csv`. Re-run to resume from last saved chunk.
+
+```{r}
+#| file: run_geocode.R
+#| eval: false
+```
+
+---
+
+## create_test_addresses.R {#script-create-test}
+
+**What it does:** Creates a small CSV of test addresses in `data/ungeocoded_files/test_addresses.csv` for use with `run_test_geocode.R`. Optional helper when no real input file is available.
+
+```{r}
+#| file: create_test_addresses.R
+#| eval: false
+```
+
+---
+
+See the [README](README.md) in this project for setup, NAR data layout, and usage.
+:::
+
+<script>
+(function() {
+  var productPanel = document.getElementById('yoga-final-product');
+  var overviewPanel = document.getElementById('yoga-overview');
+  var scriptsPanel = document.getElementById('yoga-scripts');
+  var btnProduct = document.querySelector('.yoga-btn-product');
+  var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnScripts = document.querySelector('.yoga-btn-scripts');
+  if (!productPanel || !overviewPanel || !scriptsPanel || !btnProduct || !btnOverview || !btnScripts) return;
+
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnScripts].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showScripts() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    scriptsPanel.classList.remove('d-none');
+    setActive(btnScripts);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnScripts.addEventListener('click', showScripts);
+
+  function buildMarginTOC() {
+    if (!document.body.classList.contains('yoga-project-page')) return;
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
+    var main = document.getElementById('quarto-document-content');
+    if (!main) return;
+    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
+    if (headings.length === 0) return;
+    var nav = document.createElement('nav');
+    nav.id = 'TOC';
+    nav.setAttribute('role', 'doc-toc');
+    nav.className = 'toc-active';
+    var title = document.createElement('h2');
+    title.id = 'toc-title';
+    title.textContent = 'On this page';
+    nav.appendChild(title);
+    var ul = document.createElement('ul');
+    ul.className = 'collapse';
+    headings.forEach(function(h2) {
+      var id = h2.getAttribute('data-anchor-id') || h2.id;
+      if (!id) return;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.id = 'toc-' + id;
+      a.className = 'nav-link';
+      a.setAttribute('data-scroll-target', '#' + id);
+      a.textContent = h2.textContent.trim();
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    nav.appendChild(ul);
+    marginSidebar.appendChild(nav);
+    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var id = link.getAttribute('data-scroll-target');
+        if (!id) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        if (overviewPanel.contains(target)) {
+          e.preventDefault();
+          showOverview();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        } else if (scriptsPanel.contains(target)) {
+          e.preventDefault();
+          showScripts();
+          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildMarginTOC);
+  } else {
+    buildMarginTOC();
+  }
+})();
+</script>
