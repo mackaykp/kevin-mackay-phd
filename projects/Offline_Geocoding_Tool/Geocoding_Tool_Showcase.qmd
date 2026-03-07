@@ -171,62 +171,70 @@ library(sf)
 sif_map <- sif %>%
   filter(!is.na(ref_Latitude), is.finite(ref_Latitude), !is.na(ref_Longitude), is.finite(ref_Longitude))
 
-match_order <- c("exact", "exact_street", "relaxed", "fuzzy", "postal_centroid", "fsa_centroid", "city_centroid")
-sif_map$match_type_ord <- factor(sif_map$match_type, levels = c(match_order, NA), exclude = NULL)
-school_name_col <- "ugc_School Name"
-if (!school_name_col %in% names(sif_map)) school_name_col <- "match_type"
-sif_map$popup_text <- paste0(
-  "<b>", sif_map[[school_name_col]], "</b><br>",
-  sif_map$ugc_Street, ", ", sif_map$ugc_City, "<br>",
-  "Match: ", sif_map$geocode_step
-)
-pal <- colorFactor(
-  palette = c("#2d5016", "#4a7c23", "#6b9e3a", "#f0ad4e", "#5bc0de", "#428bca", "#9534b0"),
-  domain = c(match_order, NA),
-  na.color = "#888"
-)
-
-# Ensure true-location columns are numeric (read_csv may read them as character)
-if ("ugc_true_lat" %in% names(sif_map)) sif_map$ugc_true_lat <- as.numeric(sif_map$ugc_true_lat)
-if ("ugc_true_lon" %in% names(sif_map)) sif_map$ugc_true_lon <- as.numeric(sif_map$ugc_true_lon)
-
-# Rows with both true and geocoded: build lines (true → geocoded)
-sif_with_true <- sif_map %>%
-  filter(!is.na(ugc_true_lat), is.finite(ugc_true_lat), !is.na(ugc_true_lon), is.finite(ugc_true_lon))
-if (nrow(sif_with_true) > 0) {
-  line_geoms <- lapply(seq_len(nrow(sif_with_true)), function(i) {
-    st_linestring(matrix(
-      c(sif_with_true$ugc_true_lon[i], sif_with_true$ugc_true_lat[i],
-        sif_with_true$ref_Longitude[i], sif_with_true$ref_Latitude[i]),
-      ncol = 2, byrow = TRUE
-    ))
-  })
-  lines_sf <- st_sf(match_type_ord = sif_with_true$match_type_ord, geometry = st_sfc(line_geoms, crs = 4326))
-}
-
-m <- leaflet(sif_map, options = leafletOptions(zoomControl = TRUE)) %>%
-  addProviderTiles(providers$CartoDB.Positron)
-if (nrow(sif_with_true) > 0) {
-  m <- m %>% addPolylines(data = lines_sf, color = "#000", weight = 1, opacity = 0.6, group = "True → Geocoded")
-}
-m <- m %>%
-  addCircleMarkers(
-    lng = ~ref_Longitude, lat = ~ref_Latitude,
-    radius = 4, color = ~pal(match_type_ord), fillOpacity = 0.7,
-    popup = ~popup_text, group = "Geocoded"
+if (nrow(sif_map) == 0) {
+  m <- leaflet(options = leafletOptions(zoomControl = TRUE)) %>%
+    addProviderTiles(providers$CartoDB.Positron) %>%
+    setView(-79.87, 43.26, zoom = 10) %>%
+    addControl("No geocoded data to display.", position = "topright")
+  m
+} else {
+  match_order <- c("exact", "exact_street", "relaxed", "fuzzy", "postal_centroid", "fsa_centroid", "city_centroid")
+  sif_map$match_type_ord <- factor(sif_map$match_type, levels = c(match_order, NA), exclude = NULL)
+  school_name_col <- "ugc_School Name"
+  if (!school_name_col %in% names(sif_map)) school_name_col <- "match_type"
+  sif_map$popup_text <- paste0(
+    "<b>", sif_map[[school_name_col]], "</b><br>",
+    sif_map$ugc_Street, ", ", sif_map$ugc_City, "<br>",
+    "Match: ", sif_map$geocode_step
   )
-if (nrow(sif_with_true) > 0) {
-  m <- m %>% addCircleMarkers(
-    data = sif_with_true,
-    lng = ~ugc_true_lon, lat = ~ugc_true_lat,
-    radius = 3, color = "#222", fillColor = "#222", fillOpacity = 0.9, weight = 1,
-    popup = ~popup_text, group = "True location"
+  pal <- colorFactor(
+    palette = c("#2d5016", "#4a7c23", "#6b9e3a", "#f0ad4e", "#5bc0de", "#428bca", "#9534b0"),
+    domain = c(match_order, NA),
+    na.color = "#888888"
+  )
+
+  # Ensure true-location columns are numeric (read_csv may read them as character)
+  if ("ugc_true_lat" %in% names(sif_map)) sif_map$ugc_true_lat <- as.numeric(sif_map$ugc_true_lat)
+  if ("ugc_true_lon" %in% names(sif_map)) sif_map$ugc_true_lon <- as.numeric(sif_map$ugc_true_lon)
+
+  # Rows with both true and geocoded: build lines (true → geocoded)
+  sif_with_true <- sif_map %>%
+    filter(!is.na(ugc_true_lat), is.finite(ugc_true_lat), !is.na(ugc_true_lon), is.finite(ugc_true_lon))
+  if (nrow(sif_with_true) > 0) {
+    line_geoms <- lapply(seq_len(nrow(sif_with_true)), function(i) {
+      st_linestring(matrix(
+        c(sif_with_true$ugc_true_lon[i], sif_with_true$ugc_true_lat[i],
+          sif_with_true$ref_Longitude[i], sif_with_true$ref_Latitude[i]),
+        ncol = 2, byrow = TRUE
+      ))
+    })
+    lines_sf <- st_sf(match_type_ord = sif_with_true$match_type_ord, geometry = st_sfc(line_geoms, crs = 4326))
+  }
+
+  m <- leaflet(sif_map, options = leafletOptions(zoomControl = TRUE)) %>%
+    addProviderTiles(providers$CartoDB.Positron)
+  if (nrow(sif_with_true) > 0) {
+    m <- m %>% addPolylines(data = lines_sf, color = "#000", weight = 1, opacity = 0.6, group = "True → Geocoded")
+  }
+  m <- m %>%
+    addCircleMarkers(
+      lng = ~ref_Longitude, lat = ~ref_Latitude,
+      radius = 4, color = ~pal(match_type_ord), fillOpacity = 0.7,
+      popup = ~popup_text, group = "Geocoded"
+    )
+  if (nrow(sif_with_true) > 0) {
+    m <- m %>% addCircleMarkers(
+      data = sif_with_true,
+      lng = ~ugc_true_lon, lat = ~ugc_true_lat,
+      radius = 3, color = "#222", fillColor = "#222", fillOpacity = 0.9, weight = 1,
+      popup = ~popup_text, group = "True location"
+    )
+  }
+  m %>% addLegend(
+    pal = pal, values = ~match_type_ord, title = "Match type (geocoded)",
+    position = "bottomright", na.label = "Unmatched", na.color = "#888888"
   )
 }
-m %>% addLegend(
-  pal = pal, values = ~match_type_ord, title = "Match type (geocoded)",
-  position = "bottomright", na.label = "Unmatched"
-)
 ```
 
 ---
@@ -348,56 +356,70 @@ library(sf)
 odef_map <- odef %>%
   filter(!is.na(ref_Latitude), is.finite(ref_Latitude), !is.na(ref_Longitude), is.finite(ref_Longitude))
 
-facility_col <- "ugc_Facility_Name"
-if (!facility_col %in% names(odef_map)) facility_col <- "match_type"
-odef_map$popup_text <- paste0(
-  "<b>", odef_map[[facility_col]], "</b><br>",
-  "Match: ", odef_map$geocode_step
-)
-odef_map$match_type_ord <- factor(odef_map$match_type, levels = c(match_order, NA), exclude = NULL)
-
-# Ensure true-location columns are numeric (read_csv may read them as character)
-if ("ugc_true_lat" %in% names(odef_map)) odef_map$ugc_true_lat <- as.numeric(odef_map$ugc_true_lat)
-if ("ugc_true_lon" %in% names(odef_map)) odef_map$ugc_true_lon <- as.numeric(odef_map$ugc_true_lon)
-
-# Rows with both true and geocoded coords: build lines and show true markers
-odef_with_true <- odef_map %>%
-  filter(!is.na(ugc_true_lat), is.finite(ugc_true_lat), !is.na(ugc_true_lon), is.finite(ugc_true_lon))
-if (nrow(odef_with_true) > 0) {
-  line_geoms_odef <- lapply(seq_len(nrow(odef_with_true)), function(i) {
-    st_linestring(matrix(
-      c(odef_with_true$ugc_true_lon[i], odef_with_true$ugc_true_lat[i],
-        odef_with_true$ref_Longitude[i], odef_with_true$ref_Latitude[i]),
-      ncol = 2, byrow = TRUE
-    ))
-  })
-  lines_sf_odef <- st_sf(match_type_ord = odef_with_true$match_type_ord, geometry = st_sfc(line_geoms_odef, crs = 4326))
-}
-
-# Same layer order and style as map 1: tiles → lines → geocoded markers → true markers → legend
-m_odef <- leaflet(odef_map, options = leafletOptions(zoomControl = TRUE)) %>%
-  addProviderTiles(providers$CartoDB.Positron)
-if (nrow(odef_with_true) > 0) {
-  m_odef <- m_odef %>% addPolylines(data = lines_sf_odef, color = "#000", weight = 1, opacity = 0.6, group = "True → Geocoded")
-}
-m_odef <- m_odef %>%
-  addCircleMarkers(
-    lng = ~ref_Longitude, lat = ~ref_Latitude,
-    radius = 4, color = ~pal(match_type_ord), fillOpacity = 0.7,
-    popup = ~popup_text, group = "Geocoded"
+if (nrow(odef_map) == 0) {
+  m_odef <- leaflet(options = leafletOptions(zoomControl = TRUE)) %>%
+    addProviderTiles(providers$CartoDB.Positron) %>%
+    setView(-79.87, 43.26, zoom = 10) %>%
+    addControl("No geocoded data to display.", position = "topright")
+  m_odef
+} else {
+  match_order_odef <- c("exact", "exact_street", "relaxed", "fuzzy", "postal_centroid", "fsa_centroid", "city_centroid")
+  facility_col <- "ugc_Facility_Name"
+  if (!facility_col %in% names(odef_map)) facility_col <- "match_type"
+  odef_map$popup_text <- paste0(
+    "<b>", odef_map[[facility_col]], "</b><br>",
+    "Match: ", odef_map$geocode_step
   )
-if (nrow(odef_with_true) > 0) {
-  m_odef <- m_odef %>% addCircleMarkers(
-    data = odef_with_true,
-    lng = ~ugc_true_lon, lat = ~ugc_true_lat,
-    radius = 3, color = "#222", fillColor = "#222", fillOpacity = 0.9, weight = 1,
-    popup = ~popup_text, group = "True location"
+  odef_map$match_type_ord <- factor(odef_map$match_type, levels = c(match_order_odef, NA), exclude = NULL)
+  pal_odef <- colorFactor(
+    palette = c("#2d5016", "#4a7c23", "#6b9e3a", "#f0ad4e", "#5bc0de", "#428bca", "#9534b0"),
+    domain = c(match_order_odef, NA),
+    na.color = "#888888"
+  )
+
+  # Ensure true-location columns are numeric (read_csv may read them as character)
+  if ("ugc_true_lat" %in% names(odef_map)) odef_map$ugc_true_lat <- as.numeric(odef_map$ugc_true_lat)
+  if ("ugc_true_lon" %in% names(odef_map)) odef_map$ugc_true_lon <- as.numeric(odef_map$ugc_true_lon)
+
+  # Rows with both true and geocoded coords: build lines and show true markers
+  odef_with_true <- odef_map %>%
+    filter(!is.na(ugc_true_lat), is.finite(ugc_true_lat), !is.na(ugc_true_lon), is.finite(ugc_true_lon))
+  if (nrow(odef_with_true) > 0) {
+    line_geoms_odef <- lapply(seq_len(nrow(odef_with_true)), function(i) {
+      st_linestring(matrix(
+        c(odef_with_true$ugc_true_lon[i], odef_with_true$ugc_true_lat[i],
+          odef_with_true$ref_Longitude[i], odef_with_true$ref_Latitude[i]),
+        ncol = 2, byrow = TRUE
+      ))
+    })
+    lines_sf_odef <- st_sf(match_type_ord = odef_with_true$match_type_ord, geometry = st_sfc(line_geoms_odef, crs = 4326))
+  }
+
+  # Same layer order and style as map 1: tiles → lines → geocoded markers → true markers → legend
+  m_odef <- leaflet(odef_map, options = leafletOptions(zoomControl = TRUE)) %>%
+    addProviderTiles(providers$CartoDB.Positron)
+  if (nrow(odef_with_true) > 0) {
+    m_odef <- m_odef %>% addPolylines(data = lines_sf_odef, color = "#000", weight = 1, opacity = 0.6, group = "True → Geocoded")
+  }
+  m_odef <- m_odef %>%
+    addCircleMarkers(
+      lng = ~ref_Longitude, lat = ~ref_Latitude,
+      radius = 4, color = ~pal_odef(match_type_ord), fillOpacity = 0.7,
+      popup = ~popup_text, group = "Geocoded"
+    )
+  if (nrow(odef_with_true) > 0) {
+    m_odef <- m_odef %>% addCircleMarkers(
+      data = odef_with_true,
+      lng = ~ugc_true_lon, lat = ~ugc_true_lat,
+      radius = 3, color = "#222", fillColor = "#222", fillOpacity = 0.9, weight = 1,
+      popup = ~popup_text, group = "True location"
+    )
+  }
+  m_odef %>% addLegend(
+    pal = pal_odef, values = ~match_type_ord, title = "Match type (geocoded)",
+    position = "bottomright", na.label = "Unmatched", na.color = "#888888"
   )
 }
-m_odef %>% addLegend(
-  pal = pal, values = ~match_type_ord, title = "Match type (geocoded)",
-  position = "bottomright", na.label = "Unmatched"
-)
 ```
 
 ---
@@ -407,9 +429,9 @@ m_odef %>% addLegend(
 | Metric | SIF | ODEF |
 |--------|-----|------|
 | Total rows | `r n_total` | `r n_odef` |
-| Matched (%) | `r round(100 * n_matched / n_total, 1)`% | `r round(100 * n_odef_matched / n_odef, 1)`% |
-| With coordinates (%) | `r round(100 * n_with_coords / n_total, 1)`% | `r round(100 * n_odef_coords / n_odef, 1)`% |
-| Unmatched (%) | `r round(100 * n_unmatched / n_total, 1)`% | `r round(100 * n_odef_unmatched / n_odef, 1)`% |
+| Matched (%) | `r if (n_total > 0) paste0(round(100 * n_matched / n_total, 1), "%") else "—"` | `r if (n_odef > 0) paste0(round(100 * n_odef_matched / n_odef, 1), "%") else "—"` |
+| With coordinates (%) | `r if (n_total > 0) paste0(round(100 * n_with_coords / n_total, 1), "%") else "—"` | `r if (n_odef > 0) paste0(round(100 * n_odef_coords / n_odef, 1), "%") else "—"` |
+| Unmatched (%) | `r if (n_total > 0) paste0(round(100 * n_unmatched / n_total, 1), "%") else "—"` | `r if (n_odef > 0) paste0(round(100 * n_odef_unmatched / n_odef, 1), "%") else "—"` |
 | Rows with true + geocoded | `r n_sif_valid` | `r n_odef_valid` |
 | Median distance error (m) | `r if (n_sif_valid > 0) round(sif_median_m, 1) else "—"` | `r if (n_odef_valid > 0) round(odef_median_m, 1) else "—"` |
 | % within 100 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_100, 1), "%") else "—"` | `r if (n_odef_valid > 0) paste0(round(odef_pct_100, 1), "%") else "—"` |
