@@ -89,9 +89,9 @@ Overall counts: how many rows were matched, how many received coordinates, and h
 | Metric | Value |
 |--------|--------|
 | Total rows | `r n_total` |
-| Matched (any type) | `r n_matched` (`r round(100 * n_matched / n_total, 1)`%) |
-| With coordinates | `r n_with_coords` (`r round(100 * n_with_coords / n_total, 1)`%) |
-| Unmatched | `r n_unmatched` (`r round(100 * n_unmatched / n_total, 1)`%) |
+| Matched (any type) | `r n_matched` (`r if (n_total > 0) paste0(round(100 * n_matched / n_total, 1), "%") else "—"`) |
+| With coordinates | `r n_with_coords` (`r if (n_total > 0) paste0(round(100 * n_with_coords / n_total, 1), "%") else "—"`) |
+| Unmatched | `r n_unmatched` (`r if (n_total > 0) paste0(round(100 * n_unmatched / n_total, 1), "%") else "—"`) |
 
 ---
 
@@ -99,15 +99,22 @@ Overall counts: how many rows were matched, how many received coordinates, and h
 The matcher assigns each row to one method (exact address, street-only, relaxed, fuzzy, or a centroid fallback). This table shows how many rows fell into each category.
 
 ```{r sif-by-type, message=FALSE, echo=FALSE, warning=FALSE}
-knitr::kable(
-  data.frame(
-    match_type = names(tbl),
-    count = as.integer(tbl),
-    pct = round(100 * as.integer(tbl) / n_total, 1)
-  ),
-  col.names = c("Match type", "Count", "%"),
-  align = c("l", "r", "r")
-)
+if (n_total > 0 && length(tbl) > 0) {
+  knitr::kable(
+    data.frame(
+      match_type = names(tbl),
+      count = as.integer(tbl),
+      pct = round(100 * as.integer(tbl) / n_total, 1)
+    ),
+    col.names = c("Match type", "Count", "%"),
+    align = c("l", "r", "r")
+  )
+} else {
+  knitr::kable(
+    data.frame(`Match type` = "(no data)", Count = 0L, `%` = "—", check.names = FALSE),
+    col.names = c("Match type", "Count", "%")
+  )
+}
 ```
 
 ---
@@ -260,9 +267,9 @@ Overall counts: how many ODEF rows were matched, how many received coordinates, 
 | Metric | Value |
 |--------|--------|
 | Total rows | `r n_odef` |
-| Matched (any type) | `r n_odef_matched` (`r round(100 * n_odef_matched / n_odef, 1)`%) |
-| With coordinates | `r n_odef_coords` (`r round(100 * n_odef_coords / n_odef, 1)`%) |
-| Unmatched | `r n_odef_unmatched` (`r round(100 * n_odef_unmatched / n_odef, 1)`%) |
+| Matched (any type) | `r n_odef_matched` (`r if (n_odef > 0) paste0(round(100 * n_odef_matched / n_odef, 1), "%") else "—"`) |
+| With coordinates | `r n_odef_coords` (`r if (n_odef > 0) paste0(round(100 * n_odef_coords / n_odef, 1), "%") else "—"`) |
+| Unmatched | `r n_odef_unmatched` (`r if (n_odef > 0) paste0(round(100 * n_odef_unmatched / n_odef, 1), "%") else "—"`) |
 
 ---
 
@@ -270,15 +277,22 @@ Overall counts: how many ODEF rows were matched, how many received coordinates, 
 Breakdown of how many rows were assigned to each match type (exact, fuzzy, centroid fallbacks, etc.).
 
 ```{r odef-by-type, message=FALSE, echo=FALSE, warning=FALSE}
-knitr::kable(
-  data.frame(
-    match_type = names(tbl_odef),
-    count = as.integer(tbl_odef),
-    pct = round(100 * as.integer(tbl_odef) / n_odef, 1)
-  ),
-  col.names = c("Match type", "Count", "%"),
-  align = c("l", "r", "r")
-)
+if (n_odef > 0 && length(tbl_odef) > 0) {
+  knitr::kable(
+    data.frame(
+      match_type = names(tbl_odef),
+      count = as.integer(tbl_odef),
+      pct = round(100 * as.integer(tbl_odef) / n_odef, 1)
+    ),
+    col.names = c("Match type", "Count", "%"),
+    align = c("l", "r", "r")
+  )
+} else {
+  knitr::kable(
+    data.frame(`Match type` = "(no data)", Count = 0L, `%` = "—", check.names = FALSE),
+    col.names = c("Match type", "Count", "%")
+  )
+}
 ```
 
 ---

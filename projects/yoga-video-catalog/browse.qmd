@@ -1040,7 +1040,18 @@ format:
 #| include: false
 library(jsonlite)
 
-dat <- read.csv("data/yoga_videos_enriched.csv", stringsAsFactors = FALSE, na.strings = c("", "NA"))
+csv_path <- "data/yoga_videos_enriched.csv"
+if (!file.exists(csv_path)) csv_path <- file.path("projects", "yoga-video-catalog", "data", "yoga_videos_enriched.csv")
+if (!file.exists(csv_path)) csv_path <- file.path("..", "data", "yoga_videos_enriched.csv")
+if (file.exists(csv_path)) {
+  dat <- read.csv(csv_path, stringsAsFactors = FALSE, na.strings = c("", "NA"))
+} else {
+  dat <- data.frame(
+    video_id = character(), title = character(), duration = character(), view_count = character(),
+    upload_date = character(), focus = character(), channel = character(), url = character(),
+    duration_seconds = numeric(), stringsAsFactors = FALSE
+  )
+}
 dat$view_count <- suppressWarnings(as.numeric(dat$view_count))
 
 duration_to_mins <- function(s) {
