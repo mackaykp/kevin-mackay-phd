@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Belay Buddy Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/flatly/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="./demo.css" rel="stylesheet">
+</head>
+<body>
+  <main class="container-fluid demo-shell py-2">
+    <header class="card bb-card mb-2">
+      <div class="card-body py-2 px-3">
+        <p class="small text-muted mb-0"><strong>Belay Buddy Demo</strong> · Interactive offline website version</p>
+      </div>
+    </header>
+
+    <section id="start-view">
+      <p class="text-muted mb-3" style="font-size: 0.95rem;">Belay rotation planner. Create a session, add people, then start.</p>
+      <div class="card bb-card bb-landing-card mb-2">
+        <div class="card-header bb-landing-head">Start a new session</div>
+        <div class="card-body">
+          <button id="create-btn" class="btn btn-success btn-cta-mobile w-100">Create session</button>
+        </div>
+      </div>
+
+      <div id="host-join-card" class="card bb-card mt-3 d-none">
+        <div class="card-header">You created a session</div>
+        <div class="card-body">
+          <label class="form-label" for="host-name">Your name to join as host</label>
+          <input id="host-name" class="form-control" type="text" placeholder="e.g. Shane">
+          <p class="text-muted small mb-1 mt-2">Recently used host names</p>
+          <div id="host-recent-chips" class="bb-recent-chips-host"></div>
+          <button id="host-join-btn" class="btn btn-primary btn-cta-mobile w-100 mt-2">Join session</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="session-view" class="d-none">
+      <div class="bb-session-stack bb-tight-stack">
+      <div class="card bb-card bb-add-people-card mb-1">
+        <div class="card-header bb-card-header-accent">
+          <i class="bi bi-person-plus-fill me-2"></i>Add people from this device
+        </div>
+        <div class="card-body bb-card-body-tight">
+          <p class="text-muted small mb-2">Enter a name, tap Add, or use a shortcut below.</p>
+          <input id="add-person-name" class="form-control" type="text" placeholder="e.g. Kevin">
+          <button id="add-person-btn" class="btn btn-primary btn-cta-mobile mt-1 w-100">
+            <i class="bi bi-plus-lg me-2"></i>Add to session
+          </button>
+          <p class="text-muted small mb-1 mt-2">Recently used participant names</p>
+          <div id="participant-recent-chips" class="bb-recent-chips-host"></div>
+        </div>
+      </div>
+
+      <div class="card bb-card bb-participants-card mb-1">
+        <div class="card-header bb-card-header-accent">
+          <i class="bi bi-people-fill me-2"></i><span id="participants-title">Participants (0)</span>
+        </div>
+        <div id="participants-list" class="card-body bb-card-body-tight participant-board"></div>
+      </div>
+
+      <div id="roster-card" class="card bb-card mb-1 d-none">
+        <div class="card-header bb-card-header-accent">
+          <i class="bi bi-arrow-repeat me-2"></i>Roster changes <span class="text-muted small ms-1">(grouped by effective round)</span>
+        </div>
+        <div id="roster-list" class="card-body bb-card-body-tight"></div>
+      </div>
+
+      <div class="card bb-card bb-next-card mb-1">
+        <div class="card-body bb-next-card-body">
+          <p class="bb-next-hint mb-0">
+            <i class="bi bi-skip-forward-fill me-2"></i>
+            <strong>Next round</strong>
+            <span class="text-muted"> Proceed to next round.</span>
+          </p>
+        </div>
+        <div class="card-footer session-footer bb-footer-cta">
+          <button id="next-round-btn" class="btn btn-primary btn-cta-mobile bb-btn-next w-100">
+            <i class="bi bi-skip-forward-fill me-2"></i>Next round
+          </button>
+        </div>
+      </div>
+
+      <div id="round-cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./demo.js"></script>
+</body>
+</html>

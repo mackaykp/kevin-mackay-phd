@@ -1,0 +1,20 @@
+@import url("./custom.css");
+
+/* Demo-only layout + classes not present in live app */
+.demo-shell { max-width: 28rem; }
+.roster-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.45rem;
+  align-items: center;
+  margin-bottom: 0.15rem;
+}
+.roster-round {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 800;
+  color: #64748b;
+}
+.roster-chips { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.muted-note { color: #64748b; font-size: 0.74rem; }

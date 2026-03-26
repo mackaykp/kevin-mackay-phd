@@ -26,3 +26,10 @@ projects:
     href: "PhD_Dissertation/"
     tags: ["Spatial", "Statistics", "R", "Health data"]
     image: ""
+
+  - title: "Belay Buddy Demo"
+    description: "Static web-app demo of Belay Buddy that mirrors the session workflow (host join, participant management, rounds) without server runtime."
+    href: "Belay_Buddy_Demo/"
+    tags: ["Automation", "Quarto", "Documentation"]
+    image: ""
+

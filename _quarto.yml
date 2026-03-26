@@ -8,6 +8,7 @@ project:
     - projects/Leaflet_Mapping_Tool/vignettes/maps
     - projects/Offline_Geocoding_Tool/Geocoding_Tool_Showcase.html
     - projects/Offline_Geocoding_Tool/Geocoding_Tool_Showcase_files
+    - projects/Belay_Buddy_Demo
     - projects/PhD_Dissertation
     - assets
 
