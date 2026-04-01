@@ -1,0 +1,26 @@
+---
+title: "Health Statistics From A Geographer's Perspective"
+sidebar: false
+resources:
+  - slides.pdf
+format:
+  html:
+    toc: false
+    page-layout: full
+---
+
+<div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
+
+::: {.project-pdf-slides-intro}
+
+This presentation introduces medical geography through a practical, data-driven lens, highlighting how geographic concepts, spatial analysis, and visualization techniques can be applied to understand patterns in health outcomes and health-related behaviours. Drawing on examples from urban, suburban, and rural contexts, the session demonstrates how geographers use tools such as geocoding, spatial joins, clustering, autocorrelation, and advanced modelling approaches - including geographically weighted regression and geographical random forests - to uncover spatial inequalities, identify at-risk populations, and support public health decision-making. The goal is to expand awareness of what medical geography can offer and to inspire new ideas for applying spatial thinking to contemporary health challenges.
+
+:::
+
+::: {.pdf-slides-embed-bar}
+[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+
+::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="Medical geography presentation (PDF)" class="pdf-slides-embed"></iframe>
+:::

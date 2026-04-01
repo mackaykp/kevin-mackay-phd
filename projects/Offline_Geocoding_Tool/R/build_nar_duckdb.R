@@ -1,5 +1,5 @@
 # =============================================================================
-# Build DuckDB from NAR (National Address Register) — single reference DB for geocoding
+# Build DuckDB from NAR (National Address Register) - single reference DB for geocoding
 # Joins Address + Location on LOC_GUID; outputs table "ref" with schema expected by geocode_ref
 # =============================================================================
 # Usage: source("R/build_nar_duckdb.R"); build_nar_duckdb("data/NAR2025", "data/nar.duckdb")

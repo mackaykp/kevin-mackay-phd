@@ -2,6 +2,8 @@
 title: "Offline Geocoding Tool"
 ---
 
+<div class="yoga-project-page-root" hidden aria-hidden="true"></div>
+
 ::: {.yoga-view-toggle role="group" aria-label="Switch view"}
 <button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
 <button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
@@ -10,10 +12,10 @@ title: "Offline Geocoding Tool"
 
 ::: {#yoga-final-product .yoga-view-panel}
 ::: {.yoga-embed-bar}
-[Open geocoding showcase in new tab](Geocoding_Tool_Showcase.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+[Open project in new tab](Geocoding_Tool_Showcase.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
 :::
 ::: {#yoga-iframe-wrap .yoga-embed-full}
-<iframe src="Geocoding_Tool_Showcase.html" title="Offline Geocoding Tool — Showcase" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+<iframe src="Geocoding_Tool_Showcase.html" title="Offline Geocoding Tool - Showcase" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
 :::
 :::
 
@@ -39,7 +41,7 @@ The tool is designed to run with minimal setup: build the NAR DuckDB once, then 
 - **Scalable:** Single DuckDB connection, batched fuzzy queries (configurable pool size), and streamed CSV output keep memory use manageable for large files.
 - **Flexible:** Tunable fuzzy threshold and optional city-in-pool behaviour; works with English and French address styles via street-type normalization.
 
-If you're interested in adapting this tool for your own project, feel free to reach out—I'm happy to help.
+If you're interested in adapting this tool for your own project, feel free to reach out-I'm happy to help.
 :::
 
 ::: {#yoga-scripts .yoga-view-panel .d-none}
@@ -200,7 +202,7 @@ See the [README](README.md) in this project for setup, NAR data layout, and usag
   btnScripts.addEventListener('click', showScripts);
 
   function buildMarginTOC() {
-    if (!document.body.classList.contains('yoga-project-page')) return;
+    if (!document.querySelector('.yoga-project-page-root')) return;
     var marginSidebar = document.getElementById('quarto-margin-sidebar');
     if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
     var main = document.getElementById('quarto-document-content');

@@ -31,7 +31,7 @@ if (!dir.exists("output") && dir.exists("..")) {
 
 ### Code to geocode
 
-To run the tool on the SIF school data (or any similar file), you set the project root, source the geocoding script, and call `geocode_excel()` with the path to your input file. Output is written to `output/` by default. No need to run this in the document—it's shown here so you can see the workflow.
+To run the tool on the SIF school data (or any similar file), you set the project root, source the geocoding script, and call `geocode_excel()` with the path to your input file. Output is written to `output/` by default. No need to run this in the document-it's shown here so you can see the workflow.
 
 ```{r geocode-code, eval=FALSE}
 # Set project root (adjust path for your machine)
@@ -89,9 +89,9 @@ Overall counts: how many rows were matched, how many received coordinates, and h
 | Metric | Value |
 |--------|--------|
 | Total rows | `r n_total` |
-| Matched (any type) | `r n_matched` (`r if (n_total > 0) paste0(round(100 * n_matched / n_total, 1), "%") else "—"`) |
-| With coordinates | `r n_with_coords` (`r if (n_total > 0) paste0(round(100 * n_with_coords / n_total, 1), "%") else "—"`) |
-| Unmatched | `r n_unmatched` (`r if (n_total > 0) paste0(round(100 * n_unmatched / n_total, 1), "%") else "—"`) |
+| Matched (any type) | `r n_matched` (`r if (n_total > 0) paste0(round(100 * n_matched / n_total, 1), "%") else "-"`) |
+| With coordinates | `r n_with_coords` (`r if (n_total > 0) paste0(round(100 * n_with_coords / n_total, 1), "%") else "-"`) |
+| Unmatched | `r n_unmatched` (`r if (n_total > 0) paste0(round(100 * n_unmatched / n_total, 1), "%") else "-"`) |
 
 ---
 
@@ -111,7 +111,7 @@ if (n_total > 0 && length(tbl) > 0) {
   )
 } else {
   knitr::kable(
-    data.frame(`Match type` = "(no data)", Count = 0L, `%` = "—", check.names = FALSE),
+    data.frame(`Match type` = "(no data)", Count = 0L, `%` = "-", check.names = FALSE),
     col.names = c("Match type", "Count", "%")
   )
 }
@@ -149,12 +149,12 @@ if (n_sif_valid > 0) {
 | Metric | SIF |
 |--------|-----|
 | Rows with true + geocoded | `r n_sif_valid` |
-| Mean distance error (m) | `r if (n_sif_valid > 0) round(sif_mean_m, 1) else "—"` |
-| Median distance error (m) | `r if (n_sif_valid > 0) round(sif_median_m, 1) else "—"` |
-| Max distance error (m) | `r if (n_sif_valid > 0) round(sif_max_m, 1) else "—"` |
-| % within 100 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_100, 1), "%") else "—"` |
-| % within 500 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_500, 1), "%") else "—"` |
-| % within 1 km | `r if (n_sif_valid > 0) paste0(round(sif_pct_1km, 1), "%") else "—"` |
+| Mean distance error (m) | `r if (n_sif_valid > 0) round(sif_mean_m, 1) else "-"` |
+| Median distance error (m) | `r if (n_sif_valid > 0) round(sif_median_m, 1) else "-"` |
+| Max distance error (m) | `r if (n_sif_valid > 0) round(sif_max_m, 1) else "-"` |
+| % within 100 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_100, 1), "%") else "-"` |
+| % within 500 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_500, 1), "%") else "-"` |
+| % within 1 km | `r if (n_sif_valid > 0) paste0(round(sif_pct_1km, 1), "%") else "-"` |
 
 ### Map: SIF geocoded results
 
@@ -232,7 +232,7 @@ if (nrow(sif_map) == 0) {
   }
   m %>% addLegend(
     pal = pal, values = ~match_type_ord, title = "Match type (geocoded)",
-    position = "bottomright", na.label = "Unmatched", na.color = "#888888"
+    position = "bottomright", na.label = "Unmatched"
   )
 }
 ```
@@ -275,9 +275,9 @@ Overall counts: how many ODEF rows were matched, how many received coordinates, 
 | Metric | Value |
 |--------|--------|
 | Total rows | `r n_odef` |
-| Matched (any type) | `r n_odef_matched` (`r if (n_odef > 0) paste0(round(100 * n_odef_matched / n_odef, 1), "%") else "—"`) |
-| With coordinates | `r n_odef_coords` (`r if (n_odef > 0) paste0(round(100 * n_odef_coords / n_odef, 1), "%") else "—"`) |
-| Unmatched | `r n_odef_unmatched` (`r if (n_odef > 0) paste0(round(100 * n_odef_unmatched / n_odef, 1), "%") else "—"`) |
+| Matched (any type) | `r n_odef_matched` (`r if (n_odef > 0) paste0(round(100 * n_odef_matched / n_odef, 1), "%") else "-"`) |
+| With coordinates | `r n_odef_coords` (`r if (n_odef > 0) paste0(round(100 * n_odef_coords / n_odef, 1), "%") else "-"`) |
+| Unmatched | `r n_odef_unmatched` (`r if (n_odef > 0) paste0(round(100 * n_odef_unmatched / n_odef, 1), "%") else "-"`) |
 
 ---
 
@@ -297,7 +297,7 @@ if (n_odef > 0 && length(tbl_odef) > 0) {
   )
 } else {
   knitr::kable(
-    data.frame(`Match type` = "(no data)", Count = 0L, `%` = "—", check.names = FALSE),
+    data.frame(`Match type` = "(no data)", Count = 0L, `%` = "-", check.names = FALSE),
     col.names = c("Match type", "Count", "%")
   )
 }
@@ -335,12 +335,12 @@ if (n_odef_valid > 0) {
 | Metric | ODEF |
 |--------|------|
 | Rows with true + geocoded | `r n_odef_valid` |
-| Mean distance error (m) | `r if (n_odef_valid > 0) round(odef_mean_m, 1) else "—"` |
-| Median distance error (m) | `r if (n_odef_valid > 0) round(odef_median_m, 1) else "—"` |
-| Max distance error (m) | `r if (n_odef_valid > 0) round(odef_max_m, 1) else "—"` |
-| % within 100 m | `r if (n_odef_valid > 0) paste0(round(odef_pct_100, 1), "%") else "—"` |
-| % within 500 m | `r if (n_odef_valid > 0) paste0(round(odef_pct_500, 1), "%") else "—"` |
-| % within 1 km | `r if (n_odef_valid > 0) paste0(round(odef_pct_1km, 1), "%") else "—"` |
+| Mean distance error (m) | `r if (n_odef_valid > 0) round(odef_mean_m, 1) else "-"` |
+| Median distance error (m) | `r if (n_odef_valid > 0) round(odef_median_m, 1) else "-"` |
+| Max distance error (m) | `r if (n_odef_valid > 0) round(odef_max_m, 1) else "-"` |
+| % within 100 m | `r if (n_odef_valid > 0) paste0(round(odef_pct_100, 1), "%") else "-"` |
+| % within 500 m | `r if (n_odef_valid > 0) paste0(round(odef_pct_500, 1), "%") else "-"` |
+| % within 1 km | `r if (n_odef_valid > 0) paste0(round(odef_pct_1km, 1), "%") else "-"` |
 
 ### Map: ODEF geocoded results
 
@@ -417,7 +417,7 @@ if (nrow(odef_map) == 0) {
   }
   m_odef %>% addLegend(
     pal = pal_odef, values = ~match_type_ord, title = "Match type (geocoded)",
-    position = "bottomright", na.label = "Unmatched", na.color = "#888888"
+    position = "bottomright", na.label = "Unmatched"
   )
 }
 ```
@@ -429,12 +429,12 @@ if (nrow(odef_map) == 0) {
 | Metric | SIF | ODEF |
 |--------|-----|------|
 | Total rows | `r n_total` | `r n_odef` |
-| Matched (%) | `r if (n_total > 0) paste0(round(100 * n_matched / n_total, 1), "%") else "—"` | `r if (n_odef > 0) paste0(round(100 * n_odef_matched / n_odef, 1), "%") else "—"` |
-| With coordinates (%) | `r if (n_total > 0) paste0(round(100 * n_with_coords / n_total, 1), "%") else "—"` | `r if (n_odef > 0) paste0(round(100 * n_odef_coords / n_odef, 1), "%") else "—"` |
-| Unmatched (%) | `r if (n_total > 0) paste0(round(100 * n_unmatched / n_total, 1), "%") else "—"` | `r if (n_odef > 0) paste0(round(100 * n_odef_unmatched / n_odef, 1), "%") else "—"` |
+| Matched (%) | `r if (n_total > 0) paste0(round(100 * n_matched / n_total, 1), "%") else "-"` | `r if (n_odef > 0) paste0(round(100 * n_odef_matched / n_odef, 1), "%") else "-"` |
+| With coordinates (%) | `r if (n_total > 0) paste0(round(100 * n_with_coords / n_total, 1), "%") else "-"` | `r if (n_odef > 0) paste0(round(100 * n_odef_coords / n_odef, 1), "%") else "-"` |
+| Unmatched (%) | `r if (n_total > 0) paste0(round(100 * n_unmatched / n_total, 1), "%") else "-"` | `r if (n_odef > 0) paste0(round(100 * n_odef_unmatched / n_odef, 1), "%") else "-"` |
 | Rows with true + geocoded | `r n_sif_valid` | `r n_odef_valid` |
-| Median distance error (m) | `r if (n_sif_valid > 0) round(sif_median_m, 1) else "—"` | `r if (n_odef_valid > 0) round(odef_median_m, 1) else "—"` |
-| % within 100 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_100, 1), "%") else "—"` | `r if (n_odef_valid > 0) paste0(round(odef_pct_100, 1), "%") else "—"` |
+| Median distance error (m) | `r if (n_sif_valid > 0) round(sif_median_m, 1) else "-"` | `r if (n_odef_valid > 0) round(odef_median_m, 1) else "-"` |
+| % within 100 m | `r if (n_sif_valid > 0) paste0(round(sif_pct_100, 1), "%") else "-"` | `r if (n_odef_valid > 0) paste0(round(odef_pct_100, 1), "%") else "-"` |
 
 SIF achieves a higher match rate and, where both true and geocoded locations exist, typically smaller distance errors. That is partly because **the tool was developed and tuned on the SIF dataset**: its column names (Street, City, Province, Postal Code) and address formatting match what the parser and match hierarchy expect. ODEF uses different fields (e.g. a combined full address, different column names) and often different place-name conventions. The same pipeline runs on both, but match quality and precision are better when the input aligns with the design assumptions.
 

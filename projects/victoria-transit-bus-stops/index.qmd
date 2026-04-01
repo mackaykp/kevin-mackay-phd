@@ -1,0 +1,26 @@
+---
+title: "Victoria transit - bus stop popularity for marketing"
+sidebar: false
+resources:
+  - slides.pdf
+format:
+  html:
+    toc: false
+    page-layout: full
+---
+
+<div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
+
+::: {.project-pdf-slides-intro}
+
+This project was completed in partnership with a transit company in Victoria, BC, who sought to understand which bus stops across the city were most popular - but lacked the ridership data needed to answer that question directly. As research staff at McMaster University, I developed a spatially informed, unsupervised machine‑learning approach to estimate stop‑level popularity using demographic characteristics, built‑environment features, and proximity to key destinations. By integrating census data, land‑use context, and point‑of‑interest densities within walkable catchments, I used k‑means clustering to identify groups of stops with similar underlying demand profiles. These insights enabled the transit company to target marketing and outreach campaigns at a geographically meaningful scale, supporting more efficient resource allocation and city‑wide engagement strategies.
+
+:::
+
+::: {.pdf-slides-embed-bar}
+[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+
+::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="Exploring the popularity of bus stops in Victoria, BC (PDF)" class="pdf-slides-embed"></iframe>
+:::

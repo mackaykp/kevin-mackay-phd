@@ -4,7 +4,7 @@ title: "Example Stats Project"
 
 ## Overview
 
-*Placeholder: Describe one statistics or data project — goal, data, methods, and outcome.*
+*Placeholder: Describe one statistics or data project - goal, data, methods, and outcome.*
 
 This example shows where a single project write-up lives. Replace with your own narrative and, if you like, embedded code or figures.
 

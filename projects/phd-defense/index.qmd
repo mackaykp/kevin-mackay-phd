@@ -1,0 +1,26 @@
+---
+title: "PhD defense presentation"
+sidebar: false
+resources:
+  - slides.pdf
+format:
+  html:
+    toc: false
+    page-layout: full
+---
+
+<div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
+
+::: {.project-pdf-slides-intro}
+
+This presentation summarizes my doctoral research in Geography at McMaster University (2020), which examined childhood lead exposure through an integrated spatial and epidemiological lens. The work combined high‑resolution soil lead sampling, land‑use regression, and geostatistical interpolation to identify neighbourhoods in Hamilton where children may be at elevated risk of lead poisoning. It also incorporated a meta‑analysis of the relationship between blood lead levels and IQ, and evaluated the potential costs and returns on investment for targeted lead abatement across different land‑use contexts. Together, these analyses provide an evidence‑based framework to support municipal decision‑making, prioritize remediation efforts, and better understand the long‑term public health and economic implications of lead exposure.
+
+:::
+
+::: {.pdf-slides-embed-bar}
+[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+
+::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="PhD defense slides — lead poisoning risk and abatement (PDF)" class="pdf-slides-embed"></iframe>
+:::

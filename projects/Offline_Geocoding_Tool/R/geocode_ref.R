@@ -1,5 +1,5 @@
 # =============================================================================
-# Offline Geocoding — single hierarchy (literature-based)
+# Offline Geocoding - single hierarchy (literature-based)
 # Exact → exact_street → relaxed (same geography) → fuzzy (narrow pool only) →
 # FSA centroid → city centroid. No cross-FSA or cross-city point matches.
 # =============================================================================

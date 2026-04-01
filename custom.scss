@@ -3,8 +3,8 @@
 
 /*-- scss:defaults --*/
 // Color palette
-$primary:       #BF532C;  // Burnt Orange — main brand color
-$secondary:    #012626;  // Dark Teal — complementary
+$primary:       #BF532C;  // Burnt Orange - main brand color
+$secondary:    #012626;  // Dark Teal - complementary
 $success:      #10b981;  // Keep default green for success
 $info:          #012626;  // Dark Teal for info
 $warning:      #F2AD94;  // Peach for warnings
@@ -14,6 +14,7 @@ $dark:         #012626;  // Dark Teal
 
 // Backgrounds
 $body-bg:      #F3EAE7;  // Light Beige background
+$body-bg-image: null !default; // Remove Quartz/bslib default cyan–purple–pink page gradient
 $body-color:   #000000;  // Black text
 $headings-color: #012626; // Dark Teal headings
 
@@ -26,7 +27,7 @@ $border-color: rgba(1, 38, 38, 0.15); // Light teal border
 $code-color:   #731702;  // Dark Red for code
 $code-bg:      rgba(243, 234, 231, 0.8); // Light beige for code background
 
-// Typography — Gelasio for headings, Inter for body
+// Typography - Gelasio for headings, Inter for body
 @import url('https://fonts.googleapis.com/css2?family=Gelasio:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
 
 $font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -43,10 +44,13 @@ $border-radius-lg: 0.75rem;
 // ---- Base ----
 html {
   scroll-behavior: smooth;
+  background-color: $body-bg !important;
+  background-image: none !important;
 }
 
 body {
   background-color: $body-bg !important;
+  background-image: none !important;
   color: $body-color !important;
 }
 
@@ -63,25 +67,32 @@ main#quarto-document-content,
   background-image: none !important;
 }
 
-// Exclude project pages from background overrides
-body.yoga-project-page #quarto-content,
-body.yoga-project-page .quarto-layout-panel,
-body.yoga-project-page .page-columns,
-body.yoga-project-page .column-page,
-body.yoga-project-page .column-body,
-body.yoga-project-page main#quarto-document-content,
-body.yoga-project-page .quarto-title-block,
-body.yoga-project-page .quarto-title-banner,
-body.yoga-browse-page #quarto-content,
-body.yoga-browse-page .quarto-layout-panel,
-body.yoga-browse-page .page-columns,
-body.yoga-browse-page .column-page,
-body.yoga-browse-page .column-body,
-body.yoga-browse-page main#quarto-document-content,
-body.yoga-browse-page .quarto-title-block,
-body.yoga-browse-page .quarto-title-banner {
-  background-color: inherit !important;
-  background-image: inherit !important;
+// Yoga pages: solid white. Quarto websites omit `body-class` on <body>; markers + :has() scope these rules.
+html:has(.yoga-browse-page-root),
+html:has(.yoga-project-page-root) {
+  background-color: #fff !important;
+  background-image: none !important;
+}
+
+// Exclude project pages from global beige theme backgrounds
+body:has(.yoga-project-page-root) #quarto-content,
+body:has(.yoga-project-page-root) .quarto-layout-panel,
+body:has(.yoga-project-page-root) .page-columns,
+body:has(.yoga-project-page-root) .column-page,
+body:has(.yoga-project-page-root) .column-body,
+body:has(.yoga-project-page-root) main#quarto-document-content,
+body:has(.yoga-project-page-root) .quarto-title-block,
+body:has(.yoga-project-page-root) .quarto-title-banner,
+body:has(.yoga-browse-page-root) #quarto-content,
+body:has(.yoga-browse-page-root) .quarto-layout-panel,
+body:has(.yoga-browse-page-root) .page-columns,
+body:has(.yoga-browse-page-root) .column-page,
+body:has(.yoga-browse-page-root) .column-body,
+body:has(.yoga-browse-page-root) main#quarto-document-content,
+body:has(.yoga-browse-page-root) .quarto-title-block,
+body:has(.yoga-browse-page-root) .quarto-title-banner {
+  background-color: #fff !important;
+  background-image: none !important;
 }
 
 // Remove any pseudo-element gradients
@@ -92,10 +103,11 @@ body.yoga-browse-page .quarto-title-banner {
   display: none !important;
 }
 
-// Exclude project pages from global body styles
-body.yoga-project-page,
-body.yoga-browse-page {
-  background-color: inherit !important;
+// Exclude project pages from global body styles (white canvas matches catalog / project UI)
+body:has(.yoga-project-page-root),
+body:has(.yoga-browse-page-root) {
+  background-color: #fff !important;
+  background-image: none !important;
   color: inherit !important;
 }
 
@@ -107,18 +119,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Exclude project pages from font changes (keep their own styles)
-body.yoga-project-page h1,
-body.yoga-project-page h2,
-body.yoga-project-page h3,
-body.yoga-project-page h4,
-body.yoga-project-page h5,
-body.yoga-project-page h6,
-body.yoga-browse-page h1,
-body.yoga-browse-page h2,
-body.yoga-browse-page h3,
-body.yoga-browse-page h4,
-body.yoga-browse-page h5,
-body.yoga-browse-page h6 {
+body:has(.yoga-project-page-root) h1,
+body:has(.yoga-project-page-root) h2,
+body:has(.yoga-project-page-root) h3,
+body:has(.yoga-project-page-root) h4,
+body:has(.yoga-project-page-root) h5,
+body:has(.yoga-project-page-root) h6,
+body:has(.yoga-browse-page-root) h1,
+body:has(.yoga-browse-page-root) h2,
+body:has(.yoga-browse-page-root) h3,
+body:has(.yoga-browse-page-root) h4,
+body:has(.yoga-browse-page-root) h5,
+body:has(.yoga-browse-page-root) h6 {
   font-family: inherit !important;
   font-weight: inherit !important;
   letter-spacing: inherit !important;
@@ -131,18 +143,18 @@ p, li, td, th {
 }
 
 // Exclude project pages from global text color
-body.yoga-project-page p,
-body.yoga-project-page li,
-body.yoga-project-page td,
-body.yoga-project-page th,
-body.yoga-project-page div,
-body.yoga-project-page span,
-body.yoga-browse-page p,
-body.yoga-browse-page li,
-body.yoga-browse-page td,
-body.yoga-browse-page th,
-body.yoga-browse-page div,
-body.yoga-browse-page span {
+body:has(.yoga-project-page-root) p,
+body:has(.yoga-project-page-root) li,
+body:has(.yoga-project-page-root) td,
+body:has(.yoga-project-page-root) th,
+body:has(.yoga-project-page-root) div,
+body:has(.yoga-project-page-root) span,
+body:has(.yoga-browse-page-root) p,
+body:has(.yoga-browse-page-root) li,
+body:has(.yoga-browse-page-root) td,
+body:has(.yoga-browse-page-root) th,
+body:has(.yoga-browse-page-root) div,
+body:has(.yoga-browse-page-root) span {
   color: inherit !important;
 }
 
@@ -170,8 +182,8 @@ a {
   color: inherit !important;
 }
 
-body.yoga-project-page a,
-body.yoga-browse-page a {
+body:has(.yoga-project-page-root) a,
+body:has(.yoga-browse-page-root) a {
   color: inherit !important;
 }
 
@@ -208,55 +220,546 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-// ---- Homepage — hero section + scrollable content ----
-body.homepage main#quarto-document-content,
-body.homepage .quarto-layout-panel {
-  padding: 2rem 1.5rem;
-  max-width: 900px;
+// ---- Homepage - landing layout (hero + CTA + narrative; no TOC) ----
+// NOTE: Quarto website does not add `body-class` from YAML to <body>, so `body.homepage` never matches.
+// Scope with :has(.homepage-hero-section) — only root index.qmd includes that block.
+// Resume, Work With Me, and Projects (hero) mirror the same chrome.
+main#quarto-document-content:has(.homepage-hero-section),
+.quarto-layout-panel:has(.homepage-hero-section),
+main#quarto-document-content:has(.resume-hero-section),
+.quarto-layout-panel:has(.resume-hero-section),
+main#quarto-document-content:has(.work-with-hero-section),
+.quarto-layout-panel:has(.work-with-hero-section),
+main#quarto-document-content:has(.projects-hero-section),
+.quarto-layout-panel:has(.projects-hero-section) {
+  padding: 1.75rem clamp(1rem, 4vw, 2.5rem) 3rem;
+  max-width: min(68rem, 100%);
   margin-left: auto;
   margin-right: auto;
+  background: transparent !important;
 }
 
-// Hero: photo + tagline + short blurb
-.homepage-hero-section {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid $border-color;
+// Full-width layout: remove empty right margin column when TOC is off
+#quarto-content:has(.homepage-hero-section) #quarto-margin-sidebar,
+#quarto-content:has(.resume-hero-section) #quarto-margin-sidebar,
+#quarto-content:has(.work-with-hero-section) #quarto-margin-sidebar,
+#quarto-content:has(.projects-hero-section) #quarto-margin-sidebar {
+  display: none !important;
 }
 
-.homepage-hero-content {
+#quarto-content.page-layout-full:has(.homepage-hero-section) .content,
+#quarto-content.page-layout-full:has(.resume-hero-section) .content,
+#quarto-content.page-layout-full:has(.work-with-hero-section) .content,
+#quarto-content.page-layout-full:has(.projects-hero-section) .content {
+  max-width: min(72rem, 100%);
+}
+
+// Optional spacing for any remaining document-style sections on the homepage
+main#quarto-document-content:has(.homepage-hero-section) section.level2,
+main#quarto-document-content:has(.resume-hero-section) section.level2,
+main#quarto-document-content:has(.work-with-hero-section) section.level2,
+main#quarto-document-content:has(.projects-hero-section) section.level2 {
+  margin-top: 2.5rem;
+}
+
+main#quarto-document-content:has(.homepage-hero-section) section.level2:first-of-type,
+main#quarto-document-content:has(.resume-hero-section) section.level2:first-of-type,
+main#quarto-document-content:has(.work-with-hero-section) section.level2:first-of-type,
+main#quarto-document-content:has(.projects-hero-section) section.level2:first-of-type {
+  margin-top: 0;
+}
+
+// Hero: single panel (tagline + intro + cred) — one surface, one shadow, shared accent
+.homepage-hero-section,
+.resume-hero-section,
+.work-with-hero-section,
+.projects-hero-section {
+  margin-bottom: 2.5rem;
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.09);
+  border-left: 4px solid $primary;
+  border-radius: 1rem;
+  box-shadow: 0 4px 28px rgba(1, 38, 38, 0.07);
+  overflow: hidden;
+}
+
+.homepage-hero-section,
+.work-with-hero-section,
+.projects-hero-section {
+  padding: 1.75rem clamp(1.15rem, 3vw, 2.25rem) 2rem;
+}
+
+.work-with-hero-section p:has(.work-with-hero-kicker) {
+  margin-bottom: 0 !important;
+}
+
+.work-with-hero-kicker,
+.projects-hero-kicker {
+  display: block;
+  font-family: $font-family-headings;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $primary !important;
+  margin: 0 0 0.65rem 0;
+}
+
+// Resume hero: slightly tighter inset than homepage
+.resume-hero-section {
+  padding: 1.25rem clamp(1rem, 2.5vw, 1.65rem) 1.5rem;
+}
+
+// Tagline sits inside the panel (not a second floating card)
+.homepage-tagline-card,
+.resume-tagline-card {
+  margin: 0;
+  padding: 0.25rem 0 1.5rem;
+  max-width: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(1, 38, 38, 0.1);
+  text-align: center;
+}
+
+// Wrapper: Pandoc usually emits <div class="homepage-tagline"><p>...</p></div>. Global `p` rules
+// would otherwise force body color and win over inherited heading styles on the inner paragraph.
+.homepage-tagline,
+.resume-tagline {
+  max-width: 44rem;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.homepage-tagline::before,
+.resume-tagline::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: rgba(191, 83, 44, 0.45);
+  margin: 0 auto 0.85rem auto;
+  border-radius: 2px;
+}
+
+// Beat global `p { color: ... !important }` and Bootstrap paragraph styles
+.homepage-tagline p,
+.resume-tagline p {
+  font-family: $font-family-headings !important;
+  font-size: clamp(1.85rem, 4.5vw, 3rem) !important;
+  font-weight: 600 !important;
+  font-style: italic !important;
+  line-height: 1.28 !important;
+  letter-spacing: -0.025em !important;
+  color: $headings-color !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  max-width: 38rem;
+}
+
+.homepage-tagline .homepage-tagline-em,
+.resume-tagline .resume-tagline-em,
+.resume-hero-text .resume-tagline-em {
+  color: $primary !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+}
+
+// Professional Summary: same voice as hero .resume-tagline (Gelasio italic, heading color) at summary font size
+.resume-intro-row .resume-hero-text .resume-summary-tagline p {
+  font-family: $font-family-headings !important;
+  font-style: italic !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  color: $headings-color !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  margin: 0 0 0.6rem 0 !important;
+  max-width: none;
+}
+
+// Resume hero only: photo centered above tagline; blurb uses full width of left column
+// (no border under photo — orange dash is .resume-tagline::before only)
+.resume-hero-photo-wrap {
+  text-align: center;
+  padding: 0 0 1.15rem;
+  margin: 0;
+}
+
+.resume-hero-photo-wrap p {
+  margin: 0 !important;
+}
+
+.resume-hero-photo-wrap .resume-hero-photo {
+  display: block;
+  margin-inline: auto;
+}
+
+// Resume hero top band: photo (left) + contact + tagline (right); tagline bottom-aligned with photo on wide screens
+.resume-hero-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.35rem;
+  align-items: start;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .resume-hero-header {
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem 2.45rem;
+    align-items: stretch;
+  }
+
+  // Row height matches the taller column; pin photo + tagline to the bottom edge
+  .resume-hero-header .resume-hero-photo-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .resume-hero-header-right {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+.resume-hero-contact {
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .resume-hero-contact {
+    text-align: left;
+  }
+}
+
+.resume-hero-contact p {
+  margin: 0 0 0.35rem 0 !important;
+  color: rgba($body-color, 0.92) !important;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.resume-hero-contact p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.resume-hero-contact a[href^="mailto:"] {
+  font-weight: 700 !important;
+}
+
+.resume-hero-name,
+.resume-hero-name strong {
+  font-family: $font-family-headings;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $headings-color !important;
+}
+
+// Hero tagline: smaller than homepage; no orange dash (rule is .resume-hero-divider)
+main#quarto-document-content:has(.resume-hero-section) .resume-hero-header .resume-tagline-card {
+  border-bottom: none !important;
+  padding: 0.5rem 0 0 !important;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  main#quarto-document-content:has(.resume-hero-section) .resume-hero-header .resume-tagline-card {
+    margin-top: auto !important;
+    padding: 0 !important;
+  }
+}
+
+main#quarto-document-content:has(.resume-hero-section) .resume-tagline {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none;
+}
+
+main#quarto-document-content:has(.resume-hero-section) .resume-tagline::before {
+  display: none !important;
+  content: none !important;
+}
+
+main#quarto-document-content:has(.resume-hero-section) .resume-tagline p {
+  font-size: clamp(0.9rem, 1.55vw, 1.05rem) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left;
+  max-width: none;
+}
+
+.resume-hero-divider {
+  width: 100%;
+  margin: 1.25rem 0 1.5rem;
+  padding: 0;
+  border: none;
+  border-top: 1px solid rgba(1, 38, 38, 0.1);
+}
+
+// Resume: less vertical space around divider + between Core Capabilities / Professional Summary
+.resume-hero-section .resume-hero-divider {
+  margin: 0.5rem 0 0.55rem;
+}
+
+.resume-hero-section .resume-intro-row {
+  padding-top: 0.45rem;
+}
+
+@media (max-width: 899px) {
+  .resume-hero-section .resume-intro-row {
+    gap: 0.85rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .resume-hero-section .resume-intro-row .resume-cred {
+    padding: 0.15rem 1.55rem 0 0 !important;
+  }
+
+  .resume-hero-section .resume-intro-row .resume-hero-content {
+    padding-left: 2.5rem !important;
+  }
+}
+
+main#quarto-document-content:has(.resume-hero-section) .resume-tagline-card {
+  padding-top: 1.15rem;
+}
+
+.resume-intro-row .resume-hero-content {
+  display: block;
+  width: 100%;
+}
+
+.resume-intro-row .resume-hero-text {
+  flex: none;
+  min-width: 0;
+  max-width: none;
+  width: 100%;
+}
+
+// Mobile: keep summary above Core Capabilities despite DOM order (cred first for desktop grid)
+@media (max-width: 899px) {
+  .resume-intro-row .resume-hero-content {
+    order: -1;
+  }
+}
+
+// Photo + bio + credibility — one row; desktop: divider between bio and cred
+.homepage-intro-row,
+.resume-intro-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: stretch;
+  max-width: 100%;
+  padding-top: 1.5rem;
+}
+
+// Resume: top-align both columns (Core Capabilities + summary); homepage keeps stretch for vertical centering
+.resume-intro-row {
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .homepage-intro-row {
+    grid-template-columns: 1fr minmax(220px, 270px);
+    gap: 0;
+    column-gap: 0;
+  }
+
+  // Resume: Core Capabilities left — higher max so long bullets stay one line; summary gets the rest
+  .resume-intro-row {
+    grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
+    gap: 0;
+    column-gap: 0;
+  }
+}
+
+@media (max-width: 899px) {
+  .homepage-intro-row,
+  .resume-intro-row {
+    gap: 1.25rem;
+  }
+}
+
+.homepage-hero-content,
+.resume-hero-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.75rem;
   align-items: flex-start;
 }
 
-.homepage-hero-photo {
-  width: 200px;
-  height: 200px;
+.homepage-hero-content > p,
+.resume-hero-content > p {
+  margin: 0 !important;
+}
+
+.homepage-hero-photo,
+.resume-hero-photo {
+  width: 125px;
+  height: 125px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid $primary;
+  border: 3px solid rgba(191, 83, 44, 0.85);
   flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.08);
 }
 
-.homepage-hero-text {
+.homepage-hero-text,
+.resume-hero-text {
   flex: 1;
-  min-width: 280px;
+  min-width: 240px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
 }
 
-.homepage-hero-text .homepage-hero {
-  text-align: left;
-  margin-bottom: 1rem;
+.homepage-hero-text p,
+.resume-hero-text p {
+  margin-bottom: 0 !important;
+  color: rgba($body-color, 0.92) !important;
 }
 
-.homepage-hero-text .homepage-hero::before {
-  margin-left: 0;
-  margin-right: auto;
+.homepage-hero-text strong,
+.resume-hero-text strong {
+  color: $headings-color !important;
 }
 
-// Hide the "Home" title so the tagline is the focus
-body.homepage .quarto-title-block .title {
+// Credibility strip — inset column inside the hero panel (not a second floating card)
+.homepage-cred,
+.resume-cred {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  padding: 0.15rem 0 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 899px) {
+  .homepage-cred,
+  .resume-cred {
+    padding: 1.15rem 1.1rem 1rem;
+    background: rgba(1, 38, 38, 0.035);
+    border-radius: $border-radius-lg;
+    border: 1px solid rgba(1, 38, 38, 0.07);
+    border-left: 3px solid $primary;
+  }
+}
+
+// Desktop: vertical divider + spacing (must follow base .homepage-cred so padding is not reset)
+@media (min-width: 900px) {
+  .homepage-hero-content,
+  .resume-hero-content {
+    padding-right: 1.75rem;
+    border-right: 1px solid rgba(1, 38, 38, 0.1);
+    min-height: 100%;
+  }
+
+  .homepage-cred,
+  .resume-cred {
+    padding: 0.15rem 0 0 1.75rem;
+  }
+
+  // Resume: divider only between columns (first cred only); summary never gets a right edge line
+  .resume-intro-row .resume-cred {
+    padding: 0.15rem 1.75rem 0 0 !important;
+    border-right: none;
+    min-height: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .resume-intro-row > .resume-cred:first-of-type {
+    border-right: 1px solid rgba(1, 38, 38, 0.1);
+  }
+
+  // Mistaken second .resume-cred (same-length fences): no outer vertical line; match summary inset
+  .resume-intro-row > .resume-cred ~ .resume-cred {
+    border-right: none !important;
+    padding-left: 3rem !important;
+    padding-right: 0 !important;
+  }
+
+  .resume-intro-row .resume-hero-content {
+    padding-right: 0 !important;
+    border-right: none !important;
+    padding-left: 3rem;
+    min-height: 0;
+  }
+}
+
+.homepage-cred-item,
+.resume-cred-item {
+  padding: 0.65rem 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: rgba($body-color, 0.88) !important;
+  border-bottom: 1px solid rgba(1, 38, 38, 0.08);
+}
+
+.homepage-cred-item:last-child,
+.resume-cred-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.homepage-cred-item:first-child,
+.resume-cred-item:first-child {
+  padding-top: 0;
+}
+
+.homepage-cred-item p,
+.resume-cred-item p {
+  margin: 0 !important;
+}
+
+.homepage-cred-item strong,
+.resume-cred-item strong {
+  display: block;
+  font-family: $font-family-headings;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $primary !important;
+  margin-bottom: 0.2rem;
+}
+
+// Resume hero: label above summary paragraph — match Core Capabilities (.resume-cred-item strong)
+.resume-intro-row .resume-hero-text > p:first-of-type {
+  margin-bottom: 0.5rem !important;
+}
+
+.resume-intro-row .resume-hero-text > p:first-of-type strong {
+  display: block;
+  font-family: $font-family-headings;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $primary !important;
+  margin-bottom: 0.2rem;
+}
+
+// Remove default Quarto "Home" / "Resume" / "Work With Me" title block from layout (visually hidden)
+main#quarto-document-content:has(.homepage-hero-section) .quarto-title-block,
+main#quarto-document-content:has(.resume-hero-section) .quarto-title-block,
+main#quarto-document-content:has(.work-with-hero-section) .quarto-title-block,
+main#quarto-document-content:has(.projects-hero-section) .quarto-title-block {
   position: absolute !important;
   width: 1px !important;
   height: 1px !important;
@@ -268,65 +771,516 @@ body.homepage .quarto-title-block .title {
   border: 0 !important;
 }
 
-// Optional: keep title block visible but compact (no text)
-body.homepage .quarto-title-block {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+main#quarto-document-content:has(.homepage-hero-section) .quarto-title-block .title,
+main#quarto-document-content:has(.resume-hero-section) .quarto-title-block .title,
+main#quarto-document-content:has(.work-with-hero-section) .quarto-title-block .title,
+main#quarto-document-content:has(.projects-hero-section) .quarto-title-block .title {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
-// Hero tagline — the main visual focus
-body.homepage .homepage-hero {
-  font-family: $font-family-headings !important;
-  font-size: clamp(2rem, 5vw, 3.5rem) !important;
-  font-weight: 700 !important;
-  line-height: 1.25 !important;
-  letter-spacing: -0.02em !important;
-  color: $headings-color !important;
-  max-width: 720px;
-  margin: 0 auto !important;
-  padding: 0 1rem !important;
+// ---- Resume page: jump links, body sections, job cards, education, skill tags ----
+.resume-jump {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.75rem;
+  margin: 0 0 1.75rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
 }
 
-// Subtle accent line above the tagline for visual interest
-body.homepage .homepage-hero::before {
-  content: "";
-  display: block;
-  width: 4rem;
-  height: 4px;
-  background: linear-gradient(90deg, $primary, transparent);
-  margin: 0 auto 2rem auto;
-  border-radius: 2px;
+.resume-jump p {
+  margin: 0 !important;
 }
 
-// Optional: first line or phrase in primary color for emphasis
-body.homepage .homepage-hero strong {
+.resume-jump a {
+  color: rgba($body-color, 0.5) !important;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.resume-jump a:hover {
   color: $primary !important;
 }
 
+// Resume body section breaks — Experience, Education, Skills (no left bar; large Gelasio)
+main#quarto-document-content:has(.resume-hero-section) .resume-body section#experience > h2,
+main#quarto-document-content:has(.resume-hero-section) section.resume-education > h2,
+main#quarto-document-content:has(.resume-hero-section) section.resume-skills > h2 {
+  font-family: $font-family-headings !important;
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  text-transform: none !important;
+  color: $headings-color !important;
+  margin-top: 0;
+  margin-bottom: 1.35rem !important;
+  padding: 0 0 0.75rem 0 !important;
+  border-left: none !important;
+  border-bottom: 1px solid rgba(1, 38, 38, 0.14);
+}
+
+.resume-job-card {
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  border-left: 3px solid transparent;
+  border-radius: $border-radius-lg;
+  padding: 1.15rem 1.25rem 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(1, 38, 38, 0.05);
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    border-left-color 0.2s ease;
+}
+
+.resume-job-card:hover {
+  box-shadow: 0 4px 14px rgba(1, 38, 38, 0.08);
+  border-color: rgba(1, 38, 38, 0.14);
+  border-left-color: $primary;
+}
+
+.resume-job-card h3 {
+  font-size: 1.05rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.65rem !important;
+  color: $primary !important;
+}
+
+.resume-job-card ul {
+  margin-bottom: 0 !important;
+  padding-left: 1.2rem;
+}
+
+.resume-job-card li {
+  margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgba($body-color, 0.9) !important;
+}
+
+.resume-job-card li:last-child {
+  margin-bottom: 0;
+}
+
+.resume-education {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.resume-education h2 {
+  margin-top: 0 !important;
+}
+
+.resume-education ul {
+  margin-bottom: 0 !important;
+  padding-left: 1.2rem;
+  line-height: 1.55;
+}
+
+.resume-education li {
+  margin-bottom: 0.45rem;
+  color: rgba($body-color, 0.9) !important;
+}
+
+.resume-education li:last-child {
+  margin-bottom: 0;
+}
+
+.resume-skills {
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.resume-skills h2 {
+  margin-top: 0 !important;
+}
+
+// Skill category labels live inside .resume-nested-card under .resume-skills-focus
+.resume-skills-focus .resume-nested-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.resume-skills-focus .resume-nested-card > p {
+  margin: 0 !important;
+}
+
+.resume-skills-focus .resume-nested-card > p strong {
+  display: block;
+  color: $headings-color !important;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.resume-skill-tags {
+  margin-bottom: 0.25rem;
+}
+
+// Pandoc wraps inline spans in a paragraph inside the fenced div
+.resume-skill-tags p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  margin: 0 !important;
+}
+
+.resume-skill-tag {
+  display: inline-block;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.8125rem !important;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba($body-color, 0.88) !important;
+  background: rgba(243, 234, 231, 0.9);
+  border: 1px solid rgba(1, 38, 38, 0.12);
+  border-radius: 999px;
+  font-family: $font-family-sans-serif !important;
+}
+
+// Areas of focus — banded section (visually follows unified hero)
+.homepage-focus {
+  margin: 2rem -1rem 0;
+  padding: 2.25rem 1.25rem 2.5rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(243, 234, 231, 0.35) 100%);
+  border-radius: 1rem;
+  border: 1px solid rgba(1, 38, 38, 0.06);
+}
+
+@media (min-width: 768px) {
+  .homepage-focus {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+// Resume: beige bands (Experience / Education / Skills) — same as .homepage-focus pillars tray
+.resume-experience-focus,
+.resume-education-focus,
+.resume-skills-focus {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 0 1.5rem 0;
+  padding: 1.75rem 1.25rem 1.85rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(243, 234, 231, 0.35) 100%);
+  border-radius: 1rem;
+  border: 1px solid rgba(1, 38, 38, 0.06);
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.06);
+}
+
+@media (min-width: 768px) {
+  .resume-experience-focus,
+  .resume-education-focus,
+  .resume-skills-focus {
+    padding: 2rem 2rem 2.1rem;
+  }
+}
+
+.resume-experience-focus .resume-job-card,
+.resume-education-focus .resume-nested-card,
+.resume-skills-focus .resume-nested-card {
+  margin-bottom: 0 !important;
+}
+
+// White panels inside beige bands (Education list; Skills groups; pairs with .resume-job-card look)
+.resume-nested-card {
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  border-radius: $border-radius-lg;
+  padding: 1.15rem 1.25rem 1.2rem;
+  box-shadow: 0 2px 8px rgba(1, 38, 38, 0.05);
+}
+
+// Work With Me: beige bands + grids (same tokens as resume trays; not used on Home)
+.wwm-band {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 0 1.75rem 0;
+  padding: 1.75rem 1.25rem 1.85rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(243, 234, 231, 0.35) 100%);
+  border-radius: 1rem;
+  border: 1px solid rgba(1, 38, 38, 0.06);
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.06);
+}
+
+@media (min-width: 768px) {
+  .wwm-band {
+    padding: 2rem 2rem 2.1rem;
+  }
+}
+
+.wwm-band .resume-nested-card {
+  margin-bottom: 0 !important;
+}
+
+.wwm-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .wwm-two-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+}
+
+.wwm-service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .wwm-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+
+  .wwm-service-grid > .resume-nested-card:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
+// Work With Me only: engagement pillars as 2×2 (Home keeps 3 columns via base .homepage-pillars rule)
+@media (min-width: 768px) {
+  main#quarto-document-content:has(.work-with-hero-section) .homepage-pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem;
+  }
+}
+
+// Section titles sit closer to the band below
+main#quarto-document-content:has(.work-with-hero-section) section.level2 > h2 {
+  margin-bottom: 0.85rem !important;
+}
+
+// Intro line under "Engagement models" (plain paragraph before .homepage-focus)
+main#quarto-document-content:has(.work-with-hero-section) section#engagement-models > p:first-of-type {
+  margin-top: 0 !important;
+  margin-bottom: 1.1rem !important;
+  max-width: 40rem;
+  color: rgba($body-color, 0.88) !important;
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+// Visual break before final CTA
+main#quarto-document-content:has(.work-with-hero-section) section#get-in-touch {
+  border-top: 1px solid rgba(1, 38, 38, 0.1);
+  padding-top: 2rem;
+  margin-top: 2.75rem !important;
+}
+
+// Bold mailto under CTA button (Work With Me)
+main#quarto-document-content:has(.work-with-hero-section) .homepage-explore .wwm-cta-email {
+  display: inline-block;
+  margin-top: 1rem !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  color: $headings-color !important;
+  text-decoration: none !important;
+}
+
+main#quarto-document-content:has(.work-with-hero-section) .homepage-explore .wwm-cta-email:hover {
+  color: $primary !important;
+}
+
+.homepage-section-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba($body-color, 0.45) !important;
+  margin-bottom: 1.35rem;
+  display: block;
+}
+
+.homepage-section-label p {
+  margin: 0 !important;
+}
+
+.homepage-pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-pillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.homepage-pillar {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  border-radius: 0.875rem;
+  padding: 1.35rem 1.25rem 1.4rem;
+  box-shadow: 0 2px 8px rgba(1, 38, 38, 0.05);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgba($body-color, 0.88) !important;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.homepage-pillar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(1, 38, 38, 0.08);
+  border-color: rgba(191, 83, 44, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-pillar:hover {
+    transform: none;
+  }
+}
+
+.homepage-pillar-index {
+  font-family: $font-family-headings;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(191, 83, 44, 0.35) !important;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.homepage-pillar-index p {
+  margin: 0 !important;
+}
+
+.homepage-pillar strong {
+  display: block;
+  font-family: $font-family-headings;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $headings-color !important;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.homepage-pillar p {
+  margin-bottom: 0 !important;
+}
+
+// Featured band: projects CTA (inner div keeps heading from escaping the band in Pandoc)
+.homepage-explore {
+  margin: 2.25rem 0 1.5rem 0;
+  padding: 2rem 1.5rem 2.25rem;
+  background: linear-gradient(135deg, rgba(1, 38, 38, 0.06) 0%, rgba(191, 83, 44, 0.1) 100%);
+  border: 1px solid rgba(1, 38, 38, 0.12);
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+// Pandoc may place .homepage-explore-inner on the inner <section>
+.homepage-explore > section.level3,
+.homepage-explore .homepage-explore-inner {
+  max-width: 36rem;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-bottom: 0 !important;
+}
+
+.homepage-explore-title {
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
+  padding-bottom: 0 !important;
+  font-family: $font-family-headings !important;
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  color: $headings-color !important;
+  border-bottom: none !important;
+}
+
+.homepage-explore-inner > p {
+  margin-bottom: 1.25rem;
+  color: $body-color !important;
+}
+
+.homepage-explore-btn {
+  font-weight: 600;
+  padding: 0.55rem 1.75rem !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(191, 83, 44, 0.25);
+}
+
+.homepage-footnote {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba($body-color, 0.65) !important;
+  padding-top: 1.5rem;
+  margin: 0 auto;
+  max-width: 36rem;
+  text-align: center;
+  border-top: none;
+}
+
+.homepage-footnote a {
+  font-weight: 600;
+}
+
 // Homepage insight section (e.g. NYC Airbnb price–POI)
-body.homepage .homepage-insight {
+main#quarto-document-content:has(.homepage-hero-section) .homepage-insight {
   max-width: 800px;
   margin: 3rem auto;
   padding: 0 1rem;
 }
-body.homepage .homepage-insight h2 {
+main#quarto-document-content:has(.homepage-hero-section) .homepage-insight h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-// Homepage: allow TOC for "On this page" navigation
-body.homepage .column-page {
+// Homepage: full column width (no margin TOC)
+main#quarto-document-content:has(.homepage-hero-section) .column-page {
   max-width: 100%;
 }
 
-// Homepage: simple map container (R-rendered Leaflet) — full width
-body.homepage .map-container-simple {
+// Homepage: simple map container (R-rendered Leaflet) - full width
+main#quarto-document-content:has(.homepage-hero-section) .map-container-simple {
   width: 100%;
   max-width: 100%;
   margin: 1.5rem 0;
 }
-body.homepage .map-container-simple .leaflet,
-body.homepage .map-container-simple .html-widget {
+main#quarto-document-content:has(.homepage-hero-section) .map-container-simple .leaflet,
+main#quarto-document-content:has(.homepage-hero-section) .map-container-simple .html-widget {
   width: 100% !important;
   max-width: 100% !important;
   height: 70vh !important;
@@ -334,18 +1288,18 @@ body.homepage .map-container-simple .html-widget {
 }
 
 // Homepage scroll-driven map narrative (kept for any future use; main map is .map-container-simple now)
-body.homepage .homepage-map-narrative {
+main#quarto-document-content:has(.homepage-hero-section) .homepage-map-narrative {
   width: 100%;
   max-width: 100%;
 }
-body.homepage .homepage-map-narrative .map-scroll-wrap {
+main#quarto-document-content:has(.homepage-hero-section) .homepage-map-narrative .map-scroll-wrap {
   width: 100vw;
   max-width: 100vw;
   min-height: 100vh;
   margin-left: calc(50% - 50vw);
   position: relative;
 }
-body.homepage .map-container {
+main#quarto-document-content:has(.homepage-hero-section) .map-container {
   position: sticky;
   top: 0;
   left: 0;
@@ -357,8 +1311,8 @@ body.homepage .map-container {
   overflow: hidden;
   background: #c8d4d4;
 }
-body.homepage .map-container #homepage-map,
-body.homepage .map-container .homepage-map {
+main#quarto-document-content:has(.homepage-hero-section) .map-container #homepage-map,
+main#quarto-document-content:has(.homepage-hero-section) .map-container .homepage-map {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -366,26 +1320,26 @@ body.homepage .map-container .homepage-map {
   min-height: 100%;
   z-index: 0;
 }
-body.homepage .map-container .leaflet {
+main#quarto-document-content:has(.homepage-hero-section) .map-container .leaflet {
   height: 100% !important;
   min-height: 100%;
 }
-body.homepage .map-container .html-widget {
+main#quarto-document-content:has(.homepage-hero-section) .map-container .html-widget {
   height: 100% !important;
   min-height: 100%;
 }
-body.homepage .map-blur-overlay {
+main#quarto-document-content:has(.homepage-hero-section) .map-blur-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   transition: backdrop-filter 0.6s ease, background-color 0.6s ease;
 }
-body.homepage .map-steps {
+main#quarto-document-content:has(.homepage-hero-section) .map-steps {
   position: relative;
   z-index: 2;
 }
-body.homepage .map-step {
+main#quarto-document-content:has(.homepage-hero-section) .map-step {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -393,7 +1347,7 @@ body.homepage .map-step {
   padding: 2rem 1rem;
   scroll-margin-top: 0;
 }
-body.homepage .map-card {
+main#quarto-document-content:has(.homepage-hero-section) .map-card {
   max-width: 28rem;
   padding: 1.5rem 2rem;
   background: rgba(243, 234, 231, 0.96);
@@ -404,7 +1358,7 @@ body.homepage .map-card {
   line-height: 1.5;
   border: 1px solid rgba(1, 38, 38, 0.08);
 }
-body.homepage .map-card strong {
+main#quarto-document-content:has(.homepage-hero-section) .map-card strong {
   color: #BF532C;
   display: block;
   margin-bottom: 0.35em;
@@ -449,14 +1403,47 @@ body.homepage .map-card strong {
 
 .navbar .nav-link {
   color: $light !important;
-  
+  transition: color 0.15s ease;
+
   &:hover,
-  &:focus {
+  &:focus,
+  &:focus-visible {
     color: $primary !important;
   }
-  
+
   &[aria-current="page"] {
     color: $primary !important;
+  }
+}
+
+// Navbar underline (Option A): animated bar under .navbar-nav links only (not search / toggler)
+.navbar .navbar-nav .nav-link {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: $primary;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  &:hover::after,
+  &:focus-visible::after,
+  &[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar .navbar-nav .nav-link::after {
+    transition: none;
   }
 }
 
@@ -473,7 +1460,9 @@ body.homepage .map-card strong {
 .navbar .navbar-nav .nav-link:hover i,
 .navbar .navbar-nav .nav-link:hover svg,
 .navbar .navbar-nav .nav-link:focus i,
-.navbar .navbar-nav .nav-link:focus svg {
+.navbar .navbar-nav .nav-link:focus svg,
+.navbar .navbar-nav .nav-link:focus-visible i,
+.navbar .navbar-nav .nav-link:focus-visible svg {
   color: $primary !important;
   fill: $primary !important;
   filter: none !important; // Remove filter on hover to show orange
@@ -607,7 +1596,10 @@ code:not(pre sourceCode code) {
 // ---- Projects page specific colors ----
 .projects-filters {
   background-color: #fff;
-  border: 1px solid $border-color;
+  border: 1px solid rgba(1, 38, 38, 0.09);
+  border-left: 4px solid rgba(191, 83, 44, 0.35);
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.06);
 }
 
 .projects-tag-btn {
@@ -659,51 +1651,84 @@ code:not(pre sourceCode code) {
 }
 
 // ---- Yoga browse page (catalog at full size, no left sidebar; keep right TOC) ----
-body.yoga-browse-page #quarto-sidebar,
-body.yoga-browse-page .sidebar-navigation,
-body.yoga-browse-page .sidebar,
-body.yoga-browse-page .nav-sidebar {
+body:has(.yoga-browse-page-root) #quarto-sidebar,
+body:has(.yoga-browse-page-root) .sidebar-navigation,
+body:has(.yoga-browse-page-root) .sidebar,
+body:has(.yoga-browse-page-root) .nav-sidebar {
   display: none !important;
 }
 
-body.yoga-browse-page .page-columns .content,
-body.yoga-browse-page .page-columns .column-page,
-body.yoga-browse-page #quarto-content {
+body:has(.yoga-browse-page-root) .page-columns .content,
+body:has(.yoga-browse-page-root) .page-columns .column-page,
+body:has(.yoga-browse-page-root) #quarto-content {
   max-width: none !important;
   padding-left: clamp(1rem, 4vw, 2rem) !important;
   padding-right: clamp(1rem, 4vw, 2rem) !important;
 }
 
-body.yoga-browse-page .page-columns {
+body:has(.yoga-browse-page-root) .page-columns {
   grid-template-columns: 1fr !important;
 }
 
+// Center catalog: flex column + hide empty margin TOC column so main is not offset left
+body:has(.yoga-browse-page-root) #quarto-content.page-columns {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+body:has(.yoga-browse-page-root) #quarto-margin-sidebar {
+  display: none !important;
+}
+
+body:has(.yoga-browse-page-root) main#quarto-document-content {
+  max-width: 1400px !important;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+
 // ---- Yoga project page (default layout: left sidebar + right TOC) ----
-body.yoga-project-page .quarto-layout-panel,
-body.yoga-project-page .column-body,
-body.yoga-project-page main#quarto-document-content {
-  max-width: 120rem; // 1920px at 16px — comfortable at 1080p and 1440p
+body:has(.yoga-project-page-root) .quarto-layout-panel,
+body:has(.yoga-project-page-root) .column-body,
+body:has(.yoga-project-page-root) main#quarto-document-content {
+  max-width: 120rem; // 1920px at 16px - comfortable at 1080p and 1440p
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
 
-body.yoga-project-page .yoga-view-toggle {
+body:has(.yoga-project-page-root) .yoga-view-toggle {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
 }
 
-body.yoga-project-page .yoga-view-toggle .btn {
+body:has(.yoga-project-page-root) .yoga-view-toggle .btn {
   margin: 0;
 }
 
-// Final product: full-size embed — wrapper must have explicit height so iframe doesn't collapse to 300x150
+// Final product: full-size embed - wrapper must have explicit height so iframe doesn't collapse to 300x150
 .yoga-embed-bar {
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: flex-end;
+}
+
+// "Open project in new tab" — global `body:has(.yoga-project-page-root) a { color: inherit }` otherwise wins over .btn-outline-primary
+body:has(.yoga-project-page-root) .yoga-embed-bar a.btn-outline-primary {
+  color: $primary !important;
+  border-color: $primary !important;
+  background-color: transparent !important;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $primary !important;
+    border-color: $primary !important;
+    color: #fff !important;
+  }
 }
 
 #yoga-iframe-wrap.yoga-embed-full {
@@ -717,6 +1742,80 @@ body.yoga-project-page .yoga-view-toggle .btn {
 }
 
 #yoga-iframe-wrap.yoga-embed-full iframe.yoga-embed {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  border: none;
+  display: block;
+}
+
+// ---- PDF lecture slides project (full-width embed, same chrome as product embeds) ----
+body:has(.project-pdf-slides-root) .quarto-layout-panel,
+body:has(.project-pdf-slides-root) .column-body,
+body:has(.project-pdf-slides-root) main#quarto-document-content {
+  max-width: 120rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.project-pdf-slides-intro {
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.35rem;
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.09);
+  border-left: 4px solid $primary;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.06);
+  font-size: 0.95rem;
+  line-height: 1.55;
+
+  p {
+    margin: 0 0 0.65rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.pdf-slides-embed-bar {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+body:has(.project-pdf-slides-root) .pdf-slides-embed-bar a.btn-outline-primary {
+  color: $primary !important;
+  border-color: $primary !important;
+  background-color: transparent !important;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $primary !important;
+    border-color: $primary !important;
+    color: #fff !important;
+  }
+}
+
+#pdf-slides-frame-wrap.pdf-slides-embed-full {
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  height: calc(100vh - 260px) !important;
+  min-height: 600px !important;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.06);
+  background: rgba(243, 234, 231, 0.35);
+}
+
+#pdf-slides-frame-wrap.pdf-slides-embed-full iframe.pdf-slides-embed {
   position: absolute !important;
   left: 0 !important;
   top: 0 !important;
@@ -822,6 +1921,16 @@ body.yoga-project-page .yoga-view-toggle .btn {
     height: 100%;
     object-fit: cover;
   }
+
+  // Delivery default SVGs (vector icons): contain + pad so artwork isn’t cropped
+  &.projects-card-visual--delivery-icon {
+    background: rgba(243, 234, 231, 0.65);
+    padding: 0.85rem 1rem;
+
+    img {
+      object-fit: contain;
+    }
+  }
 }
 
 .projects-card-visual-placeholder {
@@ -880,4 +1989,81 @@ body.yoga-project-page .yoga-view-toggle .btn {
   text-align: center;
   padding: 2rem 1rem;
   font-size: 0.9375rem;
+}
+
+// ---- Site-wide: back to top (injected via include-after-body) ----
+.back-to-top {
+  position: fixed;
+  z-index: 1040;
+  /* Sit above Quarto page footer when scrolled to the end */
+  bottom: calc(max(1.25rem, env(safe-area-inset-bottom, 0px)) + 3.25rem);
+  right: max(1.25rem, env(safe-area-inset-right, 0px));
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: $primary;
+  color: #fff !important;
+  font-size: 1.15rem;
+  line-height: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 14px rgba(1, 38, 38, 0.12), 0 1px 4px rgba(191, 83, 44, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease,
+    transform 0.28s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Bootstrap Icons: glyph box is often off-center; fill button and center the ::before */
+.back-to-top .bi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  line-height: 0;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: $link-hover-color;
+  color: #fff !important;
+  box-shadow: 0 4px 18px rgba(1, 38, 38, 0.14), 0 2px 8px rgba(115, 23, 2, 0.15);
+}
+
+.back-to-top:focus {
+  outline: none;
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid $primary;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media print {
+  .back-to-top {
+    display: none !important;
+  }
 }

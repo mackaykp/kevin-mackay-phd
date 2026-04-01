@@ -1,3 +1,9 @@
+# Local-only docs (not pushed); e.g. projects tag taxonomy for maintainers/agents
+private-docs/
+
+# Local archive (e.g. previous index copy)
+ARCHIVE/
+
 # Quarto
 _site/
 .quarto/
@@ -16,19 +22,22 @@ Thumbs.db
 /.quarto/
 **/*.quarto_ipynb
 
-# Leaflet_Mapping_Tool — large/generated (vignettes/maps/ kept for site embed)
+# Leaflet_Mapping_Tool - large/generated (vignettes/maps/ kept for site embed)
 projects/Leaflet_Mapping_Tool/output/
 projects/Leaflet_Mapping_Tool/data/
 projects/Leaflet_Mapping_Tool/_site/
 
-# Offline_Geocoding_Tool — NAR data, DuckDB, ODA, archives, output
+# Offline_Geocoding_Tool - NAR data, DuckDB, ODA, archives, output
 projects/Offline_Geocoding_Tool/data/
 projects/Offline_Geocoding_Tool/output/
 projects/Offline_Geocoding_Tool/ARCHIVE/
 
-# PhD Dissertation — full PDF (large); page and abstract stay in repo
+# PhD Dissertation - full PDF (large); page and abstract stay in repo
 projects/PhD_Dissertation/*.pdf
 
 # Archive / nested build output
 projects/ARCHIVE/
 projects/**/_site/
+
+# Belay_Buddy_Demo - Quarto render cache
+projects/Belay_Buddy_Demo/index_cache/

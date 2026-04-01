@@ -3,81 +3,81 @@ title: "Home"
 body-class: homepage
 format:
   html:
-    toc: true
-    toc-depth: 2
+    toc: false
+    page-layout: full
 ---
 
 ::: {.homepage-hero-section}
+
+::: {.homepage-tagline-card}
+::: {.homepage-tagline}
+[Clarity]{.homepage-tagline-em} at every stage of your [data journey]{.homepage-tagline-em}
+:::
+:::
+
+::: {.homepage-intro-row}
 ::: {.homepage-hero-content}
-![](assets/kevin-mackay.jpg){.homepage-hero-photo}
+![](assets/homepage_portrait.jpg){.homepage-hero-photo}
 
 ::: {.homepage-hero-text}
-::: {.homepage-hero}
-Make sense of complexity with full‑lifecycle data insight
-:::
+Hello!👋 I’m Kevin - a data, spatial, and research professional with experience across municipal, federal, and academic environments. I help teams make sense of complex population, demographic, and administrative data at every stage of the data journey, from collection and governance to analysis, design, and communication. My work blends rigorous methods with practical decision support, and I enjoy helping organizations understand systems and move forward with clarity and confidence.
 
-Hello! I'm **Kevin** — a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. I help organizations make sense of complex health, spatial, and administrative data through rigorous analysis, thoughtful research design, and clear, user‑focused communication.
-:::
 :::
 :::
 
-## My background
+::: {.homepage-cred}
+::: {.homepage-cred-item}
+**How I Work**
 
-I completed my PhD in Geography at McMaster University, where I specialized in medical and spatial analysis. Since then, I've worked across public‑sector teams supporting analytics, program monitoring, performance measurement, accessibility research, and data‑driven decision‑making. My experience spans health, housing, transportation, and user experience research, giving me a broad understanding of how data, people, and systems interact.
+- Clarity and transparency in every step
+- Rigorous methods with practical outcomes
+- Strong documentation and reproducible workflows
+- Collaborative, stakeholder‑aligned approach
+- Ethical, governance‑minded practice
 
-## How I work
+:::
 
-I enjoy working across the full lifecycle of analytical and research projects:
+:::
+:::
 
-- identifying problems and clarifying requirements  
-- assessing data quality and documenting assumptions  
-- designing and conducting analysis  
-- translating results into clear, actionable insights  
-- building workflows that are reproducible, maintainable, and future‑proof  
+:::
 
-I value clarity, rigor, and thoughtful communication. I care deeply about documentation, data quality, and helping teams adopt tools and practices that make their work more reliable and sustainable.
+::: {.homepage-focus}
 
-## What motivates me
 
-I'm driven by curiosity and a desire to understand how systems work. I enjoy tackling complex, interdisciplinary problems and helping teams navigate uncertainty with structure and clarity. I'm especially motivated by work that supports public impact, equity, and evidence‑informed decision‑making.
+::: {.homepage-pillars}
+::: {.homepage-pillar}
+::: {.homepage-pillar-index}
+01
+:::
+**Understanding systems through data**  
+Using spatial and non‑spatial population, demographic, and administrative data to reveal patterns, relationships, and system‑level dynamics.
+:::
 
-## What I do
+::: {.homepage-pillar}
+::: {.homepage-pillar-index}
+02
+:::
+**Designing research and analytical approaches**  
+Building the right questions, methods, and workflows to make sense of complex problems, whether the data is messy, incomplete, or multi‑source.
+:::
 
-I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. My work blends data analysis, spatial methods, research design, documentation, and cross-functional coordination to create solutions that are clear, reliable, and future‑proof.
+::: {.homepage-pillar}
+::: {.homepage-pillar-index}
+03
+:::
+**Turning insight into action**  
+Translating complex findings into clear guidance, decision support, and practical recommendations that help teams move forward with confidence.
+:::
+:::
+:::
 
-### Health & spatial data analysis
-I work with health, housing, transportation, and administrative datasets to uncover patterns, identify risks, and support evidence‑informed decision‑making. My background in medical and spatial geography allows me to integrate GIS, spatial modelling, and statistical analysis to answer real-world questions.
+::: {.homepage-explore}
+::: {.homepage-explore-inner}
+### Explore my work {.homepage-explore-title}
 
-**Examples:** spatial modelling and cluster analysis; health indicators and administrative data analysis; mapping, geocoding, and spatial data integration.
+Projects in analytical design, automation, and data‑driven problem solving across domains
 
-### Research design & evidence synthesis
-I design and conduct mixed-methods research that integrates qualitative and quantitative insights. I specialize in translating complex findings into clear, actionable recommendations for policy, programs, and service delivery.
-
-**Examples:** mixed-methods studies and UX research; environmental and jurisdictional scans; policy-oriented analysis and evidence synthesis.
-
-### Data quality, governance & documentation
-I help teams build trust in their data by validating quality, documenting assumptions, and establishing reproducible workflows. I focus on clarity, transparency, and long-term maintainability.
-
-**Examples:** data validation and QA frameworks; documentation, SOPs, and standards; reproducible pipelines and workflow design.
-
-### Project coordination & collaboration
-I support cross-functional teams by coordinating project activities, clarifying requirements, tracking progress, and ensuring alignment across stakeholders. I bridge the gap between technical and non-technical audiences.
-
-**Examples:** project planning and task tracking; stakeholder coordination and communication; managing concurrent research and analytics initiatives.
-
-### Communication, training & digital enablement
-I translate complex analysis into clear, user-focused outputs and help teams adopt tools and practices that improve efficiency and understanding. I enjoy teaching, documentation, and building capacity.
-
-**Examples:** dashboards, reports, and presentations; training, workshops, and user guides; supporting adoption of analytical and digital tools.
-
-## Outside of work
-
-I enjoy hiking, climbing, gravel biking, and spending time outdoors. These interests shape my appreciation for environmental stewardship, accessibility, and community‑focused public service.
-
-## Explore my work
-
-Visit the [Projects](projects/index.qmd) page to see examples of spatial analysis, automation, research, and data-driven work across different domains.
-
-## Contact
-
-You can reach me at **mackaykp@gmail.com** — or connect via [LinkedIn](https://www.linkedin.com/in/kevin-mackay-phd/) or [GitHub](https://github.com/mackaykp/kevin-mackay-phd).
+[Browse projects](projects/index.qmd){.btn .btn-primary .homepage-explore-btn}
+:::
+:::

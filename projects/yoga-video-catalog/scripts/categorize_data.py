@@ -58,7 +58,7 @@ def main():
     df["duration_bucket"] = (np.round(df["duration_mins"] / 5) * 5).clip(upper=120).astype(int)
     df.loc[(df["duration_bucket"] == 0) & (df["duration_mins"] > 0), "duration_bucket"] = 5
     df["duration_category"] = np.where(
-        df["duration_bucket"] == 0, "—",
+        df["duration_bucket"] == 0, "-",
         np.where(df["duration_bucket"] == 120,
                  np.where(df["duration_mins"] > 120, "120+ min", "120 min"),
                  df["duration_bucket"].astype(str) + " min")
@@ -67,7 +67,7 @@ def main():
     # Upload date -> year
     df["upload_year"] = pd.to_datetime(df["upload_date"], errors="coerce").dt.year
     df["upload_year"] = df["upload_year"].fillna(0).astype(int)
-    df["upload_year_display"] = df["upload_year"].replace(0, "").astype(str).replace("", "—")
+    df["upload_year_display"] = df["upload_year"].replace(0, "").astype(str).replace("", "-")
 
     # Views: 5 categories
     views = pd.to_numeric(df["view_count"], errors="coerce").fillna(-1)
@@ -75,8 +75,8 @@ def main():
     order[views < 0] = 0
     order = np.clip(order, 0, 5)
     df["views_category_order"] = order.astype(int)
-    df["views_category"] = [VIEWS_LABELS[i - 1] if 1 <= i <= 5 else "—" for i in df["views_category_order"]]
-    df.loc[df["view_count"].isna(), "views_category"] = "—"
+    df["views_category"] = [VIEWS_LABELS[i - 1] if 1 <= i <= 5 else "-" for i in df["views_category_order"]]
+    df.loc[df["view_count"].isna(), "views_category"] = "-"
 
     df.to_csv(OUTPUT_CSV, index=False, encoding="utf-8")
     print(f"Updated {OUTPUT_CSV} with duration_category, upload_year, views_category.")

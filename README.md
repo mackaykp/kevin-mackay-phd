@@ -5,7 +5,7 @@ A professional portfolio site built with **R** and **Quarto**, designed for GitH
 - **Navbar:** Home, About, Resume, Projects (with sidebar navigation)
 - **About:** Background, interests, expertise, contact
 - **Resume:** Experience, education, skills (placeholder content)
-- **Projects:** Multi-category sidebar — Statistics & Data, Mapping & GIS, Automation, Other
+- **Projects:** Multi-category sidebar - Statistics & Data, Mapping & GIS, Automation, Other
 - **Responsive layout:** Bootstrap-based; navbar collapses to a menu on smaller screens
 
 ## Build locally

@@ -217,7 +217,7 @@ def scrape_channel_new_only(
                 # Walk top-to-bottom (newest first); stop at first video already in catalog
                 for i, v in enumerate(videos):
                     if v["video_id"] in existing_ids:
-                        log(f"  Found first cataloged video at position {i + 1} — stopping (all above are new).")
+                        log(f"  Found first cataloged video at position {i + 1} - stopping (all above are new).")
                         new_list = videos[:i]
                         if channel_name:
                             for u in new_list:
@@ -230,7 +230,7 @@ def scrape_channel_new_only(
                     empty_scrolls = 0
                 prev_count = count
 
-                log("  No match yet — scrolling to load more...")
+                log("  No match yet - scrolling to load more...")
                 scroll_once(page)
 
             # Reached end of channel (no more videos load); all we have are new

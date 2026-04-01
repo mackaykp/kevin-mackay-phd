@@ -34,24 +34,27 @@ website:
       - text: "Work With Me"
         href: work-with-me.qmd
     right:
-      - icon: github
-        href: "https://github.com/mackaykp/kevin-mackay-phd"
-        aria-label: GitHub
+      - icon: envelope
+        href: "mailto:mackaykp@gmail.com"
+        aria-label: Email
       - icon: linkedin
         href: "https://www.linkedin.com/in/kevin-mackay-phd/"
         aria-label: LinkedIn
-
+      - icon: github
+        href: "https://github.com/mackaykp/kevin-mackay-phd"
+        aria-label: GitHub
+      
   page-footer:
     left: "© 2026 Kevin Mackay, PhD"
-    right: "Built with Quarto"
+    right: "Custom site built with Quarto"
     border: true
     background: light
 
 format:
   html:
+    include-after-body: includes/back-to-top.html
     theme:
       light: [quartz, custom.scss]
-      dark: [quartz, custom.scss]
     toc: true
     toc-depth: 2
     toc-location: right

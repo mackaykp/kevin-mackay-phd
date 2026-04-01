@@ -9,7 +9,7 @@ if (file.exists("R/street_type_map.R")) {
   source("street_type_map.R")
 }
 
-#' Full province/territory name (lowercase) to 2-letter code — for input data that uses "Ontario" instead of "ON"
+#' Full province/territory name (lowercase) to 2-letter code - for input data that uses "Ontario" instead of "ON"
 #' @export
 PROVINCE_NAME_TO_2LETTER <- c(
   "newfoundland and labrador" = "NL", "newfoundland" = "NL",

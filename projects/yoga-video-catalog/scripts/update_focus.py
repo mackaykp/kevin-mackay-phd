@@ -23,7 +23,7 @@ FOCUS_KEYWORDS = [(canonical, variations) for canonical, variations in FOCUS_MAP
 
 _SEPARATOR_RE = re.compile(
     r"^[\s]*"
-    r"([-]{3,}|[—]{3,}|[-\s]{5,}|[*]{3,}|[_]{3,}|[=]{3,}|[═]{3,}|[─]{3,})"
+    r"([-]{3,}|[-\s]{5,}|[*]{3,}|[_]{3,}|[=]{3,}|[═]{3,}|[─]{3,})"
     r"[\s]*$",
     re.MULTILINE,
 )
@@ -60,7 +60,7 @@ def main():
 
     df = pd.read_csv(CSV_FILE, na_values=["", "NA"])
 
-    # CSV must use "focus" column (rename body_part_focus in the CSV header if needed — see INSTRUCTIONS.md)
+    # CSV must use "focus" column (rename body_part_focus in the CSV header if needed - see INSTRUCTIONS.md)
     if "focus" not in df.columns and "body_part_focus" in df.columns:
         print("The CSV has 'body_part_focus' but this script expects 'focus'.")
         print("Rename the column: open data/yoga_videos_enriched.csv, change the header in the first row from body_part_focus to focus, save, then run this again.")

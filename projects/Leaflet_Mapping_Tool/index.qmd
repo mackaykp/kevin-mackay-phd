@@ -2,6 +2,8 @@
 title: "Leaflet Mapping Tool"
 ---
 
+<div class="yoga-project-page-root" hidden aria-hidden="true"></div>
+
 ::: {.yoga-view-toggle role="group" aria-label="Switch view"}
 <button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
 <button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
@@ -10,10 +12,10 @@ title: "Leaflet Mapping Tool"
 
 ::: {#yoga-final-product .yoga-view-panel}
 ::: {.yoga-embed-bar}
-[Open mapping tool in new tab](vignettes/vignettes.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+[Open project in new tab](vignettes/vignettes.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
 :::
 ::: {#yoga-iframe-wrap .yoga-embed-full}
-<iframe src="vignettes/vignettes.html" title="Leaflet Mapping Tool — vignettes" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+<iframe src="vignettes/vignettes.html" title="Leaflet Mapping Tool - vignettes" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
 :::
 :::
 
@@ -35,7 +37,7 @@ To address the scale and complexity of the request, I designed an interactive ma
 - incorporate zooming, panning, basemap switching, and layer toggling
 - allow users to click features to reveal additional information
 - build a workflow that could be run by non‑GIS staff with basic R skills
-The tool automated data retrieval, processing, and map generation, making it adaptable to any Canadian city—and scalable beyond Canada if needed.
+The tool automated data retrieval, processing, and map generation, making it adaptable to any Canadian city-and scalable beyond Canada if needed.
 
 ## Impact
 
@@ -187,7 +189,7 @@ See the [Guide](guide.qmd) in this project for setup and how to run the tool.
 
   // Fill right margin "On this page" TOC (Quarto leaves it empty for sidebar pages)
   function buildMarginTOC() {
-    if (!document.body.classList.contains('yoga-project-page')) return;
+    if (!document.querySelector('.yoga-project-page-root')) return;
     var marginSidebar = document.getElementById('quarto-margin-sidebar');
     if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
     var main = document.getElementById('quarto-document-content');

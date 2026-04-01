@@ -32,7 +32,7 @@ FOCUS_KEYWORDS = [(canonical, variations) for canonical, variations in FOCUS_MAP
 
 _SEPARATOR_RE = re.compile(
     r"^[\s]*"
-    r"([-]{3,}|[—]{3,}|[-\s]{5,}|[*]{3,}|[_]{3,}|[=]{3,}|[═]{3,}|[─]{3,})"
+    r"([-]{3,}|[-\s]{5,}|[*]{3,}|[_]{3,}|[=]{3,}|[═]{3,}|[─]{3,})"
     r"[\s]*$",
     re.MULTILINE,
 )

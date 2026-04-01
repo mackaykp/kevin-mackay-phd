@@ -1,44 +1,163 @@
 ---
 title: "Work With Me"
+format:
+  html:
+    toc: false
+    page-layout: full
 ---
 
-I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. Whether you need help defining a problem, improving data quality, conducting analysis, or communicating results, I bring structure, clarity, and rigor to every stage of the work.
+::: {.work-with-hero-section}
 
-## How I Can Help
+[How I help teams]{.work-with-hero-kicker}
 
-### Full‑Lifecycle Analytical Support
-I work across the entire analytics and research lifecycle—from requirements gathering and data validation to analysis, interpretation, and communication. I help teams move from uncertainty to clarity with solutions that are reliable, transparent, and future‑proof.
+I help teams move from uncertainty to clarity by bringing structure, rigor, and momentum to analytical and research work. If you are facing complex data, unclear questions, or stalled projects, I can help you move forward with confidence.
 
-### Problem Definition & Scoping
-I help teams clarify questions, identify constraints, and translate ideas into actionable analytical plans. This includes understanding stakeholder needs, assessing feasibility, and outlining the steps required to deliver meaningful results.
+I work with population, demographic, and administrative data across the full lifecycle - from problem definition and data quality through analysis, communication, and workflow design.
 
-### Data Quality, Governance & Workflow Design
-I specialize in validating data, documenting assumptions, and building reproducible workflows. My focus is on creating systems that are maintainable, trustworthy, and aligned with governance requirements.
+:::
 
-### Analysis, Research & Insight Generation
-I conduct spatial, statistical, and mixed‑methods analysis to support program monitoring, performance measurement, and policy‑oriented decision‑making. I translate complex findings into clear, actionable insights for technical and non‑technical audiences.
+## Who I Collaborate With
 
-### Communication, Training & Enablement
-I create dashboards, reports, presentations, and user guides that help teams understand and use their data effectively. I also deliver training and workshops to support adoption of analytical tools and best practices.
+::: {.wwm-band}
+::: {.wwm-two-col}
 
-## Who I Work With
+::: {.resume-nested-card}
+**Audience**
 
-- **Public‑sector teams** needing analytical support, research capacity, or workflow improvements  
-- **Organizations** looking to improve data quality, documentation, or reproducibility  
-- **Teams** seeking help with spatial analysis, health data, or administrative datasets  
-- **Leaders** who need clear, decision‑ready insights grounded in rigorous analysis  
-- **Clients** who want structured, thoughtful support on complex or interdisciplinary problems  
+- **Public-sector teams** navigating complex administrative or population data and needing analytical capacity  
+- **Organizations** seeking clarity on data quality, governance, documentation, or reproducible workflows  
+- **Policy, program, and research teams** that need rigorous analytical support without adding permanent headcount  
+- **Leaders** who want actionable insight and decision-ready synthesis
+:::
 
-## Engagement Options
+::: {.resume-nested-card}
+**What it's like**
 
-- Short‑term analytical or research support  
-- Project‑based consulting  
-- Workflow and documentation improvements  
-- Training, workshops, and digital enablement  
-- Part‑time or full‑time employment opportunities  
+- Clear expectations and transparent communication at each step  
+- Rigorous methods with practical, decision-ready outcomes  
+- Strong documentation and reproducible workflows  
+- Collaborative, stakeholder-aligned engagement  
+- Ethical, governance-minded practice  
+:::
 
-## Let's Connect
+:::
 
-If you'd like to discuss a project, collaboration, or role, feel free to reach out:
+:::
 
-**Email:** mackaykp@gmail.com
+## Engagement models
+
+Choose the level of support that fits your team's needs.
+
+::: {.homepage-focus}
+
+::: {.homepage-pillars}
+::: {.homepage-pillar}
+::: {.homepage-pillar-index}
+01
+:::
+**Project-based support**  
+For defined analytical or research work with clear questions, timelines, and deliverables.
+:::
+
+::: {.homepage-pillar}
+::: {.homepage-pillar-index}
+02
+:::
+**Fractional / part-time support**  
+For ongoing capacity: workflow development, quality routines, analysis, or embedded support alongside your team.
+:::
+
+::: {.homepage-pillar}
+::: {.homepage-pillar-index}
+03
+:::
+**Short-term advisory**  
+For problem framing, scoping, analytical design, or a focused review when you need an outside perspective before committing to a build.
+:::
+
+::: {.homepage-pillar}
+::: {.homepage-pillar-index}
+04
+:::
+**Training & enablement**  
+For documentation, reproducible workflows, hands-on training, and practices that help your team sustain the work after I step back.
+:::
+:::
+:::
+
+## How I can help
+
+::: {.wwm-band}
+::: {.wwm-service-grid}
+
+::: {.resume-nested-card}
+**Full-lifecycle analytical support**
+
+I work across the entire analytics and research lifecycle - from requirements gathering and data validation to analysis, interpretation, and communication. I help teams move from uncertainty to clarity with solutions that are reliable, transparent, and maintainable.
+:::
+
+::: {.resume-nested-card}
+**Problem definition & scoping**
+
+I help teams clarify questions, identify constraints, and translate ideas into actionable analytical plans. That includes understanding stakeholder needs, assessing feasibility, and outlining the steps required to deliver meaningful results.
+:::
+
+::: {.resume-nested-card}
+**Data quality, governance & workflow design**
+
+I focus on validating data, documenting assumptions, and building reproducible workflows - systems that are trustworthy and aligned with governance expectations.
+:::
+
+::: {.resume-nested-card}
+**Analysis, research & insight generation**
+
+I conduct spatial, statistical, and mixed-methods analysis to support program monitoring, performance measurement, and policy-oriented decision-making, and translate findings for technical and non-technical audiences.
+:::
+
+::: {.resume-nested-card}
+**Communication, training & enablement**
+
+I develop dashboards, reports, presentations, and user guides so teams can understand and use their data - and I deliver training and workshops to support adoption of tools and good practice.
+:::
+
+:::
+
+:::
+
+## Credibility and fit
+
+::: {.wwm-band}
+::: {.wwm-two-col}
+
+::: {.resume-nested-card}
+**Credibility at a glance**
+
+- Trusted by municipal, federal, and academic teams  
+- Experience supporting policy, program, and research environments  
+- Work applied to program monitoring, performance measurement, and decision support  
+:::
+
+::: {.resume-nested-card}
+**What I don't do**
+
+- Purely software engineering or app-building engagements where analytics and research are not the core need  
+- Long-term full-time contracts (I am open to part-time, project, and advisory arrangements)  
+- Projects where data access, ethics, or governance foundations are not sufficiently clear to do responsible work  
+:::
+
+:::
+
+:::
+
+## Get in touch
+
+::: {.homepage-explore}
+::: {.homepage-explore-inner}
+
+Whether you have a clear scope or a messy problem, I'm happy to discuss ways I can help.
+
+**mackaykp@gmail.com**
+
+[Email Kevin](mailto:mackaykp@gmail.com){.btn .btn-primary .homepage-explore-btn}
+:::
+:::

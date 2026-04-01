@@ -1,35 +1,123 @@
 # Project list for the Projects index (card grid + tag filter).
 # href is relative to projects/ (e.g. yoga-video-catalog.html, yoga-video-catalog/browse.html).
 # image: optional path (relative to site root) or leave blank for placeholder.
+# Tags must match strings in tag_categories in projects/index.qmd (same spelling/casing).
+# Extended conventions and rationale: private-docs/projects-tags-and-categories.md (local; gitignored).
 
 projects:
   - title: "Yoga Video Catalog"
-    description: "Filterable catalog of yoga videos: web scraping, yt-dlp enrichment, ETL pipeline, and interactive browse UI with Quarto."
+    description: "Built for personal use to organize and filter yoga videos."
     href: "yoga-video-catalog/"
-    tags: ["Automation", "Web scraping", "ETL", "R", "Python", "Quarto"]
+    tags:
+      - "R"
+      - "Python"
+      - "Quarto"
+      - "HTML+CSS"
+      - "JavaScript"
+      - "Automation"
+      - "Web scraping"
+      - "Data integration & ETL"
+      - "Operational tooling"
     image: ""
 
   - title: "Leaflet Mapping Tool"
-    description: "Interactive map built with R, leaflet, and tidyverse—placeholder for spatial projects."
+    description: "Used by non-technical teams to generate interactive dashboard-like maps."
     href: "Leaflet_Mapping_Tool/"
-    tags: ["Spatial", "Mapping", "R", "leaflet", "Python", "Quarto"]
+    tags:
+      - "R"
+      - "Python"
+      - "Quarto"
+      - "HTML+CSS"
+      - "JavaScript"
+      - "GIS"
+      - "Automation"
+      - "Spatial"
+      - "Mapping & visualization"
+      - "Operational tooling"
     image: ""
 
   - title: "Offline Geocoding Tool"
-    description: "Offline geocoding for Canadian addresses using Statistics Canada's National Address Register (NAR), R, DuckDB, and a single-hierarchy match pipeline."
+    description: "Designed for offline environments with strict privacy requirements."
     href: "Offline_Geocoding_Tool/"
-    tags: ["R", "Spatial", "ETL", "tidyverse", "Automation"]
+    tags:
+      - "R"
+      - "Spatial"
+      - "Data integration & ETL"
+      - "Privacy-conscious workflows"
+      - "Operational tooling"
     image: ""
 
   - title: "PhD Dissertation"
-    description: "Identifying geographic areas where children may be at-risk of lead poisoning and assessing the need for lead abatement in urban areas: a case study in Hamilton, Ontario (McMaster, 2019)."
+    description: "Prepared as my final PhD submission as a comprehensive critique of the lead poisoning literature."
     href: "PhD_Dissertation/"
-    tags: ["Spatial", "Statistics", "R", "Health data"]
+    tags:
+      - "R"
+      - "GIS"
+      - "Python"
+      - "Spatial"
+      - "Statistics"
+      - "Documentation"
+      - "Research synthesis"
+    image: ""
+
+  - title: "PhD defense"
+    description: "Generated for my PhD defense to summarize findings and highlight key insights."
+    href: "phd-defense/"
+    tags:
+      - "R"
+      - "GIS"
+      - "Python"
+      - "Spatial"
+      - "Statistics"
+      - "Documentation"
+      - "Research synthesis"
+    image: ""
+
+  - title: "Demystifying Linear Regression"
+    description: "Created for a guest lecture at McMaster University for a geography course without prior statistics knowledge."
+    href: "linear-regression-lecture/"
+    tags:
+      - "R"
+      - "Statistics"
+      - "Documentation"
+      - "Teaching / enablement"
+    image: ""
+
+  - title: "Health Statistics From A Geographer's Perspective"
+    description: "Prepared for the Health Statistics Branch of Statistics Canada to introduce medical geography methodologies."
+    href: "medical-geography-presentation/"
+    tags:
+      - "R"
+      - "GIS"
+      - "Spatial"
+      - "Statistics"
+      - "Documentation"
+      - "Teaching / enablement"
+    image: ""
+
+  - title: "Victoria transit - bus stop popularity (client project)"
+    description: "Prepared for a client collaborator with McMaster University to understand popularity of bus stops for marketing campaign."
+    href: "victoria-transit-bus-stops/"
+    tags:
+      - "R"
+      - "GIS"
+      - "Spatial"
+      - "Statistics"
+      - "Mapping & visualization"
+      - "Documentation"
+      - "Research synthesis"
     image: ""
 
   - title: "Belay Buddy Demo"
-    description: "Static web-app demo of Belay Buddy that mirrors the session workflow (host join, participant management, rounds) without server runtime."
+    description: "Built to help my large climbing group manage complex climb/belay pairing order (demo + production codebase)."
     href: "Belay_Buddy_Demo/"
-    tags: ["Automation", "Quarto", "Documentation"]
+    tags:
+      - "R"
+      - "Quarto"
+      - "R Shiny"
+      - "HTML+CSS"
+      - "JavaScript"
+      - "Documentation"
+      - "Interactive tools"
+      - "Operational tooling"
     image: ""
-

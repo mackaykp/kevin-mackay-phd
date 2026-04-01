@@ -5,8 +5,20 @@ execute:
   dir: project
 format:
   html:
+    toc: false
+    page-layout: full
     number-sections: false
 ---
+
+::: {.projects-hero-section}
+
+[Projects]{.projects-hero-kicker}
+
+These projects reflect how I approach analytical and research work: clarity, structure, reproducibility, and practical outcomes.
+
+Explore my work by theme - use the filters to narrow by tools, capabilities, and delivery.
+
+:::
 
 ```{r}
 #| label: load-projects
@@ -24,12 +36,23 @@ for (i in seq_along(projects_list$projects)) {
   projects_list$projects[[i]] <- p
 }
 
-# Tag categories for the filter UI (order = display order)
-# "Tech stack" = languages, frameworks, tools. "Methodology" = how you work. "Domain" = application area.
+# Tag categories for the filter UI (order = display order).
+# Tools & stack: languages, HTML+CSS, Quarto, R Shiny, GIS (no per-package tags).
+# Capabilities: what the work demonstrates. Delivery & impact: kind of value / artifact.
 tag_categories <- list(
-  list(name = "Tech stack", tags = c("R", "Python", "Quarto", "leaflet", "tidyverse")),
-  list(name = "Methodology", tags = c("Automation", "ETL", "Web scraping")),
-  list(name = "Domain", tags = c("Statistics", "Spatial", "Mapping", "Documentation", "Health data"))
+  list(name = "Tools & stack", tags = c("R", "Python", "JavaScript", "HTML+CSS", "Quarto", "R Shiny", "GIS")),
+  list(name = "Capabilities", tags = c(
+    "Spatial", "Mapping & visualization", "Statistics", "Data integration & ETL",
+    "Interactive tools", "Automation", "Web scraping", "Documentation", "Privacy-conscious workflows"
+  )),
+  list(name = "Delivery & impact", tags = c("Research synthesis", "Operational tooling", "Teaching / enablement"))
+)
+
+# Default card art: SVG per Delivery & impact tag (paths relative to site root; JS adds ../ on projects/index.html)
+delivery_icon_map <- list(
+  "Research synthesis" = "assets/project-icons/delivery/research-synthesis.svg",
+  "Operational tooling" = "assets/project-icons/delivery/operational-tooling.svg",
+  "Teaching / enablement" = "assets/project-icons/delivery/teaching-enablement.svg"
 )
 ```
 
@@ -42,6 +65,9 @@ cat(jsonlite::toJSON(projects_list$projects, auto_unbox = TRUE))
 cat("</script>\n")
 cat("<script type=\"application/json\" id=\"tag-categories\">")
 cat(jsonlite::toJSON(tag_categories, auto_unbox = TRUE))
+cat("</script>\n")
+cat("<script type=\"application/json\" id=\"delivery-icon-map\">")
+cat(jsonlite::toJSON(delivery_icon_map, auto_unbox = TRUE))
 cat("</script>\n")
 ```
 
@@ -61,9 +87,13 @@ cat("</script>\n")
 (function() {
   var dataEl = document.getElementById('projects-data');
   var catEl = document.getElementById('tag-categories');
-  if (!dataEl || !catEl) return;
+  var deliveryMapEl = document.getElementById('delivery-icon-map');
+  if (!dataEl || !catEl || !deliveryMapEl) return;
   var projects = JSON.parse(dataEl.textContent);
   var tagCategories = JSON.parse(catEl.textContent);
+  var deliveryIconMap = JSON.parse(deliveryMapEl.textContent);
+  // First matching tag wins (stable priority if a project ever has multiple delivery tags)
+  var deliveryTagPriority = ['Research synthesis', 'Operational tooling', 'Teaching / enablement'];
   var grid = document.getElementById('projects-grid');
   var filterGroupsEl = document.getElementById('projects-filter-groups');
   var countEl = document.getElementById('projects-count');
@@ -136,6 +166,39 @@ cat("</script>\n")
     clearBtn.style.display = state.activeTags.length > 0 ? 'inline-block' : 'none';
   }
 
+  function escapeAttr(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  }
+
+  function resolveCardVisual(p) {
+    if (p.image && String(p.image).trim()) {
+      var title = (p.title || 'Project');
+      return {
+        html: '<div class="projects-card-visual"><img src="' + escapeAttr(p.image.trim()) + '" alt="' + escapeAttr(title) + '" loading="lazy"></div>'
+      };
+    }
+    var tags = p.tags || [];
+    var rel = null;
+    var altLabel = '';
+    for (var i = 0; i < deliveryTagPriority.length; i++) {
+      var dt = deliveryTagPriority[i];
+      if (tags.indexOf(dt) !== -1 && deliveryIconMap[dt]) {
+        rel = deliveryIconMap[dt];
+        altLabel = dt;
+        break;
+      }
+    }
+    if (rel) {
+      var src = rel.indexOf('/') === 0 || /^(https?:|data:)/i.test(rel) ? rel : ('../' + rel);
+      return {
+        html: '<div class="projects-card-visual projects-card-visual--delivery-icon"><img src="' + escapeAttr(src) + '" alt="' + escapeAttr(altLabel) + '" loading="lazy"></div>'
+      };
+    }
+    return {
+      html: '<div class="projects-card-visual"><span class="projects-card-visual-placeholder" aria-hidden="true">◇</span></div>'
+    };
+  }
+
   function filteredProjects() {
     if (state.activeTags.length === 0) return projects.slice();
     return projects.filter(function(p) {
@@ -155,12 +218,7 @@ cat("</script>\n")
       var card = document.createElement('article');
       card.className = 'projects-card';
       card.setAttribute('data-tags', (p.tags || []).join(','));
-      var visual = '';
-      if (p.image && p.image.trim()) {
-        visual = '<div class="projects-card-visual"><img src="' + p.image.replace(/"/g, '&quot;') + '" alt="" loading="lazy"></div>';
-      } else {
-        visual = '<div class="projects-card-visual"><span class="projects-card-visual-placeholder" aria-hidden="true">◇</span></div>';
-      }
+      var visual = resolveCardVisual(p).html;
       var titleEsc = (p.title || 'Project').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       var descEsc = (p.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       var tagHtml = (p.tags || []).map(function(t) {

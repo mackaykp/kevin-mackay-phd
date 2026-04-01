@@ -11,8 +11,10 @@ format:
     page-layout: full
 ---
 
+<div class="yoga-browse-page-root" hidden aria-hidden="true"></div>
+
 <style>
-/* Design tokens — browse */
+/* Design tokens - browse */
 :root {
   --br-bg: #ffffff;
   --br-surface: #ffffff;
@@ -133,7 +135,7 @@ format:
   color: var(--br-text-muted); min-width: 5.25rem; flex-shrink: 0;
 }
 
-/* Filter section — modern card, clear hierarchy */
+/* Filter section - modern card, clear hierarchy */
 .browse-filters {
   margin-bottom: 1.5rem;
   padding: 1.25rem 1.5rem;
@@ -1014,7 +1016,7 @@ format:
       <div>
         <h3>My List</h3>
         <p class="queue-hint">Drag to reorder. Click a title to open full-screen in a new tab.</p>
-        <p id="queue-summary"><span id="queue-count">0</span> video(s) · Total: <span id="queue-duration-sum">—</span></p>
+        <p id="queue-summary"><span id="queue-count">0</span> video(s) · Total: <span id="queue-duration-sum">-</span></p>
         <p id="queue-focuses" class="queue-focuses" style="display: none;"></p>
       </div>
       <div class="browse-queue-header-actions">
@@ -1078,12 +1080,12 @@ dat$duration_bucket <- round(dat$duration_mins / 5) * 5
 dat$duration_bucket[is.na(dat$duration_bucket)] <- 0
 dat$duration_bucket[(dat$duration_bucket == 0) & (dat$duration_mins > 0)] <- 5
 dat$duration_bucket <- pmin(dat$duration_bucket, 120)
-dat$duration_category <- ifelse(dat$duration_bucket == 0, "—", ifelse(dat$duration_bucket == 120 & dat$duration_mins > 120, "120+ min", paste0(dat$duration_bucket, " min")))
+dat$duration_category <- ifelse(dat$duration_bucket == 0, "-", ifelse(dat$duration_bucket == 120 & dat$duration_mins > 120, "120+ min", paste0(dat$duration_bucket, " min")))
 
 dat$upload_year <- NA_integer_
 idx <- !is.na(dat$upload_date) & nchar(dat$upload_date) >= 4
 dat$upload_year[idx] <- as.integer(substr(dat$upload_date[idx], 1, 4))
-dat$upload_year_display <- ifelse(is.na(dat$upload_year), "—", as.character(dat$upload_year))
+dat$upload_year_display <- ifelse(is.na(dat$upload_year), "-", as.character(dat$upload_year))
 
 if (!"channel" %in% names(dat)) dat$channel <- ""
 
@@ -1129,7 +1131,7 @@ dat$duration_seconds_queue <- if ("duration_seconds" %in% names(dat)) {
 browse_df <- data.frame(
   video_id = dat$video_id,
   title = dat$title,
-  channel = ifelse(nzchar(dat$channel), dat$channel, "—"),
+  channel = ifelse(nzchar(dat$channel), dat$channel, "-"),
   duration_category = dat$duration_category,
   duration_mins = dat$duration_mins,
   duration_seconds = dat$duration_seconds_queue,
@@ -1141,12 +1143,12 @@ browse_df <- data.frame(
   stringsAsFactors = FALSE
 )
 
-dur_cats <- unique(browse_df$duration_category[browse_df$duration_category != "—"])
+dur_cats <- unique(browse_df$duration_category[browse_df$duration_category != "-"])
 dur_nums <- as.numeric(sub(" min|120\\+ min", "", dur_cats))
 dur_cats <- dur_cats[order(dur_nums, na.last = TRUE)]
 focus_parts <- unique(unlist(strsplit(browse_df$focus, " \\| ")))
 focus_parts <- sort(focus_parts[nzchar(focus_parts)])
-years <- unique(browse_df$upload_year_display[browse_df$upload_year_display != "—"])
+years <- unique(browse_df$upload_year_display[browse_df$upload_year_display != "-"])
 years <- sort(years, decreasing = TRUE)
 valid_years_num <- browse_df$upload_year[!is.na(browse_df$upload_year) & browse_df$upload_year > 0]
 year_min <- if (length(valid_years_num)) min(valid_years_num) else as.integer(format(Sys.Date(), "%Y"))
@@ -1154,7 +1156,7 @@ year_max <- if (length(valid_years_num)) max(valid_years_num) + 1L else as.integ
 duration_max_mins <- ceiling(max(browse_df$duration_mins, na.rm = TRUE) / 5) * 5
 if (!is.finite(duration_max_mins) || duration_max_mins < 1) duration_max_mins <- 120L
 
-channel_list <- sort(unique(browse_df$channel[nzchar(browse_df$channel) & browse_df$channel != "—"]))
+channel_list <- sort(unique(browse_df$channel[nzchar(browse_df$channel) & browse_df$channel != "-"]))
 
 filter_options <- list(
   duration_buckets = as.list(dur_cats),
@@ -1891,7 +1893,7 @@ cat("</script>\n")
   }
 
   function formatDuration(totalSeconds) {
-    if (!totalSeconds || totalSeconds <= 0) return '—';
+    if (!totalSeconds || totalSeconds <= 0) return '-';
     var h = Math.floor(totalSeconds / 3600);
     var m = Math.floor((totalSeconds % 3600) / 60);
     var s = totalSeconds % 60;
@@ -1899,7 +1901,7 @@ cat("</script>\n")
     if (h > 0) parts.push(h + ' hr');
     if (m > 0) parts.push(m + ' min');
     if (s > 0 && h === 0) parts.push(s + ' sec');
-    return parts.length ? parts.join(' ') : '—';
+    return parts.length ? parts.join(' ') : '-';
   }
 
   function updateQueueDisplay() {

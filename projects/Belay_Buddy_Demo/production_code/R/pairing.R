@@ -5,13 +5,13 @@
 # linear assignment solve. Install: install.packages("lpSolve")
 #
 # Matching priorities (high to low):
-# 1) Diversity — minimize total repeat pairings (pair_count) across the round.
-# 2) Even n — alternation: among minimum-repeat matchings, prefer no double climb/belay when tie;
+# 1) Diversity - minimize total repeat pairings (pair_count) across the round.
+# 2) Even n - alternation: among minimum-repeat matchings, prefer no double climb/belay when tie;
 #    only allow doubles if unconstrained matching has strictly lower repeat total.
-# 3) Odd n — trio avoidance: among minimum-repeat trio+pair partitions, minimize how many people
+# 3) Odd n - trio avoidance: among minimum-repeat trio+pair partitions, minimize how many people
 #    in the new trio were already in a trio in a past round; repeat trios only when every
 #    minimum-diversity option needs at least one such person (then pick the smallest count).
-# 4) Role assignment — climb/belay/rest from preferences (belayed last → climb first, etc.).
+# 4) Role assignment - climb/belay/rest from preferences (belayed last → climb first, etc.).
 #
 # Trio: 1 climber, 1 belayer, 1 rest; rotate so each climbs once, belays once, rests once.
 
@@ -499,7 +499,7 @@ compute_pairings <- function(ids, last_action, round_number, participants, pair_
 #' Format pairings for display. Trio: 1. A climbs, B belays, C rests; 2. B climbs, C belays, A rests; 3. C climbs, A belays, B rests.
 pairings_for_display <- function(pairings, participants) {
   get_name <- function(id) {
-    if (is.na(id)) return("—")
+    if (is.na(id)) return("-")
     p <- participants[[id]]
     if (is.null(p)) return(id)
     p$name

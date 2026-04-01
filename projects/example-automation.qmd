@@ -4,7 +4,7 @@ title: "Example Automation Project"
 
 ## Overview
 
-*Placeholder: Describe one automation project — what it does, how it runs, and what it produces.*
+*Placeholder: Describe one automation project - what it does, how it runs, and what it produces.*
 
 Example topics: daily report generation, data pulls from an API, or file processing pipelines.
 
