@@ -75,14 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-07bb440fb883dd3f0e693d34cc5ef745.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,169 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -312,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="mailto:mackaykp@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -321,10 +155,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -339,19 +177,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul class="collapse">
   <li><a href="#why-these-examples" id="toc-why-these-examples" class="nav-link active" data-scroll-target="#why-these-examples">Why these examples?</a></li>
-  <li><a href="#hamilton-on-default-run" id="toc-hamilton-on-default-run" class="nav-link" data-scroll-target="#hamilton-on-default-run">Hamilton, ON — Default run</a></li>
-  <li><a href="#hamilton-expanding-the-study-area" id="toc-hamilton-expanding-the-study-area" class="nav-link" data-scroll-target="#hamilton-expanding-the-study-area">Hamilton — Expanding the study area</a></li>
-  <li><a href="#hamilton-walkable-buffer-and-greenspace-layers" id="toc-hamilton-walkable-buffer-and-greenspace-layers" class="nav-link" data-scroll-target="#hamilton-walkable-buffer-and-greenspace-layers">Hamilton — Walkable buffer and greenspace layers</a></li>
-  <li><a href="#canadian-variety-urban-suburban-and-smaller-centres" id="toc-canadian-variety-urban-suburban-and-smaller-centres" class="nav-link" data-scroll-target="#canadian-variety-urban-suburban-and-smaller-centres">Canadian variety — Urban, suburban, and smaller centres</a></li>
+  <li><a href="#hamilton-on---default-run" id="toc-hamilton-on---default-run" class="nav-link" data-scroll-target="#hamilton-on---default-run">Hamilton, ON - Default run</a></li>
+  <li><a href="#hamilton---expanding-the-study-area" id="toc-hamilton---expanding-the-study-area" class="nav-link" data-scroll-target="#hamilton---expanding-the-study-area">Hamilton - Expanding the study area</a></li>
+  <li><a href="#hamilton---walkable-buffer-and-greenspace-layers" id="toc-hamilton---walkable-buffer-and-greenspace-layers" class="nav-link" data-scroll-target="#hamilton---walkable-buffer-and-greenspace-layers">Hamilton - Walkable buffer and greenspace layers</a></li>
+  <li><a href="#canadian-variety---urban-suburban-and-smaller-centres" id="toc-canadian-variety---urban-suburban-and-smaller-centres" class="nav-link" data-scroll-target="#canadian-variety---urban-suburban-and-smaller-centres">Canadian variety - Urban, suburban, and smaller centres</a></li>
   <li><a href="#custom-bounding-box" id="toc-custom-bounding-box" class="nav-link" data-scroll-target="#custom-bounding-box">Custom bounding box</a></li>
-  <li><a href="#beyond-canada-adapting-the-tool" id="toc-beyond-canada-adapting-the-tool" class="nav-link" data-scroll-target="#beyond-canada-adapting-the-tool">Beyond Canada — Adapting the tool</a></li>
+  <li><a href="#beyond-canada---adapting-the-tool" id="toc-beyond-canada---adapting-the-tool" class="nav-link" data-scroll-target="#beyond-canada---adapting-the-tool">Beyond Canada - Adapting the tool</a></li>
   <li><a href="#summary-of-arguments" id="toc-summary-of-arguments" class="nav-link" data-scroll-target="#summary-of-arguments">Summary of arguments</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
-
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -373,8 +210,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="yoga-browse-page-root" hidden="" aria-hidden="true">
+
+</div>
 <style>
-/* Match yoga browse page — design tokens and layout */
+/* Match yoga browse page - design tokens and layout */
 :root {
   --br-bg: #ffffff;
   --br-surface: #ffffff;
@@ -408,12 +248,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <section id="why-these-examples" class="level2">
 <h2 class="anchored" data-anchor-id="why-these-examples">Why these examples?</h2>
-<p>The bivariate mapping tool turns census-style income data and OpenStreetMap greenspace into <strong>Income × green area per 1,000 people</strong> at the dissemination area (DA) level. The maps below show how different arguments change <em>what</em> you map and <em>where</em>—from a single city to amalgamated regions, from a tight urban core to a wide rural study area, and from Canada to anywhere you have equivalent data.</p>
+<p>The bivariate mapping tool turns census-style income data and OpenStreetMap greenspace into <strong>Income × green area per 1,000 people</strong> at the dissemination area (DA) level. The maps below show how different arguments change <em>what</em> you map and <em>where</em>-from a single city to amalgamated regions, from a tight urban core to a wide rural study area, and from Canada to anywhere you have equivalent data.</p>
 <p><strong>How this page is built.</strong> To keep the page fast and to avoid Overpass API rate limits, the maps are <strong>pre-generated</strong> and embedded here. The code under each map is the exact call used to create it; you can run it yourself (see <a href="#running-the-examples-yourself">Running the examples yourself</a>). We use geographically modest study areas where possible so that generating maps is quick and reliable.</p>
 <hr>
 </section>
-<section id="hamilton-on-default-run" class="level2">
-<h2 class="anchored" data-anchor-id="hamilton-on-default-run">Hamilton, ON — Default run</h2>
+<section id="hamilton-on---default-run" class="level2">
+<h2 class="anchored" data-anchor-id="hamilton-on---default-run">Hamilton, ON - Default run</h2>
 <p>A straightforward run with only the required arguments: study area and path to the income GeoPackage. The tool clips DAs to the city, fetches greenspace for the bbox, and sums green area per DA (inside each DA plus within a 500 m walkable buffer). Good baseline for comparing with the options below.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/create_bivariate_map.R"</span>)</span>
@@ -424,13 +264,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: output/maps/Hamilton_bivariate.html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="iframe-container" style="min-height: 520px;">
-<iframe src="maps/Vignette_maps/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton, ON — default bivariate map">
+<iframe src="maps/Vignette_maps/Hamilton_bivariate.html" width="100%" height="500" loading="lazy" title="Hamilton, ON - default bivariate map">
 </iframe>
 </div>
 <hr>
 </section>
-<section id="hamilton-expanding-the-study-area" class="level2">
-<h2 class="anchored" data-anchor-id="hamilton-expanding-the-study-area">Hamilton — Expanding the study area</h2>
+<section id="hamilton---expanding-the-study-area" class="level2">
+<h2 class="anchored" data-anchor-id="hamilton---expanding-the-study-area">Hamilton - Expanding the study area</h2>
 <p>When the city boundary is tight, <strong>edge DAs</strong> can have much of their walkable buffer outside the default bbox, so their green area is undercounted. Use <code>custom_distance_km</code> so the bounding box is expanded by that many kilometres in all directions; the same bbox is used for clipping and for fetching OSM greenspace, so edge DAs get a fair count.</p>
 <div class="cell">
 <details class="code-fold">
@@ -448,11 +288,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <hr>
 </section>
-<section id="hamilton-walkable-buffer-and-greenspace-layers" class="level2">
-<h2 class="anchored" data-anchor-id="hamilton-walkable-buffer-and-greenspace-layers">Hamilton — Walkable buffer and greenspace layers</h2>
+<section id="hamilton---walkable-buffer-and-greenspace-layers" class="level2">
+<h2 class="anchored" data-anchor-id="hamilton---walkable-buffer-and-greenspace-layers">Hamilton - Walkable buffer and greenspace layers</h2>
 <ul>
-<li><strong><code>green_buffer_m</code></strong> — Walkable distance (m) around each DA. Greenspace is summed <em>inside</em> the DA and <em>within</em> this distance (default 500 m). Increase it for a longer “access radius” (e.g.&nbsp;1 km); decrease it for a stricter, shorter walk.</li>
-<li><strong><code>show_green_layers</code></strong> — If <code>TRUE</code>, the map adds toggleable OSM layers by type (parks, forest, meadow, etc.). Useful for exploring <em>what</em> counts as green; the main metric still uses the merged greenspace layer.</li>
+<li><strong><code>green_buffer_m</code></strong> - Walkable distance (m) around each DA. Greenspace is summed <em>inside</em> the DA and <em>within</em> this distance (default 500 m). Increase it for a longer “access radius” (e.g.&nbsp;1 km); decrease it for a stricter, shorter walk.</li>
+<li><strong><code>show_green_layers</code></strong> - If <code>TRUE</code>, the map adds toggleable OSM layers by type (parks, forest, meadow, etc.). Useful for exploring <em>what</em> counts as green; the main metric still uses the merged greenspace layer.</li>
 </ul>
 <div class="cell">
 <details class="code-fold">
@@ -471,10 +311,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <hr>
 </section>
-<section id="canadian-variety-urban-suburban-and-smaller-centres" class="level2">
-<h2 class="anchored" data-anchor-id="canadian-variety-urban-suburban-and-smaller-centres">Canadian variety — Urban, suburban, and smaller centres</h2>
+<section id="canadian-variety---urban-suburban-and-smaller-centres" class="level2">
+<h2 class="anchored" data-anchor-id="canadian-variety---urban-suburban-and-smaller-centres">Canadian variety - Urban, suburban, and smaller centres</h2>
 <p>The same function works across geographies. Here we use <strong>one city per map</strong> and keep study areas manageable to limit OSM load and rate limits.</p>
-<p><strong>Halifax, NS</strong> — Urban core; default buffer and bbox usually suffice.</p>
+<p><strong>Halifax, NS</strong> - Urban core; default buffer and bbox usually suffice.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -488,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <iframe src="maps/Vignette_maps/Halifax_bivariate.html" width="100%" height="500" loading="lazy" title="Halifax, NS">
 </iframe>
 </div>
-<p><strong>Charlottetown, PE</strong> — Small capital; compact bbox, good for testing and for showing contrast between downtown and lower-density edges.</p>
+<p><strong>Charlottetown, PE</strong> - Small capital; compact bbox, good for testing and for showing contrast between downtown and lower-density edges.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -502,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <iframe src="maps/Vignette_maps/Charlottetown_bivariate.html" width="100%" height="500" loading="lazy" title="Charlottetown, PE">
 </iframe>
 </div>
-<p><strong>Brandon, MB</strong> — Prairie city; mix of urban and suburban DAs. A small expansion can improve edge-DA counts.</p>
+<p><strong>Brandon, MB</strong> - Prairie city; mix of urban and suburban DAs. A small expansion can improve edge-DA counts.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -517,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <iframe src="maps/Vignette_maps/Brandon_bivariate.html" width="100%" height="500" loading="lazy" title="Brandon, MB">
 </iframe>
 </div>
-<p><strong>Yellowknife, NT</strong> — Northern, smaller footprint. Illustrates the tool in a remote context; income and greenspace patterns differ from southern cities.</p>
+<p><strong>Yellowknife, NT</strong> - Northern, smaller footprint. Illustrates the tool in a remote context; income and greenspace patterns differ from southern cities.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -535,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="custom-bounding-box" class="level2">
 <h2 class="anchored" data-anchor-id="custom-bounding-box">Custom bounding box</h2>
-<p>When the study area isn’t a single named place—e.g.&nbsp;a corridor, a watershed, <strong>rural or remote areas</strong> (“middle of nowhere”), or a <strong>geologically distinct region</strong> where people live—use <strong><code>custom_bbox</code></strong>: <code>c(xmin, ymin, xmax, ymax)</code> in WGS84. The tool uses this bbox for clipping and for fetching OSM; <code>city</code> is still used only for the output filename (use a short label that describes the area).</p>
+<p>When the study area isn’t a single named place-e.g.&nbsp;a corridor, a watershed, <strong>rural or remote areas</strong> (“middle of nowhere”), or a <strong>geologically distinct region</strong> where people live-use <strong><code>custom_bbox</code></strong>: <code>c(xmin, ymin, xmax, ymax)</code> in WGS84. The tool uses this bbox for clipping and for fetching OSM; <code>city</code> is still used only for the output filename (use a short label that describes the area).</p>
 <p><strong>Example: Drumheller badlands, Alberta.</strong> The Red Deer River valley and badlands have DAs (town of Drumheller and surrounding area) but the <em>interesting</em> unit is the valley, not “Hamilton” or a generic city. A custom bbox focuses the map on that landscape.</p>
 <div class="cell">
 <details class="code-fold">
@@ -548,13 +388,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <div class="iframe-container" style="min-height: 520px;">
-<iframe src="maps/Vignette_maps/Drumheller_bivariate.html" width="100%" height="500" loading="lazy" title="Custom bbox — Drumheller badlands">
+<iframe src="maps/Vignette_maps/Drumheller_bivariate.html" width="100%" height="500" loading="lazy" title="Custom bbox - Drumheller badlands">
 </iframe>
 </div>
 <hr>
 </section>
-<section id="beyond-canada-adapting-the-tool" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-canada-adapting-the-tool">Beyond Canada — Adapting the tool</h2>
+<section id="beyond-canada---adapting-the-tool" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-canada---adapting-the-tool">Beyond Canada - Adapting the tool</h2>
 <p>The mapping pipeline is <strong>location-agnostic</strong>: it needs (1) a study area that <code>osmdata::getbb()</code> can resolve (or a <code>custom_bbox</code>) and (2) a GeoPackage of small-area polygons with <strong>population</strong> and an <strong>income variable</strong> (e.g.&nbsp;median household income or a composite index). If you have administrative data for another country, you can build an equivalent <code>income_gpkg</code> and run the same workflow.</p>
 <p><strong>Example (conceptual): Dublin, Ireland.</strong> Replace Canadian census with Irish data; keep DA-like boundaries and population. Then:</p>
 <div class="cell">
@@ -635,21 +475,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 
 </main> <!-- /main -->
+<button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i>
+</button>
+<script>
+(function () {
+  var btn = document.getElementById("back-to-top");
+  if (!btn) return;
+  var threshold = 360;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sync() {
+    if (window.scrollY > threshold) btn.classList.add("is-visible");
+    else btn.classList.remove("is-visible");
+  }
+  window.addEventListener("scroll", sync, { passive: true });
+  sync();
+  btn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+    btn.blur();
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1065,7 +916,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with Quarto</p>
+<p>Custom site built with Quarto</p>
 </div>
   </div>
 </footer>

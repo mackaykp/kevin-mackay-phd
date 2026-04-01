@@ -75,14 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-07bb440fb883dd3f0e693d34cc5ef745.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,169 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -312,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="mailto:mackaykp@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -321,10 +155,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -338,7 +176,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -359,6 +196,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="yoga-project-page-root" hidden="" aria-hidden="true">
+
+</div>
 <div class="yoga-view-toggle" role="group" aria-label="Switch view">
 <button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">
 Final product
@@ -372,10 +212,10 @@ Scripts &amp; Code
 </div>
 <div id="yoga-final-product" class="yoga-view-panel">
 <div class="yoga-embed-bar">
-<p><a href="demo.html" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Open demo in new tab</a></p>
+<p><a href="demo.html" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Open project in new tab</a></p>
 </div>
 <div id="yoga-iframe-wrap" class="yoga-embed-full">
-<iframe src="demo.html" title="Belay Buddy Demo — static web app" class="yoga-embed" allowfullscreen="" style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;">
+<iframe src="demo.html" title="Belay Buddy Demo - static web app" class="yoga-embed" allowfullscreen="" style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;">
 </iframe>
 </div>
 </div>
@@ -764,7 +604,7 @@ Scripts &amp; Code
 <span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join-by-code flow removed from UI (host-only workflow).</span></span>
 <span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Shared stamp bumps on every server mutation — invalidates this reactive in EVERY open tab (reactivePoll does not).</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Shared stamp bumps on every server mutation - invalidates this reactive in EVERY open tab (reactivePoll does not).</span></span>
 <span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>  session_data <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">reactive</span>({</span>
 <span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>    bb_session_sync<span class="sc">$</span>stamp</span>
 <span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>    rc <span class="ot">&lt;-</span> session<span class="sc">$</span>userData<span class="sc">$</span>room_code</span>
@@ -1149,7 +989,7 @@ Scripts &amp; Code
 <span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a>      ),</span>
 <span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a>      shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">p</span>(</span>
 <span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> <span class="st">"font-size: 0.95rem; line-height: 1.45;"</span>,</span>
-<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Refreshing the page or the server sleeping can lose this room’s live data. Your browser will ask where to save a file — that is normal. The HTML opens offline in any browser."</span></span>
+<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Refreshing the page or the server sleeping can lose this room’s live data. Your browser will ask where to save a file - that is normal. The HTML opens offline in any browser."</span></span>
 <span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a>      ),</span>
 <span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a>      shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">button</span>(</span>
 <span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"button"</span>,</span>
@@ -1254,7 +1094,7 @@ Scripts &amp; Code
 <span id="cb1-833"><a href="#cb1-833" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">div</span>(</span>
 <span id="cb1-834"><a href="#cb1-834" aria-hidden="true" tabindex="-1"></a>        <span class="at">class =</span> <span class="st">"d-flex align-items-center gap-2"</span>,</span>
 <span id="cb1-835"><a href="#cb1-835" aria-hidden="true" tabindex="-1"></a>        shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">i</span>(<span class="at">class =</span> <span class="st">"bi bi-arrow-repeat text-primary"</span>, <span class="st">`</span><span class="at">aria-hidden</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"true"</span>),</span>
-<span id="cb1-836"><a href="#cb1-836" aria-hidden="true" tabindex="-1"></a>        shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">span</span>(<span class="st">"Roster changed — share an updated schedule"</span>)</span>
+<span id="cb1-836"><a href="#cb1-836" aria-hidden="true" tabindex="-1"></a>        shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">span</span>(<span class="st">"Roster changed - share an updated schedule"</span>)</span>
 <span id="cb1-837"><a href="#cb1-837" aria-hidden="true" tabindex="-1"></a>      ),</span>
 <span id="cb1-838"><a href="#cb1-838" aria-hidden="true" tabindex="-1"></a>      shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">p</span>(</span>
 <span id="cb1-839"><a href="#cb1-839" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> <span class="st">"font-size: 0.95rem; line-height: 1.45;"</span>,</span>
@@ -1389,7 +1229,7 @@ Scripts &amp; Code
 <span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    },</span>
 <span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
 <span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Belay Buddy: save_store failed — category/round changes will NOT sync across tabs.</span><span class="sc">\n</span><span class="st">  "</span>,</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Belay Buddy: save_store failed - category/round changes will NOT sync across tabs.</span><span class="sc">\n</span><span class="st">  "</span>,</span>
 <span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        <span class="fu">conditionMessage</span>(e), <span class="st">"</span><span class="sc">\n</span><span class="st">  path: "</span>, path,</span>
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="at">call. =</span> <span class="cn">FALSE</span></span>
 <span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>      )</span>
@@ -2173,13 +2013,13 @@ Scripts &amp; Code
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># linear assignment solve. Install: install.packages("lpSolve")</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Matching priorities (high to low):</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Diversity — minimize total repeat pairings (pair_count) across the round.</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Even n — alternation: among minimum-repeat matchings, prefer no double climb/belay when tie;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Diversity - minimize total repeat pairings (pair_count) across the round.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Even n - alternation: among minimum-repeat matchings, prefer no double climb/belay when tie;</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#    only allow doubles if unconstrained matching has strictly lower repeat total.</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Odd n — trio avoidance: among minimum-repeat trio+pair partitions, minimize how many people</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Odd n - trio avoidance: among minimum-repeat trio+pair partitions, minimize how many people</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#    in the new trio were already in a trio in a past round; repeat trios only when every</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#    minimum-diversity option needs at least one such person (then pick the smallest count).</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Role assignment — climb/belay/rest from preferences (belayed last → climb first, etc.).</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Role assignment - climb/belay/rest from preferences (belayed last → climb first, etc.).</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Trio: 1 climber, 1 belayer, 1 rest; rotate so each climbs once, belays once, rests once.</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
@@ -2667,7 +2507,7 @@ Scripts &amp; Code
 <span id="cb3-499"><a href="#cb3-499" aria-hidden="true" tabindex="-1"></a><span class="co">#' Format pairings for display. Trio: 1. A climbs, B belays, C rests; 2. B climbs, C belays, A rests; 3. C climbs, A belays, B rests.</span></span>
 <span id="cb3-500"><a href="#cb3-500" aria-hidden="true" tabindex="-1"></a>pairings_for_display <span class="ot">&lt;-</span> <span class="cf">function</span>(pairings, participants) {</span>
 <span id="cb3-501"><a href="#cb3-501" aria-hidden="true" tabindex="-1"></a>  get_name <span class="ot">&lt;-</span> <span class="cf">function</span>(id) {</span>
-<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(id)) <span class="fu">return</span>(<span class="st">"—"</span>)</span>
+<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(id)) <span class="fu">return</span>(<span class="st">"-"</span>)</span>
 <span id="cb3-503"><a href="#cb3-503" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> participants[[id]]</span>
 <span id="cb3-504"><a href="#cb3-504" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(p)) <span class="fu">return</span>(id)</span>
 <span id="cb3-505"><a href="#cb3-505" aria-hidden="true" tabindex="-1"></a>    p<span class="sc">$</span>name</span>
@@ -3041,7 +2881,7 @@ Scripts &amp; Code
 <span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;!DOCTYPE html&gt;</span><span class="sc">\n</span><span class="st">&lt;html lang=</span><span class="sc">\"</span><span class="st">en</span><span class="sc">\"</span><span class="st">&gt;</span><span class="sc">\n</span><span class="st">&lt;head&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;meta charset=</span><span class="sc">\"</span><span class="st">utf-8</span><span class="sc">\"</span><span class="st">&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;meta name=</span><span class="sc">\"</span><span class="st">viewport</span><span class="sc">\"</span><span class="st"> content=</span><span class="sc">\"</span><span class="st">width=device-width, initial-scale=1</span><span class="sc">\"</span><span class="st">&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;title&gt;Belay Buddy — schedule&lt;/title&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;title&gt;Belay Buddy - schedule&lt;/title&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;link rel=</span><span class="sc">\"</span><span class="st">preconnect</span><span class="sc">\"</span><span class="st"> href=</span><span class="sc">\"</span><span class="st">https://fonts.googleapis.com</span><span class="sc">\"</span><span class="st">&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;link rel=</span><span class="sc">\"</span><span class="st">preconnect</span><span class="sc">\"</span><span class="st"> href=</span><span class="sc">\"</span><span class="st">https://fonts.gstatic.com</span><span class="sc">\"</span><span class="st"> crossorigin&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
 <span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;link href=</span><span class="sc">\"</span><span class="st">https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=swap</span><span class="sc">\"</span><span class="st"> rel=</span><span class="sc">\"</span><span class="st">stylesheet</span><span class="sc">\"</span><span class="st">&gt;</span><span class="sc">\n</span><span class="st">"</span>,</span>
@@ -3112,7 +2952,7 @@ Scripts &amp; Code
   btnScripts.addEventListener('click', showScripts);
 
   function buildMarginTOC() {
-    if (!document.body.classList.contains('yoga-project-page')) return;
+    if (!document.querySelector('.yoga-project-page-root')) return;
     var marginSidebar = document.getElementById('quarto-margin-sidebar');
     if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
     var main = document.getElementById('quarto-document-content');
@@ -3173,21 +3013,32 @@ Scripts &amp; Code
 
 
 </main> <!-- /main -->
+<button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i>
+</button>
+<script>
+(function () {
+  var btn = document.getElementById("back-to-top");
+  if (!btn) return;
+  var threshold = 360;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sync() {
+    if (window.scrollY > threshold) btn.classList.add("is-visible");
+    else btn.classList.remove("is-visible");
+  }
+  window.addEventListener("scroll", sync, { passive: true });
+  sync();
+  btn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+    btn.blur();
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -3603,7 +3454,7 @@ Scripts &amp; Code
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with Quarto</p>
+<p>Custom site built with Quarto</p>
 </div>
   </div>
 </footer>

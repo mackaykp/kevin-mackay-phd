@@ -73,7 +73,7 @@ save_store <- function(store) {
     },
     error = function(e) {
       warning(
-        "Belay Buddy: save_store failed — category/round changes will NOT sync across tabs.\n  ",
+        "Belay Buddy: save_store failed - category/round changes will NOT sync across tabs.\n  ",
         conditionMessage(e), "\n  path: ", path,
         call. = FALSE
       )

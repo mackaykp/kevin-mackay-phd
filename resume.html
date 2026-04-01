@@ -40,14 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-07bb440fb883dd3f0e693d34cc5ef745.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,169 +75,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -277,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="mailto:mackaykp@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -286,32 +120,25 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#experience" id="toc-experience" class="nav-link active" data-scroll-target="#experience">Experience</a></li>
-  <li><a href="#education" id="toc-education" class="nav-link" data-scroll-target="#education">Education</a></li>
-  <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">Skills</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -320,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -332,26 +159,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I am a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. I support the full lifecycle of analytical and research projects—from problem definition and data quality assessment to analysis, communication, and workflow design.</p>
+<div class="resume-hero-section">
+<div class="resume-hero-header">
+<div class="resume-hero-photo-wrap">
+<p><img src="assets/kevin-mackay.jpg" class="resume-hero-photo img-fluid"></p>
+</div>
+<div class="resume-hero-header-right">
+<div class="resume-hero-contact">
+<p><span class="resume-hero-name"><strong>Kevin Mackay, PhD</strong></span></p>
+<p><a href="mailto:mackaykp@gmail.com">mackaykp@gmail.com</a></p>
+<p>Hamilton, ON</p>
+</div>
+<div class="resume-tagline-card">
+<div class="resume-tagline">
+<p>Understanding <span class="resume-tagline-em">systems</span> through data and research</p>
+</div>
+</div>
+</div>
+</div>
+<div class="resume-hero-divider">
+
+</div>
+<div class="resume-intro-row">
+<div class="resume-cred">
+<div class="resume-cred-item">
+<p><strong>Core Capabilities</strong></p>
+<ul>
+<li>Analytical design and problem framing</li>
+<li>Data quality assessment and governance</li>
+<li>Spatial and non‑spatial analysis</li>
+<li>Workflow development and automation</li>
+<li>Evidence‑informed decision support</li>
+</ul>
+</div>
+</div>
+<div class="resume-hero-content">
+<div class="resume-hero-text">
+<p><strong>Professional Summary</strong></p>
+<p>I work across the full lifecycle of analytical and research projects in public‑sector environments, supporting teams from problem definition and data quality assessment through analysis, communication, and workflow design. My experience spans municipal, federal, and academic settings, where I help organizations strengthen data practice, understand systems, and make informed decisions with confidence.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="resume-jump">
+<p><a href="#experience">Experience</a> · <a href="#education">Education</a> · <a href="#skills">Skills</a></p>
+</div>
+<div class="resume-body">
 <section id="experience" class="level2">
 <h2 class="anchored" data-anchor-id="experience">Experience</h2>
-<section id="program-analyst-city-of-hamilton-20252026" class="level3">
-<h3 class="anchored" data-anchor-id="program-analyst-city-of-hamilton-20252026">Program Analyst — City of Hamilton (2025–2026)</h3>
+<div class="resume-experience-focus">
+<section id="program-analyst---city-of-hamilton-20252026" class="level3 resume-job-card">
+<h3 class="anchored" data-anchor-id="program-analyst---city-of-hamilton-20252026">Program Analyst - City of Hamilton (2025–2026)</h3>
 <ul>
 <li>Supported policy and program teams by analyzing data quality, documenting assumptions, and developing QA guidance to strengthen program oversight and evidence‑informed decision‑making.</li>
 <li>Contributed to corporate capacity‑building by preparing a business case for analytics and digital skills training, linking emerging tools to long‑term organizational capability and efficiency.</li>
 </ul>
 </section>
-<section id="data-analyst-statistics-canada-innovation-secretariat-20232025" class="level3">
-<h3 class="anchored" data-anchor-id="data-analyst-statistics-canada-innovation-secretariat-20232025">Data Analyst — Statistics Canada, Innovation Secretariat (2023–2025)</h3>
+<section id="data-analyst---statistics-canada-innovation-secretariat-20232025" class="level3 resume-job-card">
+<h3 class="anchored" data-anchor-id="data-analyst---statistics-canada-innovation-secretariat-20232025">Data Analyst - Statistics Canada, Innovation Secretariat (2023–2025)</h3>
 <ul>
 <li>Analyzed administrative and survey data to support program monitoring, performance measurement, and spatial analysis.</li>
 <li>Coordinated workflows in a secure data environment, supporting data access, documentation, and compliance.</li>
 <li>Advised internal stakeholders on data limitations, methodological trade‑offs, and appropriate interpretation of analytical results.</li>
 </ul>
 </section>
-<section id="research-coordinator-mcmaster-university-20212023" class="level3">
-<h3 class="anchored" data-anchor-id="research-coordinator-mcmaster-university-20212023">Research Coordinator — McMaster University (2021–2023)</h3>
+<section id="research-coordinator---mcmaster-university-20212023" class="level3 resume-job-card">
+<h3 class="anchored" data-anchor-id="research-coordinator---mcmaster-university-20212023">Research Coordinator - McMaster University (2021–2023)</h3>
 <ul>
 <li>Coordinated research activities across multiple analytics initiatives, supporting planning, task tracking, and cross‑functional collaboration.</li>
 <li>Analyzed large administrative and spatial datasets to support segmentation, outreach planning, and evidence‑informed service delivery.</li>
@@ -359,23 +232,26 @@ ul.task-list li input[type="checkbox"] {
 <li>Supported ethical and procedural compliance by maintaining documentation and reinforcing standards across projects.</li>
 </ul>
 </section>
-<section id="sessional-lecturer-university-of-toronto-20202021" class="level3">
-<h3 class="anchored" data-anchor-id="sessional-lecturer-university-of-toronto-20202021">Sessional Lecturer — University of Toronto (2020–2021)</h3>
+<section id="sessional-lecturer---university-of-toronto-20202021" class="level3 resume-job-card">
+<h3 class="anchored" data-anchor-id="sessional-lecturer---university-of-toronto-20202021">Sessional Lecturer - University of Toronto (2020–2021)</h3>
 <ul>
 <li>Delivered hands‑on training in applied data analysis and spatial data science.</li>
 <li>Developed course materials, assignments, and tutorials to support skill development and tool adoption across diverse audiences.</li>
 </ul>
 </section>
-<section id="doctoral-researcher-mcmaster-university-20132020" class="level3">
-<h3 class="anchored" data-anchor-id="doctoral-researcher-mcmaster-university-20132020">Doctoral Researcher — McMaster University (2013–2020)</h3>
+<section id="doctoral-researcher---mcmaster-university-20132020" class="level3 resume-job-card">
+<h3 class="anchored" data-anchor-id="doctoral-researcher---mcmaster-university-20132020">Doctoral Researcher - McMaster University (2013–2020)</h3>
 <ul>
 <li>Conducted spatial and analytical research to support public policy and program analysis.</li>
 <li>Led a Google Street View–based project from design through implementation, producing a public‑facing digital resource with over 8 million views.</li>
 </ul>
 </section>
+</div>
 </section>
-<section id="education" class="level2">
+<section id="education" class="level2 resume-education">
 <h2 class="anchored" data-anchor-id="education">Education</h2>
+<div class="resume-education-focus">
+<div class="resume-nested-card">
 <ul>
 <li><strong>PhD in Geography</strong>, McMaster University (2020)<br>
 </li>
@@ -383,40 +259,75 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li><strong>Honours Geography &amp; Environmental Studies (Minor in GIS)</strong>, McMaster University (2012)</li>
 </ul>
+</div>
+</div>
 </section>
-<section id="skills" class="level2">
+<section id="skills" class="level2 resume-skills">
 <h2 class="anchored" data-anchor-id="skills">Skills</h2>
-<ul>
-<li><strong>Data &amp; Spatial Analysis</strong> — R, Python, SQL, ArcGIS, spatial modelling, administrative data<br>
-</li>
-<li><strong>Research &amp; Evaluation</strong> — mixed methods, evidence synthesis, policy analysis, UX research<br>
-</li>
-<li><strong>Data Quality &amp; Governance</strong> — validation, documentation, reproducibility, workflow design<br>
-</li>
-<li><strong>Project Coordination</strong> — planning, task tracking, stakeholder engagement, cross‑functional collaboration<br>
-</li>
-<li><strong>Communication &amp; Enablement</strong> — dashboards, reporting, training, user guides, presentations</li>
-</ul>
-
-
+<div class="resume-skills-focus">
+<div class="resume-nested-card">
+<p><strong>Data &amp; Spatial Analysis</strong></p>
+<div class="resume-skill-tags">
+<p><span class="resume-skill-tag">R</span> <span class="resume-skill-tag">Python</span> <span class="resume-skill-tag">SQL</span> <span class="resume-skill-tag">ArcGIS</span> <span class="resume-skill-tag">spatial modelling</span> <span class="resume-skill-tag">administrative data</span></p>
+</div>
+</div>
+<div class="resume-nested-card">
+<p><strong>Research &amp; Evaluation</strong></p>
+<div class="resume-skill-tags">
+<p><span class="resume-skill-tag">mixed methods</span> <span class="resume-skill-tag">evidence synthesis</span> <span class="resume-skill-tag">policy analysis</span></p>
+</div>
+</div>
+<div class="resume-nested-card">
+<p><strong>Data Quality &amp; Governance</strong></p>
+<div class="resume-skill-tags">
+<p><span class="resume-skill-tag">validation</span> <span class="resume-skill-tag">documentation</span> <span class="resume-skill-tag">reproducibility</span> <span class="resume-skill-tag">workflow design</span></p>
+</div>
+</div>
+<div class="resume-nested-card">
+<p><strong>Project Coordination</strong></p>
+<div class="resume-skill-tags">
+<p><span class="resume-skill-tag">planning</span> <span class="resume-skill-tag">task tracking</span> <span class="resume-skill-tag">stakeholder engagement</span> <span class="resume-skill-tag">cross‑functional collaboration</span></p>
+</div>
+</div>
+<div class="resume-nested-card">
+<p><strong>Communication &amp; Enablement</strong></p>
+<div class="resume-skill-tags">
+<p><span class="resume-skill-tag">dashboards</span> <span class="resume-skill-tag">reporting</span> <span class="resume-skill-tag">training</span> <span class="resume-skill-tag">user guides</span> <span class="resume-skill-tag">presentations</span></p>
+</div>
+</div>
+</div>
 </section>
+</div>
+
+
 
 </main> <!-- /main -->
+<button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i>
+</button>
+<script>
+(function () {
+  var btn = document.getElementById("back-to-top");
+  if (!btn) return;
+  var threshold = 360;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sync() {
+    if (window.scrollY > threshold) btn.classList.add("is-visible");
+    else btn.classList.remove("is-visible");
+  }
+  window.addEventListener("scroll", sync, { passive: true });
+  sync();
+  btn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+    btn.blur();
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -832,7 +743,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with Quarto</p>
+<p>Custom site built with Quarto</p>
 </div>
   </div>
 </footer>

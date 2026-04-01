@@ -40,14 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-07bb440fb883dd3f0e693d34cc5ef745.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,169 +75,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -277,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="mailto:mackaykp@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -286,36 +120,25 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#my-background" id="toc-my-background" class="nav-link active" data-scroll-target="#my-background">My background</a></li>
-  <li><a href="#how-i-work" id="toc-how-i-work" class="nav-link" data-scroll-target="#how-i-work">How I work</a></li>
-  <li><a href="#what-motivates-me" id="toc-what-motivates-me" class="nav-link" data-scroll-target="#what-motivates-me">What motivates me</a></li>
-  <li><a href="#what-i-do" id="toc-what-i-do" class="nav-link" data-scroll-target="#what-i-do">What I do</a></li>
-  <li><a href="#outside-of-work" id="toc-outside-of-work" class="nav-link" data-scroll-target="#outside-of-work">Outside of work</a></li>
-  <li><a href="#explore-my-work" id="toc-explore-my-work" class="nav-link" data-scroll-target="#explore-my-work">Explore my work</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -324,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -337,100 +160,94 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="homepage-hero-section">
+<div class="homepage-tagline-card">
+<div class="homepage-tagline">
+<p><span class="homepage-tagline-em">Clarity</span> at every stage of your <span class="homepage-tagline-em">data journey</span></p>
+</div>
+</div>
+<div class="homepage-intro-row">
 <div class="homepage-hero-content">
-<p><img src="assets/kevin-mackay.jpg" class="homepage-hero-photo img-fluid"></p>
+<p><img src="assets/homepage_portrait.jpg" class="homepage-hero-photo img-fluid"></p>
 <div class="homepage-hero-text">
-<div class="homepage-hero">
-<p>Make sense of complexity with full‑lifecycle data insight</p>
-</div>
-<p>Hello! I’m <strong>Kevin</strong> — a data, spatial, and research professional with experience across municipal, federal, and academic public‑sector environments. I help organizations make sense of complex health, spatial, and administrative data through rigorous analysis, thoughtful research design, and clear, user‑focused communication.</p>
+<p>Hello!👋 I’m Kevin - a data, spatial, and research professional with experience across municipal, federal, and academic environments. I help teams make sense of complex population, demographic, and administrative data at every stage of the data journey, from collection and governance to analysis, design, and communication. My work blends rigorous methods with practical decision support, and I enjoy helping organizations understand systems and move forward with clarity and confidence.</p>
 </div>
 </div>
-</div>
-<section id="my-background" class="level2">
-<h2 class="anchored" data-anchor-id="my-background">My background</h2>
-<p>I completed my PhD in Geography at McMaster University, where I specialized in medical and spatial analysis. Since then, I’ve worked across public‑sector teams supporting analytics, program monitoring, performance measurement, accessibility research, and data‑driven decision‑making. My experience spans health, housing, transportation, and user experience research, giving me a broad understanding of how data, people, and systems interact.</p>
-</section>
-<section id="how-i-work" class="level2">
-<h2 class="anchored" data-anchor-id="how-i-work">How I work</h2>
-<p>I enjoy working across the full lifecycle of analytical and research projects:</p>
+<div class="homepage-cred">
+<div class="homepage-cred-item">
+<p><strong>How I Work</strong></p>
 <ul>
-<li>identifying problems and clarifying requirements<br>
-</li>
-<li>assessing data quality and documenting assumptions<br>
-</li>
-<li>designing and conducting analysis<br>
-</li>
-<li>translating results into clear, actionable insights<br>
-</li>
-<li>building workflows that are reproducible, maintainable, and future‑proof</li>
+<li>Clarity and transparency in every step</li>
+<li>Rigorous methods with practical outcomes</li>
+<li>Strong documentation and reproducible workflows</li>
+<li>Collaborative, stakeholder‑aligned approach</li>
+<li>Ethical, governance‑minded practice</li>
 </ul>
-<p>I value clarity, rigor, and thoughtful communication. I care deeply about documentation, data quality, and helping teams adopt tools and practices that make their work more reliable and sustainable.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="homepage-focus">
+<div class="homepage-pillars">
+<div class="homepage-pillar">
+<div class="homepage-pillar-index">
+<p>01</p>
+</div>
+<p><strong>Understanding systems through data</strong><br>
+Using spatial and non‑spatial population, demographic, and administrative data to reveal patterns, relationships, and system‑level dynamics.</p>
+</div>
+<div class="homepage-pillar">
+<div class="homepage-pillar-index">
+<p>02</p>
+</div>
+<p><strong>Designing research and analytical approaches</strong><br>
+Building the right questions, methods, and workflows to make sense of complex problems, whether the data is messy, incomplete, or multi‑source.</p>
+</div>
+<div class="homepage-pillar">
+<div class="homepage-pillar-index">
+<p>03</p>
+</div>
+<p><strong>Turning insight into action</strong><br>
+Translating complex findings into clear guidance, decision support, and practical recommendations that help teams move forward with confidence.</p>
+</div>
+</div>
+</div>
+<div class="homepage-explore">
+<section id="explore-my-work" class="level3 homepage-explore-title homepage-explore-inner">
+<h3 class="homepage-explore-title anchored" data-anchor-id="explore-my-work">Explore my work</h3>
+<p>Projects in analytical design, automation, and data‑driven problem solving across domains</p>
+<p><a href="./projects/index.html" class="btn btn-primary homepage-explore-btn">Browse projects</a></p>
 </section>
-<section id="what-motivates-me" class="level2">
-<h2 class="anchored" data-anchor-id="what-motivates-me">What motivates me</h2>
-<p>I’m driven by curiosity and a desire to understand how systems work. I enjoy tackling complex, interdisciplinary problems and helping teams navigate uncertainty with structure and clarity. I’m especially motivated by work that supports public impact, equity, and evidence‑informed decision‑making.</p>
-</section>
-<section id="what-i-do" class="level2">
-<h2 class="anchored" data-anchor-id="what-i-do">What I do</h2>
-<p>I help organizations make sense of complex health, spatial, and administrative data by supporting the full lifecycle of analytical and research projects. My work blends data analysis, spatial methods, research design, documentation, and cross-functional coordination to create solutions that are clear, reliable, and future‑proof.</p>
-<section id="health-spatial-data-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="health-spatial-data-analysis">Health &amp; spatial data analysis</h3>
-<p>I work with health, housing, transportation, and administrative datasets to uncover patterns, identify risks, and support evidence‑informed decision‑making. My background in medical and spatial geography allows me to integrate GIS, spatial modelling, and statistical analysis to answer real-world questions.</p>
-<p><strong>Examples:</strong> spatial modelling and cluster analysis; health indicators and administrative data analysis; mapping, geocoding, and spatial data integration.</p>
-</section>
-<section id="research-design-evidence-synthesis" class="level3">
-<h3 class="anchored" data-anchor-id="research-design-evidence-synthesis">Research design &amp; evidence synthesis</h3>
-<p>I design and conduct mixed-methods research that integrates qualitative and quantitative insights. I specialize in translating complex findings into clear, actionable recommendations for policy, programs, and service delivery.</p>
-<p><strong>Examples:</strong> mixed-methods studies and UX research; environmental and jurisdictional scans; policy-oriented analysis and evidence synthesis.</p>
-</section>
-<section id="data-quality-governance-documentation" class="level3">
-<h3 class="anchored" data-anchor-id="data-quality-governance-documentation">Data quality, governance &amp; documentation</h3>
-<p>I help teams build trust in their data by validating quality, documenting assumptions, and establishing reproducible workflows. I focus on clarity, transparency, and long-term maintainability.</p>
-<p><strong>Examples:</strong> data validation and QA frameworks; documentation, SOPs, and standards; reproducible pipelines and workflow design.</p>
-</section>
-<section id="project-coordination-collaboration" class="level3">
-<h3 class="anchored" data-anchor-id="project-coordination-collaboration">Project coordination &amp; collaboration</h3>
-<p>I support cross-functional teams by coordinating project activities, clarifying requirements, tracking progress, and ensuring alignment across stakeholders. I bridge the gap between technical and non-technical audiences.</p>
-<p><strong>Examples:</strong> project planning and task tracking; stakeholder coordination and communication; managing concurrent research and analytics initiatives.</p>
-</section>
-<section id="communication-training-digital-enablement" class="level3">
-<h3 class="anchored" data-anchor-id="communication-training-digital-enablement">Communication, training &amp; digital enablement</h3>
-<p>I translate complex analysis into clear, user-focused outputs and help teams adopt tools and practices that improve efficiency and understanding. I enjoy teaching, documentation, and building capacity.</p>
-<p><strong>Examples:</strong> dashboards, reports, and presentations; training, workshops, and user guides; supporting adoption of analytical and digital tools.</p>
-</section>
-</section>
-<section id="outside-of-work" class="level2">
-<h2 class="anchored" data-anchor-id="outside-of-work">Outside of work</h2>
-<p>I enjoy hiking, climbing, gravel biking, and spending time outdoors. These interests shape my appreciation for environmental stewardship, accessibility, and community‑focused public service.</p>
-</section>
-<section id="explore-my-work" class="level2">
-<h2 class="anchored" data-anchor-id="explore-my-work">Explore my work</h2>
-<p>Visit the <a href="./projects/index.html">Projects</a> page to see examples of spatial analysis, automation, research, and data-driven work across different domains.</p>
-</section>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>You can reach me at <strong>mackaykp@gmail.com</strong> — or connect via <a href="https://www.linkedin.com/in/kevin-mackay-phd/">LinkedIn</a> or <a href="https://github.com/mackaykp/kevin-mackay-phd">GitHub</a>.</p>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
+<button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i>
+</button>
+<script>
+(function () {
+  var btn = document.getElementById("back-to-top");
+  if (!btn) return;
+  var threshold = 360;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sync() {
+    if (window.scrollY > threshold) btn.classList.add("is-visible");
+    else btn.classList.remove("is-visible");
+  }
+  window.addEventListener("scroll", sync, { passive: true });
+  sync();
+  btn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+    btn.blur();
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -846,7 +663,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with Quarto</p>
+<p>Custom site built with Quarto</p>
 </div>
   </div>
 </footer>

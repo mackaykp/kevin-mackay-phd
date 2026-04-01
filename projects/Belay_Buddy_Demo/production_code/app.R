@@ -343,7 +343,7 @@ server <- function(input, output, session) {
 
   # Join-by-code flow removed from UI (host-only workflow).
 
-  # Shared stamp bumps on every server mutation — invalidates this reactive in EVERY open tab (reactivePoll does not).
+  # Shared stamp bumps on every server mutation - invalidates this reactive in EVERY open tab (reactivePoll does not).
   session_data <- shiny::reactive({
     bb_session_sync$stamp
     rc <- session$userData$room_code
@@ -728,7 +728,7 @@ server <- function(input, output, session) {
       ),
       shiny::tags$p(
         style = "font-size: 0.95rem; line-height: 1.45;",
-        "Refreshing the page or the server sleeping can lose this room’s live data. Your browser will ask where to save a file — that is normal. The HTML opens offline in any browser."
+        "Refreshing the page or the server sleeping can lose this room’s live data. Your browser will ask where to save a file - that is normal. The HTML opens offline in any browser."
       ),
       shiny::tags$button(
         type = "button",
@@ -833,7 +833,7 @@ server <- function(input, output, session) {
       title = shiny::tags$div(
         class = "d-flex align-items-center gap-2",
         shiny::tags$i(class = "bi bi-arrow-repeat text-primary", `aria-hidden` = "true"),
-        shiny::tags$span("Roster changed — share an updated schedule")
+        shiny::tags$span("Roster changed - share an updated schedule")
       ),
       shiny::tags$p(
         style = "font-size: 0.95rem; line-height: 1.45;",

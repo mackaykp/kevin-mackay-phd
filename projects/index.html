@@ -40,14 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-07bb440fb883dd3f0e693d34cc5ef745.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-47184c41c570544c8a18c19bb9dbf0c4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,169 +75,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -277,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="mailto:mackaykp@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -286,24 +120,25 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mackaykp/kevin-mackay-phd"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -312,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -324,8 +159,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<script type="application/json" id="projects-data">[{"title":"Yoga Video Catalog","description":"Filterable catalog of yoga videos: web scraping, yt-dlp enrichment, ETL pipeline, and interactive browse UI with Quarto.","href":"yoga-video-catalog/","tags":["Automation","Web scraping","ETL","R","Python","Quarto"],"image":""},{"title":"Leaflet Mapping Tool","description":"Interactive map built with R, leaflet, and tidyverse—placeholder for spatial projects.","href":"Leaflet_Mapping_Tool/","tags":["Spatial","Mapping","R","leaflet","Python","Quarto"],"image":""},{"title":"Offline Geocoding Tool","description":"Offline geocoding for Canadian addresses using Statistics Canada's National Address Register (NAR), R, DuckDB, and a single-hierarchy match pipeline.","href":"Offline_Geocoding_Tool/","tags":["R","Spatial","ETL","tidyverse","Automation"],"image":""},{"title":"PhD Dissertation","description":"Identifying geographic areas where children may be at-risk of lead poisoning and assessing the need for lead abatement in urban areas: a case study in Hamilton, Ontario (McMaster, 2019).","href":"PhD_Dissertation/","tags":["Spatial","Statistics","R","Health data"],"image":""},{"title":"Belay Buddy Demo","description":"Static web-app demo of Belay Buddy that mirrors the session workflow (host join, participant management, rounds) without server runtime.","href":"Belay_Buddy_Demo/","tags":["Automation","Quarto","Documentation"],"image":""}]</script>
-<script type="application/json" id="tag-categories">[{"name":"Tech stack","tags":["R","Python","Quarto","leaflet","tidyverse"]},{"name":"Methodology","tags":["Automation","ETL","Web scraping"]},{"name":"Domain","tags":["Statistics","Spatial","Mapping","Documentation","Health data"]}]</script>
+<div class="projects-hero-section">
+<p><span class="projects-hero-kicker">Projects</span></p>
+<p>These projects reflect how I approach analytical and research work: clarity, structure, reproducibility, and practical outcomes.</p>
+<p>Explore my work by theme - use the filters to narrow by tools, capabilities, and delivery.</p>
+</div>
+<script type="application/json" id="projects-data">[{"title":"Yoga Video Catalog","description":"Built for personal use to organize and filter yoga videos.","href":"yoga-video-catalog/","tags":["R","Python","Quarto","HTML+CSS","JavaScript","Automation","Web scraping","Data integration & ETL","Operational tooling"],"image":""},{"title":"Leaflet Mapping Tool","description":"Used by non-technical teams to generate interactive dashboard-like maps.","href":"Leaflet_Mapping_Tool/","tags":["R","Python","Quarto","HTML+CSS","JavaScript","GIS","Automation","Spatial","Mapping & visualization","Operational tooling"],"image":""},{"title":"Offline Geocoding Tool","description":"Designed for offline environments with strict privacy requirements.","href":"Offline_Geocoding_Tool/","tags":["R","Spatial","Data integration & ETL","Privacy-conscious workflows","Operational tooling"],"image":""},{"title":"PhD Dissertation","description":"Prepared as my final PhD submission as a comprehensive critique of the lead poisoning literature.","href":"PhD_Dissertation/","tags":["R","GIS","Python","Spatial","Statistics","Documentation","Research synthesis"],"image":""},{"title":"PhD defense","description":"Generated for my PhD defense to summarize findings and highlight key insights.","href":"phd-defense/","tags":["R","GIS","Python","Spatial","Statistics","Documentation","Research synthesis"],"image":""},{"title":"Demystifying Linear Regression","description":"Created for a guest lecture at McMaster University for a geography course without prior statistics knowledge.","href":"linear-regression-lecture/","tags":["R","Statistics","Documentation","Teaching / enablement"],"image":""},{"title":"Health Statistics From A Geographer's Perspective","description":"Prepared for the Health Statistics Branch of Statistics Canada to introduce medical geography methodologies.","href":"medical-geography-presentation/","tags":["R","GIS","Spatial","Statistics","Documentation","Teaching / enablement"],"image":""},{"title":"Victoria transit - bus stop popularity (client project)","description":"Prepared for a client collaborator with McMaster University to understand popularity of bus stops for marketing campaign.","href":"victoria-transit-bus-stops/","tags":["R","GIS","Spatial","Statistics","Mapping & visualization","Documentation","Research synthesis"],"image":""},{"title":"Belay Buddy Demo","description":"Built to help my large climbing group manage complex climb/belay pairing order (demo + production codebase).","href":"Belay_Buddy_Demo/","tags":["R","Quarto","R Shiny","HTML+CSS","JavaScript","Documentation","Interactive tools","Operational tooling"],"image":""}]</script>
+<script type="application/json" id="tag-categories">[{"name":"Tools & stack","tags":["R","Python","JavaScript","HTML+CSS","Quarto","R Shiny","GIS"]},{"name":"Capabilities","tags":["Spatial","Mapping & visualization","Statistics","Data integration & ETL","Interactive tools","Automation","Web scraping","Documentation","Privacy-conscious workflows"]},{"name":"Delivery & impact","tags":["Research synthesis","Operational tooling","Teaching / enablement"]}]</script>
+<script type="application/json" id="delivery-icon-map">{"Research synthesis":"assets/project-icons/delivery/research-synthesis.svg","Operational tooling":"assets/project-icons/delivery/operational-tooling.svg","Teaching / enablement":"assets/project-icons/delivery/teaching-enablement.svg"}</script>
 <div class="projects-page" id="projects-page">
   <div class="projects-filters" id="projects-filters">
     <div class="projects-filter-groups" id="projects-filter-groups"></div>
@@ -339,9 +180,13 @@ ul.task-list li input[type="checkbox"] {
 (function() {
   var dataEl = document.getElementById('projects-data');
   var catEl = document.getElementById('tag-categories');
-  if (!dataEl || !catEl) return;
+  var deliveryMapEl = document.getElementById('delivery-icon-map');
+  if (!dataEl || !catEl || !deliveryMapEl) return;
   var projects = JSON.parse(dataEl.textContent);
   var tagCategories = JSON.parse(catEl.textContent);
+  var deliveryIconMap = JSON.parse(deliveryMapEl.textContent);
+  // First matching tag wins (stable priority if a project ever has multiple delivery tags)
+  var deliveryTagPriority = ['Research synthesis', 'Operational tooling', 'Teaching / enablement'];
   var grid = document.getElementById('projects-grid');
   var filterGroupsEl = document.getElementById('projects-filter-groups');
   var countEl = document.getElementById('projects-count');
@@ -414,6 +259,39 @@ ul.task-list li input[type="checkbox"] {
     clearBtn.style.display = state.activeTags.length > 0 ? 'inline-block' : 'none';
   }
 
+  function escapeAttr(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  }
+
+  function resolveCardVisual(p) {
+    if (p.image && String(p.image).trim()) {
+      var title = (p.title || 'Project');
+      return {
+        html: '<div class="projects-card-visual"><img src="' + escapeAttr(p.image.trim()) + '" alt="' + escapeAttr(title) + '" loading="lazy"></div>'
+      };
+    }
+    var tags = p.tags || [];
+    var rel = null;
+    var altLabel = '';
+    for (var i = 0; i < deliveryTagPriority.length; i++) {
+      var dt = deliveryTagPriority[i];
+      if (tags.indexOf(dt) !== -1 && deliveryIconMap[dt]) {
+        rel = deliveryIconMap[dt];
+        altLabel = dt;
+        break;
+      }
+    }
+    if (rel) {
+      var src = rel.indexOf('/') === 0 || /^(https?:|data:)/i.test(rel) ? rel : ('../' + rel);
+      return {
+        html: '<div class="projects-card-visual projects-card-visual--delivery-icon"><img src="' + escapeAttr(src) + '" alt="' + escapeAttr(altLabel) + '" loading="lazy"></div>'
+      };
+    }
+    return {
+      html: '<div class="projects-card-visual"><span class="projects-card-visual-placeholder" aria-hidden="true">◇</span></div>'
+    };
+  }
+
   function filteredProjects() {
     if (state.activeTags.length === 0) return projects.slice();
     return projects.filter(function(p) {
@@ -433,12 +311,7 @@ ul.task-list li input[type="checkbox"] {
       var card = document.createElement('article');
       card.className = 'projects-card';
       card.setAttribute('data-tags', (p.tags || []).join(','));
-      var visual = '';
-      if (p.image && p.image.trim()) {
-        visual = '<div class="projects-card-visual"><img src="' + p.image.replace(/"/g, '&quot;') + '" alt="" loading="lazy"></div>';
-      } else {
-        visual = '<div class="projects-card-visual"><span class="projects-card-visual-placeholder" aria-hidden="true">◇</span></div>';
-      }
+      var visual = resolveCardVisual(p).html;
       var titleEsc = (p.title || 'Project').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       var descEsc = (p.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       var tagHtml = (p.tags || []).map(function(t) {
@@ -470,21 +343,32 @@ ul.task-list li input[type="checkbox"] {
 
 
 </main> <!-- /main -->
+<button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i>
+</button>
+<script>
+(function () {
+  var btn = document.getElementById("back-to-top");
+  if (!btn) return;
+  var threshold = 360;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sync() {
+    if (window.scrollY > threshold) btn.classList.add("is-visible");
+    else btn.classList.remove("is-visible");
+  }
+  window.addEventListener("scroll", sync, { passive: true });
+  sync();
+  btn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+    btn.blur();
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -900,7 +784,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with Quarto</p>
+<p>Custom site built with Quarto</p>
 </div>
   </div>
 </footer>
