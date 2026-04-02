@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6f7252793c08859a059e0bf404d61d47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -168,14 +168,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -184,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -206,8 +204,14 @@ Final product
 <button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">
 Project Overview
 </button>
+<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">
+Project Approach
+</button>
 <button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">
 Scripts &amp; Code
+</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">
+Impact &amp; Outcome
 </button>
 </div>
 <div id="yoga-final-product" class="yoga-view-panel">
@@ -220,39 +224,86 @@ Scripts &amp; Code
 </div>
 </div>
 <div id="yoga-overview" class="yoga-view-panel d-none">
-<section id="problem" class="level2">
-<h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>A Statistics Canada field team needed a way to identify safe areas to stay while conducting months‑long data collection in cities across Canada. For each of the 16 survey cities, they required:<br>
-</p>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<section id="problem" class="level3">
+<h3 class="anchored" data-anchor-id="problem">Problem</h3>
+<p>A Statistics Canada field team needed neighbourhood-level context to support <strong>months-long</strong> data collection across <strong>16 Canadian cities</strong>. Each city called for many map views (building-level detail, multiple neighbourhoods, safety-related planning), but producing <strong>50+ static maps per city</strong> was slow, hard to update, and depended on GIS specialists.</p>
+</section>
+<section id="context" class="level3">
+<h3 class="anchored" data-anchor-id="context">Context</h3>
+<p>Maps must refresh on roughly a <strong>two-year</strong> survey cycle. Staff who support the field program have strong domain skills but are not GIS power users, so the client needed something <strong>reproducible</strong> and teachable.</p>
+</section>
+<section id="goals" class="level3">
+<h3 class="anchored" data-anchor-id="goals">Goals</h3>
 <ul>
-<li>maps detailed enough to show building‑level satellite imagery</li>
-<li>50+ static maps per city to cover different neighbourhoods and safety considerations</li>
-<li>a solution that could be updated every two years and used by staff without GIS expertise The existing approach (i.e., manually producing dozens of static maps) was time‑consuming, difficult to maintain, and not reproducible by the client’s team.</li>
+<li>Replace binders of static exports with <strong>one interactive map per city</strong> (zoom, pan, basemap switch, layer toggles, informative popups).</li>
+<li>Standardize logic across cities so every place runs the <strong>same</strong> pipeline.</li>
+<li>Make routine updates runnable by analysts with <strong>basic R</strong> skills.</li>
 </ul>
 </section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-<p>To address the scale and complexity of the request, I designed an interactive mapping tool using OpenStreetMap data and R. This approach allowed me to:<br>
-</p>
+<section id="stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="stakeholders">Stakeholders</h3>
 <ul>
-<li>replace hundreds of static maps with a single, dynamic map per city</li>
-<li>incorporate zooming, panning, basemap switching, and layer toggling</li>
-<li>allow users to click features to reveal additional information</li>
-<li>build a workflow that could be run by non‑GIS staff with basic R skills The tool automated data retrieval, processing, and map generation, making it adaptable to any Canadian city-and scalable beyond Canada if needed.</li>
+<li><strong>Primary:</strong> Statistics Canada field teams and the analysts who prepare their mapping products.</li>
+<li><strong>Portfolio visitors:</strong> see a public demo that uses non-sensitive layers while showing the same architecture.</li>
 </ul>
 </section>
-<section id="impact" class="level2">
-<h2 class="anchored" data-anchor-id="impact">Impact</h2>
+<section id="final-deliverable" class="level3">
+<h3 class="anchored" data-anchor-id="final-deliverable">Final deliverable</h3>
+<p>An <strong>R + Leaflet</strong> workflow driven by OpenStreetMap and census boundaries: configurable per city or bbox, with optional bivariate views. The embedded vignette is the live demo; scripts and setup are under <strong>Scripts &amp; Code</strong> (see also the project <a href="../../projects/Leaflet_Mapping_Tool/guide.html">Guide</a>).</p>
+</section>
+<section id="note-on-the-public-demo" class="level3">
+<h3 class="anchored" data-anchor-id="note-on-the-public-demo">Note on the public demo</h3>
+<p>Safety and crime indicators are not public, so this portfolio build demonstrates the tool with <strong>median household income</strong> and <strong>greenspace</strong> access. The internal workflow supports swapping in the operational layers when data policy allows.</p>
+<p>If you are interested in adapting this tool for your own project, feel free to reach out.</p>
+</section>
+</section>
+</div>
+<div id="yoga-approach" class="yoga-view-panel d-none">
+<section id="project-approach" class="level2">
+<h2 class="anchored" data-anchor-id="project-approach">Project Approach</h2>
+<section id="problem-definition" class="level3">
+<h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
 <ul>
-<li>Reduced 50+ maps per city to one interactive map, improving usability and reducing cognitive load for field teams.</li>
-<li>Eliminated dependency on GIS specialists, enabling analysts with basic R skills to generate maps independently.</li>
-<li>Created a future‑proof workflow that can be reused every two years for recurring surveys and adapted for other Statistics Canada programs.</li>
-<li>Improved consistency and reproducibility, ensuring that all cities follow the same mapping logic and data standards.</li>
+<li><strong>Context:</strong> Field teams needed <strong>neighbourhood-level</strong> context across many Canadian cities on a <strong>repeat</strong> cadence.</li>
+<li><strong>What wasn’t working:</strong> the old workflow leaned on <strong>dozens of static maps</strong> per city and on GIS specialists for routine updates-it <strong>did not</strong> scale.</li>
 </ul>
 </section>
-<section id="note" class="level2">
-<h2 class="anchored" data-anchor-id="note">Note</h2>
-<p>Because safety and crime data are not publicly available, the public version of this tool demonstrates its capabilities using median household income and access to greenspace. The underlying workflow remains the same, and I’ve also extended the tool to support bivariate mapping to showcase its flexibility. If you’re interested in adapting this tool for your own project, feel free to reach out - I’m happy to help!</p>
+<section id="scope-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="scope-assumptions">Scope &amp; Assumptions</h3>
+<ul>
+<li><strong>Scope (planned):</strong> one <strong>R-based</strong>, reproducible workflow-OSM + census layers-runnable by analysts with basic R.</li>
+<li><strong>Public demo (planned):</strong> income + greenspace will stand in for sensitive layers; the architecture will <strong>swap in</strong> real indicators when internal data are available.</li>
+</ul>
+</section>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources">Data Sources</h3>
+<ul>
+<li><strong>Planned:</strong> StatCan DA boundaries + census income (SES); OSM greenspace / context; bbox per city or custom study area.</li>
+<li><strong>Caching</strong> where possible so I do not hammer Overpass on every run.</li>
+</ul>
+</section>
+<section id="analytical-design" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-design">Analytical Design</h3>
+<ul>
+<li><strong>Deliverable shape:</strong> <strong>one interactive Leaflet map per city</strong> (not a binder of static exports).</li>
+<li><strong>Rules:</strong> shared config (<code>map_config</code>, SES build, green-by-DA) so every city follows the <strong>same</strong> logic.</li>
+<li><strong>Optional:</strong> a bivariate view when it strengthens the story.</li>
+<li><strong>Interaction model:</strong> zooming, panning, basemap switching, layer toggles, and click-to-reveal popups replace the old static map set.</li>
+</ul>
+</section>
+<section id="workflow-process" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-process">Workflow / Process</h3>
+<p><strong>Planned flow:</strong> resolve bbox (city name or custom) → clip dissemination areas and SES → fetch/cache OSM greenspace (respecting Overpass limits) → classify → render with <strong>one legend system</strong> → repeat each survey cycle with minimal manual steps. End-to-end automation so non-GIS analysts can regenerate maps without redrawing exports by hand.</p>
+</section>
+<section id="constraints-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="constraints-considerations">Constraints &amp; Considerations</h3>
+<ul>
+<li>Overpass <strong>rate limits</strong>; scripts must stay <strong>offline-repeatable</strong>.</li>
+<li>A public portfolio build <strong>will not</strong> ship safety/crime layers-demo layers will <strong>showcase</strong> the pipeline without exposing restricted data.</li>
+</ul>
+</section>
 </section>
 </div>
 <div id="yoga-scripts" class="yoga-view-panel d-none">
@@ -1828,18 +1879,33 @@ Scripts &amp; Code
 <p>See the <a href="../../projects/Leaflet_Mapping_Tool/guide.html">Guide</a> in this project for setup and how to run the tool.</p>
 </section>
 </div>
+<div id="yoga-impact" class="yoga-view-panel d-none">
+<section id="impact-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="impact-outcome">Impact &amp; Outcome</h2>
+<p>This tool changed how field-support mapping was delivered for recurring surveys. It reduced manual map production overhead, helped non-GIS analysts generate consistent outputs, and made update cycles substantially easier to maintain over time.</p>
+<ul>
+<li><strong>Who it helped:</strong> Statistics Canada field teams and analysts supporting multi-city data collection.</li>
+<li><strong>What it helped with:</strong> Faster situational planning, standardized map logic, and improved reproducibility across survey cycles.</li>
+<li><strong>Why it matters:</strong> It converted a specialist-dependent workflow into an operational tool that can be rerun and adapted as requirements evolve.</li>
+</ul>
+</section>
+</div>
 <script>
 (function() {
   var productPanel = document.getElementById('yoga-final-product');
   var overviewPanel = document.getElementById('yoga-overview');
+  var approachPanel = document.getElementById('yoga-approach');
   var scriptsPanel = document.getElementById('yoga-scripts');
+  var impactPanel = document.getElementById('yoga-impact');
   var btnProduct = document.querySelector('.yoga-btn-product');
   var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnApproach = document.querySelector('.yoga-btn-approach');
   var btnScripts = document.querySelector('.yoga-btn-scripts');
-  if (!productPanel || !overviewPanel || !scriptsPanel || !btnProduct || !btnOverview || !btnScripts) return;
+  var btnImpact = document.querySelector('.yoga-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {
-    [btnProduct, btnOverview, btnScripts].forEach(function(b) {
+    [btnProduct, btnOverview, btnApproach, btnScripts, btnImpact].forEach(function(b) {
       b.classList.remove('btn-primary');
       b.classList.add('btn-outline-primary');
       b.setAttribute('aria-pressed', 'false');
@@ -1851,83 +1917,49 @@ Scripts &amp; Code
   function showProduct() {
     productPanel.classList.remove('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnProduct);
   }
   function showOverview() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
   }
   function showScripts() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnScripts);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
   }
 
   btnProduct.addEventListener('click', showProduct);
   btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
   btnScripts.addEventListener('click', showScripts);
-
-  // Fill right margin "On this page" TOC (Quarto leaves it empty for sidebar pages)
-  function buildMarginTOC() {
-    if (!document.querySelector('.yoga-project-page-root')) return;
-    var marginSidebar = document.getElementById('quarto-margin-sidebar');
-    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
-    var main = document.getElementById('quarto-document-content');
-    if (!main) return;
-    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
-    if (headings.length === 0) return;
-    var nav = document.createElement('nav');
-    nav.id = 'TOC';
-    nav.setAttribute('role', 'doc-toc');
-    nav.className = 'toc-active';
-    var title = document.createElement('h2');
-    title.id = 'toc-title';
-    title.textContent = 'On this page';
-    nav.appendChild(title);
-    var ul = document.createElement('ul');
-    ul.className = 'collapse';
-    headings.forEach(function(h2) {
-      var id = h2.getAttribute('data-anchor-id') || h2.id;
-      if (!id) return;
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = '#' + id;
-      a.id = 'toc-' + id;
-      a.className = 'nav-link';
-      a.setAttribute('data-scroll-target', '#' + id);
-      a.textContent = h2.textContent.trim();
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-    nav.appendChild(ul);
-    marginSidebar.appendChild(nav);
-    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        var id = link.getAttribute('data-scroll-target');
-        if (!id) return;
-        var target = document.querySelector(id);
-        if (!target) return;
-        if (overviewPanel.contains(target)) {
-          e.preventDefault();
-          showOverview();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        } else if (scriptsPanel.contains(target)) {
-          e.preventDefault();
-          showScripts();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        }
-      });
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildMarginTOC);
-  } else {
-    buildMarginTOC();
-  }
+  btnImpact.addEventListener('click', showImpact);
 })();
 </script>
 

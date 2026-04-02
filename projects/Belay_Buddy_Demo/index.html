@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6f7252793c08859a059e0bf404d61d47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -168,14 +168,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -184,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -206,50 +204,141 @@ Final product
 <button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">
 Project Overview
 </button>
+<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">
+Project Approach
+</button>
 <button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">
 Scripts &amp; Code
 </button>
+<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">
+Impact &amp; Outcome
+</button>
 </div>
 <div id="yoga-final-product" class="yoga-view-panel">
+<p>The <strong>video</strong> below is a screen recording of the <strong>production</strong> app with narration explaining how it works, using a single gym night as the through-line: a <strong>13-person</strong> top-rope session with an odd-count <strong>trio</strong>, then a <strong>mid-session roster change</strong> (the HTML exports at the bottom show <strong>10 participants</strong> and <strong>rounds 4-8</strong> after that change). Those <strong>HTML schedule exports</strong> match what participants can save or share when the live host pauses or the network drops.</p>
+<section id="what-the-example-shows-watch-the-video-then-use-this-as-a-map" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-example-shows-watch-the-video-then-use-this-as-a-map">What the example shows (watch the video, then use this as a map)</h3>
+<ol type="1">
+<li><strong>Host-led room</strong> - The group starts with a full roster; the engine fills <strong>rounds 1-5</strong> with pairs and a <strong>trio</strong> so everyone rotates climb, belay, and rest roles fairly across the odd group.</li>
+<li><strong>Visible burst</strong> - Upcoming rounds stay in one place so the whole group shares the same plan (no whiteboard drift).</li>
+<li><strong>Roster change before round 4</strong> - Someone joins and several climbers leave early; the app records <strong>effective-round</strong> roster deltas (add <strong>Mei</strong>; remove <strong>Amara</strong>, <strong>Michael</strong>, <strong>Daniel</strong>, <strong>Mo</strong>).</li>
+<li><strong>Re-optimized schedule</strong> - Pairings from <strong>round 4</strong> onward reflect the smaller group; the second export is the <strong>offline-friendly</strong> snapshot for rounds <strong>4-8</strong> with the roster-change summary at the top.</li>
+</ol>
+</section>
+<section id="demo-video-production-app" class="level3">
+<h3 class="anchored" data-anchor-id="demo-video-production-app">Demo video (production app)</h3>
 <div class="yoga-embed-bar">
-<p><a href="demo.html" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Open project in new tab</a></p>
+<a href="Belay_Buddy_Demo.mp4" class="btn btn-sm btn-outline-primary" download="Belay_Buddy_Demo.mp4">Download video (MP4)</a>
 </div>
-<div id="yoga-iframe-wrap" class="yoga-embed-full">
-<iframe src="demo.html" title="Belay Buddy Demo - static web app" class="yoga-embed" allowfullscreen="" style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;">
-</iframe>
+<div id="belay-video-frame-wrap">
+<video controls="" playsinline="" preload="metadata" class="belay-demo-video">
+  <source src="Belay_Buddy_Demo.mp4" type="video/mp4">
+  <p>Your browser does not support embedded video. <a href="Belay_Buddy_Demo.mp4">Download the demo (MP4)</a>.</p>
+</video>
 </div>
+</section>
+<section id="offline-schedule-exports-html" class="level3">
+<h3 class="anchored" data-anchor-id="offline-schedule-exports-html">Offline schedule exports (HTML)</h3>
+<p>These are <strong>browser-downloadable</strong> schedule pages generated by the app (same styling as the live UI). <strong>Left:</strong> snapshot covering <strong>rounds 1-5</strong> with the initial <strong>13</strong> participants. <strong>Right:</strong> after the roster change, <strong>rounds 4-8</strong> for <strong>10</strong> participants, including the <strong>Roster changes</strong> card (effective round 4).</p>
+<div class="belay-schedule-embed-grid">
+<div class="belay-schedule-embed-cell">
+<p class="belay-schedule-embed-label"><strong>Rounds 1-5</strong> - initial roster (13 participants)</p>
+<div class="belay-schedule-embed-wrap">
+<iframe src="exports/schedule-export-rounds-1-5.html" title="Belay Buddy schedule export: rounds 1-5" class="belay-schedule-iframe"></iframe>
+</div>
+</div>
+<div class="belay-schedule-embed-cell">
+<p class="belay-schedule-embed-label"><strong>Rounds 4-8</strong> - after roster change (10 participants)</p>
+<div class="belay-schedule-embed-wrap">
+<iframe src="exports/schedule-export-rounds-4-8-after-roster-change.html" title="Belay Buddy schedule export: rounds 4-8 after roster change" class="belay-schedule-iframe"></iframe>
+</div>
+</div>
+</div>
+</section>
 </div>
 <div id="yoga-overview" class="yoga-view-panel d-none">
-<section id="problem" class="level2">
-<h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>When climbing with friends, managing climb/belay order gets messy quickly, especially when people join or leave during a long session. The goal of Belay Buddy is a fast, mobile-first workflow that keeps rotations fair and visible for the whole group without account setup.</p>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<section id="problem" class="level3">
+<h3 class="anchored" data-anchor-id="problem">Problem</h3>
+<p>During top-rope sessions, <strong>climb/belay order</strong> falls apart when people join, leave, or swap roles. Whiteboards and ad hoc lists do not give everyone the same live view, and forcing sign-ups slows down casual groups.</p>
 </section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-<p>This portfolio page embeds a static demo for easy viewing, but the write-up here is based on the live production app codebase.</p>
-<p>The production app is an R Shiny application with:</p>
+<section id="context" class="level3">
+<h3 class="anchored" data-anchor-id="context">Context</h3>
+<p>The app is meant for <strong>real gym nights</strong>: mobile-first, fast to start, and usable without accounts. This portfolio page includes a <strong>narrated demo video of the production app</strong> plus <strong>sample HTML schedule exports</strong>; the narrative reflects the <strong>production R Shiny</strong> codebase.</p>
+</section>
+<section id="goals" class="level3">
+<h3 class="anchored" data-anchor-id="goals">Goals</h3>
 <ul>
-<li>host-created room sessions and quick host join</li>
-<li>add/remove participant flow with roster changes applied starting the next round</li>
-<li>5-round “burst” display for now/upcoming rounds</li>
-<li>real pairing optimization (<code>lpSolve</code>) to reduce repeat pairings while maintaining role alternation when possible</li>
-<li>schedule download/share as standalone HTML backup</li>
-</ul>
-<p>Core production files:</p>
+<li>Keep rotations <strong>fair</strong> and <strong>visible</strong> to the whole group.</li>
+<li>The app will try to preserve the following when possible:
 <ul>
-<li><code>app.R</code> (UI/server flow and host UX)</li>
-<li><code>R/session.R</code> (state, persistence, burst scheduling, sync)</li>
-<li><code>R/pairing.R</code> (pair/trio optimization and role assignment)</li>
-<li><code>R/html_export.R</code> (offline/shareable schedule export)</li>
+<li><strong>Diversity:</strong> Participants will be paired at random without duplicating pairs</li>
+<li><strong>Alternation:</strong> Participants will alternate between climbing and belaying</li>
+<li><strong>Trio aversion:</strong> Participants will be placed in trios infrequently</li>
+</ul></li>
+<li>Support a <strong>host-led</strong> room model with quick participant join.</li>
+<li>Offer a <strong>fallback</strong> (downloadable schedule) when free-tier hosting sleeps or connectivity drops.</li>
 </ul>
 </section>
-<section id="impact" class="level2">
-<h2 class="anchored" data-anchor-id="impact">Impact</h2>
+<section id="stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="stakeholders">Stakeholders</h3>
 <ul>
-<li>Used in real climbing sessions, not only as a prototype.</li>
-<li>Practical for free hosting: a static demo avoids runtime cost for portfolio visitors.</li>
-<li>Production app on free hosting can still hit limits (idle sleep/timeouts), so HTML export/share helps keep the group running even if the live instance pauses.</li>
+<li><strong>Climbing group</strong> in a single session (host + participants).</li>
 </ul>
+</section>
+<section id="final-deliverable" class="level3">
+<h3 class="anchored" data-anchor-id="final-deliverable">Final deliverable</h3>
+<ul>
+<li><strong>Production:</strong> Hosted R Shiny app with shared session state, burst scheduling, and pairing optimization.</li>
+<li><strong>Portfolio:</strong> narrated <strong>demo video</strong> (production app) and embedded <strong>HTML export</strong> samples (no live Shiny embed). Implementation files and excerpts are under <strong>Scripts &amp; Code</strong> (<code>app.R</code>, <code>R/session.R</code>, <code>R/pairing.R</code>, <code>R/html_export.R</code>). A small <strong>static HTML prototype</strong> (<code>demo.html</code>) remains in the project folder for reference.</li>
+</ul>
+</section>
+</section>
+</div>
+<div id="yoga-approach" class="yoga-view-panel d-none">
+<section id="project-approach" class="level2">
+<h2 class="anchored" data-anchor-id="project-approach">Project Approach</h2>
+<section id="problem-definition" class="level3">
+<h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
+<ul>
+<li><strong>Context:</strong> Top-rope nights <strong>kept changing mid-session</strong>-people joined, left, or swapped roles-and the group <strong>had no</strong> shared, fair rotation everyone could see.</li>
+<li><strong>Gap:</strong> whiteboards and ad hoc lists <strong>did not</strong> scale; I also wanted to avoid <strong>mandatory</strong> accounts.</li>
+</ul>
+</section>
+<section id="scope-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="scope-assumptions">Scope &amp; Assumptions</h3>
+<ul>
+<li><strong>Scope (planned):</strong> lightweight <strong>R Shiny</strong> app; host-led rooms; <strong>mobile-first</strong> UI; a short “burst” of upcoming rounds; optional <strong>HTML export</strong> of the schedule.</li>
+<li><strong>Assumption:</strong> typical group sizes stay small enough that <code>lpSolve</code> pairing will feel <strong>instant</strong> in-session.</li>
+</ul>
+</section>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources">Data Sources</h3>
+<ul>
+<li><strong>Planned state (minimal):</strong> roster, recent pairings, roles, session metadata (server-side for sync).</li>
+<li><strong>Planned export:</strong> standalone HTML participants can save or share if the live host sleeps.</li>
+</ul>
+</section>
+<section id="analytical-design" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-design">Analytical Design</h3>
+<ul>
+<li><strong>Plan:</strong> separate <strong>optimization</strong> from UI-<code>lpSolve</code>-backed engine to <strong>minimize repeat pairings</strong> while respecting climb / belay / rest alternation when possible; support <strong>trios</strong> when the group count is odd.</li>
+<li><strong>Product shape:</strong> host-created rooms and quick host join; add/remove participants with roster changes taking effect on the <strong>next</strong> round; <strong>5-round “burst”</strong> UI for now/upcoming rounds; standalone <strong>HTML export</strong> for offline share.</li>
+</ul>
+</section>
+<section id="workflow-process" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-process">Workflow / Process</h3>
+<p><strong>Planned UX:</strong> host opens room → roster locks in for the <strong>next</strong> round → engine proposes pairings → burst view shows near-future rounds → participants download/share HTML if the live host instance pauses or the network fails.</p>
+</section>
+<section id="constraints-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="constraints-considerations">Constraints &amp; Considerations</h3>
+<ul>
+<li><strong>Free-tier</strong> hosting will mean cold starts and timeouts-I will design around that.</li>
+<li><strong>Host vs participant</strong> paths must stay obvious.</li>
+<li>Export will be the <strong>fallback</strong> when the live instance pauses.</li>
+</ul>
+</section>
 </section>
 </div>
 <div id="yoga-scripts" class="yoga-view-panel d-none">
@@ -2908,18 +2997,34 @@ Scripts &amp; Code
 <hr>
 </section>
 </div>
+<div id="yoga-impact" class="yoga-view-panel d-none">
+<section id="impact-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="impact-outcome">Impact &amp; Outcome</h2>
+<p>Belay Buddy improved real-session coordination by making pairing decisions visible, fair, and easy to update as participants join or leave. The production app and static backup flow together make it resilient in low-cost hosting setups.</p>
+<ul>
+<li><strong>Who it helped:</strong> Recreational climbing groups managing rotation logistics in real time.</li>
+<li><strong>What it helped with:</strong> Reducing friction during sessions, minimizing repeated pairings, and maintaining continuity during connectivity or hosting interruptions.</li>
+<li><strong>Why it matters:</strong> It turns a common coordination problem into a usable, repeatable operational workflow.</li>
+<li><strong>In production:</strong> used in real sessions, not only as a prototype; the portfolio page uses a recorded walkthrough and downloadable-style HTML samples so visitors can review the UX without hosting the live app.</li>
+</ul>
+</section>
+</div>
 <script>
 (function() {
   var productPanel = document.getElementById('yoga-final-product');
   var overviewPanel = document.getElementById('yoga-overview');
+  var approachPanel = document.getElementById('yoga-approach');
   var scriptsPanel = document.getElementById('yoga-scripts');
+  var impactPanel = document.getElementById('yoga-impact');
   var btnProduct = document.querySelector('.yoga-btn-product');
   var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnApproach = document.querySelector('.yoga-btn-approach');
   var btnScripts = document.querySelector('.yoga-btn-scripts');
-  if (!productPanel || !overviewPanel || !scriptsPanel || !btnProduct || !btnOverview || !btnScripts) return;
+  var btnImpact = document.querySelector('.yoga-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {
-    [btnProduct, btnOverview, btnScripts].forEach(function(b) {
+    [btnProduct, btnOverview, btnApproach, btnScripts, btnImpact].forEach(function(b) {
       b.classList.remove('btn-primary');
       b.classList.add('btn-outline-primary');
       b.setAttribute('aria-pressed', 'false');
@@ -2931,82 +3036,49 @@ Scripts &amp; Code
   function showProduct() {
     productPanel.classList.remove('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnProduct);
   }
   function showOverview() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
   }
   function showScripts() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnScripts);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
   }
 
   btnProduct.addEventListener('click', showProduct);
   btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
   btnScripts.addEventListener('click', showScripts);
-
-  function buildMarginTOC() {
-    if (!document.querySelector('.yoga-project-page-root')) return;
-    var marginSidebar = document.getElementById('quarto-margin-sidebar');
-    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
-    var main = document.getElementById('quarto-document-content');
-    if (!main) return;
-    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
-    if (headings.length === 0) return;
-    var nav = document.createElement('nav');
-    nav.id = 'TOC';
-    nav.setAttribute('role', 'doc-toc');
-    nav.className = 'toc-active';
-    var title = document.createElement('h2');
-    title.id = 'toc-title';
-    title.textContent = 'On this page';
-    nav.appendChild(title);
-    var ul = document.createElement('ul');
-    ul.className = 'collapse';
-    headings.forEach(function(h2) {
-      var id = h2.getAttribute('data-anchor-id') || h2.id;
-      if (!id) return;
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = '#' + id;
-      a.id = 'toc-' + id;
-      a.className = 'nav-link';
-      a.setAttribute('data-scroll-target', '#' + id);
-      a.textContent = h2.textContent.trim();
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-    nav.appendChild(ul);
-    marginSidebar.appendChild(nav);
-    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        var id = link.getAttribute('data-scroll-target');
-        if (!id) return;
-        var target = document.querySelector(id);
-        if (!target) return;
-        if (overviewPanel.contains(target)) {
-          e.preventDefault();
-          showOverview();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        } else if (scriptsPanel.contains(target)) {
-          e.preventDefault();
-          showScripts();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        }
-      });
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildMarginTOC);
-  } else {
-    buildMarginTOC();
-  }
+  btnImpact.addEventListener('click', showImpact);
 })();
 </script>
 

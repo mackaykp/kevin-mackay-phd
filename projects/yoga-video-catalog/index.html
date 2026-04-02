@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6f7252793c08859a059e0bf404d61d47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -168,14 +168,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -184,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -206,8 +204,14 @@ Final product
 <button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">
 Project Overview
 </button>
+<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">
+Project Approach
+</button>
 <button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">
 Scripts &amp; Code
+</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">
+Impact &amp; Outcome
 </button>
 </div>
 <div id="yoga-final-product" class="yoga-view-panel">
@@ -220,15 +224,74 @@ Scripts &amp; Code
 </div>
 </div>
 <div id="yoga-overview" class="yoga-view-panel d-none">
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This project is a <strong>filterable yoga video catalog</strong> built from YouTube channel data. It demonstrates an end-to-end <strong>data workflow</strong>: web scraping, automation, ETL (extract–transform–load), and an interactive front end. The goal was to collect videos from chosen channels, enrich them with metadata (duration, upload date, focus areas), and present a single place to filter by duration, focus, channel, and keyword and to build a personal queue.</p>
-<p><strong>Final product:</strong> The <a href="browse.html"><strong>Browse catalog</strong></a> page is the main deliverable - a full-screen filterable catalog with duration/year sliders, focus and channel chips, keyword search, and a “My List” queue (stored in the browser).</p>
-<hr>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<section id="problem" class="level3">
+<h3 class="anchored" data-anchor-id="problem">Problem</h3>
+<p>Yoga content was spread across several YouTube channels. There was no single place to <strong>filter</strong> by length, focus area, recency, or channel, so choosing a session meant repeating the same manual searches.</p>
 </section>
-<section id="pipeline-overview" class="level2">
-<h2 class="anchored" data-anchor-id="pipeline-overview">Pipeline overview</h2>
-<p>The pipeline runs in the source project (see “Project files” below). High-level flow:</p>
+<section id="context" class="level3">
+<h3 class="anchored" data-anchor-id="context">Context</h3>
+<p>I follow a fixed set of trusted instructors and wanted one <strong>personal</strong> catalog that stays current as channels publish new videos-without hand-maintaining spreadsheets.</p>
+</section>
+<section id="goals" class="level3">
+<h3 class="anchored" data-anchor-id="goals">Goals</h3>
+<ul>
+<li>Centralize videos from a configurable channel list in one browsable catalog.</li>
+<li>Support filters (duration, year, focus, channel, keyword) and a simple <strong>My List</strong> queue in the browser.</li>
+<li>Keep updates <strong>automated</strong> and reproducible (scrape → enrich → publish), not copy-paste.</li>
+</ul>
+</section>
+<section id="stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="stakeholders">Stakeholders</h3>
+<ul>
+<li><strong>Primary user:</strong> me, for day-to-day practice planning.</li>
+<li><strong>Secondary audience:</strong> portfolio visitors evaluating end-to-end data engineering and front-end delivery.</li>
+</ul>
+</section>
+<section id="final-deliverable" class="level3">
+<h3 class="anchored" data-anchor-id="final-deliverable">Final deliverable</h3>
+<p>The <a href="browse.html"><strong>Browse catalog</strong></a> is the main product: a full-screen, filterable HTML catalog with sliders, chips, search, and a local queue. Implementation details, scripts, and data paths live under <strong>Scripts &amp; Code</strong>.</p>
+</section>
+</section>
+</div>
+<div id="yoga-approach" class="yoga-view-panel d-none">
+<section id="project-approach" class="level2">
+<h2 class="anchored" data-anchor-id="project-approach">Project Approach</h2>
+<section id="problem-definition" class="level3">
+<h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
+<ul>
+<li><strong>Context:</strong> Yoga videos lived across several channels; there was <strong>no</strong> single place to filter by length, focus, or recency.</li>
+<li><strong>Gap:</strong> I kept redoing manual searches instead of having one reusable view.</li>
+</ul>
+</section>
+<section id="scope-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="scope-assumptions">Scope &amp; Assumptions</h3>
+<ul>
+<li><strong>Scope (planned):</strong> personal use; reproducible automation; a fixed list of trusted channels.</li>
+<li><strong>Assumptions:</strong> channel layouts will stay scrapable; yt-dlp metadata will be enough to tag <strong>focus</strong> without hand-labeling every video.</li>
+</ul>
+</section>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources">Data Sources</h3>
+<ul>
+<li><strong>Planned inputs:</strong> listing fields from each channel’s Videos page (IDs, titles, durations); full metadata via yt-dlp (description, dates, views).</li>
+<li><strong>Config-only tuning:</strong> <code>channel_urls.json</code>, <code>focus_map.json</code>, <code>exclude_keywords.json</code> (change without editing code).</li>
+<li><strong>Artifacts:</strong> enriched CSV is the source of truth; Quarto <code>browse.qmd</code> reads it plus config JSON for the static browse UI.</li>
+</ul>
+</section>
+<section id="analytical-design" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-design">Analytical Design</h3>
+<ul>
+<li><strong>Intent:</strong> a <strong>pipeline</strong>, not a one-off scrape-incremental “new videos only” pulls per channel.</li>
+<li><strong>Focus rules:</strong> keywords on title + description → deterministic tags.</li>
+<li><strong>UI plan:</strong> derived buckets for duration and year → sliders and chips on the browse page.</li>
+<li><strong>Stack (planned):</strong> Python + <strong>Playwright</strong> for listings; <strong>yt-dlp</strong> + pandas for enrichment; <strong>Quarto</strong>, R (CSV → JSON), and vanilla JS for filters and queue-<strong>no YouTube API</strong>.</li>
+</ul>
+</section>
+<section id="workflow-process" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-process">Workflow / Process</h3>
+<p>End-to-end flow from channel list to live catalog:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 27%">
@@ -243,42 +306,49 @@ Scripts &amp; Code
 <tbody>
 <tr class="odd">
 <td><strong>1. Configure</strong></td>
-<td>Channel list lives in <code>data/channel_urls.json</code> (display name → channel Videos page URL).</td>
+<td>Channel list in <code>data/channel_urls.json</code> (display name → channel Videos page URL).</td>
 </tr>
 <tr class="even">
 <td><strong>2. Scrape</strong></td>
-<td><code>scrape_channel.py</code> uses <strong>Playwright</strong> to open each channel’s Videos page, scroll to load all items, and extract video IDs, titles, and durations into a CSV.</td>
+<td><code>scrape_channel.py</code> uses Playwright to open each channel’s Videos page, scroll to load items, extract video IDs, titles, durations.</td>
 </tr>
 <tr class="odd">
 <td><strong>3. Enrich</strong></td>
-<td><code>enrich_videos.py</code> uses <strong>yt-dlp</strong> (no YouTube API key) to fetch metadata (title, description, duration, upload date, view count, etc.) and derives a <strong>focus</strong> column from title/description using a keyword map.</td>
+<td><code>enrich_videos.py</code> uses yt-dlp for metadata and derives <strong>focus</strong> from title/description via <code>focus_map.json</code>.</td>
 </tr>
 <tr class="even">
 <td><strong>4. Categorize</strong></td>
-<td><code>categorize_data.py</code> adds derived columns: duration buckets, upload year, and view-count bands.</td>
+<td><code>categorize_data.py</code> adds duration buckets, upload year, view-count bands.</td>
 </tr>
 <tr class="odd">
 <td><strong>5. Focus</strong></td>
-<td><code>update_focus.py</code> refreshes the focus column using the same keyword logic (e.g.&nbsp;after config changes).</td>
+<td><code>update_focus.py</code> refreshes focus after config changes (no re-fetch).</td>
 </tr>
 <tr class="even">
 <td><strong>6. Update (orchestrator)</strong></td>
-<td><code>update_from_channels.py</code> runs the full flow: for each channel, scrapes only <strong>new</strong> videos (not already in the CSV), enriches and appends them, then runs categorize and focus on the full file.</td>
+<td><code>update_from_channels.py</code> pulls only <strong>new</strong> videos per channel, appends, then categorizes and updates focus on the full file.</td>
 </tr>
 <tr class="odd">
 <td><strong>7. Publish</strong></td>
-<td>The catalog is built with <strong>Quarto</strong>: <code>browse.qmd</code> reads <code>data/yoga_videos_enriched.csv</code> and <code>config/focus_map.json</code> / <code>config/exclude_keywords.json</code>, then renders the interactive browse page (R + JSON + client-side JS).</td>
+<td>Render <code>browse.qmd</code> so HTML reflects the latest <code>yoga_videos_enriched.csv</code>.</td>
 </tr>
 </tbody>
 </table>
-<p>So: <strong>scraping → enrichment (ETL) → categorization → focus update → Quarto render</strong> = automation from channel list to live catalog.</p>
-<hr>
+<p>So: <strong>scraping → ETL → categorization → focus → Quarto render</strong> in one repeatable path.</p>
 </section>
-<section id="project-files" class="level2">
-<h2 class="anchored" data-anchor-id="project-files">Project files</h2>
-<p>These files are included in this portfolio for reference. In the full project they live in the Yoga repo and are run from the project root.</p>
-<section id="data-and-config" class="level3">
-<h3 class="anchored" data-anchor-id="data-and-config">Data and config</h3>
+<section id="constraints-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="constraints-considerations">Constraints &amp; Considerations</h3>
+<ul>
+<li>I will respect site terms and rate limits; <strong>no API keys</strong>.</li>
+<li>Layout changes <strong>will</strong> break scrapers sometimes-budget time for fixes.</li>
+<li>Jobs will be <strong>resumable</strong>; exclusions + focus maps will handle QC without row-by-row review.</li>
+</ul>
+</section>
+</section>
+</div>
+<div id="yoga-scripts" class="yoga-view-panel d-none">
+<section id="data-and-config" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-config">Data and config</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 40%">
@@ -293,103 +363,20 @@ Scripts &amp; Code
 <tbody>
 <tr class="odd">
 <td><code>yoga-video-catalog/data/yoga_videos_enriched.csv</code></td>
-<td>Main catalog data (video_id, title, channel, duration, focus, upload_date, url, etc.). Built by the pipeline.</td>
+<td>Main catalog (built by the pipeline).</td>
 </tr>
 <tr class="even">
 <td><code>yoga-video-catalog/config/focus_map.json</code></td>
-<td>Maps canonical focus labels (e.g.&nbsp;“Core”, “Hips”) to keyword variations used to detect focus from title/description.</td>
+<td>Focus labels → keyword variations.</td>
 </tr>
 <tr class="odd">
 <td><code>yoga-video-catalog/config/exclude_keywords.json</code></td>
-<td>Keywords used to exclude videos (e.g.&nbsp;vlogs, announcements). Plus a focus-based filter so only videos with at least one focus tag appear.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="scripts-in-yoga-video-catalogscripts" class="level3">
-<h3 class="anchored" data-anchor-id="scripts-in-yoga-video-catalogscripts">Scripts (in <code>yoga-video-catalog/scripts/</code>)</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 57%">
-<col style="width: 42%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Script</th>
-<th>Role</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>update_from_channels.py</strong></td>
-<td>Main entry point. Reads channel config and existing CSV; for each channel scrapes only new videos, enriches them, appends to CSV; runs categorize and focus on the full file.</td>
-</tr>
-<tr class="even">
-<td><strong>scrape_channel.py</strong></td>
-<td>Playwright-based scraper: loads a channel’s Videos page, scrolls to load all, parses video links and durations. Can run standalone or via <code>update_from_channels.py</code>.</td>
-</tr>
-<tr class="odd">
-<td><strong>enrich_videos.py</strong></td>
-<td>yt-dlp enrichment: reads a CSV of video IDs, fetches metadata, derives focus from title/description using <code>focus_map.json</code>, writes enriched CSV (or appends to existing).</td>
-</tr>
-<tr class="even">
-<td><strong>categorize_data.py</strong></td>
-<td>Adds duration buckets, upload year, and view-count categories to the enriched CSV.</td>
-</tr>
-<tr class="odd">
-<td><strong>update_focus.py</strong></td>
-<td>Recomputes the focus column from title/description using the same keyword map (no re-fetch from YouTube).</td>
+<td>Exclusion rules and focus-based visibility.</td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
-</section>
-<section id="tech-stack" class="level2">
-<h2 class="anchored" data-anchor-id="tech-stack">Tech stack</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 46%">
-<col style="width: 53%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Layer</th>
-<th>Tools</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Scraping</td>
-<td>Python, <strong>Playwright</strong> (Chromium)</td>
-</tr>
-<tr class="even">
-<td>Enrichment</td>
-<td><strong>yt-dlp</strong>, pandas</td>
-</tr>
-<tr class="odd">
-<td>Config</td>
-<td>JSON (channel list, focus map, exclude keywords)</td>
-</tr>
-<tr class="even">
-<td>Catalog UI</td>
-<td><strong>Quarto</strong>, R (read CSV + inject JSON), vanilla JS (filters, queue, preview)</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
-<ul>
-<li><strong>Single command</strong> to add new channels or pull new videos from existing channels (<code>update_from_channels.py</code>), then re-render the catalog.</li>
-<li><strong>No YouTube API</strong> - scraping + yt-dlp keeps the pipeline simple and key-free.</li>
-<li><strong>Config-driven</strong> focus and exclusion make it easy to tune what appears in the catalog without changing code.</li>
-<li><strong>End-to-end showcase</strong>: from raw channel pages to a polished, filterable catalog and queue, demonstrating web scraping, ETL, automation, and reproducible reporting with Quarto.</li>
-</ul>
-</section>
-</div>
-<div id="yoga-scripts" class="yoga-view-panel d-none">
 <section id="script-update-from-channels" class="level2">
 <h2 class="anchored" data-anchor-id="script-update-from-channels">update_from_channels.py</h2>
 <p><strong>What it does:</strong> Orchestrates the full update. Loads <code>data/channel_urls.json</code> and the existing enriched CSV; for each channel, calls the Playwright scraper to get only <em>new</em> videos (stops when it hits the first video already in the catalog). Writes new rows to a temp CSV, runs <code>enrich_videos.py</code> to fetch metadata via yt-dlp and append to the main CSV, then runs <code>categorize_data.py</code> and <code>update_focus.py</code> on the full file. Single entry point for “pull new videos and refresh the catalog.”</p>
@@ -1074,7 +1061,7 @@ Scripts &amp; Code
 </section>
 <section id="script-categorize-data" class="level2">
 <h2 class="anchored" data-anchor-id="script-categorize-data">categorize_data.py</h2>
-<p><strong>What it does:</strong> Reads <code>data/yoga_videos_enriched.csv</code> and adds derived columns: <strong>duration_mins</strong> and <strong>duration_bucket</strong> (rounded to nearest 5 min, capped at 120), <strong>duration_category</strong> for display; <strong>upload_year</strong> from upload_date; <strong>views_category</strong> (Under 500k, 500k–1M, 1M–2.5M, etc.) and <strong>views_category_order</strong> for sorting. Overwrites the CSV and optional Excel. Run after enrichment so the catalog filters have consistent buckets.</p>
+<p><strong>What it does:</strong> Reads <code>data/yoga_videos_enriched.csv</code> and adds derived columns: <strong>duration_mins</strong> and <strong>duration_bucket</strong> (rounded to nearest 5 min, capped at 120), <strong>duration_category</strong> for display; <strong>upload_year</strong> from upload_date; <strong>views_category</strong> (Under 500k, 500k-1M, 1M-2.5M, etc.) and <strong>views_category_order</strong> for sorting. Overwrites the CSV and optional Excel. Run after enrichment so the catalog filters have consistent buckets.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1268,18 +1255,35 @@ Scripts &amp; Code
 </div>
 </section>
 </div>
+<div id="yoga-impact" class="yoga-view-panel d-none">
+<section id="impact-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="impact-outcome">Impact &amp; Outcome</h2>
+<p>This project solved a practical personal problem - finding the right yoga video quickly without repeatedly searching multiple channels - and converted it into a reusable data product.</p>
+<ul>
+<li><strong>Time savings for day-to-day use:</strong> Instead of checking channel pages manually, the catalog centralizes discovery and filtering in one place.</li>
+<li><strong>Higher quality decisions:</strong> Duration, focus tags, and year filters make it easier to choose sessions that match schedule, goals, and energy level.</li>
+<li><strong>Sustainable maintenance:</strong> The incremental update flow (<code>update_from_channels.py</code>) lowers upkeep effort and keeps the catalog current without full reprocessing.</li>
+<li><strong>Reusable architecture:</strong> The same scrape -&gt; enrich -&gt; categorize -&gt; publish pattern can be adapted to other media collections or content monitoring workflows.</li>
+<li><strong>Portfolio value:</strong> It demonstrates end-to-end ownership - data acquisition, ETL, automation, and UX delivery - in a production-like workflow that is actually used.</li>
+</ul>
+</section>
+</div>
 <script>
 (function() {
   var productPanel = document.getElementById('yoga-final-product');
   var overviewPanel = document.getElementById('yoga-overview');
+  var approachPanel = document.getElementById('yoga-approach');
   var scriptsPanel = document.getElementById('yoga-scripts');
+  var impactPanel = document.getElementById('yoga-impact');
   var btnProduct = document.querySelector('.yoga-btn-product');
   var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnApproach = document.querySelector('.yoga-btn-approach');
   var btnScripts = document.querySelector('.yoga-btn-scripts');
-  if (!productPanel || !overviewPanel || !scriptsPanel || !btnProduct || !btnOverview || !btnScripts) return;
+  var btnImpact = document.querySelector('.yoga-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {
-    [btnProduct, btnOverview, btnScripts].forEach(function(b) {
+    [btnProduct, btnOverview, btnApproach, btnScripts, btnImpact].forEach(function(b) {
       b.classList.remove('btn-primary');
       b.classList.add('btn-outline-primary');
       b.setAttribute('aria-pressed', 'false');
@@ -1291,83 +1295,49 @@ Scripts &amp; Code
   function showProduct() {
     productPanel.classList.remove('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnProduct);
   }
   function showOverview() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
   }
   function showScripts() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnScripts);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
   }
 
   btnProduct.addEventListener('click', showProduct);
   btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
   btnScripts.addEventListener('click', showScripts);
-
-  // Fill right margin "On this page" TOC (Quarto leaves it empty for sidebar pages)
-  function buildMarginTOC() {
-    if (!document.querySelector('.yoga-project-page-root')) return;
-    var marginSidebar = document.getElementById('quarto-margin-sidebar');
-    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
-    var main = document.getElementById('quarto-document-content');
-    if (!main) return;
-    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
-    if (headings.length === 0) return;
-    var nav = document.createElement('nav');
-    nav.id = 'TOC';
-    nav.setAttribute('role', 'doc-toc');
-    nav.className = 'toc-active';
-    var title = document.createElement('h2');
-    title.id = 'toc-title';
-    title.textContent = 'On this page';
-    nav.appendChild(title);
-    var ul = document.createElement('ul');
-    ul.className = 'collapse';
-    headings.forEach(function(h2) {
-      var id = h2.getAttribute('data-anchor-id') || h2.id;
-      if (!id) return;
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = '#' + id;
-      a.id = 'toc-' + id;
-      a.className = 'nav-link';
-      a.setAttribute('data-scroll-target', '#' + id);
-      a.textContent = h2.textContent.trim();
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-    nav.appendChild(ul);
-    marginSidebar.appendChild(nav);
-    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        var id = link.getAttribute('data-scroll-target');
-        if (!id) return;
-        var target = document.querySelector(id);
-        if (!target) return;
-        if (overviewPanel.contains(target)) {
-          e.preventDefault();
-          showOverview();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        } else if (scriptsPanel.contains(target)) {
-          e.preventDefault();
-          showScripts();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        }
-      });
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildMarginTOC);
-  } else {
-    buildMarginTOC();
-  }
+  btnImpact.addEventListener('click', showImpact);
 })();
 </script>
 

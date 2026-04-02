@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2be091903e55c97b0d29f0c91b0fb38b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6f7252793c08859a059e0bf404d61d47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -168,14 +168,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -184,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -206,8 +204,14 @@ Final product
 <button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">
 Project Overview
 </button>
+<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">
+Project Approach
+</button>
 <button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">
 Scripts &amp; Code
+</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">
+Impact &amp; Outcome
 </button>
 </div>
 <div id="yoga-final-product" class="yoga-view-panel">
@@ -220,29 +224,88 @@ Scripts &amp; Code
 </div>
 </div>
 <div id="yoga-overview" class="yoga-view-panel d-none">
-<section id="problem" class="level2">
-<h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>Statistics Canada’s National Address Register (NAR) provides authoritative Canadian address and location data, but there was no lightweight, offline way to geocode large spreadsheets (e.g.&nbsp;school or facility lists) against it. The team needed a tool that could match input addresses to NAR, assign coordinates using a clear match hierarchy, and write results to CSV without depending on external APIs or GIS software.</p>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<section id="problem" class="level3">
+<h3 class="anchored" data-anchor-id="problem">Problem</h3>
+<p>Statistics Canada’s National Address Register (NAR) is the natural reference for authoritative Canadian addresses, but teams often need to geocode <strong>large spreadsheets</strong> (schools, facilities, programs) without sending data to the cloud or opening a GIS desktop.</p>
 </section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-<p>I built an offline geocoding pipeline in R that uses a single DuckDB database of NAR (Address + Location) as the reference. The matcher follows a <strong>single hierarchy</strong> (literature-based): exact full address → exact street only (within same geography) → relaxed (same province/city/postal, attribute relaxation) → fuzzy (narrow pool: province + city + full 6-digit postal or FSA, with composite scoring) → 6-digit postal centroid → FSA centroid → city centroid. Geography is constrained so there are no cross-FSA or cross-city point matches.</p>
-<ul>
-<li><strong>Reference build:</strong> NAR Address and Location CSVs are joined on <code>LOC_GUID</code>, normalized (city, postal, street types), and written to one DuckDB table <code>ref</code>. Built once; all geocoding queries run against this file.</li>
-<li><strong>Input:</strong> Excel or CSV with address columns (e.g.&nbsp;Street, City, Province, Postal Code). Rows are processed in batches with progress saved every 100 rows so runs can be resumed.</li>
-<li><strong>Scoring:</strong> Fuzzy matches use a composite of text similarity (Jaro–Winkler), numeric nearness (civic numbers), and geographic agreement (province, city, postal). Street-type and direction normalization (including bilingual and abbreviations) keeps matching consistent.</li>
-</ul>
-<p>The tool is designed to run with minimal setup: build the NAR DuckDB once, then point it at any file with the expected address columns.</p>
+<section id="context" class="level3">
+<h3 class="anchored" data-anchor-id="context">Context</h3>
+<p>Governance and air-gapped environments ruled out consumer geocoding APIs. The work needed a <strong>single, auditable</strong> matcher against NAR with explainable match types and coordinates written back to CSV.</p>
 </section>
-<section id="impact" class="level2">
-<h2 class="anchored" data-anchor-id="impact">Impact</h2>
+<section id="goals" class="level3">
+<h3 class="anchored" data-anchor-id="goals">Goals</h3>
 <ul>
-<li><strong>Fully offline:</strong> No API keys or internet required; suitable for sensitive or air-gapped environments.</li>
-<li><strong>Reproducible:</strong> Single reference DB and deterministic hierarchy make results auditable and repeatable.</li>
-<li><strong>Scalable:</strong> Single DuckDB connection, batched fuzzy queries (configurable pool size), and streamed CSV output keep memory use manageable for large files.</li>
-<li><strong>Flexible:</strong> Tunable fuzzy threshold and optional city-in-pool behaviour; works with English and French address styles via street-type normalization.</li>
+<li>Match input rows to NAR with a <strong>documented hierarchy</strong> (not ad hoc string matching).</li>
+<li>Run <strong>fully offline</strong> after a one-time reference build.</li>
+<li>Support <strong>large files</strong> with resumable batch output and bilingual (EN/FR) address forms.</li>
 </ul>
-<p>If you’re interested in adapting this tool for your own project, feel free to reach out-I’m happy to help.</p>
+</section>
+<section id="stakeholders" class="level3">
+<h3 class="anchored" data-anchor-id="stakeholders">Stakeholders</h3>
+<ul>
+<li><strong>Analysts and data stewards</strong> processing sensitive facility or student-address lists.</li>
+<li><strong>Organizations</strong> that require reproducible, explainable geocoding under strict data-handling rules.</li>
+</ul>
+</section>
+<section id="final-deliverable" class="level3">
+<h3 class="anchored" data-anchor-id="final-deliverable">Final deliverable</h3>
+<p>An <strong>R pipeline</strong> backed by one <strong>DuckDB</strong> file built from NAR Address + Location: Excel or CSV in, geocoded CSV out, with match type and scores per row. The embedded showcase demonstrates the workflow; full scripts are under <strong>Scripts &amp; Code</strong>. If you are interested in adapting this tool, feel free to reach out.</p>
+</section>
+</section>
+</div>
+<div id="yoga-approach" class="yoga-view-panel d-none">
+<section id="project-approach" class="level2">
+<h2 class="anchored" data-anchor-id="project-approach">Project Approach</h2>
+<section id="problem-definition" class="level3">
+<h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
+<ul>
+<li><strong>Context:</strong> Teams had <strong>large spreadsheets</strong> of Canadian addresses (schools, facilities) and <strong>no</strong> lightweight way to geocode them against NAR <strong>without</strong> calling external APIs.</li>
+<li><strong>Gap:</strong> governance and air-gapped settings ruled out cloud geocoders for this use case.</li>
+</ul>
+</section>
+<section id="scope-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="scope-assumptions">Scope &amp; Assumptions</h3>
+<ul>
+<li><strong>Scope (planned):</strong> an R pipeline; <strong>one DuckDB</strong> built from NAR Address + Location; Excel/CSV in → geocoded CSV out.</li>
+<li><strong>Assumptions:</strong> <code>LOC_GUID</code> joins will hold for this workload; EN/FR street variants will normalize through <strong>one</strong> shared map.</li>
+</ul>
+</section>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources">Data Sources</h3>
+<ul>
+<li><strong>Planned load:</strong> NAR Address + Location CSVs → normalized civic/street fields → attach lat/lon per row.</li>
+<li><strong>Order of operations:</strong> small <strong>test fixtures</strong> first, then production files.</li>
+</ul>
+</section>
+<section id="analytical-design" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-design">Analytical Design</h3>
+<ul>
+<li><strong>Planned matcher (literature-based, single hierarchy):</strong> exact full address → exact street only (within same geography) → relaxed (same province/city/postal, attribute relaxation) → fuzzy (narrow pool: province + city + full 6-digit postal or FSA, <strong>composite scoring</strong>: Jaro-Winkler + civic nearness + geographic agreement) → 6-digit postal centroid → FSA centroid → city centroid.</li>
+<li><strong>Guards:</strong> geography constrained so point matches <strong>do not</strong> cross FSAs or cities inappropriately.</li>
+<li><strong>Normalization:</strong> street-type and direction handling (including bilingual abbreviations) so input and reference stay comparable.</li>
+<li><strong>Scale:</strong> single DuckDB connection; batched fuzzy queries with configurable pool size; streamed CSV output for memory discipline.</li>
+</ul>
+</section>
+<section id="workflow-process" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-process">Workflow / Process</h3>
+<ol type="1">
+<li><strong>One-time build:</strong> join NAR Address + Location on <code>LOC_GUID</code>, normalize fields, write table <code>ref</code> to <code>nar.duckdb</code>.<br>
+</li>
+<li><strong>Production geocode:</strong> read Excel/CSV with expected address columns; process in chunks (e.g.&nbsp;100 rows) with <strong>append-after-each-chunk</strong> so runs are resumable.<br>
+</li>
+<li><strong>After NAR refresh:</strong> optional regression test script on fixtures before full production files.</li>
+</ol>
+</section>
+<section id="constraints-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="constraints-considerations">Constraints &amp; Considerations</h3>
+<ul>
+<li>Execution stays <strong>fully offline</strong>; large files will need <strong>memory</strong> discipline.</li>
+<li>Bilingual address forms will need <strong>consistent</strong> normalization.</li>
+<li>Every row will carry <strong>match type + scores</strong> so analysts can explain results <strong>without</strong> a GIS desktop.</li>
+</ul>
+</section>
 </section>
 </div>
 <div id="yoga-scripts" class="yoga-view-panel d-none">
@@ -651,7 +714,7 @@ Scripts &amp; Code
 </section>
 <section id="script-utils-geocode" class="level2">
 <h2 class="anchored" data-anchor-id="script-utils-geocode">utils_geocode.R</h2>
-<p><strong>What it does:</strong> Normalization and scoring utilities. Province and city name normalization (including StatCan CSD suffixes and “City of” prefixes); street-type normalization via STREET_TYPE_MAP; cardinal directions; Canadian postal (6-char). <code>parse_address_components()</code> splits an address string into civic number, street part, city, province, postal. <code>build_relaxed_address_norms()</code> builds variants (drop trailing direction, then street type) for relaxed matching. Text similarity (Jaro–Winkler), numeric nearness (civic numbers), and geographic score feed into <code>composite_score()</code> for fuzzy ranking.</p>
+<p><strong>What it does:</strong> Normalization and scoring utilities. Province and city name normalization (including StatCan CSD suffixes and “City of” prefixes); street-type normalization via STREET_TYPE_MAP; cardinal directions; Canadian postal (6-char). <code>parse_address_components()</code> splits an address string into civic number, street part, city, province, postal. <code>build_relaxed_address_norms()</code> builds variants (drop trailing direction, then street type) for relaxed matching. Text similarity (Jaro-Winkler), numeric nearness (civic numbers), and geographic score feed into <code>composite_score()</code> for fuzzy ranking.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -2377,18 +2440,35 @@ Scripts &amp; Code
 <p>See the <a href="README.md">README</a> in this project for setup, NAR data layout, and usage.</p>
 </section>
 </div>
+<div id="yoga-impact" class="yoga-view-panel d-none">
+<section id="impact-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="impact-outcome">Impact &amp; Outcome</h2>
+<p>This project enabled reliable geocoding in privacy-constrained environments where cloud APIs are not acceptable. It improved confidence in address linkage quality while keeping the workflow auditable and repeatable.</p>
+<ul>
+<li><strong>Who it helped:</strong> Teams handling sensitive address datasets in offline or restricted environments.</li>
+<li><strong>What it helped with:</strong> High-volume geocoding, transparent match-level reporting, and reduced dependence on external services.</li>
+<li><strong>Why it matters:</strong> It delivers practical data quality improvements without compromising governance or privacy requirements.</li>
+<li><strong>Operational benefits:</strong> Fully offline execution, deterministic hierarchy for audit, tunable fuzzy behaviour, and EN/FR address consistency without a GIS desktop.</li>
+</ul>
+<p>If you are interested in adapting this tool for your own project, feel free to reach out.</p>
+</section>
+</div>
 <script>
 (function() {
   var productPanel = document.getElementById('yoga-final-product');
   var overviewPanel = document.getElementById('yoga-overview');
+  var approachPanel = document.getElementById('yoga-approach');
   var scriptsPanel = document.getElementById('yoga-scripts');
+  var impactPanel = document.getElementById('yoga-impact');
   var btnProduct = document.querySelector('.yoga-btn-product');
   var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnApproach = document.querySelector('.yoga-btn-approach');
   var btnScripts = document.querySelector('.yoga-btn-scripts');
-  if (!productPanel || !overviewPanel || !scriptsPanel || !btnProduct || !btnOverview || !btnScripts) return;
+  var btnImpact = document.querySelector('.yoga-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {
-    [btnProduct, btnOverview, btnScripts].forEach(function(b) {
+    [btnProduct, btnOverview, btnApproach, btnScripts, btnImpact].forEach(function(b) {
       b.classList.remove('btn-primary');
       b.classList.add('btn-outline-primary');
       b.setAttribute('aria-pressed', 'false');
@@ -2400,82 +2480,49 @@ Scripts &amp; Code
   function showProduct() {
     productPanel.classList.remove('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnProduct);
   }
   function showOverview() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
   }
   function showScripts() {
     productPanel.classList.add('d-none');
     overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
     scriptsPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
     setActive(btnScripts);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
   }
 
   btnProduct.addEventListener('click', showProduct);
   btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
   btnScripts.addEventListener('click', showScripts);
-
-  function buildMarginTOC() {
-    if (!document.querySelector('.yoga-project-page-root')) return;
-    var marginSidebar = document.getElementById('quarto-margin-sidebar');
-    if (!marginSidebar || marginSidebar.querySelector('#TOC')) return;
-    var main = document.getElementById('quarto-document-content');
-    if (!main) return;
-    var headings = main.querySelectorAll('h2.anchored[data-anchor-id]');
-    if (headings.length === 0) return;
-    var nav = document.createElement('nav');
-    nav.id = 'TOC';
-    nav.setAttribute('role', 'doc-toc');
-    nav.className = 'toc-active';
-    var title = document.createElement('h2');
-    title.id = 'toc-title';
-    title.textContent = 'On this page';
-    nav.appendChild(title);
-    var ul = document.createElement('ul');
-    ul.className = 'collapse';
-    headings.forEach(function(h2) {
-      var id = h2.getAttribute('data-anchor-id') || h2.id;
-      if (!id) return;
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = '#' + id;
-      a.id = 'toc-' + id;
-      a.className = 'nav-link';
-      a.setAttribute('data-scroll-target', '#' + id);
-      a.textContent = h2.textContent.trim();
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-    nav.appendChild(ul);
-    marginSidebar.appendChild(nav);
-    document.querySelectorAll('#TOC a[data-scroll-target]').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        var id = link.getAttribute('data-scroll-target');
-        if (!id) return;
-        var target = document.querySelector(id);
-        if (!target) return;
-        if (overviewPanel.contains(target)) {
-          e.preventDefault();
-          showOverview();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        } else if (scriptsPanel.contains(target)) {
-          e.preventDefault();
-          showScripts();
-          requestAnimationFrame(function() { target.scrollIntoView({ behavior: 'smooth' }); });
-        }
-      });
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildMarginTOC);
-  } else {
-    buildMarginTOC();
-  }
+  btnImpact.addEventListener('click', showImpact);
 })();
 </script>
 
