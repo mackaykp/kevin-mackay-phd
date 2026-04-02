@@ -15,6 +15,72 @@ title: "PhD Dissertation - Lead Poisoning Risk & Abatement in Hamilton, Ontario"
 
 ---
 
+## Project Overview
+
+### Problem
+
+Governments still need to protect children from lead exposure decades after major sources were phased out. Policy and remediation debates often lean on **return-on-investment** narratives and simplified maps, while **soil exposure**, **dose-response uncertainty**, and **municipal fiscal reality** are not always in the same conversation.
+
+### Context
+
+**Hamilton, Ontario** served as the case: localized soil-lead patterns matter for where children may be at elevated risk; published evidence on blood lead and IQ feeds ROI-style arguments; municipal budgets face hard limits on permanent remediation.
+
+### Goals
+
+- Map and interpret **spatial risk** using defensible interpolation choices (including a critical look at land-use regression).
+- Quantify **blood-lead ↔ IQ** evidence with modern meta-analysis to scrutinize claims embedded in ROI estimates.
+- Assess **abatement costs and feasibility** at municipal scale and articulate **alternatives** when ROI-only framing is misleading.
+
+### Stakeholders
+
+- **Supervision and examination:** Dr. Bruce Newbold and the doctoral committee (academic standards and contribution).
+- **Municipal and public-health audiences** implied by the policy-facing chapters.
+- **Broader research communities** using LUR, soil contamination methods, and meta-analysis.
+
+### Final deliverable
+
+The **doctoral dissertation** (McMaster, 2020)-five substantive chapters plus appendices-and the **PDF** linked at the bottom of this page. A shorter **defense deck** is available on the [PhD defense presentation](../phd-defense/index.qmd) page.
+
+## Project Approach
+
+### Problem Definition
+
+- **Analytical tension (planned):** ROI-heavy abatement narratives **had** often run ahead of integrated evidence on **soil pathways**, **IQ dose-response**, and **what cities can fund**.
+- **Research questions (planned):** Where in Hamilton might **soil-lead** imply elevated child exposure-and what do decision-makers need **before** committing to **large-scale** dig-and-replace-style programs?
+- **Disciplinary stance:** pair environmental health modelling with **policy-facing** economics and hazard communication-not maps or meta-analysis in isolation.
+
+### Scope & Assumptions
+
+- **Scope (planned):** (1) spatial prediction of soil lead, (2) **meta-analysis** blood lead ↔ IQ, (3) **municipal** cost-benefit framing.
+- **Assumption:** linking all three will **challenge** ROI-only stories while still taking economics seriously.
+
+### Data Sources
+
+- **Planned:** soil samples + covariates for spatial models; **published studies** for meta-analysis; Hamilton **costs** and land-use context for abatement scenarios.
+
+### Analytical Design
+
+- **Plan:** **contrast** LUR vs kriging-style options (with a **critical** lens on LUR).
+- **Plan:** **pool** epidemiology with current meta-analytic practice.
+- **Plan:** connect predictions to **hazard-style** interpretations decision-makers recognize.
+
+### Workflow / Process
+
+**Planned sequence:** characterize exposure surfaces → quantify **dose-response uncertainty** → test **abatement feasibility** and **alternatives** to permanent dig-and-replace where ROI claims are shaky.
+
+### Constraints & Considerations
+
+- LUR **identifiability**; study **heterogeneity** in meta-analysis.
+- Outputs will need to stay **actionable** under **real municipal budgets**.
+
+---
+
+## Impact & Outcome
+
+This dissertation provided an integrated evidence base for understanding childhood lead risk in Hamilton and evaluating the feasibility of large-scale abatement. It supports more realistic municipal policy by combining spatial risk modelling, epidemiological synthesis, and cost-benefit critique in a single decision-relevant framework.
+
+---
+
 ## Abstract
 
 Thirty years since the removal of lead from gasoline, lead still poses a health risk. Children are most at-risk for adverse health outcomes caused by lead toxicity due to both behavioural (e.g., hand-to-mouth behaviour) and physiological differences (i.e., increased intake of lead by body weight, higher uptake rate and a higher vulnerability to the effects of lead) compared to adults (Yeoh et al., 2009). As a result, governments must identify children that may be at-risk of lead poisoning and develop practical methods to mitigate lead exposure.
@@ -82,7 +148,7 @@ The first chapter is a methodological paper that contributes to a broader resear
 
 ### Chapter 6 - Appendix
 
-Appendices A–P (study area maps, distance profiles, LUR/EBK/OK predictions, forest plots, funnel plots, hazard quotient maps, and related materials).
+Appendices A-P (study area maps, distance profiles, LUR/EBK/OK predictions, forest plots, funnel plots, hazard quotient maps, and related materials).
 
 ---
 

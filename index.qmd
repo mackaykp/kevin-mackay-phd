@@ -32,8 +32,8 @@ Hello!👋 I’m Kevin - a data, spatial, and research professional with experie
 - Clarity and transparency in every step
 - Rigorous methods with practical outcomes
 - Strong documentation and reproducible workflows
-- Collaborative, stakeholder‑aligned approach
-- Ethical, governance‑minded practice
+- Collaborative, stakeholder-aligned approach
+- Ethical, governance-minded practice
 
 :::
 
@@ -51,7 +51,7 @@ Hello!👋 I’m Kevin - a data, spatial, and research professional with experie
 01
 :::
 **Understanding systems through data**  
-Using spatial and non‑spatial population, demographic, and administrative data to reveal patterns, relationships, and system‑level dynamics.
+Using spatial and non-spatial population, demographic, and administrative data to reveal patterns, relationships, and system-level dynamics.
 :::
 
 ::: {.homepage-pillar}
@@ -59,7 +59,7 @@ Using spatial and non‑spatial population, demographic, and administrative data
 02
 :::
 **Designing research and analytical approaches**  
-Building the right questions, methods, and workflows to make sense of complex problems, whether the data is messy, incomplete, or multi‑source.
+Building the right questions, methods, and workflows to make sense of complex problems, whether the data is messy, incomplete, or multi-source.
 :::
 
 ::: {.homepage-pillar}
@@ -76,7 +76,7 @@ Translating complex findings into clear guidance, decision support, and practica
 ::: {.homepage-explore-inner}
 ### Explore my work {.homepage-explore-title}
 
-Projects in analytical design, automation, and data‑driven problem solving across domains
+Projects in analytical design, automation, and data-driven problem solving across domains
 
 [Browse projects](projects/index.qmd){.btn .btn-primary .homepage-explore-btn}
 :::

@@ -40,10 +40,10 @@ for (i in seq_along(projects_list$projects)) {
 # Tools & stack: languages, HTML+CSS, Quarto, R Shiny, GIS (no per-package tags).
 # Capabilities: what the work demonstrates. Delivery & impact: kind of value / artifact.
 tag_categories <- list(
-  list(name = "Tools & stack", tags = c("R", "Python", "JavaScript", "HTML+CSS", "Quarto", "R Shiny", "GIS")),
+  list(name = "Tools & stack", tags = c("R", "Python", "HTML+CSS", "Quarto", "R Shiny", "GIS")),
   list(name = "Capabilities", tags = c(
     "Spatial", "Mapping & visualization", "Statistics", "Data integration & ETL",
-    "Interactive tools", "Automation", "Web scraping", "Documentation", "Privacy-conscious workflows"
+    "Interactive tools", "Automation", "Web scraping", "Documentation", "Sensitive data"
   )),
   list(name = "Delivery & impact", tags = c("Research synthesis", "Operational tooling", "Teaching / enablement"))
 )
@@ -54,6 +54,14 @@ delivery_icon_map <- list(
   "Operational tooling" = "assets/project-icons/delivery/operational-tooling.svg",
   "Teaching / enablement" = "assets/project-icons/delivery/teaching-enablement.svg"
 )
+
+pinned_hrefs_raw <- projects_list$pinned_hrefs
+if (is.null(pinned_hrefs_raw)) {
+  pinned_hrefs <- character(0)
+} else {
+  pinned_hrefs <- as.character(unlist(pinned_hrefs_raw))
+  pinned_hrefs <- pinned_hrefs[!is.na(pinned_hrefs) & nzchar(pinned_hrefs)]
+}
 ```
 
 ```{r}
@@ -68,6 +76,9 @@ cat(jsonlite::toJSON(tag_categories, auto_unbox = TRUE))
 cat("</script>\n")
 cat("<script type=\"application/json\" id=\"delivery-icon-map\">")
 cat(jsonlite::toJSON(delivery_icon_map, auto_unbox = TRUE))
+cat("</script>\n")
+cat("<script type=\"application/json\" id=\"pinned-hrefs\">")
+cat(jsonlite::toJSON(pinned_hrefs, auto_unbox = TRUE))
 cat("</script>\n")
 ```
 
@@ -88,10 +99,60 @@ cat("</script>\n")
   var dataEl = document.getElementById('projects-data');
   var catEl = document.getElementById('tag-categories');
   var deliveryMapEl = document.getElementById('delivery-icon-map');
+  var pinnedEl = document.getElementById('pinned-hrefs');
   if (!dataEl || !catEl || !deliveryMapEl) return;
   var projects = JSON.parse(dataEl.textContent);
   var tagCategories = JSON.parse(catEl.textContent);
   var deliveryIconMap = JSON.parse(deliveryMapEl.textContent);
+  var pinnedHrefs = pinnedEl ? JSON.parse(pinnedEl.textContent) : [];
+  if (!Array.isArray(pinnedHrefs)) pinnedHrefs = [];
+
+  function normalizeProjectHref(h) {
+    h = String(h || '').trim();
+    if (!h) return '';
+    if (h.slice(-1) !== '/') h += '/';
+    return h;
+  }
+
+  var pinOrderByNormHref = {};
+  var pinSlot = 0;
+  pinnedHrefs.slice(0, 3).forEach(function(h) {
+    var key = normalizeProjectHref(h);
+    if (!key) return;
+    var found = projects.some(function(p) { return normalizeProjectHref(p.href) === key; });
+    if (found) {
+      pinOrderByNormHref[key] = pinSlot;
+      pinSlot += 1;
+    }
+  });
+
+  function pinOrderForProject(p) {
+    var k = normalizeProjectHref(p.href);
+    return Object.prototype.hasOwnProperty.call(pinOrderByNormHref, k) ? pinOrderByNormHref[k] : -1;
+  }
+
+  function shuffleInPlace(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i];
+      arr[i] = arr[j];
+      arr[j] = t;
+    }
+    return arr;
+  }
+
+  function orderForDisplay(list) {
+    var pinned = [];
+    var unpinned = [];
+    list.forEach(function(p) {
+      var o = pinOrderForProject(p);
+      if (o >= 0) pinned.push({ p: p, o: o });
+      else unpinned.push(p);
+    });
+    pinned.sort(function(a, b) { return a.o - b.o; });
+    shuffleInPlace(unpinned);
+    return pinned.map(function(x) { return x.p; }).concat(unpinned);
+  }
   // First matching tag wins (stable priority if a project ever has multiple delivery tags)
   var deliveryTagPriority = ['Research synthesis', 'Operational tooling', 'Teaching / enablement'];
   var grid = document.getElementById('projects-grid');
@@ -208,25 +269,30 @@ cat("</script>\n")
   }
 
   function filterAndRender() {
-    var list = filteredProjects();
+    var list = orderForDisplay(filteredProjects());
     countEl.textContent = list.length + ' project' + (list.length !== 1 ? 's' : '');
     emptyEl.style.display = list.length === 0 ? 'block' : 'none';
     grid.innerHTML = '';
     list.forEach(function(p) {
       var raw = (p.href || '').trim();
       var href = raw.indexOf('/') === 0 ? raw : (baseHref + raw);
+      var featured = pinOrderForProject(p) >= 0;
       var card = document.createElement('article');
-      card.className = 'projects-card';
+      card.className = 'projects-card' + (featured ? ' projects-card--featured' : '');
       card.setAttribute('data-tags', (p.tags || []).join(','));
       var visual = resolveCardVisual(p).html;
       var titleEsc = (p.title || 'Project').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       var descEsc = (p.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      var badgeHtml = featured
+        ? '<p class="projects-card-featured-badge"><span class="projects-card-featured-badge-inner">Featured</span></p>'
+        : '';
       var tagHtml = (p.tags || []).map(function(t) {
         return '<span class="projects-card-tag filter-tag" data-tag="' + t.replace(/"/g, '&quot;') + '">' + t.replace(/</g, '&lt;') + '</span>';
       }).join('');
       card.innerHTML =
         visual +
         '<div class="projects-card-body">' +
+          badgeHtml +
           '<h3 class="projects-card-title"><a href="' + href.replace(/"/g, '&quot;') + '">' + titleEsc + '</a></h3>' +
           '<p class="projects-card-desc">' + descEsc + '</p>' +
           '<div class="projects-card-tags">' + tagHtml + '</div>' +

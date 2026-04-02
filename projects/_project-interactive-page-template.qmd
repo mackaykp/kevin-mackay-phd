@@ -1,0 +1,169 @@
+---
+title: "Project title (replace)"
+# Optional: body-class: yoga-project-page
+---
+
+<!-- 
+  Copy this file when adding a new interactive project page.
+  Tab order: Final product → Project Overview → Project Approach → Scripts & Code → Impact & Outcome
+  Replace placeholder panels; keep ids: yoga-final-product, yoga-overview, yoga-approach, yoga-scripts, yoga-impact
+  Button classes: yoga-btn-product, yoga-btn-overview, yoga-btn-approach, yoga-btn-scripts, yoga-btn-impact
+-->
+
+<div class="yoga-project-page-root" hidden aria-hidden="true"></div>
+
+:::: {.yoga-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
+<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">Impact & Outcome</button>
+::::
+
+:::: {#yoga-final-product .yoga-view-panel}
+:::: {.yoga-embed-bar}
+[Open project in new tab](REPLACE.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+::::
+:::: {#yoga-iframe-wrap .yoga-embed-full}
+<iframe src="REPLACE.html" title="Project embed" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+::::
+::::
+
+:::: {#yoga-overview .yoga-view-panel .d-none}
+## Project Overview
+
+*The story (WHAT): problem, context, goals, stakeholders, final deliverable. Keep technical HOW out of this tab-use **Project Approach** and **Scripts & Code**.*
+
+### Problem
+
+### Context
+
+### Goals
+
+### Stakeholders
+
+### Final deliverable
+
+::::
+
+:::: {#yoga-approach .yoga-view-panel .d-none}
+## Project Approach
+
+*The thinking (HOW): scope, assumptions, data, design, workflow, constraints. Pre-build planning note: write this **before** the deliverable exists. Use **past tense** for the situation that motivates the work; use **future / “will” / “planned”** for what you intend to build.*
+
+### Problem Definition
+
+- **Context (often past):** what the situation was / what was missing.
+- **Gap:** what the project will address.
+
+### Scope & Assumptions
+
+- **Scope (planned):** in / out.
+- **Assumptions:** what you will treat as given.
+
+### Data Sources
+
+- **Planned inputs:** systems, files, APIs, or manual steps.
+
+### Analytical Design
+
+- **Plan:** methods, models, or UX logic-and why they fit.
+
+### Workflow / Process
+
+1. Planned step one  
+2. Planned step two  
+3. Planned step three  
+
+### Constraints & Considerations
+
+- Risks, privacy, performance, or policy limits you will design around.
+::::
+
+:::: {#yoga-scripts .yoga-view-panel .d-none}
+## Example script {#script-example}
+
+```{r}
+#| eval: false
+#| file: path/to/script.R
+```
+::::
+
+:::: {#yoga-impact .yoga-view-panel .d-none}
+## Impact & Outcome
+
+Who benefited and what changed as a result.
+::::
+
+<script>
+(function() {
+  var productPanel = document.getElementById('yoga-final-product');
+  var overviewPanel = document.getElementById('yoga-overview');
+  var approachPanel = document.getElementById('yoga-approach');
+  var scriptsPanel = document.getElementById('yoga-scripts');
+  var impactPanel = document.getElementById('yoga-impact');
+  var btnProduct = document.querySelector('.yoga-btn-product');
+  var btnOverview = document.querySelector('.yoga-btn-overview');
+  var btnApproach = document.querySelector('.yoga-btn-approach');
+  var btnScripts = document.querySelector('.yoga-btn-scripts');
+  var btnImpact = document.querySelector('.yoga-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
+
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnApproach, btnScripts, btnImpact].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
+  }
+  function showScripts() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnScripts);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    scriptsPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
+  btnScripts.addEventListener('click', showScripts);
+  btnImpact.addEventListener('click', showImpact);
+})();
+</script>

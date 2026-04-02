@@ -1,2 +1,9 @@
-# Projects section uses the "projects" sidebar (see _quarto.yml)
-sidebar: projects
+# Applies to all Quarto documents under projects/ (including subfolders).
+# Disables the right-hand "On this page" TOC on project pages.
+sidebar: false
+format:
+  html:
+    toc: false
+    page-layout: full
+
+body-class: project-site-page

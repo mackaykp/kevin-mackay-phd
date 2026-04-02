@@ -11,16 +11,70 @@ format:
 
 <div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
 
-::: {.project-pdf-slides-intro}
+:::: {.project-pdf-slides-intro}
 
-This presentation introduces medical geography through a practical, data-driven lens, highlighting how geographic concepts, spatial analysis, and visualization techniques can be applied to understand patterns in health outcomes and health-related behaviours. Drawing on examples from urban, suburban, and rural contexts, the session demonstrates how geographers use tools such as geocoding, spatial joins, clustering, autocorrelation, and advanced modelling approaches - including geographically weighted regression and geographical random forests - to uncover spatial inequalities, identify at-risk populations, and support public health decision-making. The goal is to expand awareness of what medical geography can offer and to inspire new ideas for applying spatial thinking to contemporary health challenges.
+A **bridge talk** for health-statistics audiences: what medical geography adds to their existing toolkit, with concrete methods and examples-not a full spatial-statistics course.
 
-:::
+::::
 
-::: {.pdf-slides-embed-bar}
+## Project Overview
+
+### Problem
+
+Many **health statistics** practitioners were trained without day-to-day spatial coursework. Maps and spatial models often felt like a separate specialty rather than something they could **name, request, or interpret** in collaboration.
+
+### Context
+
+Health outcomes and behaviours are routinely **geographic** (aggregates, points, neighbourhood context), but cross-disciplinary vocabulary and method choice do not always line up.
+
+### Goals
+
+- Make **medical geography** legible: a recognizable set of tools and questions, not a vague label.
+- Show **urban, suburban, and rural** examples so the value proposition is not city-only.
+- Spark ideas for **applying spatial thinking** to contemporary health challenges without vendor lock-in.
+
+### Stakeholders
+
+- **Health statistics and allied analysts** attending the session.
+- **Geography / spatial science** as the discipline supplying methods and critique.
+
+### Final deliverable
+
+The **slide deck (PDF)**-concept blocks, examples, and takeaways that participants can trace back to geocoding, joins, clustering, autocorrelation, and (where warranted) GWR or geographical random forests.
+
+## Project Approach
+
+### Scope & Assumptions
+
+- **Scope (planned):** intro-to-intermediate methods; examples across urban, suburban, rural.
+- **Not** a full methods course-a **roadmap** of what geographers add.
+
+### Data Sources
+
+- **Planned examples:** typical health products-**aggregates**, point events (when geocodable), **context layers**-and how they link spatially for maps and models.
+
+### Analytical Design
+
+- **Core (planned):** geocoding, joins, clustering, autocorrelation.
+- **Stretch (planned):** GWR, geographical random forests-only where extra complexity **earns its keep**.
+
+### Workflow / Process
+
+**Planned pattern per block:** concept → tool → example → takeaway; intuition **before** heavy notation.
+
+### Constraints & Considerations
+
+- **Time** will be tight; I will avoid vendor lock-in.
+- I will **name limits** up front: ecological inference, confounding, overfitting.
+
+## Impact & Outcome
+
+This presentation expanded awareness of how spatial methods can strengthen health statistics practice. It helped non-geographers see concrete applications for geocoding, clustering, and spatial modelling, supporting better cross-disciplinary collaboration and more geographically informed analysis.
+
+:::: {.pdf-slides-embed-bar}
 [Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
-:::
+::::
 
-::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+:::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
 <iframe src="slides.pdf" title="Medical geography presentation (PDF)" class="pdf-slides-embed"></iframe>
-:::
+::::

@@ -11,16 +11,74 @@ format:
 
 <div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
 
-::: {.project-pdf-slides-intro}
+:::: {.project-pdf-slides-intro}
 
-This presentation summarizes my doctoral research in Geography at McMaster University (2020), which examined childhood lead exposure through an integrated spatial and epidemiological lens. The work combined high‑resolution soil lead sampling, land‑use regression, and geostatistical interpolation to identify neighbourhoods in Hamilton where children may be at elevated risk of lead poisoning. It also incorporated a meta‑analysis of the relationship between blood lead levels and IQ, and evaluated the potential costs and returns on investment for targeted lead abatement across different land‑use contexts. Together, these analyses provide an evidence‑based framework to support municipal decision‑making, prioritize remediation efforts, and better understand the long‑term public health and economic implications of lead exposure.
+Doctoral defense slides (McMaster Geography, 2020): one narrative arc across soil-lead risk in Hamilton, methods choices, blood-lead ↔ IQ evidence, and municipal abatement economics.
 
-:::
+::::
 
-::: {.pdf-slides-embed-bar}
+## Project Overview
+
+### Problem
+
+Childhood lead exposure remains a policy-relevant environmental-health issue long after leaded gasoline. Municipalities need evidence that connects **where risk concentrates**, **how strong dose-response evidence is**, and **what remediation is financially realistic**-without collapsing into oversimplified ROI stories.
+
+### Context
+
+Hamilton, Ontario case study: high-resolution soil sampling, spatial modelling debate (e.g. land-use regression vs geostatistics), published epidemiology on blood lead and IQ, and cost-benefit framing for abatement at city scale.
+
+### Goals
+
+- Summarize **integrated findings** for the defense committee and broader audience in one sitting.
+- Make **methods critique** (e.g. LUR pitfalls) and **health stakes** legible together.
+- Clarify **what cities can reasonably prioritize** given budgets and hazard context.
+
+### Stakeholders
+
+- **Defense committee and academic audience** evaluating the dissertation contribution.
+- **Municipal and public-health decision-makers** implied audience for the policy-facing implications of the thesis.
+
+### Final deliverable
+
+The **defense slide deck (PDF)** that stitches thesis chapters into a single story; the full dissertation is linked from the main [PhD project page](../PhD_Dissertation/index.qmd).
+
+## Project Approach
+
+### Problem Definition
+
+- **Context (presentation design):** Dissertation chapters stood alone-soil risk, methods comparison, meta-analysis, economics-and the defense **needed** one coherent **slide** narrative.
+- **Goal (planned):** one deck that **links** soil-lead patterns, **modelling choices**, blood-lead ↔ IQ evidence, and **municipal abatement economics** for policy-relevant takeaways.
+
+### Scope & Assumptions
+
+- **Scope (planned):** slide narrative **aligned to thesis chapters**; **Hamilton** as the case; explicit where **generalization** is-and is not-warranted.
+- **Assumption:** I can balance **methods critique** and **health stakes** in one sitting.
+
+### Data Sources
+
+- **Planned anchors:** soil sampling + modelling outputs; **meta-analysis** on blood lead and IQ; **cost-benefit** framing for abatement-each section will tie back to a chapter.
+
+### Analytical Design
+
+**Planned order:** LUR vs kriging critique → **meta-analysis** → ROI / alternatives → what cities can **actually** prioritize.
+
+### Workflow / Process
+
+**Planned arc:** motivation → spatial risk → dose-response → feasibility → **what municipalities can reasonably do next**.
+
+### Constraints & Considerations
+
+- **Time limits**; I will avoid overclaiming causality.
+- **Sensitive** public-health content will stay **plain-language** for non-specialists.
+
+## Impact & Outcome
+
+This work translated complex environmental-health research into an actionable policy narrative. It helped decision-makers understand where childhood lead risk is concentrated, what interventions are realistic at municipal scale, and why remediation strategy should be guided by need and hazard context, not ROI alone.
+
+:::: {.pdf-slides-embed-bar}
 [Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
-:::
+::::
 
-::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
-<iframe src="slides.pdf" title="PhD defense slides — lead poisoning risk and abatement (PDF)" class="pdf-slides-embed"></iframe>
-:::
+:::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="PhD defense slides - lead poisoning risk and abatement (PDF)" class="pdf-slides-embed"></iframe>
+::::

@@ -41,9 +41,9 @@ Understanding [systems]{.resume-tagline-em} through data and research
 
 - Analytical design and problem framing
 - Data quality assessment and governance
-- Spatial and non‑spatial analysis
+- Spatial and non-spatial analysis
 - Workflow development and automation
-- Evidence‑informed decision support
+- Evidence-informed decision support
 
 :::
 
@@ -53,7 +53,7 @@ Understanding [systems]{.resume-tagline-em} through data and research
 ::: {.resume-hero-text}
 **Professional Summary**
 
-I work across the full lifecycle of analytical and research projects in public‑sector environments, supporting teams from problem definition and data quality assessment through analysis, communication, and workflow design. My experience spans municipal, federal, and academic settings, where I help organizations strengthen data practice, understand systems, and make informed decisions with confidence.
+I work across the full lifecycle of analytical and research projects in public-sector environments, supporting teams from problem definition and data quality assessment through analysis, communication, and workflow design. My experience spans municipal, federal, and academic settings, where I help organizations strengthen data practice, understand systems, and make informed decisions with confidence.
 
 :::
 :::
@@ -73,36 +73,36 @@ I work across the full lifecycle of analytical and research projects in public�
 ::: {.resume-experience-focus}
 
 ::: {.resume-job-card}
-### Program Analyst - City of Hamilton (2025–2026)
-- Supported policy and program teams by analyzing data quality, documenting assumptions, and developing QA guidance to strengthen program oversight and evidence‑informed decision‑making.
-- Contributed to corporate capacity‑building by preparing a business case for analytics and digital skills training, linking emerging tools to long‑term organizational capability and efficiency.
+### Program Analyst - City of Hamilton (2025-2026)
+- Supported policy and program teams by analyzing data quality, documenting assumptions, and developing QA guidance to strengthen program oversight and evidence-informed decision-making.
+- Contributed to corporate capacity-building by preparing a business case for analytics and digital skills training, linking emerging tools to long-term organizational capability and efficiency.
 :::
 
 ::: {.resume-job-card}
-### Data Analyst - Statistics Canada, Innovation Secretariat (2023–2025)
+### Data Analyst - Statistics Canada, Innovation Secretariat (2023-2025)
 - Analyzed administrative and survey data to support program monitoring, performance measurement, and spatial analysis.
 - Coordinated workflows in a secure data environment, supporting data access, documentation, and compliance.
-- Advised internal stakeholders on data limitations, methodological trade‑offs, and appropriate interpretation of analytical results.
+- Advised internal stakeholders on data limitations, methodological trade-offs, and appropriate interpretation of analytical results.
 :::
 
 ::: {.resume-job-card}
-### Research Coordinator - McMaster University (2021–2023)
-- Coordinated research activities across multiple analytics initiatives, supporting planning, task tracking, and cross‑functional collaboration.
-- Analyzed large administrative and spatial datasets to support segmentation, outreach planning, and evidence‑informed service delivery.
+### Research Coordinator - McMaster University (2021-2023)
+- Coordinated research activities across multiple analytics initiatives, supporting planning, task tracking, and cross-functional collaboration.
+- Analyzed large administrative and spatial datasets to support segmentation, outreach planning, and evidence-informed service delivery.
 - Managed concurrent research requests from intake through delivery, tracking scope, schedules, milestones, and risks.
 - Supported ethical and procedural compliance by maintaining documentation and reinforcing standards across projects.
 :::
 
 ::: {.resume-job-card}
-### Sessional Lecturer - University of Toronto (2020–2021)
-- Delivered hands‑on training in applied data analysis and spatial data science.
+### Sessional Lecturer - University of Toronto (2020-2021)
+- Delivered hands-on training in applied data analysis and spatial data science.
 - Developed course materials, assignments, and tutorials to support skill development and tool adoption across diverse audiences.
 :::
 
 ::: {.resume-job-card}
-### Doctoral Researcher - McMaster University (2013–2020)
+### Doctoral Researcher - McMaster University (2013-2020)
 - Conducted spatial and analytical research to support public policy and program analysis.
-- Led a Google Street View–based project from design through implementation, producing a public‑facing digital resource with over 8 million views.
+- Led a Google Street View-based project from design through implementation, producing a public-facing digital resource with over 8 million views.
 :::
 
 :::
@@ -158,7 +158,7 @@ I work across the full lifecycle of analytical and research projects in public�
 **Project Coordination**
 
 ::: {.resume-skill-tags}
-[planning]{.resume-skill-tag} [task tracking]{.resume-skill-tag} [stakeholder engagement]{.resume-skill-tag} [cross‑functional collaboration]{.resume-skill-tag}
+[planning]{.resume-skill-tag} [task tracking]{.resume-skill-tag} [stakeholder engagement]{.resume-skill-tag} [cross-functional collaboration]{.resume-skill-tag}
 :::
 
 :::

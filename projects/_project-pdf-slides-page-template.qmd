@@ -1,0 +1,73 @@
+---
+title: "Project title (replace)"
+sidebar: false
+resources:
+  - slides.pdf
+format:
+  html:
+    toc: false
+    page-layout: full
+---
+
+<div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
+
+:::: {.project-pdf-slides-intro}
+
+Short hook (1-3 sentences). Do not repeat the full story here if **Project Overview** below covers it.
+::::
+
+## Project Overview
+
+*WHAT this deck is for: problem, context, goals, stakeholders, final deliverable (the PDF).*
+
+### Problem
+
+### Context
+
+### Goals
+
+### Stakeholders
+
+### Final deliverable
+
+## Project Approach
+
+*HOW you structured the deck: scope, assumptions, evidence, slide logic, arc, constraints. Pre-build planning note: write this **before** the deck exists. **Past** for audience/context; **future / “planned”** for what the slides will do.*
+
+### Problem Definition
+
+- **Context:** who needed what and why (past or present situation).
+- **Goal (planned):** what the deck will accomplish.
+
+### Scope & Assumptions
+
+- **Scope (planned):** time, depth, case setting.
+- **Assumptions:** what the audience will already know.
+
+### Data Sources
+
+- **Planned evidence:** figures, examples, or citations the deck will use.
+
+### Analytical Design
+
+- **Planned structure:** order and emphasis of the argument.
+
+### Workflow / Process
+
+- **Planned arc** (e.g. problem → methods → results → implications).
+
+### Constraints & Considerations
+
+- Time limit, sensitivity, or claims you will **avoid**.
+
+## Impact & Outcome
+
+Outcomes and who benefited.
+
+:::: {.pdf-slides-embed-bar}
+[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+::::
+
+:::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="Slides (PDF)" class="pdf-slides-embed"></iframe>
+::::

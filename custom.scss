@@ -67,6 +67,59 @@ main#quarto-document-content,
   background-image: none !important;
 }
 
+// Project portfolio subpages (not projects/index): white canvas + max-width aligned with interactive/PDF project pages.
+// Excludes: Projects listing (.projects-hero-section), yoga browse page (.yoga-browse-page-root has its own chrome).
+html:has(body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root))) {
+  background-color: #fff !important;
+  background-image: none !important;
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) {
+  background-color: #fff !important;
+  background-image: none !important;
+  color: $body-color !important;
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) #quarto-content,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-layout-panel,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .page-columns,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .column-page,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .column-body,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) main#quarto-document-content,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-title-block,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-title-banner {
+  background-color: #fff !important;
+  background-image: none !important;
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-layout-panel,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .column-body,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) main#quarto-document-content {
+  max-width: 120rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// Slides/PDF/thesis/example markdown project pages (not tabbed interactive embeds): horizontal padding for readability
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)):not(:has(.yoga-project-page-root)) main#quarto-document-content {
+  padding-left: clamp(1rem, 4vw, 2.5rem);
+  padding-right: clamp(1rem, 4vw, 2.5rem);
+  padding-bottom: 2rem;
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)):not(:has(.yoga-project-page-root)) main#quarto-document-content h2 {
+  color: $headings-color !important;
+  font-family: $font-family-headings !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  margin-top: 1.75rem;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid $border-color;
+}
+
 // Yoga pages: solid white. Quarto websites omit `body-class` on <body>; markers + :has() scope these rules.
 html:has(.yoga-browse-page-root),
 html:has(.yoga-project-page-root) {
@@ -1689,14 +1742,13 @@ body:has(.yoga-browse-page-root) main#quarto-document-content {
   box-sizing: border-box;
 }
 
-// ---- Yoga project page (default layout: left sidebar + right TOC) ----
-body:has(.yoga-project-page-root) .quarto-layout-panel,
-body:has(.yoga-project-page-root) .column-body,
-body:has(.yoga-project-page-root) main#quarto-document-content {
-  max-width: 120rem; // 1920px at 16px - comfortable at 1080p and 1440p
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+// Yoga project page max-width: shared with body.project-site-page (see "Project portfolio subpages" above)
+
+// Project portfolio pages: no right-hand "On this page" TOC (see projects/_metadata.yml)
+body.project-site-page #quarto-margin-sidebar,
+body:has(.yoga-project-page-root) #quarto-margin-sidebar,
+body:has(.project-pdf-slides-root) #quarto-margin-sidebar {
+  display: none !important;
 }
 
 body:has(.yoga-project-page-root) .yoga-view-toggle {
@@ -1704,10 +1756,13 @@ body:has(.yoga-project-page-root) .yoga-view-toggle {
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
+  align-items: stretch;
 }
 
 body:has(.yoga-project-page-root) .yoga-view-toggle .btn {
   margin: 0;
+  flex: 1 1 auto;
+  min-width: min(100%, 9.5rem);
 }
 
 // Final product: full-size embed - wrapper must have explicit height so iframe doesn't collapse to 300x150
@@ -1752,15 +1807,73 @@ body:has(.yoga-project-page-root) .yoga-embed-bar a.btn-outline-primary {
   display: block;
 }
 
-// ---- PDF lecture slides project (full-width embed, same chrome as product embeds) ----
-body:has(.project-pdf-slides-root) .quarto-layout-panel,
-body:has(.project-pdf-slides-root) .column-body,
-body:has(.project-pdf-slides-root) main#quarto-document-content {
-  max-width: 120rem;
-  margin-left: auto;
-  margin-right: auto;
+// Belay Buddy — Final product: narrated demo video (responsive, native controls)
+#belay-video-frame-wrap {
+  display: block;
   width: 100%;
+  max-width: 960px;
+  margin: 0 auto 2rem auto;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(1, 38, 38, 0.12);
+  overflow: hidden;
+  background: #0f172a;
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.08);
 }
+
+#belay-video-frame-wrap video.belay-demo-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(85vh, 920px);
+}
+
+// Belay Buddy — paired HTML schedule export embeds (sibling below video; must not sit inside #belay-video-frame-wrap)
+.belay-schedule-embed-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 0.75rem;
+  clear: both;
+}
+
+@media (max-width: 900px) {
+  .belay-schedule-embed-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.belay-schedule-embed-label {
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+  color: $body-color;
+}
+
+.belay-schedule-embed-wrap {
+  position: relative;
+  width: 100%;
+  height: min(560px, calc(100vh - 280px));
+  min-height: 360px;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(1, 38, 38, 0.06);
+}
+
+.belay-schedule-iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+// ---- PDF lecture slides project (full-width embed, same chrome as product embeds) ----
+// Max-width for main/column: shared with body.project-site-page (see "Project portfolio subpages" above)
 
 .project-pdf-slides-intro {
   margin-bottom: 1.25rem;
@@ -1907,6 +2020,33 @@ body:has(.project-pdf-slides-root) .pdf-slides-embed-bar a.btn-outline-primary {
   display: flex;
   flex-direction: column;
   transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+
+  &.projects-card--featured {
+    border-color: rgba(191, 83, 44, 0.45);
+    background: linear-gradient(180deg, rgba(243, 234, 231, 0.5) 0%, #fff 42%);
+
+    &:hover {
+      border-color: rgba(191, 83, 44, 0.55);
+      box-shadow: 0 4px 16px rgba(191, 83, 44, 0.12);
+    }
+  }
+}
+
+.projects-card-featured-badge {
+  margin: 0 0 0.5rem 0;
+}
+
+.projects-card-featured-badge-inner {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $primary;
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(191, 83, 44, 0.35);
+  background-color: rgba(191, 83, 44, 0.08);
 }
 
 .projects-card-visual {

@@ -33,4 +33,4 @@ tibble(x = 1:20, y = cumsum(rnorm(20))) %>%
 
 ## Takeaways
 
-*Placeholder: 2–3 bullet points summarizing what you did and what you learned.*
+*Placeholder: 2-3 bullet points summarizing what you did and what you learned.*

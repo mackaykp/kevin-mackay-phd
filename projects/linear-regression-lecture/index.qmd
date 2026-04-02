@@ -11,16 +11,70 @@ format:
 
 <div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
 
-::: {.project-pdf-slides-intro}
+:::: {.project-pdf-slides-intro}
 
-This presentation was developed for an undergraduate geography course at McMaster University to introduce students to the fundamentals of linear regression modelling. Because the course did not require prior training in statistics, the material was designed to build intuition first - focusing on clear explanations, visual examples, and practical applications relevant to geographic research.
+One lecture’s worth of slides for McMaster geography undergraduates-**intuition before algebra**, with examples tied to how regression shows up in geographic research.
 
-:::
+::::
 
-::: {.pdf-slides-embed-bar}
+## Project Overview
+
+### Problem
+
+The course enrolled geography students who were **not** required to take statistics first. They still needed to read papers and eventually run or interpret models, so regression could not stay a black box.
+
+### Context
+
+Undergraduate geography at McMaster: quantitative methods appear in readings and assignments, but comfort with formal stats varies widely across the cohort.
+
+### Goals
+
+- Give **usable intuition** for what linear regression does, what coefficients mean, and where models mislead.
+- Use **visual**, small examples rather than long derivations.
+- Connect content directly to **geographic** outcomes and common pitfalls (nonlinearity, outliers, confounding).
+
+### Stakeholders
+
+- **Students:** primary audience in the classroom.
+- **Course instructor/program:** alignment with learning objectives and pacing for one lecture slot.
+
+### Final deliverable
+
+The **slide deck (PDF)** used in class-figures, talking points, and a progression from scatterplots through reading output and “what can go wrong.”
+
+## Project Approach
+
+### Scope & Assumptions
+
+- **Scope (planned):** one lecture cycle-linear regression **basics**, light diagnostics, **geography-flavoured** examples.
+- **Assumption:** I can demo software; I will **skip** long algebraic derivations.
+
+### Data Sources
+
+- **Planned:** small, **relatable** datasets; plots that show **fit**, **residuals**, and **model comparisons** at a glance.
+
+### Analytical Design
+
+- **Planned sequence:** least-squares **geometry** → what coefficients **mean** → pitfalls (nonlinearity, outliers, confounding).
+- **Inference** stays light until intuition **lands**.
+
+### Workflow / Process
+
+**Planned arc:** motivation → scatterplots → model form → **how to read output** → geographic examples + **what can go wrong**.
+
+### Constraints & Considerations
+
+- **Class time** is fixed; math comfort will vary-I will pace for the **median** learner.
+- Examples will **align** with how regression appears in their **readings and assignments**.
+
+## Impact & Outcome
+
+This lecture improved statistical confidence for students without prior quantitative training by making regression concepts approachable and visually intuitive. It supported more equitable learning outcomes and gave students a practical foundation for interpreting and applying models in geographic research contexts.
+
+:::: {.pdf-slides-embed-bar}
 [Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
-:::
+::::
 
-::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
-<iframe src="slides.pdf" title="Transport geography — linear regression lecture slides (PDF)" class="pdf-slides-embed"></iframe>
-:::
+:::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="Transport geography - linear regression lecture slides (PDF)" class="pdf-slides-embed"></iframe>
+::::

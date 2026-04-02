@@ -3,17 +3,24 @@
 # image: optional path (relative to site root) or leave blank for placeholder.
 # Tags must match strings in tag_categories in projects/index.qmd (same spelling/casing).
 # Extended conventions and rationale: private-docs/projects-tags-and-categories.md (local; gitignored).
+#
+# pinned_hrefs: optional list of 0-3 href strings that exactly match project href values (order = display order).
+# Omit or use [] for no featured pins. Unknown hrefs are ignored. Only the first 3 list entries are used.
+
+pinned_hrefs:
+  - "Leaflet_Mapping_Tool/"
+  - "victoria-transit-bus-stops/"
+  - "yoga-video-catalog/"
 
 projects:
   - title: "Yoga Video Catalog"
-    description: "Built for personal use to organize and filter yoga videos."
+    description: "Built for personal use to collect, organize and filter yoga videos by preferred channels."
     href: "yoga-video-catalog/"
     tags:
       - "R"
       - "Python"
       - "Quarto"
       - "HTML+CSS"
-      - "JavaScript"
       - "Automation"
       - "Web scraping"
       - "Data integration & ETL"
@@ -21,14 +28,12 @@ projects:
     image: ""
 
   - title: "Leaflet Mapping Tool"
-    description: "Used by non-technical teams to generate interactive dashboard-like maps."
+    description: "Used by non-technical teams to generate interactive dashboard-like maps with Census and OSM data."
     href: "Leaflet_Mapping_Tool/"
     tags:
       - "R"
-      - "Python"
       - "Quarto"
       - "HTML+CSS"
-      - "JavaScript"
       - "GIS"
       - "Automation"
       - "Spatial"
@@ -43,7 +48,7 @@ projects:
       - "R"
       - "Spatial"
       - "Data integration & ETL"
-      - "Privacy-conscious workflows"
+      - "Sensitive data"
       - "Operational tooling"
     image: ""
 
@@ -56,6 +61,7 @@ projects:
       - "Python"
       - "Spatial"
       - "Statistics"
+      - "Sensitive data"
       - "Documentation"
       - "Research synthesis"
     image: ""
@@ -64,11 +70,11 @@ projects:
     description: "Generated for my PhD defense to summarize findings and highlight key insights."
     href: "phd-defense/"
     tags:
-      - "R"
       - "GIS"
       - "Python"
       - "Spatial"
       - "Statistics"
+      - "Sensitive data"
       - "Documentation"
       - "Research synthesis"
     image: ""
@@ -87,7 +93,6 @@ projects:
     description: "Prepared for the Health Statistics Branch of Statistics Canada to introduce medical geography methodologies."
     href: "medical-geography-presentation/"
     tags:
-      - "R"
       - "GIS"
       - "Spatial"
       - "Statistics"
@@ -95,8 +100,8 @@ projects:
       - "Teaching / enablement"
     image: ""
 
-  - title: "Victoria transit - bus stop popularity (client project)"
-    description: "Prepared for a client collaborator with McMaster University to understand popularity of bus stops for marketing campaign."
+  - title: "Marketing Segmentation of Victoria Transit Bus Stops"
+    description: "Prepared for a client collaborator with McMaster University to inform marketing campaigns."
     href: "victoria-transit-bus-stops/"
     tags:
       - "R"
@@ -116,7 +121,6 @@ projects:
       - "Quarto"
       - "R Shiny"
       - "HTML+CSS"
-      - "JavaScript"
       - "Documentation"
       - "Interactive tools"
       - "Operational tooling"
