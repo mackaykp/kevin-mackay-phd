@@ -6,158 +6,192 @@ format:
     page-layout: full
 ---
 
-::: {.work-with-hero-section}
+:::: {.work-with-hero-section}
 
-[How I help teams]{.work-with-hero-kicker}
+[What I bring in a full-time role]{.work-with-hero-kicker}
 
-I help teams move from uncertainty to clarity by bringing structure, rigor, and momentum to analytical and research work. If you are facing complex data, unclear questions, or stalled projects, I can help you move forward with confidence.
+I help organizations move from uncertainty to clarity by bringing structure, rigor, and momentum to analytical and research work. I focus on sustained impact through systems-oriented, iterative problem-solving and curiosity grounded in evidence: trustworthy data, sound methods, and communication that supports real decisions.
 
 I work with population, demographic, and administrative data across the full lifecycle - from problem definition and data quality through analysis, communication, and workflow design.
 
-:::
-
-## Who I Collaborate With
-
-::: {.wwm-band}
-::: {.wwm-two-col}
-
-::: {.resume-nested-card}
-**Audience**
-
-- **Public-sector teams** navigating complex administrative or population data and needing analytical capacity  
-- **Organizations** seeking clarity on data quality, governance, documentation, or reproducible workflows  
-- **Policy, program, and research teams** that need rigorous analytical support without adding permanent headcount  
-- **Leaders** who want actionable insight and decision-ready synthesis
-:::
-
-::: {.resume-nested-card}
-**What it's like**
-
-- Clear expectations and transparent communication at each step  
-- Rigorous methods with practical, decision-ready outcomes  
-- Strong documentation and reproducible workflows  
-- Collaborative, stakeholder-aligned engagement  
-- Ethical, governance-minded practice  
-:::
-
-:::
-
-:::
-
-## Engagement models
-
-Choose the level of support that fits your team's needs.
-
-::: {.homepage-focus}
-
-::: {.homepage-pillars}
-::: {.homepage-pillar}
-::: {.homepage-pillar-index}
-01
-:::
-**Project-based support**  
-For defined analytical or research work with clear questions, timelines, and deliverables.
-:::
-
-::: {.homepage-pillar}
-::: {.homepage-pillar-index}
-02
-:::
-**Fractional / part-time support**  
-For ongoing capacity: workflow development, quality routines, analysis, or embedded support alongside your team.
-:::
-
-::: {.homepage-pillar}
-::: {.homepage-pillar-index}
-03
-:::
-**Short-term advisory**  
-For problem framing, scoping, analytical design, or a focused review when you need an outside perspective before committing to a build.
-:::
-
-::: {.homepage-pillar}
-::: {.homepage-pillar-index}
-04
-:::
-**Training & enablement**  
-For documentation, reproducible workflows, hands-on training, and practices that help your team sustain the work after I step back.
-:::
-:::
-:::
-
-## How I can help
-
-::: {.wwm-band}
-::: {.wwm-service-grid}
-
-::: {.resume-nested-card}
-**Full-lifecycle analytical support**
-
-I work across the entire analytics and research lifecycle - from requirements gathering and data validation to analysis, interpretation, and communication. I help teams move from uncertainty to clarity with solutions that are reliable, transparent, and maintainable.
-:::
-
-::: {.resume-nested-card}
-**Problem definition & scoping**
-
-I help teams clarify questions, identify constraints, and translate ideas into actionable analytical plans. That includes understanding stakeholder needs, assessing feasibility, and outlining the steps required to deliver meaningful results.
-:::
-
-::: {.resume-nested-card}
-**Data quality, governance & workflow design**
-
-I focus on validating data, documenting assumptions, and building reproducible workflows - systems that are trustworthy and aligned with governance expectations.
-:::
-
-::: {.resume-nested-card}
-**Analysis, research & insight generation**
-
-I conduct spatial, statistical, and mixed-methods analysis to support program monitoring, performance measurement, and policy-oriented decision-making, and translate findings for technical and non-technical audiences.
-:::
-
-::: {.resume-nested-card}
-**Communication, training & enablement**
-
-I develop dashboards, reports, presentations, and user guides so teams can understand and use their data - and I deliver training and workshops to support adoption of tools and good practice.
-:::
-
-:::
-
-:::
+::::
 
 ## Credibility and fit
 
-::: {.wwm-band}
-::: {.wwm-two-col}
+:::: {.wwm-band}
+:::: {.wwm-two-col}
 
-::: {.resume-nested-card}
+:::: {.resume-nested-card}
 **Credibility at a glance**
 
-- Trusted by municipal, federal, and academic teams  
+- Seeking full-time analytical, research, or evaluation roles in public-sector and mission-driven settings  
+- Trusted by municipal, federal, and academic teams (Active Reliability Status) 
 - Experience supporting policy, program, and research environments  
 - Work applied to program monitoring, performance measurement, and decision support  
-:::
+- Experience supervising mixed teams of staff, teaching assistants, and student contributors in research and teaching environments
+- Track record coordinating delivery across full-time and part-time contributors with different schedules and skill levels
+- Extensive experience working with sensitive data, including health and personally identifiable information, using privacy-conscious and governance-aligned practices
+::::
 
-::: {.resume-nested-card}
-**What I don't do**
+:::: {.resume-nested-card}
+**Best-fit environments**
 
-- Purely software engineering or app-building engagements where analytics and research are not the core need  
-- Long-term full-time contracts (I am open to part-time, project, and advisory arrangements)  
-- Projects where data access, ethics, or governance foundations are not sufficiently clear to do responsible work  
-:::
+- Roles where analytics, research, or evaluation are central to the role  
+- Organizations with clear goals, stable expectations, and feedback grounded in actual outcomes  
+- Leadership that values technical reasoning, systems thinking, and curiosity guided by clear priorities and decision points  
+- Teams where thoughtful questions, exploration, and learning are encouraged within practical delivery timelines  
+- Teams where data access, ethics, and governance expectations are clear enough for responsible work  
+::::
 
-:::
+::::
 
-:::
+::::
+
+## How I contribute
+
+Here's how I show up as a full-time colleague: analytical, systems-oriented, curious, and iterative, with clear ownership, reproducible practice, and collaboration that supports decisions.
+
+:::: {.homepage-focus}
+
+:::: {.homepage-pillars}
+:::: {.homepage-pillar}
+:::: {.homepage-pillar-index}
+01
+::::
+**End-to-end ownership**  
+Own analytical work from question framing through delivery, documentation, and handoff.
+::::
+
+:::: {.homepage-pillar}
+:::: {.homepage-pillar-index}
+02
+::::
+**Reproducible systems**  
+Build and maintain documented workflows, validation routines, and pipelines colleagues can rely on.
+::::
+
+:::: {.homepage-pillar}
+:::: {.homepage-pillar-index}
+03
+::::
+**Cross-functional partnership**  
+Work with policy, program, technical, and research partners using direct, context-aware communication to ask better questions, test options, and translate findings for decision-makers.
+::::
+
+:::: {.homepage-pillar}
+:::: {.homepage-pillar-index}
+04
+::::
+**Team capability**  
+Supervise, coach, and coordinate contributors with different experience levels through clear priorities, practical feedback, and standards that outlast any single project.
+::::
+::::
+::::
+
+## Core capabilities
+
+These are the areas where I contribute most often, along with the outputs and outcomes teams can expect.
+
+::::: {.wwm-band .wwm-services-pricing}
+::::: {.wwm-service-grid}
+
+::::: {.resume-nested-card}
+**Analytics Systems, Data Quality & Governance**
+
+I build trustworthy analytics systems by combining reproducible workflows, quality controls, and governance-aligned documentation.
+
+**Examples of work:**
+
+- Reproducible data pipelines and validation routines
+- Data quality checks, issue tracking, and remediation plans
+- Governance-aligned documentation templates and metadata standards
+- Privacy-conscious assumptions and workflow documentation
+
+::::: {.wwm-service-card-footer}
+**Typical outcomes:**
+
+- More reliable analyses through stronger data controls  
+- Faster onboarding and delivery through documented, auditable workflows
+
+:::::
+:::::
+
+::::: {.resume-nested-card}
+**Research, Evaluation & Analytical Design**
+
+I design research and evaluation approaches that turn complex questions into feasible, defensible analytical plans.
+
+**Examples of work:**
+
+- Research question framing and scope definition  
+- Methods selection and analytical design plans  
+- Data integration, sampling, and evaluation frameworks  
+- Logic models and measurement plans tied to decision needs
+
+::::: {.wwm-service-card-footer}
+**Typical outcomes:**
+
+- Stronger alignment between stakeholder goals and analytic approach  
+- Decisions supported by methods that are transparent and reproducible
+
+:::::
+:::::
+
+::::: {.resume-nested-card}
+**Team Leadership, Coaching & Delivery Coordination**
+
+I lead mixed teams by pairing clear role expectations and timelines with coaching that supports confidence, quality, and growth.
+
+**Examples of work:**
+
+- Supervision of staff, teaching assistants, and student contributors
+- Task planning and workload coordination across full-time and part-time schedules
+- Onboarding, mentoring, and skill development support
+- Cross-functional collaboration across academic, technical, and stakeholder groups
+
+:::::: {.wwm-service-card-footer}
+**Typical outcomes:**
+
+- More consistent delivery through clearer ownership and coordination  
+- Stronger team confidence through practical coaching and knowledge transfer
+
+::::::
+::::::
+
+:::::: {.resume-nested-card}
+**Spatial & Decision Intelligence**
+
+I translate spatial, demographic, and program data into decision intelligence that technical and non-technical stakeholders can act on.
+
+**Examples of work:**
+
+- Static and interactive maps with demographic overlays  
+- Spatial analysis and statistics with place-based interpretation  
+- Decision briefs, visualizations, and executive-ready reporting  
+- Stakeholder-facing narratives that connect evidence to action
+
+::::: {.wwm-service-card-footer}
+**Typical outcomes:**
+
+- Clearer insights in decision forums through interpretable outputs  
+- Better planning and policy choices informed by place-based evidence
+
+:::::
+:::::
+
+:::::
+
+:::::
 
 ## Get in touch
 
-::: {.homepage-explore}
-::: {.homepage-explore-inner}
+:::: {.homepage-explore}
+:::: {.homepage-explore-inner}
 
-Whether you have a clear scope or a messy problem, I'm happy to discuss ways I can help.
+I'm open to full-time opportunities, informational conversations, and discussing how my background could fit your team. For a detailed history, see my [full resume](resume.qmd).
 
 **mackaykp@gmail.com**
 
 [Email Kevin](mailto:mackaykp@gmail.com){.btn .btn-primary .homepage-explore-btn}
-:::
-:::
+::::
+::::

@@ -2,91 +2,105 @@
 title: "Offline Geocoding Tool"
 ---
 
-<div class="yoga-project-page-root" hidden aria-hidden="true"></div>
+<div class="portfolio-project-page-root" hidden aria-hidden="true"></div>
 
-::: {.yoga-view-toggle role="group" aria-label="Switch view"}
-<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">Project Approach</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">Impact & Outcome</button>
+::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-scripts" aria-pressed="false">Scripts & Code</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
 :::
 
-::: {#yoga-final-product .yoga-view-panel}
-::: {.yoga-embed-bar}
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+Offline geocoding workflow designed for sensitive Canadian address data, with deterministic matching and transparent fallback logic.
+:::
+
+::: {.portfolio-meta-row}
+[Privacy-safe geocoding]{.portfolio-meta-chip}
+[Deterministic address matching]{.portfolio-meta-chip}
+[Reproducible geocoding pipeline]{.portfolio-meta-chip}
+:::
+
+::: {#portfolio-final-product .portfolio-view-panel}
+::: {.portfolio-embed-bar}
 [Open project in new tab](Geocoding_Tool_Showcase.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
 :::
-::: {#yoga-iframe-wrap .yoga-embed-full}
-<iframe src="Geocoding_Tool_Showcase.html" title="Offline Geocoding Tool - Showcase" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+::: {#portfolio-iframe-wrap .portfolio-embed-full}
+<iframe src="Geocoding_Tool_Showcase.html" title="Offline Geocoding Tool - Showcase" class="portfolio-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
 :::
 :::
 
-::: {#yoga-overview .yoga-view-panel .d-none}
+::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 ### Problem
 
-Statistics Canada's National Address Register (NAR) is the natural reference for authoritative Canadian addresses, but teams often need to geocode **large spreadsheets** (schools, facilities, programs) without sending data to the cloud or opening a GIS desktop.
+In an early Statistics Canada assignment, I needed to estimate distances between survey respondents and local data-collection facilities across 16 Canadian cities. That required geocoding respondent addresses, but cloud APIs and commercial platforms were not an option because the records were highly sensitive.
 
 ### Context
 
-Governance and air-gapped environments ruled out consumer geocoding APIs. The work needed a **single, auditable** matcher against NAR with explainable match types and coordinates written back to CSV.
+Address quality varied widely across large and small cities, and source formats were not standardized to existing internal street-reference files. A direct join against pre-existing XY-enabled datasets was therefore unreliable, so the work needed a dataset-specific geocoder that could run offline and still produce auditable outputs.
 
 ### Goals
 
-- Match input rows to NAR with a **documented hierarchy** (not ad hoc string matching).
-- Run **fully offline** after a one-time reference build.
-- Support **large files** with resumable batch output and bilingual (EN/FR) address forms.
+- Support offline geocoding for sensitive records without external API calls.
+- Match inconsistent street-address inputs using a documented hierarchy rather than ad hoc one-off rules.
+- Produce explainable outputs (match types, scores, coordinates) so analysts can validate results before downstream distance analysis.
 
 ### Stakeholders
 
-- **Analysts and data stewards** processing sensitive facility or student-address lists.
-- **Organizations** that require reproducible, explainable geocoding under strict data-handling rules.
+- **Applied analysts and survey teams:** geocoding respondent or facility addresses for spatial analysis tasks.
+- **Organizations with strict governance:** teams that need reproducible geocoding workflows for protected datasets.
 
 ### Final deliverable
 
-An **R pipeline** backed by one **DuckDB** file built from NAR Address + Location: Excel or CSV in, geocoded CSV out, with match type and scores per row. The embedded showcase demonstrates the workflow; full scripts are under **Scripts & Code**. If you are interested in adapting this tool, feel free to reach out.
+The original geocoding tool (not shown here) reached high match coverage for its specific workload, but that version was later lost when the project Virtual Machine (VM) became corrupt. This portfolio rebuild prioritizes portability and reuse: an R + DuckDB pipeline using NAR Address + Location (Excel/CSV in, geocoded CSV out) with documented match logic, row-level diagnostics, and offline execution. The embedded showcase demonstrates the workflow, and full scripts are listed under Scripts & Code.
 :::
 
-::: {#yoga-approach .yoga-view-panel .d-none}
+::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
 
 ### Problem Definition
 
-- **Context:** Teams had **large spreadsheets** of Canadian addresses (schools, facilities) and **no** lightweight way to geocode them against NAR **without** calling external APIs.
-- **Gap:** governance and air-gapped settings ruled out cloud geocoders for this use case.
+- **Context:** The initial use case was distance analysis for survey operations across 16 cities, where respondent addresses needed coordinate assignment under strict privacy controls.
+- **Gap:** Address strings were inconsistent and not directly joinable to existing internal files, while cloud geocoders were not permitted in the working environment.
 
 ### Scope & Assumptions
 
-- **Scope (planned):** an R pipeline; **one DuckDB** built from NAR Address + Location; Excel/CSV in → geocoded CSV out.
-- **Assumptions:** `LOC_GUID` joins will hold for this workload; EN/FR street variants will normalize through **one** shared map.
+- **Scope:** A fully offline R workflow backed by one DuckDB reference built from NAR Address + Location, with standardized input handling and reproducible CSV outputs.
+- **Assumptions:** `LOC_GUID` joins remain stable for reference construction; EN/FR street variants can be normalized through a shared mapping layer; match quality improves when project-specific tuning is applied.
 
 ### Data Sources
 
-- **Planned load:** NAR Address + Location CSVs → normalized civic/street fields → attach lat/lon per row.
-- **Order of operations:** small **test fixtures** first, then production files.
+- **Reference data:** NAR Address + Location CSVs are joined and normalized into one local table with coordinate fields.
+- **Workload reality:** Input datasets can vary by city size and formatting quality, so preprocessing and staged matching are essential before final coordinate assignment.
 
 ### Analytical Design
 
-- **Planned matcher (literature-based, single hierarchy):** exact full address → exact street only (within same geography) → relaxed (same province/city/postal, attribute relaxation) → fuzzy (narrow pool: province + city + full 6-digit postal or FSA, **composite scoring**: Jaro-Winkler + civic nearness + geographic agreement) → 6-digit postal centroid → FSA centroid → city centroid.
-- **Guards:** geography constrained so point matches **do not** cross FSAs or cities inappropriately.
+- **Matcher hierarchy:** exact full address -> exact street only (within same geography) -> relaxed (same province/city/postal with controlled attribute relaxation) -> fuzzy (narrow candidate pool with composite scoring: Jaro-Winkler + civic-number nearness + geographic agreement) -> 6-digit postal centroid -> FSA centroid -> city centroid.
+- **Guards:** geography constrained so point matches do not cross FSAs or cities inappropriately.
 - **Normalization:** street-type and direction handling (including bilingual abbreviations) so input and reference stay comparable.
-- **Scale:** single DuckDB connection; batched fuzzy queries with configurable pool size; streamed CSV output for memory discipline.
+- **Trade-off:** The original internal build was highly tuned to one dataset and achieved stronger accuracy; this portfolio version is intentionally more general and therefore requires optional dataset-specific rule tuning for best performance.
 
 ### Workflow / Process
 
-1. **One-time build:** join NAR Address + Location on `LOC_GUID`, normalize fields, write table `ref` to `nar.duckdb`.  
-2. **Production geocode:** read Excel/CSV with expected address columns; process in chunks (e.g. 100 rows) with **append-after-each-chunk** so runs are resumable.  
-3. **After NAR refresh:** optional regression test script on fixtures before full production files.  
+1. **One-time build:** join NAR Address + Location on `LOC_GUID`, normalize key fields, and write table `ref` to `nar.duckdb`.  
+2. **Geocode run:** read Excel/CSV inputs, process in chunks, and append output incrementally so runs are resumable.  
+3. **Quality review:** inspect match types and scores, then apply project-specific threshold or rule refinements where needed.  
+4. **Validation:** compare geocoded points against known locations or mapped reference checks before final analytical use.  
 
 ### Constraints & Considerations
 
-- Execution stays **fully offline**; large files will need **memory** discipline.
-- Bilingual address forms will need **consistent** normalization.
-- Every row will carry **match type + scores** so analysts can explain results **without** a GIS desktop.
+- Execution stays fully offline; large files will need memory discipline.
+- Bilingual address forms will need consistent normalization.
+- This general-purpose build can be less accurate than a narrowly tuned one, so local rule customization remains an expected part of production use.
+- Every row carries match type and scores so analysts can explain and audit results without a GIS desktop.
 :::
 
-::: {#yoga-scripts .yoga-view-panel .d-none}
+::: {#portfolio-scripts .portfolio-view-panel .d-none}
 ## build_nar_duckdb.R {#script-build-nar}
 
 **What it does:** One-time build of the NAR DuckDB. Reads all Location CSVs into a temporary `loc` table (LOC_GUID, lat/lon), then streams Address CSVs in chunks, joins to `loc` on LOC_GUID, normalizes province (SGC → 2-letter), city, postal, FSA, and full address. Writes table `ref` with columns expected by the geocoder (Latitude, Longitude, Full_Address, Civic_Number, street fields, city_norm, fsa, address_norm, street_only_norm). Drops `loc` when done.
@@ -200,31 +214,31 @@ An **R pipeline** backed by one **DuckDB** file built from NAR Address + Locatio
 See the [README](README.md) in this project for setup, NAR data layout, and usage.
 :::
 
-::: {#yoga-impact .yoga-view-panel .d-none}
+::: {#portfolio-impact .portfolio-view-panel .d-none}
 ## Impact & Outcome
 
-This project enabled reliable geocoding in privacy-constrained environments where cloud APIs are not acceptable. It improved confidence in address linkage quality while keeping the workflow auditable and repeatable.
+This project demonstrates a practical path for geocoding sensitive address data in environments where cloud services are not acceptable. It combines deterministic matching, transparent fallback logic, and reproducible outputs so teams can balance privacy, scalability, and quality control.
 
-- **Who it helped:** Teams handling sensitive address datasets in offline or restricted environments.
-- **What it helped with:** High-volume geocoding, transparent match-level reporting, and reduced dependence on external services.
-- **Why it matters:** It delivers practical data quality improvements without compromising governance or privacy requirements.
-- **Operational benefits:** Fully offline execution, deterministic hierarchy for audit, tunable fuzzy behaviour, and EN/FR address consistency without a GIS desktop.
+- **Who it helped:** Analysts and organizations processing protected address datasets under strict governance constraints.
+- **What it helped with:** Offline geocoding across varied address quality, with match-level reporting that supports audit and review.
+- **Why it matters:** It shows how a custom geocoding workflow can remain useful even when the original internal implementation is no longer available, while still preserving the core privacy-first design.
+- **Operational benefits:** Fully offline execution, deterministic hierarchy, tunable fuzzy behavior, and EN/FR normalization support for repeatable production runs.
 
 If you are interested in adapting this tool for your own project, feel free to reach out.
 :::
 
 <script>
 (function() {
-  var productPanel = document.getElementById('yoga-final-product');
-  var overviewPanel = document.getElementById('yoga-overview');
-  var approachPanel = document.getElementById('yoga-approach');
-  var scriptsPanel = document.getElementById('yoga-scripts');
-  var impactPanel = document.getElementById('yoga-impact');
-  var btnProduct = document.querySelector('.yoga-btn-product');
-  var btnOverview = document.querySelector('.yoga-btn-overview');
-  var btnApproach = document.querySelector('.yoga-btn-approach');
-  var btnScripts = document.querySelector('.yoga-btn-scripts');
-  var btnImpact = document.querySelector('.yoga-btn-impact');
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var scriptsPanel = document.getElementById('portfolio-scripts');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnScripts = document.querySelector('.portfolio-btn-scripts');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
   if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {

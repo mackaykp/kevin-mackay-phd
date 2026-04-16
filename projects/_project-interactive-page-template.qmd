@@ -1,35 +1,50 @@
 ---
 title: "Project title (replace)"
-# Optional: body-class: yoga-project-page
+# Optional: body-class: portfolio-project-page
 ---
 
 <!-- 
   Copy this file when adding a new interactive project page.
   Tab order: Final product → Project Overview → Project Approach → Scripts & Code → Impact & Outcome
-  Replace placeholder panels; keep ids: yoga-final-product, yoga-overview, yoga-approach, yoga-scripts, yoga-impact
-  Button classes: yoga-btn-product, yoga-btn-overview, yoga-btn-approach, yoga-btn-scripts, yoga-btn-impact
+  Replace placeholder panels; keep ids: portfolio-final-product, portfolio-overview, portfolio-approach, portfolio-scripts, portfolio-impact
+  Button classes: portfolio-btn-product, portfolio-btn-overview, portfolio-btn-approach, portfolio-btn-scripts, portfolio-btn-impact
+  On the Quarto page that becomes REPLACE.html (the iframe target), add under format.html:
+    include-in-header: ../../includes/portfolio-site-embed-chrome.html
+  (adjust the relative path from that .qmd to repo includes/) so the site navbar and footer hide when embedded but stay when opened in a new tab.
 -->
 
-<div class="yoga-project-page-root" hidden aria-hidden="true"></div>
+<div class="portfolio-project-page-root" hidden aria-hidden="true"></div>
 
-:::: {.yoga-view-toggle role="group" aria-label="Switch view"}
-<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">Project Approach</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">Impact & Outcome</button>
+:::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-scripts" aria-pressed="false">Scripts & Code</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
 ::::
 
-:::: {#yoga-final-product .yoga-view-panel}
-:::: {.yoga-embed-bar}
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+One-sentence project summary that explains what this final product does and why it matters.
+:::
+
+::: {.portfolio-meta-row}
+[Tooling]{.portfolio-meta-chip}
+[Domain]{.portfolio-meta-chip}
+[Outcome]{.portfolio-meta-chip}
+:::
+
+:::: {#portfolio-final-product .portfolio-view-panel}
+:::: {.portfolio-embed-bar}
 [Open project in new tab](REPLACE.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
 ::::
-:::: {#yoga-iframe-wrap .yoga-embed-full}
-<iframe src="REPLACE.html" title="Project embed" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+:::: {#portfolio-iframe-wrap .portfolio-embed-full}
+<iframe src="REPLACE.html" title="Project embed" class="portfolio-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
 ::::
 ::::
 
-:::: {#yoga-overview .yoga-view-panel .d-none}
+:::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 *The story (WHAT): problem, context, goals, stakeholders, final deliverable. Keep technical HOW out of this tab-use **Project Approach** and **Scripts & Code**.*
@@ -46,7 +61,7 @@ title: "Project title (replace)"
 
 ::::
 
-:::: {#yoga-approach .yoga-view-panel .d-none}
+:::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
 
 *The thinking (HOW): scope, assumptions, data, design, workflow, constraints. Pre-build planning note: write this **before** the deliverable exists. Use **past tense** for the situation that motivates the work; use **future / “will” / “planned”** for what you intend to build.*
@@ -80,7 +95,7 @@ title: "Project title (replace)"
 - Risks, privacy, performance, or policy limits you will design around.
 ::::
 
-:::: {#yoga-scripts .yoga-view-panel .d-none}
+:::: {#portfolio-scripts .portfolio-view-panel .d-none}
 ## Example script {#script-example}
 
 ```{r}
@@ -89,7 +104,7 @@ title: "Project title (replace)"
 ```
 ::::
 
-:::: {#yoga-impact .yoga-view-panel .d-none}
+:::: {#portfolio-impact .portfolio-view-panel .d-none}
 ## Impact & Outcome
 
 Who benefited and what changed as a result.
@@ -97,16 +112,16 @@ Who benefited and what changed as a result.
 
 <script>
 (function() {
-  var productPanel = document.getElementById('yoga-final-product');
-  var overviewPanel = document.getElementById('yoga-overview');
-  var approachPanel = document.getElementById('yoga-approach');
-  var scriptsPanel = document.getElementById('yoga-scripts');
-  var impactPanel = document.getElementById('yoga-impact');
-  var btnProduct = document.querySelector('.yoga-btn-product');
-  var btnOverview = document.querySelector('.yoga-btn-overview');
-  var btnApproach = document.querySelector('.yoga-btn-approach');
-  var btnScripts = document.querySelector('.yoga-btn-scripts');
-  var btnImpact = document.querySelector('.yoga-btn-impact');
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var scriptsPanel = document.getElementById('portfolio-scripts');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnScripts = document.querySelector('.portfolio-btn-scripts');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
   if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {

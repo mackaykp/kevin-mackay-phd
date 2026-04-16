@@ -2,97 +2,115 @@
 title: "Leaflet Mapping Tool"
 ---
 
-<div class="yoga-project-page-root" hidden aria-hidden="true"></div>
+<div class="portfolio-project-page-root" hidden aria-hidden="true"></div>
 
-::: {.yoga-view-toggle role="group" aria-label="Switch view"}
-<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">Project Approach</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">Impact & Outcome</button>
+::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-scripts" aria-pressed="false">Scripts & Code</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
 :::
 
-::: {#yoga-final-product .yoga-view-panel}
-::: {.yoga-embed-bar}
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+Interactive multi-city mapping workflow for site selection with reproducible R + Leaflet generation and embedded public examples.
+:::
+
+::: {.portfolio-meta-row}
+[Place-based spatial analysis]{.portfolio-meta-chip}
+[Scale and data integration]{.portfolio-meta-chip}
+[Interactive mapping toolkit]{.portfolio-meta-chip}
+:::
+
+::: {#portfolio-final-product .portfolio-view-panel}
+::: {.portfolio-embed-bar}
 [Open project in new tab](vignettes/vignettes.html){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
 :::
-::: {#yoga-iframe-wrap .yoga-embed-full}
-<iframe src="vignettes/vignettes.html" title="Leaflet Mapping Tool - vignettes" class="yoga-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
+::: {#portfolio-iframe-wrap .portfolio-embed-full}
+<iframe src="vignettes/vignettes.html" title="Leaflet Mapping Tool - vignettes" class="portfolio-embed" allowfullscreen style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;"></iframe>
 :::
 :::
 
-::: {#yoga-overview .yoga-view-panel .d-none}
+::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 ### Problem
 
-A Statistics Canada field team needed neighbourhood-level context to support **months-long** data collection across **16 Canadian cities**. Each city called for many map views (building-level detail, multiple neighbourhoods, safety-related planning), but producing **50+ static maps per city** was slow, hard to update, and depended on GIS specialists.
+An internal client at Statistics Canada needed maps to support site selection for survey field work in 16 cities, combining demographic data, crime indicators, and safety-related measures at a resolution suitable for building-level context across each area. Initial scoping showed that a static-map workflow would imply on the order of 50 maps per city - hundreds of separate views - which would be impractical for analysts to navigate when comparing neighbourhoods and choosing safe locations.
 
 ### Context
 
-Maps must refresh on roughly a **two-year** survey cycle. Staff who support the field program have strong domain skills but are not GIS power users, so the client needed something **reproducible** and teachable.
+Survey support mapping is produced on a repeating cycle (roughly every two years), which rewards a pipeline that can be rerun when inputs change. The intended users are analysts with strong subject-matter skills rather than GIS specialists, so the workflow had to stay reproducible, easy to hand off, and light on bespoke cartography work between cycles.
 
 ### Goals
 
-- Replace binders of static exports with **one interactive map per city** (zoom, pan, basemap switch, layer toggles, informative popups).
-- Standardize logic across cities so every place runs the **same** pipeline.
-- Make routine updates runnable by analysts with **basic R** skills.
+- Replace many fixed maps per city with one interactive Leaflet view for exploration and comparison.
+- Unify census dissemination-area inputs, OpenStreetMap, and supplementary tabular data in one pipeline that accepts Canadian cities, custom bounding boxes, or merged municipalities.
+- Make the workflow repeatable and hand-off friendly: foundational R is enough to produce updated maps when inputs or study areas change between cycles.
 
 ### Stakeholders
 
-- **Primary:** Statistics Canada field teams and the analysts who prepare their mapping products.
-- **Portfolio visitors:** see a public demo that uses non-sensitive layers while showing the same architecture.
+- **Primary:** Field program staff and the analysts who support them with neighbourhood-level mapping for multi-city survey operations.
+- **Portfolio:** Visitors who need a public illustration of the tool; the demo substitutes non-sensitive variables for restricted operational layers.
 
 ### Final deliverable
 
-An **R + Leaflet** workflow driven by OpenStreetMap and census boundaries: configurable per city or bbox, with optional bivariate views. The embedded vignette is the live demo; scripts and setup are under **Scripts & Code** (see also the project [Guide](guide.qmd)).
+- **Internal use:** A reproducible R + Leaflet pipeline from dissemination-area polygons and tabular joins through to self-contained HTML maps, parameterized by study area and data layers so analysts can regenerate outputs on survey cycles.
+- **Portfolio:** Embedded vignette examples (pre-rendered interactive HTML) plus the script references on this site; the public build uses non-sensitive demonstration layers in place of restricted operational indicators.
 
 ### Note on the public demo
 
-Safety and crime indicators are not public, so this portfolio build demonstrates the tool with **median household income** and **greenspace** access. The internal workflow supports swapping in the operational layers when data policy allows.
+Note on the public demo: The operational Statistics Canada build relied on sensitive and restricted inputs that cannot be published here. This site instead ships a bivariate example (median household income × green area per 1,000 people) so the same pipeline is visible without exposing client data, and so it is clear the tool generalizes to other variables, geographies, and questions rather than living as a single-use script.
 
 If you are interested in adapting this tool for your own project, feel free to reach out.
 :::
 
-::: {#yoga-approach .yoga-view-panel .d-none}
+::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
 
 ### Problem Definition
 
-- **Context:** Field teams needed **neighbourhood-level** context across many Canadian cities on a **repeat** cadence.
-- **What wasn’t working:** the old workflow leaned on **dozens of static maps** per city and on GIS specialists for routine updates-it **did not** scale.
+- **Context:** In initial scoping, the client needed to compare many neighbourhoods and several data families (demographics, crime-related inputs, and safety-oriented measures) at once across 16 cities, at a geographic scale where building-level context still mattered across the full urban extent of each place.
+- **What was not working:** A static-only plan implied on the order of 50 maps per city. That would fragment the story across hundreds of images, slow review, and make each survey cycle expensive to refresh because every change would propagate through a large export set.
 
 ### Scope & Assumptions
 
-- **Scope (planned):** one **R-based**, reproducible workflow-OSM + census layers-runnable by analysts with basic R.
-- **Public demo (planned):** income + greenspace will stand in for sensitive layers; the architecture will **swap in** real indicators when internal data are available.
+- **Scope:** A single parameterized mapping pipeline for Canadian study areas (named city, custom bounding box, or merged municipalities), producing self-contained interactive HTML maps rather than large static export batches.
+- **Assumption:** Portfolio visitors see a non-sensitive bivariate configuration; internal runs swap in the approved attribute set without forking the core geometry, caching, and Leaflet assembly logic.
 
 ### Data Sources
 
-- **Planned:** StatCan DA boundaries + census income (SES); OSM greenspace / context; bbox per city or custom study area.
-- **Caching** where possible so I do not hammer Overpass on every run.
+- **Inputs:** Statistics Canada dissemination-area polygons and census-style attributes; OpenStreetMap for greenspace and map context; study areas defined by city name, coordinates, a custom bounding box, or an amalgamation of municipalities.
+- **Interpretability:** Demographic indicators are easier to use comparatively than as raw counts on a map, so national dissemination-area distributions support simple low/medium/high bands for at-a-glance reading.
+- **Caching:** OpenStreetMap extracts are persisted locally (for example in a GeoPackage-backed cache) so repeat runs for the same extent reuse stored geometry instead of re-querying Overpass and hitting rate limits.
 
 ### Analytical Design
 
-- **Deliverable shape:** **one interactive Leaflet map per city** (not a binder of static exports).
-- **Rules:** shared config (`map_config`, SES build, green-by-DA) so every city follows the **same** logic.
-- **Optional:** a bivariate view when it strengthens the story.
-- **Interaction model:** zooming, panning, basemap switching, layer toggles, and click-to-reveal popups replace the old static map set.
+- **Output:** Single HTML Leaflet view per geography with shared symbology and legend logic across runs.
+- **Analysis:** Optional bivariate classification with tail highlighting on the 3×3 matrix where that supports review (as in the income–greenspace demo).
+- **UI controls:** Basemap switching, layer toggles, opacity, plain-language legend copy, and feature-level popups for rapid context without leaving the map.
 
 ### Workflow / Process
 
-**Planned flow:** resolve bbox (city name or custom) → clip dissemination areas and SES → fetch/cache OSM greenspace (respecting Overpass limits) → classify → render with **one legend system** → repeat each survey cycle with minimal manual steps. End-to-end automation so non-GIS analysts can regenerate maps without redrawing exports by hand.
+1. Resolve the study-area bounding box from a city name, an amalgamation list, or a custom bbox.
+2. Clip dissemination-area polygons to that extent and join census and data tables.
+3. Pull OpenStreetMap greenspace through the cache where possible so repeat extents stay inside Overpass usage norms.
+4. Classify variables and apply the shared legend and symbology rules.
+5. Render a single self-contained Leaflet HTML map.
+6. Rerun the same sequence when boundaries, city lists, or source tables change.
 
 ### Constraints & Considerations
 
-- Overpass **rate limits**; scripts must stay **offline-repeatable**.
-- A public portfolio build **will not** ship safety/crime layers-demo layers will **showcase** the pipeline without exposing restricted data.
+- **OpenStreetMap:** Public APIs enforce rate limits; the workflow relies on local caching and reasonably sized study areas so runs stay reliable when maps are regenerated or batched.
+- **Data policy:** This portfolio site does not ship operational crime or safety layers; the public examples show layout, classification, and interaction only, using non-sensitive substitute variables.
 :::
 
-::: {#yoga-scripts .yoga-view-panel .d-none}
+::: {#portfolio-scripts .portfolio-view-panel .d-none}
 ## create_bivariate_map.R {#script-create-bivariate-map}
 
-**What it does:** Main entry point for the bivariate map. Builds an **Income × Green area per 1,000 people** Leaflet map for a given city or custom bbox. Sources map_config, process_bbox, and process_green_da; clips DAs to the study area, fetches OSM greenspace (with optional walkable buffer), classifies income and greenspace into Low/Med/High (mean ± 1 SD), and renders a 3×3 bivariate choropleth with popups and legend. Supports custom_bbox, custom_distance_km, green_buffer_m, and show_green_layers.
+**What it does:** Main workflow for the Income × green area per 1,000 people bivariate Leaflet map. For a city name (or custom bbox/buffer distance), it runs `process_bbox` to set the study area and produce the clipped DA income GeoPackage, then reads that layer and calls `process_green_da` to attach OSM greenspace summed inside each DA plus within `green_buffer_m` (default 500 m walkable buffer). It classifies median household income from `income_raw` when that column exists (otherwise `ses_idx`, `index`, or the first numeric column), and `green_area_per_1000`, each using study-area mean ± 1 SD on the clipped polygons: values below mean − SD are Low, above mean + SD are High, otherwise Med, applies the fixed 3×3 palette, and builds the map with DA popups, a custom HTML legend, light/street/satellite basemaps, a merged greenspace overlay, optional heavy per-OSM-type green layers when `show_green_layers = TRUE`, and a client-side overlay opacity slider. Saves `output/maps/{city}_bivariate.html` (not self-contained; keep the companion `_files` directory). Sources `process_bbox.R`, and `process_green_da.R` when run from the project root with an R/ folder.
 
 ```{r}
 #| file: R/create_bivariate_map.R
@@ -101,31 +119,9 @@ If you are interested in adapting this tool for your own project, feel free to r
 
 ---
 
-## mapping_functions.R {#script-mapping-functions}
-
-**What it does:** Helper functions for the Leaflet map: `create_custom_icon`, `add_markers_conditionally`, `add_polylines_conditionally`, and `add_polygons_conditionally` to add OSM features (parks, playgrounds, nature, etc.) as toggleable layers with popups. Used when `show_green_layers = TRUE`.
-
-```{r}
-#| file: R/mapping_functions.R
-#| eval: false
-```
-
----
-
-## map_config.R {#script-map-config}
-
-**What it does:** Central configuration list for SES (income) categories and green-space settings. Defines `ses` (labels, colours, emoji, SD multipliers for 5 income bands) and `green` (thresholds for Limited/Good/Great, icon URLs for parks/playgrounds/nature). Used by build_ses_index.R and process_green.R; create_bivariate_map.R uses its own bivariate palette.
-
-```{r}
-#| file: R/map_config.R
-#| eval: false
-```
-
----
-
 ## process_green_da.R {#script-process-green-da}
 
-**What it does:** Computes green area per dissemination area (and per 1,000 people). For each DA, sums OSM greenspace (parks, gardens, meadows, etc.) inside the DA plus within a walkable buffer (e.g. 500 m). Fetches OSM for the study bbox, merges polygon types, intersects with buffered DAs, and returns DAs with `green_area_m2` and `green_area_per_1000`. Handles Overpass rate limiting and uses cache_utils for optional caching.
+**What it does:** Adds `green_area_m2` and `green_area_per_1000` to clipped DA polygons. It pulls OSM greenspace for the study bbox using a fixed list of leisure/landuse/landcover/natural tags (parks, gardens, grass, meadow, wood, scrub, etc.), combines polygon and multipolygon hits, unions them so overlap is counted once, optionally buffers each DA by `buffer_m` metres (default in the function is 2000; the bivariate map passes 500 m unless you change `green_buffer_m`), intersects that DA zone with the merged greens in a planar CRS, sums intersection area per DA, then sets `green_area_per_1000` from population. Uses `cache_utils.R` to cache merged greenspace and buffered DAs by bbox; warns on messages that look like Overpass rate limits or overload. Also defines `fetch_greenspace_layers` and `fetch_greenspace_merged` for optional map overlays.
 
 ```{r}
 #| file: R/process_green_da.R
@@ -134,20 +130,9 @@ If you are interested in adapting this tool for your own project, feel free to r
 
 ---
 
-## process_green.R {#script-process-green}
-
-**What it does:** Fetches OSM green-space data (parks, playgrounds, nature reserves) for a given bbox and returns a list with green_status (Limited/Good/Great by count), plus sf layers for parks, playgrounds, and nature (as centroids for markers). Used for green-status summaries or optional marker layers; create_bivariate_map uses process_green_da for per-DA green area.
-
-```{r}
-#| file: R/process_green.R
-#| eval: false
-```
-
----
-
 ## build_ses_index.R {#script-build-ses-index}
 
-**What it does:** Builds the income/SES GeoPackage from Statistics Canada 2021 Census and DA boundaries. Reads census CSV(s) and boundary shapefiles from data/raw/, joins on DA code, computes median household income and optional SES index (mean ± SD bands), and writes data/ses_index.gpkg. Supports test mode (one region, limited rows). Run after fetch_statcan_census.py (or equivalent) has downloaded and extracted census and boundaries.
+**What it does:** Builds `data/ses_index.gpkg` (or `data/ses_index_test.gpkg` when test mode is on) from Statistics Canada 2021 Census Profile tables under `data/raw/` and DA boundary shapefiles under `data/raw/da_boundaries/`. It detects long vs wide census layouts, keeps dissemination-area rows, extracts population and median household income as income_raw (default income characteristic 243; override with `INCOME_CHAR_ID`), joins to DA polygons with DGUID/DAUID fallbacks (including last-eight-char matching when needed), adds `ses_idx` (a copy of `income_raw`) and `idx_st` (five reference labels from `map_config$ses` using SD-based cutpoints on income in the build table), and writes the GeoPackage with `sf`. Run after scripts/fetch_statcan_census.py (or equivalent) has placed census CSVs and boundaries in `data/raw/`.
 
 ```{r}
 #| file: R/build_ses_index.R
@@ -158,7 +143,7 @@ If you are interested in adapting this tool for your own project, feel free to r
 
 ## process_bbox.R {#script-process-bbox}
 
-**What it does:** Resolves the study-area bounding box (from city name via osmdata::getbb, custom_bbox, or amalgamation_cities_list), optionally expands it by custom_distance_km, clips the income GeoPackage to the bbox, and writes clipped polygons to data/clipped_income/. Caches clipped layer by bbox UID in data/cache.gpkg. Returns bbox matrix and paths needed by create_bivariate_map.
+**What it does:** Defines `process_bbox()`, which chooses a WGS84 study-area bbox from custom_bbox if set, else from the bounding union of `osmdata::getbb()` on each name in `amalgamation_cities_list`, else from `getbb(study_area)`; `city_pr` is not supported and errors. Optionally expands the bbox by `custom_distance_km`, assigns it to `expanded_bbox` in the global environment, reads the full `income_gpkg`, clips polygons to the bbox with `sf::st_intersection` (planar retry if s2 fails), writes `dirname(income_gpkg)/clipped_income/{CityToken}.gpkg` (city token from the part of `study_area` before the comma, or `custom_bbox` if there is no study area), and stores a bbox-keyed copy in `data/cache.gpkg` (`clipped_income` layer) via `cache_utils.R`. Returns the bbox matrix only (reuses cache when the bbox matches without recomputing the clip).
 
 ```{r}
 #| file: R/process_bbox.R
@@ -169,7 +154,7 @@ If you are interested in adapting this tool for your own project, feel free to r
 
 ## cache_utils.R {#script-cache-utils}
 
-**What it does:** GeoPackage cache utilities for clipped_income, greenspace, and buffered DAs. `bbox_to_uid()` generates a stable UID from bbox coordinates; `ensure_cache()` creates the cache file and empty layers; read/write helpers avoid re-fetching OSM or re-clipping when the same bbox (and buffer) has already been processed. Reduces Overpass load and speeds up repeated runs.
+**What it does:** Helpers for `data/cache.gpkg`: `bbox_to_uid()` turns a WGS84 bbox into a stable `bbox_uid` (rounded coordinates, then a short hash when digest is available); `ensure_cache()` creates the GeoPackage and seed greenspace/`da_buffers` layers if missing; `get_cached_*`/`set_cached_*` read and append or replace rows keyed by `bbox_uid` for merged greenspace and clipped income, and by `bbox_uid` plus `buffer_m` for per-DA buffer geometries. Lets `process_bbox.R` and `process_green_da.R` reuse prior clips and OSM-derived layers instead of refetching or recomputing for the same bbox (and buffer), which cuts Overpass traffic and speeds repeat map builds.
 
 ```{r}
 #| file: R/cache_utils.R
@@ -178,31 +163,32 @@ If you are interested in adapting this tool for your own project, feel free to r
 
 ---
 
-See the [Guide](guide.qmd) in this project for setup and how to run the tool.
 :::
 
-::: {#yoga-impact .yoga-view-panel .d-none}
+::: {#portfolio-impact .portfolio-view-panel .d-none}
 ## Impact & Outcome
 
-This tool changed how field-support mapping was delivered for recurring surveys. It reduced manual map production overhead, helped non-GIS analysts generate consistent outputs, and made update cycles substantially easier to maintain over time.
+Feedback from the program side was that large static map packs made it hard to synthesize patterns or agree on final sites for survey activities, whereas one interactive map per study area let people explore the city in one place and refresh outputs cleanly when the program moved to a new cycle.
 
-- **Who it helped:** Statistics Canada field teams and analysts supporting multi-city data collection.
-- **What it helped with:** Faster situational planning, standardized map logic, and improved reproducibility across survey cycles.
-- **Why it matters:** It converted a specialist-dependent workflow into an operational tool that can be rerun and adapted as requirements evolve.
+New survey cycles had often been routed through GIS specialists and desktop tools such as ArcGIS for unique exports which cost the team time and money. The Leaflet workflow lets analysts with foundational R skills generate maps for any Canadian city, a coordinate window, or merged municipalities, which cuts specialist queue time and avoids treating each cycle as a fully custom cartography project.
+
+- **Who it helped:** Statistics Canada field teams and the analysts who support multi-city survey operations.
+- **What it helped with:** Faster, clearer site search and within-city comparison using a single interactive view instead of cross-walking many static sheets, plus a pipeline analysts can own and rerun between cycles.
+- **Why it matters:** It replaces a brittle, export-heavy path with a repeatable tool that still matches the resolution and interactivity framed in initial scoping, while keeping recurring map work off the critical path for specialized GIS staff.
 :::
 
 <script>
 (function() {
-  var productPanel = document.getElementById('yoga-final-product');
-  var overviewPanel = document.getElementById('yoga-overview');
-  var approachPanel = document.getElementById('yoga-approach');
-  var scriptsPanel = document.getElementById('yoga-scripts');
-  var impactPanel = document.getElementById('yoga-impact');
-  var btnProduct = document.querySelector('.yoga-btn-product');
-  var btnOverview = document.querySelector('.yoga-btn-overview');
-  var btnApproach = document.querySelector('.yoga-btn-approach');
-  var btnScripts = document.querySelector('.yoga-btn-scripts');
-  var btnImpact = document.querySelector('.yoga-btn-impact');
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var scriptsPanel = document.getElementById('portfolio-scripts');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnScripts = document.querySelector('.portfolio-btn-scripts');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
   if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {

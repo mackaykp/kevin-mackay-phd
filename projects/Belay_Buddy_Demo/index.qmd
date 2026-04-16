@@ -1,37 +1,49 @@
 ---
 title: "Belay Buddy Demo"
-body-class: yoga-project-page
+body-class: portfolio-project-page
 resources:
   - Belay_Buddy_Demo.mp4
   - exports/schedule-export-rounds-1-5.html
   - exports/schedule-export-rounds-4-8-after-roster-change.html
 ---
 
-<div class="yoga-project-page-root" hidden aria-hidden="true"></div>
+<div class="portfolio-project-page-root" hidden aria-hidden="true"></div>
 
-::: {.yoga-view-toggle role="group" aria-label="Switch view"}
-<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">Final product</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">Project Overview</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">Project Approach</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">Scripts & Code</button>
-<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">Impact & Outcome</button>
+::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-scripts" aria-pressed="false">Scripts & Code</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
 :::
 
-::: {#yoga-final-product .yoga-view-panel}
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+Host-run climbing session scheduler that keeps rotations fair through roster changes, with offline-friendly export fallbacks.
+:::
 
-The **video** below is a screen recording of the **production** app with narration explaining how it works, using a single gym night as the through-line: a **13-person** top-rope session with an odd-count **trio**, then a **mid-session roster change** (the HTML exports at the bottom show **10 participants** and **rounds 4-8** after that change). Those **HTML schedule exports** match what participants can save or share when the live host pauses or the network drops.
+::: {.portfolio-meta-row}
+[Group schedule planning]{.portfolio-meta-chip}
+[Fair rotation constraints]{.portfolio-meta-chip}
+[Interactive scheduling app]{.portfolio-meta-chip}
+:::
+
+::: {#portfolio-final-product .portfolio-view-panel}
+
+The video below is a screen recording of the production app with narration explaining how it works, using a single gym night as the example: a 13-person top-rope session with an odd-count trio, then a mid-session roster change (the HTML exports at the bottom show how the schedule looks when shared, as well as a mid-session roster change). The HTML schedule exports can be used to reduce active server time to keep the app freely hosted.
 
 ### What the example shows (watch the video, then use this as a map)
 
-1. **Host-led room** - The group starts with a full roster; the engine fills **rounds 1-5** with pairs and a **trio** so everyone rotates climb, belay, and rest roles fairly across the odd group.
-2. **Visible burst** - Upcoming rounds stay in one place so the whole group shares the same plan (no whiteboard drift).
-3. **Roster change before round 4** - Someone joins and several climbers leave early; the app records **effective-round** roster deltas (add **Mei**; remove **Amara**, **Michael**, **Daniel**, **Mo**).
-4. **Re-optimized schedule** - Pairings from **round 4** onward reflect the smaller group; the second export is the **offline-friendly** snapshot for rounds **4-8** with the roster-change summary at the top.
+1. **Host-led room:** The group starts with a full roster; the engine fills **rounds 1-5** with pairs and a **trio** so everyone rotates climb, belay, and rest roles fairly across the odd group.
+2. **Visible burst:** Upcoming rounds stay in one place so the whole group shares the same plan (no whiteboard drift).
+3. **Roster change before round 4:** Someone joins and several climbers leave early; the app records **effective-round** roster deltas (add **Mei**; remove **Amara**, **Michael**, **Daniel**, **Mo**).
+4. **Re-optimized schedule:** Pairings from **round 4** onward reflect the smaller group; the second export is the **offline-friendly** snapshot for rounds **4-8** with the roster-change summary at the top.
 
 ### Demo video (production app)
 
 ```{=html}
-<div class="yoga-embed-bar">
+<div class="portfolio-embed-bar">
 <a href="Belay_Buddy_Demo.mp4" class="btn btn-sm btn-outline-primary" download="Belay_Buddy_Demo.mp4">Download video (MP4)</a>
 </div>
 <div id="belay-video-frame-wrap">
@@ -65,72 +77,74 @@ These are **browser-downloadable** schedule pages generated by the app (same sty
 
 :::
 
-::: {#yoga-overview .yoga-view-panel .d-none}
+::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 ### Problem
 
-During top-rope sessions, **climb/belay order** falls apart when people join, leave, or swap roles. Whiteboards and ad hoc lists do not give everyone the same live view, and forcing sign-ups slows down casual groups.
+During top-rope sessions, climb/belay alternation breaks down when people join late, leave early, or trade roles. Without a shared tool, we used to sort pairings in our heads at the gym - fine for a tiny group, but easy to muddle once the group grows or you are several routes into the night.
 
 ### Context
 
-The app is meant for **real gym nights**: mobile-first, fast to start, and usable without accounts. This portfolio page includes a **narrated demo video of the production app** plus **sample HTML schedule exports**; the narrative reflects the **production R Shiny** codebase.
+Belay Buddy targets actual group sessions at the wall - it's mobile-first, fast to open, and account-free. This portfolio page pairs a narrated demo video with sample HTML schedule exports from the same production R Shiny app you use on gym nights. The demo provides an example of the app without using free hosting time on the production server. 
 
 ### Goals
 
-- Keep rotations **fair** and **visible** to the whole group.
-- The app will try to preserve the following when possible:
-  - **Diversity:** Participants will be paired at random without duplicating pairs
-  - **Alternation:** Participants will alternate between climbing and belaying
-  - **Trio aversion:** Participants will be placed in trios infrequently
-- Support a **host-led** room model with quick participant join.
-- Offer a **fallback** (downloadable schedule) when free-tier hosting sleeps or connectivity drops.
+- Keep rotations fair and visible to the whole group.
+- Use randomized pairings each session so the group does not keep climbing with the same subset out of habit.
+- When possible, the app also tries to preserve:
+  - **Diversity:** prefer pairs who have not already climbed together that night, so by the end of the session people have climbed with as many different partners as practical.
+  - **Alternation:** keep climb and belay swapping from route to route, including after partner changes - e.g. whoever just belayed should climb next (and the reverse).
+  - **Trio aversion:** with an odd headcount, trios (climber, belayer, someone resting) are slower - avoid putting the same person into trios repeatedly, since that costs them routes.
+- One host creates the session, manages the roster (adds/removes participants), and views or shares the schedule.
+- Offer a fallback (downloadable schedule) when free-tier hosting sleeps or connectivity drops.
 
 ### Stakeholders
 
-- **Climbing group** in a single session (host + participants).
+- **Session host:** runs Belay Buddy (creates the session, manages the roster, shares the schedule).
+- **Climbers:** everyone who is climbing that night; they follow the schedule the host shares but do not use the app to join a session.
 
 ### Final deliverable
 
-- **Production:** Hosted R Shiny app with shared session state, burst scheduling, and pairing optimization.
-- **Portfolio:** narrated **demo video** (production app) and embedded **HTML export** samples (no live Shiny embed). Implementation files and excerpts are under **Scripts & Code** (`app.R`, `R/session.R`, `R/pairing.R`, `R/html_export.R`). A small **static HTML prototype** (`demo.html`) remains in the project folder for reference.
+- **Production:** Hosted R Shiny app: host-run session (roster and rounds), burst view of upcoming routes, and pairing logic that tries to respect alternation, partner diversity, and trio fairness when the roster changes.
+- **Portfolio:** Narrated demo video of the production app and embedded HTML export samples (no live Shiny embed on this page). Implementation detail lives under Scripts & Code (app.R, R/session.R, R/pairing.R, R/html_export.R). A small static HTML prototype (demo.html) remains in the project folder for reference.
 :::
 
-::: {#yoga-approach .yoga-view-panel .d-none}
+::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
 
 ### Problem Definition
 
-- **Context:** Top-rope nights **kept changing mid-session**-people joined, left, or swapped roles-and the group **had no** shared, fair rotation everyone could see.
-- **Gap:** whiteboards and ad hoc lists **did not** scale; I also wanted to avoid **mandatory** accounts.
+- **Context:** On top-rope nights the roster and roles kept shifting mid-session - people arrived late, left early, or swapped climb/belay - while the group was still trying to keep alternation, varied partners, and fair trios in mind. There was no single schedule everyone could trust at a glance.
+- **Gap:** Doing pairings in the moment, without a shared tool, gets hard to sustain as the group grows or you move deeper into the session. I also wanted to avoid mandatory accounts for a casual gym night.
 
 ### Scope & Assumptions
 
-- **Scope (planned):** lightweight **R Shiny** app; host-led rooms; **mobile-first** UI; a short “burst” of upcoming rounds; optional **HTML export** of the schedule.
-- **Assumption:** typical group sizes stay small enough that `lpSolve` pairing will feel **instant** in-session.
+- **Scope:** A lightweight R Shiny app with one host per session (create session, manage roster, view and share the schedule); mobile-first UI; a short burst of upcoming rounds; optional HTML export for an offline copy.
+- **Assumption:** Pairing each round is a small constrained optimization; we use lpSolve so solutions stay fast at real roster sizes and still respect climb/belay, partner reuse, and trios.
 
 ### Data Sources
 
-- **Planned state (minimal):** roster, recent pairings, roles, session metadata (server-side for sync).
-- **Planned export:** standalone HTML participants can save or share if the live host sleeps.
+- **State (minimal, server-side):** roster, recent pairings, climb/belay/rest roles, and session metadata so the host’s session stays consistent while rounds advance.
+- **Export:** Standalone HTML the host can download and share with the group (e.g., chat or file share) if the live app is slow to wake or the network is flaky.
 
 ### Analytical Design
 
-- **Plan:** separate **optimization** from UI-`lpSolve`-backed engine to **minimize repeat pairings** while respecting climb / belay / rest alternation when possible; support **trios** when the group count is odd.
-- **Product shape:** host-created rooms and quick host join; add/remove participants with roster changes taking effect on the **next** round; **5-round “burst”** UI for now/upcoming rounds; standalone **HTML export** for offline share.
+- **Plan:** Keep the pairing engine separate from the Shiny UI. Use an lpSolve-backed optimizer each round to discourage repeat pairs within the same night, preserve climb > belay > rest alternation when possible, and handle trios when the headcount is odd while limiting repeat trio exposure for the same person when the model allows.
+- **Product shape:** Host creates the session, adds or removes people on the roster (changes apply starting the next round), reviews a five-round “burst” of upcoming rounds, and can export standalone HTML to share offline if needed.
 
 ### Workflow / Process
 
-**Planned UX:** host opens room → roster locks in for the **next** round → engine proposes pairings → burst view shows near-future rounds → participants download/share HTML if the live host instance pauses or the network fails.
+**UX flow:** host creates/opens a session > roster updates apply on the next round > engine proposes pairings > burst view shows near-future rounds > if the live app is slow or the network drops, the host exports HTML and shares it with the group.
 
 ### Constraints & Considerations
 
-- **Free-tier** hosting will mean cold starts and timeouts-I will design around that.
-- **Host vs participant** paths must stay obvious.
-- Export will be the **fallback** when the live instance pauses.
+- **Free-tier hosting:** cold starts and occasional timeouts are expected, so the flow must recover quickly without losing the session plan.
+- **Single-operator model:** only the host uses the app (creates the session, manages roster, views/shares schedule); climbers are represented on the roster, not as in-app joiners.
+- **Offline continuity:** standalone HTML export is the fallback when the live instance pauses or connectivity drops.
 :::
 
-::: {#yoga-scripts .yoga-view-panel .d-none}
+::: {#portfolio-scripts .portfolio-view-panel .d-none}
 ## app.R {#script-app}
 
 **What it does:** Main production Shiny entry point. Defines the host-first UI flow, session creation, participant management, next-round behavior, 5-round burst rendering, and schedule download/share controls.
@@ -177,30 +191,30 @@ The app is meant for **real gym nights**: mobile-first, fast to start, and usabl
 
 :::
 
-::: {#yoga-impact .yoga-view-panel .d-none}
+::: {#portfolio-impact .portfolio-view-panel .d-none}
 ## Impact & Outcome
 
-Belay Buddy improved real-session coordination by making pairing decisions visible, fair, and easy to update as participants join or leave. The production app and static backup flow together make it resilient in low-cost hosting setups.
+Belay Buddy improved real-session coordination by making climb-belay pairings visible and fair, and by letting the host refresh the roster when people arrive late, leave early, or swap roles. The production app and downloadable HTML export together keep the night workable when free-tier hosting sleeps or the network drops.
 
-- **Who it helped:** Recreational climbing groups managing rotation logistics in real time.
-- **What it helped with:** Reducing friction during sessions, minimizing repeated pairings, and maintaining continuity during connectivity or hosting interruptions.
-- **Why it matters:** It turns a common coordination problem into a usable, repeatable operational workflow.
-- **In production:** used in real sessions, not only as a prototype; the portfolio page uses a recorded walkthrough and downloadable-style HTML samples so visitors can review the UX without hosting the live app.
+- **Who it helped:** Session hosts running top-rope nights for larger groups, plus everyone on the roster who follows the schedule the host shares.
+- **What it helped with:** Less friction at the wall, fewer accidental repeat pairings within the same night, and a shared plan when live hosting or connectivity is unreliable.
+- **Why it matters:** It turns an easy-to-muddle coordination problem into a repeatable, host-run workflow.
+- **In production:** Used on real gym nights, not only as a prototype; this portfolio page uses a recorded walkthrough and embedded HTML samples so visitors can review the UX without hosting the live app.
 
 :::
 
 <script>
 (function() {
-  var productPanel = document.getElementById('yoga-final-product');
-  var overviewPanel = document.getElementById('yoga-overview');
-  var approachPanel = document.getElementById('yoga-approach');
-  var scriptsPanel = document.getElementById('yoga-scripts');
-  var impactPanel = document.getElementById('yoga-impact');
-  var btnProduct = document.querySelector('.yoga-btn-product');
-  var btnOverview = document.querySelector('.yoga-btn-overview');
-  var btnApproach = document.querySelector('.yoga-btn-approach');
-  var btnScripts = document.querySelector('.yoga-btn-scripts');
-  var btnImpact = document.querySelector('.yoga-btn-impact');
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var scriptsPanel = document.getElementById('portfolio-scripts');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnScripts = document.querySelector('.portfolio-btn-scripts');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
   if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {

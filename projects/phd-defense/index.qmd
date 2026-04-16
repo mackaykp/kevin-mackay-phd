@@ -11,74 +11,168 @@ format:
 
 <div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
 
+::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
+:::
+
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+PhD defense presentation summarizing the dissertation on childhood lead risk in Hamilton, Ontario, with spatial modelling, blood lead-IQ meta-analysis, and municipal abatement feasibility.
+:::
+
+::: {.portfolio-meta-row}
+[Research-to-policy synthesis]{.portfolio-meta-chip}
+[Multi-study evidence integration]{.portfolio-meta-chip}
+[Doctoral defense presentation]{.portfolio-meta-chip}
+:::
+
+::: {#portfolio-final-product .portfolio-view-panel}
 :::: {.project-pdf-slides-intro}
 
-Doctoral defense slides (McMaster Geography, 2020): one narrative arc across soil-lead risk in Hamilton, methods choices, blood-lead ↔ IQ evidence, and municipal abatement economics.
+Doctoral defense slides (McMaster, 2020): a summary of the dissertation findings across soil lead risk in Hamilton, interpolation method assessment, blood lead-IQ evidence, and municipal lead-abatement feasibility. The presentation was delivered during a two-hour oral defense with four professors: Dr. Bruce Newbold (Supervisor, McMaster University), Dr. Darren Scott (McMaster University), Dr. Niko Yiannakoulias (McMaster University), and Dr. Eric Crighton (External, University of Ottawa).
 
 ::::
+::: {.portfolio-embed-bar}
+[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="PhD defense slides - lead poisoning risk and abatement (PDF)" class="pdf-slides-embed"></iframe>
+:::
+:::
 
+::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 ### Problem
 
-Childhood lead exposure remains a policy-relevant environmental-health issue long after leaded gasoline. Municipalities need evidence that connects **where risk concentrates**, **how strong dose-response evidence is**, and **what remediation is financially realistic**-without collapsing into oversimplified ROI stories.
+Thirty years since the removal of lead from gasoline, lead still poses a health risk. Children are most at-risk for adverse health outcomes caused by lead toxicity due to both behavioural and physiological differences compared to adults, so governments must identify children that may be at-risk of lead poisoning and develop practical methods to mitigate lead exposure.
 
 ### Context
 
-Hamilton, Ontario case study: high-resolution soil sampling, spatial modelling debate (e.g. land-use regression vs geostatistics), published epidemiology on blood lead and IQ, and cost-benefit framing for abatement at city scale.
+This defense presentation summarizes the dissertation case study in Hamilton, Ontario, where old housing stock and long industrial history may increase exposure to lead. It consolidates three dissertation components into one defense narrative: spatial modelling of soil lead, meta-analysis of blood lead levels and IQ, and municipal feasibility of permanent lead abatement.
 
 ### Goals
 
-- Summarize **integrated findings** for the defense committee and broader audience in one sitting.
-- Make **methods critique** (e.g. LUR pitfalls) and **health stakes** legible together.
-- Clarify **what cities can reasonably prioritize** given budgets and hazard context.
+- Present a clear summary of dissertation objectives, methods, and findings during the oral defense.
+- Defend the methodological findings on land use regression, kriging, and meta-analysis decisions.
+- Explain policy implications for municipal lead remediation, including budget constraints and need-based prioritization.
 
 ### Stakeholders
 
-- **Defense committee and academic audience** evaluating the dissertation contribution.
-- **Municipal and public-health decision-makers** implied audience for the policy-facing implications of the thesis.
+- **Defense committee:** Dr. Bruce Newbold, Dr. Darren Scott, Dr. Niko Yiannakoulias, and Dr. Eric Crighton (external committee member).
+- **Academic audience:** faculty, research staff and students attending the defense.
+- **Municipal and public-health audiences:** decision-makers reflected in the policy-facing implications of the dissertation.
 
 ### Final deliverable
 
-The **defense slide deck (PDF)** that stitches thesis chapters into a single story; the full dissertation is linked from the main [PhD project page](../PhD_Dissertation/index.qmd).
+The final deliverable is the PhD defense slide deck (PDF), presented during a three-hour defense as a structured summary of the full dissertation and used to defend the research findings before the examination committee. The complete dissertation is available on the main [PhD dissertation page](../PhD_Dissertation/index.qmd).
+:::
 
+::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
 
 ### Problem Definition
 
-- **Context (presentation design):** Dissertation chapters stood alone-soil risk, methods comparison, meta-analysis, economics-and the defense **needed** one coherent **slide** narrative.
-- **Goal (planned):** one deck that **links** soil-lead patterns, **modelling choices**, blood-lead ↔ IQ evidence, and **municipal abatement economics** for policy-relevant takeaways.
+- **Research problem:** Despite declining blood lead levels, lead remains a problem in urban Canada, and low blood lead concentrations can still produce adverse outcomes in children.
+- **Methodological problem:** Soil lead is continuous across space, so neighbourhood-level summaries can obscure local variation and limit risk identification.
+- **Decision problem:** Return-on-investment arguments for permanent lead abatement are influential, but municipalities must also evaluate feasibility, local budget constraints, and need-based prioritization.
 
 ### Scope & Assumptions
 
-- **Scope (planned):** slide narrative **aligned to thesis chapters**; **Hamilton** as the case; explicit where **generalization** is-and is not-warranted.
-- **Assumption:** I can balance **methods critique** and **health stakes** in one sitting.
+- **Scope:** A defense summary aligned to dissertation chapters, covering Chapter 2 interpolation findings, Chapter 3 meta-analysis findings, and Chapter 4 cost-benefit and hazard-based policy findings.
+- **Assumption:** A single integrated presentation can communicate methodological rigor and policy relevance clearly to a multidisciplinary committee.
 
 ### Data Sources
 
-- **Planned anchors:** soil sampling + modelling outputs; **meta-analysis** on blood lead and IQ; **cost-benefit** framing for abatement-each section will tie back to a chapter.
+- **Spatial analysis inputs:** 187 soil lead samples from Hamilton Public Health Services (2008-2009), historical business records, and a modified historical road network.
+- **Meta-analysis inputs:** Published studies used to quantify the relationship between childhood blood lead levels and IQ.
+- **Policy and feasibility inputs:** Hamilton-focused cost and ROI assumptions for soil, water, and paint abatement, with hazard quotient mapping.
 
 ### Analytical Design
 
-**Planned order:** LUR vs kriging critique → **meta-analysis** → ROI / alternatives → what cities can **actually** prioritize.
+- **Chapter 2 summary:** Critical assessment of land use regression against Ordinary Kriging and Empirical Bayesian Kriging for soil lead interpolation.
+- **Chapter 3 summary:** Meta-analysis synthesis of blood lead-IQ relationships, including heterogeneity and bias diagnostics.
+- **Chapter 4 summary:** Cost and ROI assessment for permanent lead hazard control, paired with hazard quotient evidence to evaluate practical need.
 
 ### Workflow / Process
 
-**Planned arc:** motivation → spatial risk → dose-response → feasibility → **what municipalities can reasonably do next**.
+1. Introduce dissertation motivation, objectives, and Hamilton case context.
+2. Present spatial modelling findings on soil lead and interpolation method performance.
+3. Present meta-analysis findings on blood lead levels and IQ.
+4. Present cost-benefit and hazard quotient findings for municipal lead abatement policy.
+5. Defend interpretations and implications through committee questioning in the oral examination.
 
 ### Constraints & Considerations
 
-- **Time limits**; I will avoid overclaiming causality.
-- **Sensitive** public-health content will stay **plain-language** for non-specialists.
+- The defense had to summarize a full dissertation in a single two-hour examination.
+- Methodological and policy claims needed to remain evidence-based and clearly bounded.
+- The presentation had to address both technical critique and practical municipal implications.
+:::
 
+::: {#portfolio-impact .portfolio-view-panel .d-none}
 ## Impact & Outcome
 
-This work translated complex environmental-health research into an actionable policy narrative. It helped decision-makers understand where childhood lead risk is concentrated, what interventions are realistic at municipal scale, and why remediation strategy should be guided by need and hazard context, not ROI alone.
+This defense presentation translated the dissertation into a coherent oral examination narrative and supported successful defense of the research across spatial modelling, epidemiological synthesis, and policy feasibility. It clarified that Empirical Bayesian Kriging may be preferable to land use regression in this context, that blood lead-IQ effect sizes may yield lower projected ROI than commonly cited estimates, and that permanent city-wide lead abatement can be prohibitively expensive for municipal governments. Taken together, the defense emphasized need-based and hazard-informed decision-making rather than ROI projections alone.
+:::
 
-:::: {.pdf-slides-embed-bar}
-[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
-::::
+<script>
+(function() {
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnImpact) return;
 
-:::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
-<iframe src="slides.pdf" title="PhD defense slides - lead poisoning risk and abatement (PDF)" class="pdf-slides-embed"></iframe>
-::::
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnApproach, btnImpact].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
+  btnImpact.addEventListener('click', showImpact);
+})();
+</script>

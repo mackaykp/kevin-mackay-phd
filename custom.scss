@@ -54,7 +54,7 @@ body {
   color: $body-color !important;
 }
 
-// Override Quartz theme gradients and backgrounds (exclude project pages)
+// Override Quartz theme gradients and backgrounds (site-wide content shell)
 #quarto-content,
 .quarto-layout-panel,
 .page-columns,
@@ -67,34 +67,34 @@ main#quarto-document-content,
   background-image: none !important;
 }
 
-// Project portfolio subpages (not projects/index): white canvas + max-width aligned with interactive/PDF project pages.
-// Excludes: Projects listing (.projects-hero-section), yoga browse page (.yoga-browse-page-root has its own chrome).
-html:has(body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root))) {
-  background-color: #fff !important;
+// Project portfolio subpages (not projects/index): same beige canvas as main site + max-width aligned with interactive/PDF project pages.
+// Excludes: Projects listing (.projects-hero-section), browse-style pages (.portfolio-browse-page-root).
+html:has(body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root))) {
+  background-color: $body-bg !important;
   background-image: none !important;
 }
 
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) {
-  background-color: #fff !important;
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) {
+  background-color: $body-bg !important;
   background-image: none !important;
   color: $body-color !important;
 }
 
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) #quarto-content,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-layout-panel,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .page-columns,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .column-page,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .column-body,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) main#quarto-document-content,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-title-block,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-title-banner {
-  background-color: #fff !important;
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) #quarto-content,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .quarto-layout-panel,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .page-columns,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .column-page,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .column-body,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) main#quarto-document-content,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .quarto-title-block,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .quarto-title-banner {
+  background-color: $body-bg !important;
   background-image: none !important;
 }
 
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .quarto-layout-panel,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) .column-body,
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)) main#quarto-document-content {
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .quarto-layout-panel,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) .column-body,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)) main#quarto-document-content {
   max-width: 120rem;
   margin-left: auto;
   margin-right: auto;
@@ -103,13 +103,13 @@ body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-p
 }
 
 // Slides/PDF/thesis/example markdown project pages (not tabbed interactive embeds): horizontal padding for readability
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)):not(:has(.yoga-project-page-root)) main#quarto-document-content {
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)):not(:has(.portfolio-project-page-root)) main#quarto-document-content {
   padding-left: clamp(1rem, 4vw, 2.5rem);
   padding-right: clamp(1rem, 4vw, 2.5rem);
   padding-bottom: 2rem;
 }
 
-body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-page-root)):not(:has(.yoga-project-page-root)) main#quarto-document-content h2 {
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-browse-page-root)):not(:has(.portfolio-project-page-root)) main#quarto-document-content h2 {
   color: $headings-color !important;
   font-family: $font-family-headings !important;
   font-weight: 700 !important;
@@ -120,31 +120,30 @@ body.project-site-page:not(:has(.projects-hero-section)):not(:has(.yoga-browse-p
   border-bottom: 1px solid $border-color;
 }
 
-// Yoga pages: solid white. Quarto websites omit `body-class` on <body>; markers + :has() scope these rules.
-html:has(.yoga-browse-page-root),
-html:has(.yoga-project-page-root) {
-  background-color: #fff !important;
+// Tabbed / browse project pages: same site beige (markers + :has(); Quarto may omit body-class on <body>).
+html:has(.portfolio-browse-page-root),
+html:has(.portfolio-project-page-root) {
+  background-color: $body-bg !important;
   background-image: none !important;
 }
 
-// Exclude project pages from global beige theme backgrounds
-body:has(.yoga-project-page-root) #quarto-content,
-body:has(.yoga-project-page-root) .quarto-layout-panel,
-body:has(.yoga-project-page-root) .page-columns,
-body:has(.yoga-project-page-root) .column-page,
-body:has(.yoga-project-page-root) .column-body,
-body:has(.yoga-project-page-root) main#quarto-document-content,
-body:has(.yoga-project-page-root) .quarto-title-block,
-body:has(.yoga-project-page-root) .quarto-title-banner,
-body:has(.yoga-browse-page-root) #quarto-content,
-body:has(.yoga-browse-page-root) .quarto-layout-panel,
-body:has(.yoga-browse-page-root) .page-columns,
-body:has(.yoga-browse-page-root) .column-page,
-body:has(.yoga-browse-page-root) .column-body,
-body:has(.yoga-browse-page-root) main#quarto-document-content,
-body:has(.yoga-browse-page-root) .quarto-title-block,
-body:has(.yoga-browse-page-root) .quarto-title-banner {
-  background-color: #fff !important;
+body:has(.portfolio-project-page-root) #quarto-content,
+body:has(.portfolio-project-page-root) .quarto-layout-panel,
+body:has(.portfolio-project-page-root) .page-columns,
+body:has(.portfolio-project-page-root) .column-page,
+body:has(.portfolio-project-page-root) .column-body,
+body:has(.portfolio-project-page-root) main#quarto-document-content,
+body:has(.portfolio-project-page-root) .quarto-title-block,
+body:has(.portfolio-project-page-root) .quarto-title-banner,
+body:has(.portfolio-browse-page-root) #quarto-content,
+body:has(.portfolio-browse-page-root) .quarto-layout-panel,
+body:has(.portfolio-browse-page-root) .page-columns,
+body:has(.portfolio-browse-page-root) .column-page,
+body:has(.portfolio-browse-page-root) .column-body,
+body:has(.portfolio-browse-page-root) main#quarto-document-content,
+body:has(.portfolio-browse-page-root) .quarto-title-block,
+body:has(.portfolio-browse-page-root) .quarto-title-banner {
+  background-color: $body-bg !important;
   background-image: none !important;
 }
 
@@ -156,12 +155,11 @@ body:has(.yoga-browse-page-root) .quarto-title-banner {
   display: none !important;
 }
 
-// Exclude project pages from global body styles (white canvas matches catalog / project UI)
-body:has(.yoga-project-page-root),
-body:has(.yoga-browse-page-root) {
-  background-color: #fff !important;
+body:has(.portfolio-project-page-root),
+body:has(.portfolio-browse-page-root) {
+  background-color: $body-bg !important;
   background-image: none !important;
-  color: inherit !important;
+  color: $body-color !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -171,44 +169,9 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-// Exclude project pages from font changes (keep their own styles)
-body:has(.yoga-project-page-root) h1,
-body:has(.yoga-project-page-root) h2,
-body:has(.yoga-project-page-root) h3,
-body:has(.yoga-project-page-root) h4,
-body:has(.yoga-project-page-root) h5,
-body:has(.yoga-project-page-root) h6,
-body:has(.yoga-browse-page-root) h1,
-body:has(.yoga-browse-page-root) h2,
-body:has(.yoga-browse-page-root) h3,
-body:has(.yoga-browse-page-root) h4,
-body:has(.yoga-browse-page-root) h5,
-body:has(.yoga-browse-page-root) h6 {
-  font-family: inherit !important;
-  font-weight: inherit !important;
-  letter-spacing: inherit !important;
-  color: inherit !important;
-}
-
 // Global text color (but exclude navbar and project pages)
 p, li, td, th {
   color: $body-color !important;
-}
-
-// Exclude project pages from global text color
-body:has(.yoga-project-page-root) p,
-body:has(.yoga-project-page-root) li,
-body:has(.yoga-project-page-root) td,
-body:has(.yoga-project-page-root) th,
-body:has(.yoga-project-page-root) div,
-body:has(.yoga-project-page-root) span,
-body:has(.yoga-browse-page-root) p,
-body:has(.yoga-browse-page-root) li,
-body:has(.yoga-browse-page-root) td,
-body:has(.yoga-browse-page-root) th,
-body:has(.yoga-browse-page-root) div,
-body:has(.yoga-browse-page-root) span {
-  color: inherit !important;
 }
 
 // Exclude navbar from global color rules
@@ -230,13 +193,8 @@ a {
   }
 }
 
-// Exclude navbar and project pages from global link color
+// Exclude navbar from global link color
 .navbar a {
-  color: inherit !important;
-}
-
-body:has(.yoga-project-page-root) a,
-body:has(.yoga-browse-page-root) a {
   color: inherit !important;
 }
 
@@ -1124,6 +1082,26 @@ main#quarto-document-content:has(.resume-hero-section) section.resume-skills > h
   }
 }
 
+// Services & Pricing: align investment + CTAs to card bottom (same row height in grid)
+.wwm-services-pricing .wwm-service-grid {
+  align-items: stretch;
+}
+
+.wwm-services-pricing .wwm-service-grid > .resume-nested-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wwm-services-pricing .wwm-service-card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.wwm-services-pricing .wwm-service-card-footer > .d-flex.flex-wrap {
+  margin-top: 0.75rem;
+}
+
 // Work With Me only: engagement pillars as 2×2 (Home keeps 3 columns via base .homepage-pillars rule)
 @media (min-width: 768px) {
   main#quarto-document-content:has(.work-with-hero-section) .homepage-pillars {
@@ -1703,38 +1681,199 @@ code:not(pre sourceCode code) {
   }
 }
 
-// ---- Yoga browse page (catalog at full size, no left sidebar; keep right TOC) ----
-body:has(.yoga-browse-page-root) #quarto-sidebar,
-body:has(.yoga-browse-page-root) .sidebar-navigation,
-body:has(.yoga-browse-page-root) .sidebar,
-body:has(.yoga-browse-page-root) .nav-sidebar {
+// ---- Portfolio browse page (catalog at full size, no left sidebar) ----
+// ---- Portfolio project visual system ----
+body:has(.portfolio-project-page-root) .quarto-title-block.default,
+body:has(.project-pdf-slides-root) .quarto-title-block.default,
+body:not(:has(.projects-hero-section)):has(.portfolio-page-intro) .quarto-title-block.default {
+  margin-bottom: 1rem !important;
+}
+
+body:has(.portfolio-project-page-root) .quarto-title-block.default .title,
+body:has(.project-pdf-slides-root) .quarto-title-block.default .title,
+body:not(:has(.projects-hero-section)):has(.portfolio-page-intro) .quarto-title-block.default .title {
+  font-size: clamp(1.7rem, 2.5vw, 2.05rem) !important;
+  line-height: 1.2;
+}
+
+body:has(.portfolio-project-page-root) .portfolio-page-intro {
+  margin: 0 0 1.1rem 0;
+  padding: 1rem 1.2rem 1.05rem;
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.09);
+  border-left: 4px solid $primary;
+  border-radius: 0.85rem;
+  box-shadow: 0 2px 10px rgba(1, 38, 38, 0.06);
+}
+
+body:has(.portfolio-project-page-root) .portfolio-page-intro p {
+  margin: 0 !important;
+  color: rgba($body-color, 0.92) !important;
+  line-height: 1.55;
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) .portfolio-page-intro,
+body:has(.project-pdf-slides-root) .portfolio-page-intro,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) .portfolio-page-intro {
+  margin: 0 0 1.1rem 0;
+  padding: 1rem 1.2rem 1.05rem;
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.09);
+  border-left: 4px solid $primary;
+  border-radius: 0.85rem;
+  box-shadow: 0 2px 10px rgba(1, 38, 38, 0.06);
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) .portfolio-page-intro p,
+body:has(.project-pdf-slides-root) .portfolio-page-intro p,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) .portfolio-page-intro p {
+  margin: 0 !important;
+  color: rgba($body-color, 0.92) !important;
+  line-height: 1.55;
+}
+
+body:has(.portfolio-project-page-root) .portfolio-accent-rule {
+  width: 2.35rem;
+  height: 2px;
+  margin: 0 0 0.8rem 0;
+  border-radius: 2px;
+  background: rgba(191, 83, 44, 0.55);
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) .portfolio-accent-rule,
+body:has(.project-pdf-slides-root) .portfolio-accent-rule,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) .portfolio-accent-rule {
+  width: 2.35rem;
+  height: 2px;
+  margin: 0 0 0.8rem 0;
+  border-radius: 2px;
+  background: rgba(191, 83, 44, 0.55);
+}
+
+body:has(.portfolio-project-page-root) .portfolio-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1rem 0;
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) .portfolio-meta-row,
+body:has(.project-pdf-slides-root) .portfolio-meta-row,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) .portfolio-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1rem 0;
+}
+
+body:has(.portfolio-project-page-root) .portfolio-meta-chip {
+  display: inline-block;
+  padding: 0.24rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: rgba(243, 234, 231, 0.92);
+  border: 1px solid rgba(1, 38, 38, 0.12);
+  color: rgba($body-color, 0.9) !important;
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) .portfolio-meta-chip,
+body:has(.project-pdf-slides-root) .portfolio-meta-chip,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) .portfolio-meta-chip {
+  display: inline-block;
+  padding: 0.24rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: rgba(243, 234, 231, 0.92);
+  border: 1px solid rgba(1, 38, 38, 0.12);
+  color: rgba($body-color, 0.9) !important;
+}
+
+body:has(.portfolio-project-page-root) .portfolio-panel-surface,
+body:has(.portfolio-project-page-root) .portfolio-view-panel {
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  border-left: 4px solid rgba(191, 83, 44, 0.4);
+  border-radius: 0.9rem;
+  box-shadow: 0 3px 14px rgba(1, 38, 38, 0.06);
+  padding: 1.15rem 1.2rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+body:has(.portfolio-project-page-root) .portfolio-view-panel > .portfolio-panel-surface:last-child {
+  margin-bottom: 0;
+}
+
+// Non-tabbed project pages (including dissertation + PDF slide pages): keep same elevated card rhythm.
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) section.level2,
+body:has(.project-pdf-slides-root) section.level2,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) section.level2,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) .project-pdf-slides-intro,
+body:has(.project-pdf-slides-root) .project-pdf-slides-intro,
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) .pdf-slides-embed-bar {
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  border-radius: 0.85rem;
+  box-shadow: 0 2px 10px rgba(1, 38, 38, 0.06);
+}
+
+body.project-site-page:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)) section.level2,
+body:has(.project-pdf-slides-root) section.level2,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) section.level2 {
+  padding: 0.95rem 1.1rem 1.05rem;
+  margin: 1rem 0;
+}
+
+body:has(.portfolio-project-page-root) .portfolio-section-card {
+  background: #fff;
+  border: 1px solid rgba(1, 38, 38, 0.09);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 10px rgba(1, 38, 38, 0.05);
+  padding: 0.95rem 1rem 1rem;
+  margin: 0.95rem 0;
+}
+
+body:has(.portfolio-project-page-root) .portfolio-section-card h3 {
+  margin-top: 0 !important;
+  font-size: 1.05rem !important;
+  border-bottom: 1px solid rgba(1, 38, 38, 0.11);
+  padding-bottom: 0.35rem;
+}
+
+body:has(.portfolio-browse-page-root) #quarto-sidebar,
+body:has(.portfolio-browse-page-root) .sidebar-navigation,
+body:has(.portfolio-browse-page-root) .sidebar,
+body:has(.portfolio-browse-page-root) .nav-sidebar {
   display: none !important;
 }
 
-body:has(.yoga-browse-page-root) .page-columns .content,
-body:has(.yoga-browse-page-root) .page-columns .column-page,
-body:has(.yoga-browse-page-root) #quarto-content {
+body:has(.portfolio-browse-page-root) .page-columns .content,
+body:has(.portfolio-browse-page-root) .page-columns .column-page,
+body:has(.portfolio-browse-page-root) #quarto-content {
   max-width: none !important;
   padding-left: clamp(1rem, 4vw, 2rem) !important;
   padding-right: clamp(1rem, 4vw, 2rem) !important;
 }
 
-body:has(.yoga-browse-page-root) .page-columns {
+body:has(.portfolio-browse-page-root) .page-columns {
   grid-template-columns: 1fr !important;
 }
 
 // Center catalog: flex column + hide empty margin TOC column so main is not offset left
-body:has(.yoga-browse-page-root) #quarto-content.page-columns {
+body:has(.portfolio-browse-page-root) #quarto-content.page-columns {
   display: flex !important;
   flex-direction: column;
   align-items: center;
 }
 
-body:has(.yoga-browse-page-root) #quarto-margin-sidebar {
+body:has(.portfolio-browse-page-root) #quarto-margin-sidebar {
   display: none !important;
 }
 
-body:has(.yoga-browse-page-root) main#quarto-document-content {
+body:has(.portfolio-browse-page-root) main#quarto-document-content {
   max-width: 1400px !important;
   width: 100%;
   margin-left: auto !important;
@@ -1742,38 +1881,47 @@ body:has(.yoga-browse-page-root) main#quarto-document-content {
   box-sizing: border-box;
 }
 
-// Yoga project page max-width: shared with body.project-site-page (see "Project portfolio subpages" above)
-
 // Project portfolio pages: no right-hand "On this page" TOC (see projects/_metadata.yml)
 body.project-site-page #quarto-margin-sidebar,
-body:has(.yoga-project-page-root) #quarto-margin-sidebar,
+body:has(.portfolio-project-page-root) #quarto-margin-sidebar,
 body:has(.project-pdf-slides-root) #quarto-margin-sidebar {
   display: none !important;
 }
 
-body:has(.yoga-project-page-root) .yoga-view-toggle {
+body:has(.portfolio-project-page-root) .portfolio-view-toggle,
+body:has(.project-pdf-slides-root) .portfolio-view-toggle,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) .portfolio-view-toggle {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   align-items: stretch;
+  padding: 0.45rem;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 2px 10px rgba(1, 38, 38, 0.05);
 }
 
-body:has(.yoga-project-page-root) .yoga-view-toggle .btn {
+body:has(.portfolio-project-page-root) .portfolio-view-toggle .btn,
+body:has(.project-pdf-slides-root) .portfolio-view-toggle .btn,
+body:not(:has(.projects-hero-section)):not(:has(.portfolio-project-page-root)):has(.portfolio-page-intro) .portfolio-view-toggle .btn {
   margin: 0;
   flex: 1 1 auto;
   min-width: min(100%, 9.5rem);
+  border-radius: 0.65rem !important;
+  font-weight: 600;
 }
 
 // Final product: full-size embed - wrapper must have explicit height so iframe doesn't collapse to 300x150
-.yoga-embed-bar {
-  margin-bottom: 0.5rem;
+.portfolio-embed-bar {
+  margin-bottom: 0.65rem;
   display: flex;
   justify-content: flex-end;
 }
 
-// "Open project in new tab" — global `body:has(.yoga-project-page-root) a { color: inherit }` otherwise wins over .btn-outline-primary
-body:has(.yoga-project-page-root) .yoga-embed-bar a.btn-outline-primary {
+// "Open project in new tab" — ensure outline primary wins on tabbed project pages
+body:has(.portfolio-project-page-root) .portfolio-embed-bar a.btn-outline-primary {
   color: $primary !important;
   border-color: $primary !important;
   background-color: transparent !important;
@@ -1786,7 +1934,7 @@ body:has(.yoga-project-page-root) .yoga-embed-bar a.btn-outline-primary {
   }
 }
 
-#yoga-iframe-wrap.yoga-embed-full {
+#portfolio-iframe-wrap.portfolio-embed-full {
   display: block;
   width: 100%;
   margin-top: 0;
@@ -1794,9 +1942,13 @@ body:has(.yoga-project-page-root) .yoga-embed-bar a.btn-outline-primary {
   min-height: 600px !important;
   position: relative;
   overflow: hidden;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(1, 38, 38, 0.1);
+  box-shadow: 0 3px 14px rgba(1, 38, 38, 0.07);
+  background: rgba(243, 234, 231, 0.35);
 }
 
-#yoga-iframe-wrap.yoga-embed-full iframe.yoga-embed {
+#portfolio-iframe-wrap.portfolio-embed-full iframe.portfolio-embed {
   position: absolute !important;
   left: 0 !important;
   top: 0 !important;
@@ -1911,6 +2063,31 @@ body:has(.project-pdf-slides-root) .pdf-slides-embed-bar a.btn-outline-primary {
     background-color: $primary !important;
     border-color: $primary !important;
     color: #fff !important;
+  }
+}
+
+// Robust fallback for "Open PDF in new tab" buttons across all project pages,
+// including browsers where :has() selectors can behave inconsistently.
+.portfolio-embed-bar a.btn-outline-primary,
+.pdf-slides-embed-bar a.btn-outline-primary {
+  color: $primary !important;
+  border-color: $primary !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+
+  &:visited {
+    color: $primary !important;
+    border-color: $primary !important;
+    background-color: transparent !important;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    background-color: $primary !important;
+    border-color: $primary !important;
+    color: #fff !important;
+    text-decoration: none !important;
   }
 }
 

@@ -4,6 +4,8 @@ format:
   html:
     toc: false
     code-fold: false
+    include-in-header:
+      - ../../includes/portfolio-site-embed-chrome.html
 execute:
   warning: false
 ---
@@ -35,7 +37,7 @@ To run the tool on the SIF school data (or any similar file), you set the projec
 
 ```{r geocode-code, eval=FALSE}
 # Set project root (adjust path for your machine)
-proj_root <- "C:/Users/macka/OneDrive/Documents/Cursor-Projects/Offline_Geocoding_Tool"
+proj_root <- "/path/to/Offline_Geocoding_Tool"
 if (dir.exists(proj_root)) setwd(proj_root)
 
 source("geocode_excel_file.R")

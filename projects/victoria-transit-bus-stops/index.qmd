@@ -1,5 +1,5 @@
 ---
-title: "Victoria transit - bus stop popularity for marketing"
+title: "Marketing Segmentation of Victoria Transit Bus Stops"
 sidebar: false
 resources:
   - slides.pdf
@@ -11,70 +11,171 @@ format:
 
 <div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
 
+::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
+:::
+
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+K-means segmentation of Victoria, BC bus stops using census and OpenStreetMap context when stop-level popularity is not observable, with maps and cluster interpretation in a client-facing PDF deck.
+:::
+
+::: {.portfolio-meta-row}
+[Marketing segmentation]{.portfolio-meta-chip}
+[Proxy metric construction]{.portfolio-meta-chip}
+[Client insight presentation]{.portfolio-meta-chip}
+:::
+
+::: {#portfolio-final-product .portfolio-view-panel}
 :::: {.project-pdf-slides-intro}
 
-McMaster research support for a Victoria, BC transit partner that needed **geographically meaningful** marketing priorities when **stop-level ridership** was not available for planning.
+In a research coordinator role at McMaster, the project supported a corporate partner that provides public transit services and the software and hardware behind its network. The partner operated a transit app in Victoria, BC and needed to know which bus stops were relatively stronger targets for a marketing campaign. Stop-level popularity is not a public data product, so discovery set expectations that demand would be inferred indirectly and stops segmented by the kinds of people and surroundings associated with each location.
+
+The slide deck below (PDF) walks through the study area, the census-tract and OpenStreetMap features assembled for every stop, the k-means workflow, the cluster map across Victoria, and how relative ranks of variables were used to name each cluster and translate them into campaign and product ideas.
 
 ::::
+::: {.portfolio-embed-bar}
+[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="Exploring the popularity of bus stops in Victoria, BC (PDF)" class="pdf-slides-embed"></iframe>
+:::
+:::
 
+::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 ### Problem
 
-The client wanted to know **which bus stops to prioritize** for marketing and outreach, but could not rely on measured boarding counts at each stop.
+The client needed to understand the relative popularity of bus stops across Victoria, BC so they could focus a marketing campaign on the right places. Publicly available stop-level boarding (popularity) were not available to support that question directly.
 
 ### Context
 
-A citywide network of stops, finite campaign resources, and a need for segments that planners could **map and discuss**, not just a ranked spreadsheet.
+Initial discovery made clear that "popularity" could not be read off a public table. The practical question became how to approximate demand and segment stops by the characteristics of people and places around each stop, then map those segments so planners and marketing staff could discuss geography in a single view rather than only scanning tables.
 
 ### Goals
 
-- Infer **relative demand profiles** at stops using features that *are* available (people, land use, destinations nearby).
-- Produce **interpretable clusters** that marketing staff can turn into targeted campaigns.
-- Keep claims honest: **inferred** demand as a staging tool, not a substitute for future ridership studies.
+- Build a defensible proxy for stop-level demand using data that does exist at scale: Statistics Canada census attributes, OpenStreetMap natural and built-environment features, and GIS summaries tied to each stop.
+- Run an unsupervised clustering workflow that groups stops with similar profiles and stay transparent about analysis and limitations.
+- Translate clusters into plain-language interpretations and into concrete ideas for campaigns and app features matched to the populations likely to use those stops and to the inferred intensity of use.
 
 ### Stakeholders
 
-- **Transit operator** (Victoria): campaign planning and resource allocation.
-- **McMaster** (research staff): methods design, analysis, and delivery captured in the PDF deck below.
+- **Primary:** The transit partner and app operator in Victoria, BC (campaign and product planning).
+- **Research support:** McMaster coordination and analysis, documented in the PDF deck embedded on this page.
 
 ### Final deliverable
 
-A **slide deck (PDF)** presenting the approach, maps, and cluster interpretation-plus the workflow logic for reuse in other municipalities facing similar data gaps.
+A PDF slide deck titled *Exploring the Popularity of Bus Stops in Victoria, BC*, covering data assembly, k-means clustering, cluster maps and centre profiles, relative ranking of variables within clusters, and discussion that ties each cluster to example rider-facing and partner-facing ideas.
+:::
 
+::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
+
+### Problem Definition
+
+- **Context:** The dependent variable of interest (true stop popularity) was unknown and not available from open data, so an unsupervised approach was appropriate to find patterns and groupings rather than to fit a predictive model.
+- **What was needed:** A structured stop-level table of geographically-contextual information, a clustering method that behaves well on mixed numeric scales, and a disciplined way to read clusters back onto the map and onto marketing strategy.
 
 ### Scope & Assumptions
 
-- **Scope (planned):** citywide Victoria stops; McMaster research support; **catchment-based** features; **unsupervised** grouping.
-- **Assumption:** demographics, built form, and destination density will **proxy** latent demand well enough to **stage** campaigns (not to replace ridership studies later).
+- **Scope:** Citywide bus stops in Victoria, BC; features summarized in and around each stop so stops remain comparable within one study area.
+- **Assumption:** Census-tract demographics plus nearby land use and amenity density from OpenStreetMap capture enough context to differentiate stops for campaign planning, while remaining clearly distinct from measured ridership (which could be layered in later if the operator collects it).
 
 ### Data Sources
 
-- **Planned:** census demographics; land use; POIs; **walkable catchments** around each stop so stops stay comparable.
+- **Demographics:** A broad set of census-tract variables from Statistics Canada (e.g., population structure, median age, households, single-parent households, median income, low-income households, and households where English or French is a second language), aligned to the tracts surrounding each stop.
+- **Natural and built environment (OpenStreetMap):** Distances from stops to features such as waterbodies and ocean coastline; lengths of roads and waterways summed within a 400 m (about 0.25 mi) buffer; counts of points of interest by theme within 400 m (accommodation, arts and culture, education, food and drink, outdoor, retail, services, sports and recreation, transportation amenities and infrastructure, utilities, and other categories); street furniture within 25 m (about 80 ft); and related summaries used in the deck to describe the context of each stop.
+- **Transit network:** Counts such as unique bus routes touching the buffer where that helped describe stop intensity.
 
 ### Analytical Design
 
-- **Plan:** assemble a **stop-level feature matrix** → **k-means** (or close variant) → **interpretable clusters** for messaging.
-- Map clusters for planning conversations.
+- **Structure:** All inputs were assembled into a single analysis-ready matrix with one row per bus stop.
+- **Clustering:** Variables were centered and scaled, then k-means clustering was applied. A scree plot supported choosing k; the elbow indicated four clusters (k = 4).
+- **Interpretation:** Cluster centres were examined on the scaled scale, including heat-map style views in the deck, and variables were relatively ranked within each cluster to describe what each group represented in terms of people and place.
+- **Outputs:** A cluster map of Victoria showing stop membership, plus narrative labels derived from those profiles.
 
 ### Workflow / Process
 
-**Planned steps:** define catchments → engineer features → cluster → **sanity-check** with the client → map segments for outreach.
+1. Define the study area and bus stop locations; link each stop to census geography for tract-level attributes.
+2. Compute OpenStreetMap-based distances, lengths, and counts under consistent buffer rules so every stop uses the same measurement logic.
+3. Build the stop-by-variable table and apply centering and scaling ahead of clustering.
+4. Use a scree plot to select k, then fit k-means with k = 4 and map cluster assignments.
+5. Profile each cluster (centres, relative ranks) and connect profiles to marketing and app-oriented ideas that match the inferred types of riders and the relative intensity of stop use suggested in the deck.
 
 ### Constraints & Considerations
 
-- I will flag **data currency** and **MAUP** effects around stops.
-- The deck will state clearly: outputs are **inferred** demand, **not** measured ridership.
+- **Interpretability:** K-means is unsupervised; without a gold-standard popularity measure there is no formal validation against observed demand. The deck treats clusters as planning and segmentation inputs, not as calibrated forecasts of boardings.
+- **Spatial support:** Summaries depend on buffer sizes and census tract boundaries; those choices affect every stop in the same way but still deserve transparency when results are discussed with stakeholders.
+- **Honest claims:** The analysis infers relative differences useful for targeting; it does not replace operational ridership studies if those become available later.
+:::
 
+::: {#portfolio-impact .portfolio-view-panel .d-none}
 ## Impact & Outcome
 
-This project gave the client a practical way to prioritize marketing when direct ridership counts were unavailable. Instead of broad campaigns, they could focus outreach around stop clusters with the strongest inferred demand and strategic value. The workflow is also reusable for other municipalities facing similar data gaps.
+The four-cluster solution gave the client a shared map-based language for discussing stops: residential areas with family-oriented census profiles; mixed-use areas with a balance of amenities and somewhat lower median income; urban, active areas with a younger demographic; and older, higher-income areas with fewer amenities immediately around the stop. Relative ranks of variables within each cluster made it possible to connect each segment to different feature ideas and marketing angles, including how heavily those stops might be used day to day compared with others in the deck.
 
-:::: {.pdf-slides-embed-bar}
-[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
-::::
+That turned an unavailable "popularity" field into actionable segmentation grounded in public census and OSM context, which the partner could use to plan campaigns and product messaging without pretending the clusters were measured ridership.
+:::
 
-:::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
-<iframe src="slides.pdf" title="Exploring the popularity of bus stops in Victoria, BC (PDF)" class="pdf-slides-embed"></iframe>
-::::
+<script>
+(function() {
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnImpact) return;
+
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnApproach, btnImpact].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
+  btnImpact.addEventListener('click', showImpact);
+})();
+</script>

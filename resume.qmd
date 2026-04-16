@@ -54,6 +54,7 @@ Understanding [systems]{.resume-tagline-em} through data and research
 **Professional Summary**
 
 I work across the full lifecycle of analytical and research projects in public-sector environments, supporting teams from problem definition and data quality assessment through analysis, communication, and workflow design. My experience spans municipal, federal, and academic settings, where I help organizations strengthen data practice, understand systems, and make informed decisions with confidence.
+I have supervised staff, teaching assistants, and student contributors, balancing coaching, accountability, and delivery across teams with varied technical backgrounds and availability.
 
 :::
 :::
@@ -87,9 +88,11 @@ I work across the full lifecycle of analytical and research projects in public-s
 
 ::: {.resume-job-card}
 ### Research Coordinator - McMaster University (2021-2023)
+- Supervised a mixed team of approximately 8 staff and student contributors, assigning work, coaching development, and supporting role clarity across projects.
 - Coordinated research activities across multiple analytics initiatives, supporting planning, task tracking, and cross-functional collaboration.
 - Analyzed large administrative and spatial datasets to support segmentation, outreach planning, and evidence-informed service delivery.
-- Managed concurrent research requests from intake through delivery, tracking scope, schedules, milestones, and risks.
+- Managed concurrent research requests from intake through delivery, tracking scope, schedules, milestones, and risks across full-time and part-time contributors.
+- Coordinated cross-functional collaboration between research teams and external partners with different objectives, timelines, and communication needs.
 - Supported ethical and procedural compliance by maintaining documentation and reinforcing standards across projects.
 :::
 
@@ -97,12 +100,14 @@ I work across the full lifecycle of analytical and research projects in public-s
 ### Sessional Lecturer - University of Toronto (2020-2021)
 - Delivered hands-on training in applied data analysis and spatial data science.
 - Developed course materials, assignments, and tutorials to support skill development and tool adoption across diverse audiences.
+- Supervised teaching assistants, coordinated lab and office-hour delivery, and reinforced instructional consistency across course sections.
 :::
 
 ::: {.resume-job-card}
 ### Doctoral Researcher - McMaster University (2013-2020)
 - Conducted spatial and analytical research to support public policy and program analysis.
 - Led a Google Street View-based project from design through implementation, producing a public-facing digital resource with over 8 million views.
+- Facilitated tutorials, coached students through lab assignments using guided questioning, and provided office-hour support to strengthen applied analytical skills.
 :::
 
 :::
@@ -159,6 +164,7 @@ I work across the full lifecycle of analytical and research projects in public-s
 
 ::: {.resume-skill-tags}
 [planning]{.resume-skill-tag} [task tracking]{.resume-skill-tag} [stakeholder engagement]{.resume-skill-tag} [cross-functional collaboration]{.resume-skill-tag}
+[people supervision]{.resume-skill-tag} [coaching]{.resume-skill-tag} [team leadership]{.resume-skill-tag}
 :::
 
 :::

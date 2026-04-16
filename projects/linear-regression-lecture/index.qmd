@@ -11,70 +11,159 @@ format:
 
 <div class="project-pdf-slides-root" hidden aria-hidden="true"></div>
 
+::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
+:::
+
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+Guest lecture designed to make linear regression approachable for transportation geography students with widely varying statistics backgrounds.
+:::
+
+::: {.portfolio-meta-row}
+[Instructional design]{.portfolio-meta-chip}
+[Concept clarity for learners]{.portfolio-meta-chip}
+[Lecture presentation]{.portfolio-meta-chip}
+:::
+
+::: {#portfolio-final-product .portfolio-view-panel}
 :::: {.project-pdf-slides-intro}
 
-One lecture’s worth of slides for McMaster geography undergraduates-**intuition before algebra**, with examples tied to how regression shows up in geographic research.
+Lecture slides delivered for a McMaster transportation geography course while at Statistics Canada, designed to bridge complete beginners and advanced students by grounding linear regression in familiar algebra before moving into full model interpretation.
 
 ::::
+::: {.portfolio-embed-bar}
+[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
+:::
+::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
+<iframe src="slides.pdf" title="Transport geography - linear regression lecture slides (PDF)" class="pdf-slides-embed"></iframe>
+:::
+:::
 
+::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 ### Problem
 
-The course enrolled geography students who were **not** required to take statistics first. They still needed to read papers and eventually run or interpret models, so regression could not stay a black box.
+The class included fourth-year geography students with very different quantitative backgrounds, from no statistics experience to statistics majors. Linear regression can feel overwhelming at first because students must learn new terms, notation, and assumptions quickly, especially without strong math confidence.
 
 ### Context
 
-Undergraduate geography at McMaster: quantitative methods appear in readings and assignments, but comfort with formal stats varies widely across the cohort.
+While working at Statistics Canada, I was invited by a professor at McMaster University to deliver a linear regression lecture for a transportation geography course. The lecture needed to support mixed experience levels in one session while still preparing students to interpret and apply regression in course and real-world settings.
 
 ### Goals
 
-- Give **usable intuition** for what linear regression does, what coefficients mean, and where models mislead.
-- Use **visual**, small examples rather than long derivations.
-- Connect content directly to **geographic** outcomes and common pitfalls (nonlinearity, outliers, confounding).
+- Demystify linear regression for beginners by making the model as visual and intuitive as possible.
+- Anchor the model in familiar high-school algebra (`y = mx + b`) to reduce cognitive load before introducing full statistical notation.
+- Build from core model meaning into prediction, residuals, model error, and R-squared.
+- Explain assumptions and exploratory checks with visual examples so students can assess whether a linear model is appropriate.
 
 ### Stakeholders
 
-- **Students:** primary audience in the classroom.
-- **Course instructor/program:** alignment with learning objectives and pacing for one lecture slot.
+- **Students:** fourth-year transportation geography students with mixed quantitative preparation.
+- **Professor:** course alignment and instructional clarity within a single lecture slot.
 
 ### Final deliverable
 
-The **slide deck (PDF)** used in class-figures, talking points, and a progression from scatterplots through reading output and “what can go wrong.”
+The final deliverable was a complete lecture slide deck (PDF) used in class, structured as a step-by-step progression from familiar algebra to formal linear regression, then into prediction, residuals, model fit, and assumptions.
+:::
 
+::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
 
 ### Scope & Assumptions
 
-- **Scope (planned):** one lecture cycle-linear regression **basics**, light diagnostics, **geography-flavoured** examples.
-- **Assumption:** I can demo software; I will **skip** long algebraic derivations.
+- **Scope:** One lecture focused on foundational linear regression concepts, model interpretation, and assumption-aware exploratory analysis.
+- **Assumption:** Teaching should prioritize conceptual clarity and visual explanation over heavy derivation so beginners can build confidence quickly.
 
 ### Data Sources
 
-- **Planned:** small, **relatable** datasets; plots that show **fit**, **residuals**, and **model comparisons** at a glance.
+- **Teaching materials:** Slide visuals and worked examples designed to compare simple algebra and linear regression notation directly.
+- **Analytical examples:** Scatterplots and model outputs used to explain predictions, residuals, model error, and R-squared in plain language.
 
 ### Analytical Design
 
-- **Planned sequence:** least-squares **geometry** → what coefficients **mean** → pitfalls (nonlinearity, outliers, confounding).
-- **Inference** stays light until intuition **lands**.
+- **Instructional sequence:** start with `y = mx + b` -> map each component to the linear regression model -> interpret coefficients and predictions -> introduce residuals and model error -> explain R-squared -> review assumptions with visual exploratory checks.
+- **Design choice:** repeatedly switch between beginner-friendly algebra and full regression notation so students can see they represent the same underlying idea.
 
 ### Workflow / Process
 
-**Planned arc:** motivation → scatterplots → model form → **how to read output** → geographic examples + **what can go wrong**.
+1. Introduce why linear regression appears frequently in geography and transportation analysis.
+2. Build intuition through visual examples and algebra-to-regression translation.
+3. Walk through prediction, residuals, model error, and R-squared using incremental examples.
+4. Close with exploratory data analysis and model assumptions to support responsible model use.
 
 ### Constraints & Considerations
 
-- **Class time** is fixed; math comfort will vary-I will pace for the **median** learner.
-- Examples will **align** with how regression appears in their **readings and assignments**.
+- Class time was fixed and student preparation varied substantially, so pacing needed to keep beginners engaged without losing advanced learners.
+- Statistical jargon and notation can create early barriers, so terminology had to be introduced gradually and paired with concrete visuals.
+- Assumptions and diagnostics can be abstract on first exposure, so examples needed to stay practical and easy to interpret.
+:::
 
+::: {#portfolio-impact .portfolio-view-panel .d-none}
 ## Impact & Outcome
 
-This lecture improved statistical confidence for students without prior quantitative training by making regression concepts approachable and visually intuitive. It supported more equitable learning outcomes and gave students a practical foundation for interpreting and applying models in geographic research contexts.
+The lecture improved student confidence with linear regression by turning a potentially technical topic into a clear visual progression from familiar algebra to applied model interpretation. Student feedback shared with the course professor indicated that the session was easy to follow and increased confidence in using regression in future coursework and real-world contexts. Notably, students majoring in statistics also reported that the presentation was one of the clearest explanations of the material they had seen.
+:::
 
-:::: {.pdf-slides-embed-bar}
-[Open PDF in new tab](slides.pdf){.btn .btn-sm .btn-outline-primary target="_blank" rel="noopener"}
-::::
+<script>
+(function() {
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnImpact) return;
 
-:::: {#pdf-slides-frame-wrap .pdf-slides-embed-full}
-<iframe src="slides.pdf" title="Transport geography - linear regression lecture slides (PDF)" class="pdf-slides-embed"></iframe>
-::::
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnApproach, btnImpact].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
+  btnImpact.addEventListener('click', showImpact);
+})();
+</script>
