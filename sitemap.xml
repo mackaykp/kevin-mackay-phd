@@ -1,95 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/resume.html</loc>
-    <lastmod>2026-04-02T14:22:18.232Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/index.html</loc>
-    <lastmod>2026-04-02T14:22:17.844Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Offline_Geocoding_Tool/docs/geocoding_test_analysis.html</loc>
-    <lastmod>2026-04-02T14:22:18.131Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Offline_Geocoding_Tool/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.131Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/example-other.html</loc>
-    <lastmod>2026-04-02T14:22:18.161Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/example-stats.html</loc>
-    <lastmod>2026-04-02T14:22:18.161Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/PhD_Dissertation/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.132Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Leaflet_Mapping_Tool/vignettes/README_vignette_maps.html</loc>
-    <lastmod>2026-04-02T14:22:17.974Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Leaflet_Mapping_Tool/index.html</loc>
-    <lastmod>2026-04-02T14:22:17.974Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/yoga-video-catalog/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.231Z</lastmod>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/work-with-me.html</loc>
+    <lastmod>2026-04-16T17:53:24.254Z</lastmod>
   </url>
   <url>
     <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/victoria-transit-bus-stops/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.204Z</lastmod>
+    <lastmod>2026-04-16T17:53:24.226Z</lastmod>
   </url>
   <url>
     <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/phd-defense/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/linear-regression-lecture/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.161Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Belay_Buddy_Demo/index.html</loc>
-    <lastmod>2026-04-02T14:22:17.973Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/yoga-video-catalog/browse.html</loc>
-    <lastmod>2026-04-02T14:22:18.222Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Leaflet_Mapping_Tool/guide.html</loc>
-    <lastmod>2026-04-02T14:22:17.974Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Leaflet_Mapping_Tool/vignettes/vignettes.html</loc>
-    <lastmod>2026-04-02T14:22:18.131Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.161Z</lastmod>
+    <lastmod>2026-04-16T17:53:24.213Z</lastmod>
   </url>
   <url>
     <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/medical-geography-presentation/index.html</loc>
-    <lastmod>2026-04-02T14:22:18.164Z</lastmod>
+    <lastmod>2026-04-16T17:53:24.186Z</lastmod>
   </url>
   <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/example-automation.html</loc>
-    <lastmod>2026-04-02T14:22:18.161Z</lastmod>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Leaflet_Mapping_Tool/vignettes/README_vignette_maps.html</loc>
+    <lastmod>2026-04-16T17:53:23.981Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Offline_Geocoding_Tool/index.html</loc>
+    <lastmod>2026-04-16T17:53:24.154Z</lastmod>
   </url>
   <url>
     <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Offline_Geocoding_Tool/Geocoding_Tool_Showcase.html</loc>
-    <lastmod>2026-04-02T14:22:18.131Z</lastmod>
+    <lastmod>2026-04-16T17:53:24.146Z</lastmod>
   </url>
   <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/work-with-me.html</loc>
-    <lastmod>2026-04-02T14:22:18.232Z</lastmod>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/yoga-video-catalog/index.html</loc>
+    <lastmod>2026-04-16T17:53:24.253Z</lastmod>
   </url>
   <url>
-    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects.html</loc>
-    <lastmod>2026-04-02T14:22:17.845Z</lastmod>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Belay_Buddy_Demo/index.html</loc>
+    <lastmod>2026-04-16T17:53:23.980Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/resume.html</loc>
+    <lastmod>2026-04-16T17:53:24.254Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/linear-regression-lecture/index.html</loc>
+    <lastmod>2026-04-16T17:53:24.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/yoga-video-catalog/browse.html</loc>
+    <lastmod>2026-04-16T17:53:24.243Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Offline_Geocoding_Tool/docs/geocoding_test_analysis.html</loc>
+    <lastmod>2026-04-16T17:53:24.154Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Leaflet_Mapping_Tool/vignettes/vignettes.html</loc>
+    <lastmod>2026-04-16T17:53:24.146Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/Leaflet_Mapping_Tool/index.html</loc>
+    <lastmod>2026-04-16T17:53:23.981Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/PhD_Dissertation/index.html</loc>
+    <lastmod>2026-04-16T17:53:24.154Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/projects/index.html</loc>
+    <lastmod>2026-04-16T17:53:24.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mackaykp.github.io/kevin-mackay-phd/index.html</loc>
+    <lastmod>2026-04-16T17:53:23.852Z</lastmod>
   </url>
 </urlset>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -75,10 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6f7252793c08859a059e0bf404d61d47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-897d1d7e0a76b8aa98fa4dcec424a3d3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -194,99 +194,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="yoga-project-page-root" hidden="" aria-hidden="true">
+<div class="portfolio-project-page-root" hidden="" aria-hidden="true">
 
 </div>
-<div class="yoga-view-toggle" role="group" aria-label="Switch view">
-<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">
+<div class="portfolio-view-toggle" role="group" aria-label="Switch view">
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">
 Final product
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">
 Project Overview
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">
 Project Approach
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-scripts" aria-pressed="false">
 Scripts &amp; Code
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">
 Impact &amp; Outcome
 </button>
 </div>
-<div id="yoga-final-product" class="yoga-view-panel">
-<div class="yoga-embed-bar">
+<div class="portfolio-page-intro">
+<div class="portfolio-accent-rule">
+
+</div>
+<p>Automated cross-channel catalog pipeline that turns raw YouTube listings into a practical, filterable yoga videos.</p>
+</div>
+<div class="portfolio-meta-row">
+<p><span class="portfolio-meta-chip">Media catalog automation</span> <span class="portfolio-meta-chip">Metadata standardization at scale</span> <span class="portfolio-meta-chip">Filterable content library</span></p>
+</div>
+<div id="portfolio-final-product" class="portfolio-view-panel">
+<div class="portfolio-embed-bar">
 <p><a href="browse.html" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Open project in new tab</a></p>
 </div>
-<div id="yoga-iframe-wrap" class="yoga-embed-full">
-<iframe src="browse.html" title="Yoga Video Catalog - browse" class="yoga-embed" allowfullscreen="" style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;">
+<div id="portfolio-iframe-wrap" class="portfolio-embed-full">
+<iframe src="browse.html" title="Yoga Video Catalog - browse" class="portfolio-embed" allowfullscreen="" style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;">
 </iframe>
 </div>
 </div>
-<div id="yoga-overview" class="yoga-view-panel d-none">
+<div id="portfolio-overview" class="portfolio-view-panel d-none">
 <section id="project-overview" class="level2">
 <h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
 <section id="problem" class="level3">
 <h3 class="anchored" data-anchor-id="problem">Problem</h3>
-<p>Yoga content was spread across several YouTube channels. There was no single place to <strong>filter</strong> by length, focus area, recency, or channel, so choosing a session meant repeating the same manual searches.</p>
+<p>As a regular climber with office-heavy workdays, yoga became a practical way to maintain flexibility and mobility while offsetting long stretches of sitting. Over time, preferred channels and flow styles became clear, but YouTube’s broad, general-purpose search experience made it difficult to filter yoga content with the granularity needed for real session planning.</p>
 </section>
 <section id="context" class="level3">
 <h3 class="anchored" data-anchor-id="context">Context</h3>
-<p>I follow a fixed set of trusted instructors and wanted one <strong>personal</strong> catalog that stays current as channels publish new videos-without hand-maintaining spreadsheets.</p>
+<p>The project started as a personal frustration: repeatedly searching multiple channels for combinations like duration, body-focus intent, recency, and instructor. The goal was to build a focused catalog for trusted channels that stays current as new videos are published, without hand-maintained spreadsheets or YouTube API setup.</p>
 </section>
 <section id="goals" class="level3">
 <h3 class="anchored" data-anchor-id="goals">Goals</h3>
 <ul>
 <li>Centralize videos from a configurable channel list in one browsable catalog.</li>
-<li>Support filters (duration, year, focus, channel, keyword) and a simple <strong>My List</strong> queue in the browser.</li>
-<li>Keep updates <strong>automated</strong> and reproducible (scrape → enrich → publish), not copy-paste.</li>
+<li>Support the actual browse interactions implemented in the app: dual-range duration and upload-year controls, include/exclude chips for focus and channel, keyword search, hover preview, and a browser-persisted My List queue.</li>
+<li>Keep updates automated and reproducible (scrape -&gt; enrich -&gt; categorize -&gt; focus refresh -&gt; publish), not copy-paste.</li>
 </ul>
 </section>
 <section id="stakeholders" class="level3">
 <h3 class="anchored" data-anchor-id="stakeholders">Stakeholders</h3>
 <ul>
 <li><strong>Primary user:</strong> me, for day-to-day practice planning.</li>
-<li><strong>Secondary audience:</strong> portfolio visitors evaluating end-to-end data engineering and front-end delivery.</li>
+<li><strong>Secondary users:</strong> climbing friends who want more targeted filtering than default platform search.</li>
+<li><strong>Portfolio audience:</strong> visitors evaluating end-to-end data engineering and front-end delivery.</li>
 </ul>
 </section>
 <section id="final-deliverable" class="level3">
 <h3 class="anchored" data-anchor-id="final-deliverable">Final deliverable</h3>
-<p>The <a href="browse.html"><strong>Browse catalog</strong></a> is the main product: a full-screen, filterable HTML catalog with sliders, chips, search, and a local queue. Implementation details, scripts, and data paths live under <strong>Scripts &amp; Code</strong>.</p>
+<p>The <a href="browse.html">Browse catalog</a> is the main product: a full-screen, filterable HTML catalog backed by the enriched CSV, with duration and year range controls, focus and channel include/exclude chips, keyword search, in-card video preview, and a localStorage-backed queue with reorder and total-duration summaries. Implementation details, scripts, and data paths live under Scripts &amp; Code.</p>
 </section>
 </section>
 </div>
-<div id="yoga-approach" class="yoga-view-panel d-none">
+<div id="portfolio-approach" class="portfolio-view-panel d-none">
 <section id="project-approach" class="level2">
 <h2 class="anchored" data-anchor-id="project-approach">Project Approach</h2>
 <section id="problem-definition" class="level3">
 <h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
 <ul>
-<li><strong>Context:</strong> Yoga videos lived across several channels; there was <strong>no</strong> single place to filter by length, focus, or recency.</li>
-<li><strong>Gap:</strong> I kept redoing manual searches instead of having one reusable view.</li>
+<li><strong>Context:</strong> Yoga videos lived across several channels; there was no single place to filter by length, body focus, or recency.</li>
+<li><strong>Gap:</strong> Repeated manual searching and cross-checking across channels replaced what should have been one reusable, yoga-specific browse layer.</li>
 </ul>
 </section>
 <section id="scope-assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="scope-assumptions">Scope &amp; Assumptions</h3>
 <ul>
-<li><strong>Scope (planned):</strong> personal use; reproducible automation; a fixed list of trusted channels.</li>
-<li><strong>Assumptions:</strong> channel layouts will stay scrapable; yt-dlp metadata will be enough to tag <strong>focus</strong> without hand-labeling every video.</li>
+<li><strong>Scope:</strong> personal-use catalog with an open workflow, reproducible automation, and a fixed list of trusted channels managed in configuration.</li>
+<li><strong>Assumptions:</strong> channel layouts will stay scrapable; yt-dlp metadata will be enough to tag focus without hand-labeling every video.</li>
 </ul>
 </section>
 <section id="data-sources" class="level3">
 <h3 class="anchored" data-anchor-id="data-sources">Data Sources</h3>
 <ul>
-<li><strong>Planned inputs:</strong> listing fields from each channel’s Videos page (IDs, titles, durations); full metadata via yt-dlp (description, dates, views).</li>
+<li><strong>Inputs:</strong> listing fields from each channel’s Videos page (video IDs, titles, durations, metadata line, URL) plus per-video metadata fetched with yt-dlp (description, upload date, view count, like count, categories, tags).</li>
 <li><strong>Config-only tuning:</strong> <code>channel_urls.json</code>, <code>focus_map.json</code>, <code>exclude_keywords.json</code> (change without editing code).</li>
-<li><strong>Artifacts:</strong> enriched CSV is the source of truth; Quarto <code>browse.qmd</code> reads it plus config JSON for the static browse UI.</li>
+<li><strong>Artifacts:</strong> enriched CSV is the source of truth; Quarto <code>browse.qmd</code> reads it and emits JSON payloads for the static browse UI.</li>
 </ul>
 </section>
 <section id="analytical-design" class="level3">
 <h3 class="anchored" data-anchor-id="analytical-design">Analytical Design</h3>
 <ul>
-<li><strong>Intent:</strong> a <strong>pipeline</strong>, not a one-off scrape-incremental “new videos only” pulls per channel.</li>
-<li><strong>Focus rules:</strong> keywords on title + description → deterministic tags.</li>
-<li><strong>UI plan:</strong> derived buckets for duration and year → sliders and chips on the browse page.</li>
-<li><strong>Stack (planned):</strong> Python + <strong>Playwright</strong> for listings; <strong>yt-dlp</strong> + pandas for enrichment; <strong>Quarto</strong>, R (CSV → JSON), and vanilla JS for filters and queue-<strong>no YouTube API</strong>.</li>
+<li><strong>Intent:</strong> a pipeline, not a one-off scrape - incremental “new videos only” pulls per channel.</li>
+<li><strong>Focus rules:</strong> deterministic keyword matching on title + truncated description (using <code>focus_map.json</code>) to assign canonical focus tags.</li>
+<li><strong>Derived fields:</strong> duration minutes and buckets, upload-year fields, and view-count bands for consistent filtering and presentation.</li>
+<li><strong>Stack:</strong> Python + Playwright for listings, yt-dlp + pandas for enrichment and categorization, and Quarto + R + vanilla JS for browse-page rendering and client-side interaction - no YouTube API authentication flow required.</li>
 </ul>
 </section>
 <section id="workflow-process" class="level3">
@@ -334,19 +344,19 @@ Impact &amp; Outcome
 </tr>
 </tbody>
 </table>
-<p>So: <strong>scraping → ETL → categorization → focus → Quarto render</strong> in one repeatable path.</p>
+<p>So: scraping -&gt; ETL -&gt; categorization -&gt; focus -&gt; Quarto render in one repeatable path.</p>
 </section>
 <section id="constraints-considerations" class="level3">
 <h3 class="anchored" data-anchor-id="constraints-considerations">Constraints &amp; Considerations</h3>
 <ul>
-<li>I will respect site terms and rate limits; <strong>no API keys</strong>.</li>
-<li>Layout changes <strong>will</strong> break scrapers sometimes-budget time for fixes.</li>
-<li>Jobs will be <strong>resumable</strong>; exclusions + focus maps will handle QC without row-by-row review.</li>
+<li>Site terms and request pacing still matter even without API keys.</li>
+<li>YouTube layout changes can break selectors and require periodic scraper maintenance.</li>
+<li>Keyword maps and exclusion lists improve consistency, but they are heuristic and need occasional review as channels and naming patterns evolve.</li>
 </ul>
 </section>
 </section>
 </div>
-<div id="yoga-scripts" class="yoga-view-panel d-none">
+<div id="portfolio-scripts" class="portfolio-view-panel d-none">
 <section id="data-and-config" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-config">Data and config</h2>
 <table class="caption-top table">
@@ -1255,31 +1265,32 @@ Impact &amp; Outcome
 </div>
 </section>
 </div>
-<div id="yoga-impact" class="yoga-view-panel d-none">
+<div id="portfolio-impact" class="portfolio-view-panel d-none">
 <section id="impact-outcome" class="level2">
 <h2 class="anchored" data-anchor-id="impact-outcome">Impact &amp; Outcome</h2>
 <p>This project solved a practical personal problem - finding the right yoga video quickly without repeatedly searching multiple channels - and converted it into a reusable data product.</p>
 <ul>
-<li><strong>Time savings for day-to-day use:</strong> Instead of checking channel pages manually, the catalog centralizes discovery and filtering in one place.</li>
-<li><strong>Higher quality decisions:</strong> Duration, focus tags, and year filters make it easier to choose sessions that match schedule, goals, and energy level.</li>
+<li><strong>Time savings for day-to-day use:</strong> Instead of checking multiple channel pages manually, the catalog centralizes discovery and filtering in one place.</li>
+<li><strong>Higher quality session matching:</strong> Duration, focus tags, channel controls, keyword search, and year filtering make it easier to choose sessions that match schedule, mobility goals, and training context.</li>
 <li><strong>Sustainable maintenance:</strong> The incremental update flow (<code>update_from_channels.py</code>) lowers upkeep effort and keeps the catalog current without full reprocessing.</li>
-<li><strong>Reusable architecture:</strong> The same scrape -&gt; enrich -&gt; categorize -&gt; publish pattern can be adapted to other media collections or content monitoring workflows.</li>
-<li><strong>Portfolio value:</strong> It demonstrates end-to-end ownership - data acquisition, ETL, automation, and UX delivery - in a production-like workflow that is actually used.</li>
+<li><strong>Reusable architecture:</strong> The same scrape -&gt; enrich -&gt; categorize -&gt; focus -&gt; publish pattern can be adapted to other media catalogs or content-monitoring workflows.</li>
+<li><strong>Open and extensible:</strong> Because the project is open source and configuration-driven, others can fork it, swap channel lists and focus maps, and build a catalog aligned with their own practice.</li>
+<li><strong>Portfolio value:</strong> It demonstrates end-to-end ownership - data acquisition, ETL, automation, and UX delivery - on a workflow built for a real, recurring personal use case.</li>
 </ul>
 </section>
 </div>
 <script>
 (function() {
-  var productPanel = document.getElementById('yoga-final-product');
-  var overviewPanel = document.getElementById('yoga-overview');
-  var approachPanel = document.getElementById('yoga-approach');
-  var scriptsPanel = document.getElementById('yoga-scripts');
-  var impactPanel = document.getElementById('yoga-impact');
-  var btnProduct = document.querySelector('.yoga-btn-product');
-  var btnOverview = document.querySelector('.yoga-btn-overview');
-  var btnApproach = document.querySelector('.yoga-btn-approach');
-  var btnScripts = document.querySelector('.yoga-btn-scripts');
-  var btnImpact = document.querySelector('.yoga-btn-impact');
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var scriptsPanel = document.getElementById('portfolio-scripts');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnScripts = document.querySelector('.portfolio-btn-scripts');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
   if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {

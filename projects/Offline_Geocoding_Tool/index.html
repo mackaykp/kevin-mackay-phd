@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -75,10 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6f7252793c08859a059e0bf404d61d47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-897d1d7e0a76b8aa98fa4dcec424a3d3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -194,121 +194,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="yoga-project-page-root" hidden="" aria-hidden="true">
+<div class="portfolio-project-page-root" hidden="" aria-hidden="true">
 
 </div>
-<div class="yoga-view-toggle" role="group" aria-label="Switch view">
-<button type="button" class="btn btn-primary yoga-btn-product" aria-pressed="true">
+<div class="portfolio-view-toggle" role="group" aria-label="Switch view">
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">
 Final product
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-overview" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">
 Project Overview
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-approach" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">
 Project Approach
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-scripts" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-scripts" aria-pressed="false">
 Scripts &amp; Code
 </button>
-<button type="button" class="btn btn-outline-primary yoga-btn-impact" aria-pressed="false">
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">
 Impact &amp; Outcome
 </button>
 </div>
-<div id="yoga-final-product" class="yoga-view-panel">
-<div class="yoga-embed-bar">
+<div class="portfolio-page-intro">
+<div class="portfolio-accent-rule">
+
+</div>
+<p>Offline geocoding workflow designed for sensitive Canadian address data, with deterministic matching and transparent fallback logic.</p>
+</div>
+<div class="portfolio-meta-row">
+<p><span class="portfolio-meta-chip">Privacy-safe geocoding</span> <span class="portfolio-meta-chip">Deterministic address matching</span> <span class="portfolio-meta-chip">Reproducible geocoding pipeline</span></p>
+</div>
+<div id="portfolio-final-product" class="portfolio-view-panel">
+<div class="portfolio-embed-bar">
 <p><a href="Geocoding_Tool_Showcase.html" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Open project in new tab</a></p>
 </div>
-<div id="yoga-iframe-wrap" class="yoga-embed-full">
-<iframe src="Geocoding_Tool_Showcase.html" title="Offline Geocoding Tool - Showcase" class="yoga-embed" allowfullscreen="" style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;">
+<div id="portfolio-iframe-wrap" class="portfolio-embed-full">
+<iframe src="Geocoding_Tool_Showcase.html" title="Offline Geocoding Tool - Showcase" class="portfolio-embed" allowfullscreen="" style="width:100%;height:100%;position:absolute;left:0;top:0;border:0;">
 </iframe>
 </div>
 </div>
-<div id="yoga-overview" class="yoga-view-panel d-none">
+<div id="portfolio-overview" class="portfolio-view-panel d-none">
 <section id="project-overview" class="level2">
 <h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
 <section id="problem" class="level3">
 <h3 class="anchored" data-anchor-id="problem">Problem</h3>
-<p>Statistics Canada’s National Address Register (NAR) is the natural reference for authoritative Canadian addresses, but teams often need to geocode <strong>large spreadsheets</strong> (schools, facilities, programs) without sending data to the cloud or opening a GIS desktop.</p>
+<p>In an early Statistics Canada assignment, I needed to estimate distances between survey respondents and local data-collection facilities across 16 Canadian cities. That required geocoding respondent addresses, but cloud APIs and commercial platforms were not an option because the records were highly sensitive.</p>
 </section>
 <section id="context" class="level3">
 <h3 class="anchored" data-anchor-id="context">Context</h3>
-<p>Governance and air-gapped environments ruled out consumer geocoding APIs. The work needed a <strong>single, auditable</strong> matcher against NAR with explainable match types and coordinates written back to CSV.</p>
+<p>Address quality varied widely across large and small cities, and source formats were not standardized to existing internal street-reference files. A direct join against pre-existing XY-enabled datasets was therefore unreliable, so the work needed a dataset-specific geocoder that could run offline and still produce auditable outputs.</p>
 </section>
 <section id="goals" class="level3">
 <h3 class="anchored" data-anchor-id="goals">Goals</h3>
 <ul>
-<li>Match input rows to NAR with a <strong>documented hierarchy</strong> (not ad hoc string matching).</li>
-<li>Run <strong>fully offline</strong> after a one-time reference build.</li>
-<li>Support <strong>large files</strong> with resumable batch output and bilingual (EN/FR) address forms.</li>
+<li>Support offline geocoding for sensitive records without external API calls.</li>
+<li>Match inconsistent street-address inputs using a documented hierarchy rather than ad hoc one-off rules.</li>
+<li>Produce explainable outputs (match types, scores, coordinates) so analysts can validate results before downstream distance analysis.</li>
 </ul>
 </section>
 <section id="stakeholders" class="level3">
 <h3 class="anchored" data-anchor-id="stakeholders">Stakeholders</h3>
 <ul>
-<li><strong>Analysts and data stewards</strong> processing sensitive facility or student-address lists.</li>
-<li><strong>Organizations</strong> that require reproducible, explainable geocoding under strict data-handling rules.</li>
+<li><strong>Applied analysts and survey teams:</strong> geocoding respondent or facility addresses for spatial analysis tasks.</li>
+<li><strong>Organizations with strict governance:</strong> teams that need reproducible geocoding workflows for protected datasets.</li>
 </ul>
 </section>
 <section id="final-deliverable" class="level3">
 <h3 class="anchored" data-anchor-id="final-deliverable">Final deliverable</h3>
-<p>An <strong>R pipeline</strong> backed by one <strong>DuckDB</strong> file built from NAR Address + Location: Excel or CSV in, geocoded CSV out, with match type and scores per row. The embedded showcase demonstrates the workflow; full scripts are under <strong>Scripts &amp; Code</strong>. If you are interested in adapting this tool, feel free to reach out.</p>
+<p>The original geocoding tool (not shown here) reached high match coverage for its specific workload, but that version was later lost when the project Virtual Machine (VM) became corrupt. This portfolio rebuild prioritizes portability and reuse: an R + DuckDB pipeline using NAR Address + Location (Excel/CSV in, geocoded CSV out) with documented match logic, row-level diagnostics, and offline execution. The embedded showcase demonstrates the workflow, and full scripts are listed under Scripts &amp; Code.</p>
 </section>
 </section>
 </div>
-<div id="yoga-approach" class="yoga-view-panel d-none">
+<div id="portfolio-approach" class="portfolio-view-panel d-none">
 <section id="project-approach" class="level2">
 <h2 class="anchored" data-anchor-id="project-approach">Project Approach</h2>
 <section id="problem-definition" class="level3">
 <h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
 <ul>
-<li><strong>Context:</strong> Teams had <strong>large spreadsheets</strong> of Canadian addresses (schools, facilities) and <strong>no</strong> lightweight way to geocode them against NAR <strong>without</strong> calling external APIs.</li>
-<li><strong>Gap:</strong> governance and air-gapped settings ruled out cloud geocoders for this use case.</li>
+<li><strong>Context:</strong> The initial use case was distance analysis for survey operations across 16 cities, where respondent addresses needed coordinate assignment under strict privacy controls.</li>
+<li><strong>Gap:</strong> Address strings were inconsistent and not directly joinable to existing internal files, while cloud geocoders were not permitted in the working environment.</li>
 </ul>
 </section>
 <section id="scope-assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="scope-assumptions">Scope &amp; Assumptions</h3>
 <ul>
-<li><strong>Scope (planned):</strong> an R pipeline; <strong>one DuckDB</strong> built from NAR Address + Location; Excel/CSV in → geocoded CSV out.</li>
-<li><strong>Assumptions:</strong> <code>LOC_GUID</code> joins will hold for this workload; EN/FR street variants will normalize through <strong>one</strong> shared map.</li>
+<li><strong>Scope:</strong> A fully offline R workflow backed by one DuckDB reference built from NAR Address + Location, with standardized input handling and reproducible CSV outputs.</li>
+<li><strong>Assumptions:</strong> <code>LOC_GUID</code> joins remain stable for reference construction; EN/FR street variants can be normalized through a shared mapping layer; match quality improves when project-specific tuning is applied.</li>
 </ul>
 </section>
 <section id="data-sources" class="level3">
 <h3 class="anchored" data-anchor-id="data-sources">Data Sources</h3>
 <ul>
-<li><strong>Planned load:</strong> NAR Address + Location CSVs → normalized civic/street fields → attach lat/lon per row.</li>
-<li><strong>Order of operations:</strong> small <strong>test fixtures</strong> first, then production files.</li>
+<li><strong>Reference data:</strong> NAR Address + Location CSVs are joined and normalized into one local table with coordinate fields.</li>
+<li><strong>Workload reality:</strong> Input datasets can vary by city size and formatting quality, so preprocessing and staged matching are essential before final coordinate assignment.</li>
 </ul>
 </section>
 <section id="analytical-design" class="level3">
 <h3 class="anchored" data-anchor-id="analytical-design">Analytical Design</h3>
 <ul>
-<li><strong>Planned matcher (literature-based, single hierarchy):</strong> exact full address → exact street only (within same geography) → relaxed (same province/city/postal, attribute relaxation) → fuzzy (narrow pool: province + city + full 6-digit postal or FSA, <strong>composite scoring</strong>: Jaro-Winkler + civic nearness + geographic agreement) → 6-digit postal centroid → FSA centroid → city centroid.</li>
-<li><strong>Guards:</strong> geography constrained so point matches <strong>do not</strong> cross FSAs or cities inappropriately.</li>
+<li><strong>Matcher hierarchy:</strong> exact full address -&gt; exact street only (within same geography) -&gt; relaxed (same province/city/postal with controlled attribute relaxation) -&gt; fuzzy (narrow candidate pool with composite scoring: Jaro-Winkler + civic-number nearness + geographic agreement) -&gt; 6-digit postal centroid -&gt; FSA centroid -&gt; city centroid.</li>
+<li><strong>Guards:</strong> geography constrained so point matches do not cross FSAs or cities inappropriately.</li>
 <li><strong>Normalization:</strong> street-type and direction handling (including bilingual abbreviations) so input and reference stay comparable.</li>
-<li><strong>Scale:</strong> single DuckDB connection; batched fuzzy queries with configurable pool size; streamed CSV output for memory discipline.</li>
+<li><strong>Trade-off:</strong> The original internal build was highly tuned to one dataset and achieved stronger accuracy; this portfolio version is intentionally more general and therefore requires optional dataset-specific rule tuning for best performance.</li>
 </ul>
 </section>
 <section id="workflow-process" class="level3">
 <h3 class="anchored" data-anchor-id="workflow-process">Workflow / Process</h3>
 <ol type="1">
-<li><strong>One-time build:</strong> join NAR Address + Location on <code>LOC_GUID</code>, normalize fields, write table <code>ref</code> to <code>nar.duckdb</code>.<br>
+<li><strong>One-time build:</strong> join NAR Address + Location on <code>LOC_GUID</code>, normalize key fields, and write table <code>ref</code> to <code>nar.duckdb</code>.<br>
 </li>
-<li><strong>Production geocode:</strong> read Excel/CSV with expected address columns; process in chunks (e.g.&nbsp;100 rows) with <strong>append-after-each-chunk</strong> so runs are resumable.<br>
+<li><strong>Geocode run:</strong> read Excel/CSV inputs, process in chunks, and append output incrementally so runs are resumable.<br>
 </li>
-<li><strong>After NAR refresh:</strong> optional regression test script on fixtures before full production files.</li>
+<li><strong>Quality review:</strong> inspect match types and scores, then apply project-specific threshold or rule refinements where needed.<br>
+</li>
+<li><strong>Validation:</strong> compare geocoded points against known locations or mapped reference checks before final analytical use.</li>
 </ol>
 </section>
 <section id="constraints-considerations" class="level3">
 <h3 class="anchored" data-anchor-id="constraints-considerations">Constraints &amp; Considerations</h3>
 <ul>
-<li>Execution stays <strong>fully offline</strong>; large files will need <strong>memory</strong> discipline.</li>
-<li>Bilingual address forms will need <strong>consistent</strong> normalization.</li>
-<li>Every row will carry <strong>match type + scores</strong> so analysts can explain results <strong>without</strong> a GIS desktop.</li>
+<li>Execution stays fully offline; large files will need memory discipline.</li>
+<li>Bilingual address forms will need consistent normalization.</li>
+<li>This general-purpose build can be less accurate than a narrowly tuned one, so local rule customization remains an expected part of production use.</li>
+<li>Every row carries match type and scores so analysts can explain and audit results without a GIS desktop.</li>
 </ul>
 </section>
 </section>
 </div>
-<div id="yoga-scripts" class="yoga-view-panel d-none">
+<div id="portfolio-scripts" class="portfolio-view-panel d-none">
 <section id="script-build-nar" class="level2">
 <h2 class="anchored" data-anchor-id="script-build-nar">build_nar_duckdb.R</h2>
 <p><strong>What it does:</strong> One-time build of the NAR DuckDB. Reads all Location CSVs into a temporary <code>loc</code> table (LOC_GUID, lat/lon), then streams Address CSVs in chunks, joins to <code>loc</code> on LOC_GUID, normalizes province (SGC → 2-letter), city, postal, FSA, and full address. Writes table <code>ref</code> with columns expected by the geocoder (Latitude, Longitude, Full_Address, Civic_Number, street fields, city_norm, fsa, address_norm, street_only_norm). Drops <code>loc</code> when done.</p>
@@ -2440,31 +2452,31 @@ Impact &amp; Outcome
 <p>See the <a href="README.md">README</a> in this project for setup, NAR data layout, and usage.</p>
 </section>
 </div>
-<div id="yoga-impact" class="yoga-view-panel d-none">
+<div id="portfolio-impact" class="portfolio-view-panel d-none">
 <section id="impact-outcome" class="level2">
 <h2 class="anchored" data-anchor-id="impact-outcome">Impact &amp; Outcome</h2>
-<p>This project enabled reliable geocoding in privacy-constrained environments where cloud APIs are not acceptable. It improved confidence in address linkage quality while keeping the workflow auditable and repeatable.</p>
+<p>This project demonstrates a practical path for geocoding sensitive address data in environments where cloud services are not acceptable. It combines deterministic matching, transparent fallback logic, and reproducible outputs so teams can balance privacy, scalability, and quality control.</p>
 <ul>
-<li><strong>Who it helped:</strong> Teams handling sensitive address datasets in offline or restricted environments.</li>
-<li><strong>What it helped with:</strong> High-volume geocoding, transparent match-level reporting, and reduced dependence on external services.</li>
-<li><strong>Why it matters:</strong> It delivers practical data quality improvements without compromising governance or privacy requirements.</li>
-<li><strong>Operational benefits:</strong> Fully offline execution, deterministic hierarchy for audit, tunable fuzzy behaviour, and EN/FR address consistency without a GIS desktop.</li>
+<li><strong>Who it helped:</strong> Analysts and organizations processing protected address datasets under strict governance constraints.</li>
+<li><strong>What it helped with:</strong> Offline geocoding across varied address quality, with match-level reporting that supports audit and review.</li>
+<li><strong>Why it matters:</strong> It shows how a custom geocoding workflow can remain useful even when the original internal implementation is no longer available, while still preserving the core privacy-first design.</li>
+<li><strong>Operational benefits:</strong> Fully offline execution, deterministic hierarchy, tunable fuzzy behavior, and EN/FR normalization support for repeatable production runs.</li>
 </ul>
 <p>If you are interested in adapting this tool for your own project, feel free to reach out.</p>
 </section>
 </div>
 <script>
 (function() {
-  var productPanel = document.getElementById('yoga-final-product');
-  var overviewPanel = document.getElementById('yoga-overview');
-  var approachPanel = document.getElementById('yoga-approach');
-  var scriptsPanel = document.getElementById('yoga-scripts');
-  var impactPanel = document.getElementById('yoga-impact');
-  var btnProduct = document.querySelector('.yoga-btn-product');
-  var btnOverview = document.querySelector('.yoga-btn-overview');
-  var btnApproach = document.querySelector('.yoga-btn-approach');
-  var btnScripts = document.querySelector('.yoga-btn-scripts');
-  var btnImpact = document.querySelector('.yoga-btn-impact');
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var scriptsPanel = document.getElementById('portfolio-scripts');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnScripts = document.querySelector('.portfolio-btn-scripts');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
   if (!productPanel || !overviewPanel || !approachPanel || !scriptsPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnScripts || !btnImpact) return;
 
   function setActive(btn) {

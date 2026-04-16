@@ -1,7 +1,34 @@
 ---
-title: "PhD Dissertation - Lead Poisoning Risk & Abatement in Hamilton, Ontario"
+title: "PhD Dissertation: Identifying Geographic Areas Where Children May Be At-Risk of Lead Poisoning and Assessing the Need for Lead Abatement in Urban Areas: A Case Study in Hamilton, Ontario"
+sidebar: false
+format:
+  html:
+    toc: false
+    page-layout: full
 ---
 
+<div class="portfolio-project-page-root" hidden aria-hidden="true"></div>
+
+::: {.portfolio-view-toggle role="group" aria-label="Switch view"}
+<button type="button" class="btn btn-primary portfolio-btn-product" aria-pressed="true">Final product</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-overview" aria-pressed="false">Project Overview</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-approach" aria-pressed="false">Project Approach</button>
+<button type="button" class="btn btn-outline-primary portfolio-btn-impact" aria-pressed="false">Impact & Outcome</button>
+:::
+
+::: {.portfolio-page-intro}
+::: {.portfolio-accent-rule}
+:::
+Doctoral dissertation on childhood lead risk in Hamilton, Ontario, integrating soil lead spatial modelling, blood lead-IQ meta-analysis, and municipal lead-abatement feasibility.
+:::
+
+::: {.portfolio-meta-row}
+[Environmental and public health]{.portfolio-meta-chip}
+[Methodological rigor]{.portfolio-meta-chip}
+[Dissertation manuscript]{.portfolio-meta-chip}
+:::
+
+::: {#portfolio-final-product .portfolio-view-panel}
 ## Thesis details
 
 | Field | Details |
@@ -13,73 +40,88 @@ title: "PhD Dissertation - Lead Poisoning Risk & Abatement in Hamilton, Ontario"
 | **Supervisor** | Dr. Bruce Newbold |
 | **Previous degrees** | B.A. Geography and Environmental Studies (McMaster University, 2012); M.S.A. Master of Spatial Analysis (Ryerson University, 2013) |
 
----
+## Full dissertation (PDF)
 
+The complete dissertation (xxi, 192 pages) is available as a PDF.
+
+::: {.portfolio-embed-bar}
+[Download full dissertation (PDF)](mackay_kevin_p_finalsubmission202009_phd.pdf){target="_blank" .btn .btn-primary}
+:::
+:::
+
+::: {#portfolio-overview .portfolio-view-panel .d-none}
 ## Project Overview
 
 ### Problem
 
-Governments still need to protect children from lead exposure decades after major sources were phased out. Policy and remediation debates often lean on **return-on-investment** narratives and simplified maps, while **soil exposure**, **dose-response uncertainty**, and **municipal fiscal reality** are not always in the same conversation.
+Thirty years since the removal of lead from gasoline, lead still poses a health risk. Children are most at-risk for adverse health outcomes caused by lead toxicity due to both behavioural and physiological differences compared to adults, so governments must identify children that may be at-risk of lead poisoning and develop practical methods to mitigate lead exposure.
 
 ### Context
 
-**Hamilton, Ontario** served as the case: localized soil-lead patterns matter for where children may be at elevated risk; published evidence on blood lead and IQ feeds ROI-style arguments; municipal budgets face hard limits on permanent remediation.
+This dissertation focuses on Hamilton, Ontario as a case study because Hamilton is a relatively old city with old housing stock and a long industrial history that may increase exposure to lead within the city. The work builds on Richardson et al. (2011), with added emphasis on continuous spatial modelling, the relationship between blood lead levels and IQ, and the real-world feasibility of permanent lead abatement at a municipal level.
 
 ### Goals
 
-- Map and interpret **spatial risk** using defensible interpolation choices (including a critical look at land-use regression).
-- Quantify **blood-lead ↔ IQ** evidence with modern meta-analysis to scrutinize claims embedded in ROI estimates.
-- Assess **abatement costs and feasibility** at municipal scale and articulate **alternatives** when ROI-only framing is misleading.
+- Identify geographic areas in Hamilton where children may be at-risk of lead poisoning and characterize sources of lead that may increase exposure risk.
+- Determine whether land use regression is a viable alternative to kriging for estimating soil lead levels, or whether Empirical Bayesian Kriging is the stronger approach.
+- Quantify the relationship between childhood blood lead levels and IQ using meta-analysis techniques to synthesize unstandardized beta coefficients.
+- Assess the projected cost and return on investment of permanent lead hazard control, and evaluate need-based alternatives for municipal decision-making.
 
 ### Stakeholders
 
-- **Supervision and examination:** Dr. Bruce Newbold and the doctoral committee (academic standards and contribution).
-- **Municipal and public-health audiences** implied by the policy-facing chapters.
-- **Broader research communities** using LUR, soil contamination methods, and meta-analysis.
+- **Academic stakeholders:** doctoral supervision and examination at McMaster University, School of Earth, Environment, & Society (formerly School of Geography and Earth Sciences).
+- **Public health and municipal audiences:** decision-makers evaluating lead exposure mitigation and remediation strategies in urban settings.
+- **Research communities:** scholars working in spatial interpolation, environmental health, and meta-analysis.
 
 ### Final deliverable
 
-The **doctoral dissertation** (McMaster, 2020)-five substantive chapters plus appendices-and the **PDF** linked at the bottom of this page. A shorter **defense deck** is available on the [PhD defense presentation](../phd-defense/index.qmd) page.
+The final deliverable is the doctoral dissertation, *Identifying geographic areas where children may be at-risk of lead poisoning and assessing the need for lead abatement in urban areas: a case study in Hamilton, Ontario* (McMaster University, 2020), with five chapters and appendices. The complete PDF is available in Final product above, and a shorter presentation is available on the [PhD defense presentation](../phd-defense/index.qmd) page.
+:::
 
+::: {#portfolio-approach .portfolio-view-panel .d-none}
 ## Project Approach
 
 ### Problem Definition
 
-- **Analytical tension (planned):** ROI-heavy abatement narratives **had** often run ahead of integrated evidence on **soil pathways**, **IQ dose-response**, and **what cities can fund**.
-- **Research questions (planned):** Where in Hamilton might **soil-lead** imply elevated child exposure-and what do decision-makers need **before** committing to **large-scale** dig-and-replace-style programs?
-- **Disciplinary stance:** pair environmental health modelling with **policy-facing** economics and hazard communication-not maps or meta-analysis in isolation.
+- **Research problem:** Despite declining blood lead levels, lead remains a problem in urban Canada, and low blood lead concentrations can still produce adverse outcomes in children.
+- **Methodological problem:** Soil lead is continuous across space, so neighbourhood-level summaries can obscure local variation, introduce abrupt boundary effects, and limit risk identification.
+- **Decision problem:** Return-on-investment arguments for permanent lead abatement are influential, but municipalities must also evaluate feasibility, local budget constraints, and need-based prioritization.
 
 ### Scope & Assumptions
 
-- **Scope (planned):** (1) spatial prediction of soil lead, (2) **meta-analysis** blood lead ↔ IQ, (3) **municipal** cost-benefit framing.
-- **Assumption:** linking all three will **challenge** ROI-only stories while still taking economics seriously.
+- **Scope:** The dissertation contains an introduction, three main analytical chapters, and a conclusion: Chapter 2 on interpolation and soil lead modelling, Chapter 3 on blood lead-IQ meta-analysis, and Chapter 4 on cost-benefit and hazard-based policy assessment.
+- **Assumption:** Integrated evidence across spatial modelling, epidemiological synthesis, and municipal cost analysis provides a stronger basis for policy than any single method in isolation.
 
 ### Data Sources
 
-- **Planned:** soil samples + covariates for spatial models; **published studies** for meta-analysis; Hamilton **costs** and land-use context for abatement scenarios.
+- **Spatial analysis inputs:** 187 soil lead samples from Hamilton Public Health Services (2008-2009), historical business records, and a modified historical road network.
+- **Meta-analysis inputs:** Published studies quantifying the relationship between childhood blood lead levels and IQ.
+- **Policy and feasibility inputs:** Hamilton-focused assumptions and cost components for soil, water, and paint abatement, with hazard quotient mapping to evaluate potential toxicity risk.
 
 ### Analytical Design
 
-- **Plan:** **contrast** LUR vs kriging-style options (with a **critical** lens on LUR).
-- **Plan:** **pool** epidemiology with current meta-analytic practice.
-- **Plan:** connect predictions to **hazard-style** interpretations decision-makers recognize.
+- **Chapter 2 design:** Critically assess land use regression against Ordinary Kriging and Empirical Bayesian Kriging for soil lead interpolation in an urban setting.
+- **Chapter 3 design:** Use modern meta-analysis methods to synthesize unstandardized beta coefficients for blood lead and IQ, including heterogeneity and bias diagnostics.
+- **Chapter 4 design:** Estimate cost and ROI for permanent lead hazard control, then pair financial results with hazard quotient maps to evaluate practical need and policy direction.
 
 ### Workflow / Process
 
-**Planned sequence:** characterize exposure surfaces → quantify **dose-response uncertainty** → test **abatement feasibility** and **alternatives** to permanent dig-and-replace where ROI claims are shaky.
+1. Characterize historical lead sources and model the spatial distribution of soil lead in Hamilton.
+2. Evaluate dose-response evidence by meta-analyzing childhood blood lead-IQ relationships.
+3. Estimate the cost and projected ROI of permanent lead abatement (soil, paint, and lead service pipes).
+4. Assess potential threat using hazard quotient maps and discuss alternatives to permanent abatement under municipal budget constraints.
 
 ### Constraints & Considerations
 
-- LUR **identifiability**; study **heterogeneity** in meta-analysis.
-- Outputs will need to stay **actionable** under **real municipal budgets**.
+- LUR models can be overfitted when spurious relationships are used as predictors.
+- Meta-analysis must account for between-study heterogeneity, influence, and publication bias.
+- Municipal governments face substantial fiscal constraints, even where projected social returns appear large.
+:::
 
----
+::: {#portfolio-scripts .portfolio-view-panel .d-none}
+## Results
 
-## Impact & Outcome
-
-This dissertation provided an integrated evidence base for understanding childhood lead risk in Hamilton and evaluating the feasibility of large-scale abatement. It supports more realistic municipal policy by combining spatial risk modelling, epidemiological synthesis, and cost-benefit critique in a single decision-relevant framework.
-
----
+Code-level implementation details are distributed across dissertation chapters and appendices. Use **Final product** above for the complete PDF.
 
 ## Abstract
 
@@ -91,19 +133,15 @@ The benefit to society and the return on investment (ROI) is often the justifica
 
 In the final chapter, the cost associated with permanent lead abatement is investigated based on ROI projections as a case study in Hamilton, Ontario. We show that, in most cases, permanent lead remediation is far too expensive for a municipal government. Furthermore, the capital initially invested may not be distributed back into the local economy, as the ROI suggests. We suggest that municipal governments make decisions based on need, rather than basing remediation decisions on ROI projections. Furthermore, we recommend the use of hazard quotient maps to help justify lead remediation as a more accurate representation of potential lead toxicity, instead of only looking at SLL exceedances across the city.
 
----
-
 ## Preface
 
 This thesis dissertation contains five chapters: an introduction, three main chapters, and a conclusion.
 
-- **Chapter 2** examines a relatively new interpolation method for heavy metal soil contamination research and discusses the inherent flaws in using land use regression compared to the traditional method of kriging.
-- **Chapter 3** is a meta-analysis exploring the relationship between blood lead levels in children and intelligence quotient (IQ), presenting a thorough investigation using modern meta-analysis techniques to synthesize unstandardized beta coefficients.
-- **Chapter 4** presents a cost-benefit analysis of lead remediation in Hamilton, consisting of soil, water, and paint abatement. Despite significant return on investment projections, the paper discusses reasons why a city should reconsider investing in such a large project.
+- **Chapter 2:** examines a relatively new interpolation method for heavy metal soil contamination research and discusses the inherent flaws in using land use regression compared to the traditional method of kriging.
+- **Chapter 3:** is a meta-analysis exploring the relationship between blood lead levels in children and intelligence quotient (IQ), presenting a thorough investigation using modern meta-analysis techniques to synthesize unstandardized beta coefficients.
+- **Chapter 4:** presents a cost-benefit analysis of lead remediation in Hamilton, consisting of soil, water, and paint abatement. Despite significant return on investment projections, the paper discusses reasons why a city should reconsider investing in such a large project.
 
 The first chapter is a methodological paper that contributes to a broader research audience (e.g., air pollution research) that uses land use regression for spatial modelling. The second chapter contributes to the literature by quantifying the relationship between blood lead levels in children and intelligence quotient by pooling results from 13 papers. Finally, the last paper contributes by examining the feasibility of lead remediation at a municipal level and discussing alternatives to permanent lead abatement. This dissertation seeks to challenge the necessity and benefit of lead remediation in urban cities by providing a case study in Hamilton, Ontario.
-
----
 
 ## Table of contents (dissertation structure)
 
@@ -149,11 +187,68 @@ The first chapter is a methodological paper that contributes to a broader resear
 ### Chapter 6 - Appendix
 
 Appendices A-P (study area maps, distance profiles, LUR/EBK/OK predictions, forest plots, funnel plots, hazard quotient maps, and related materials).
+:::
 
----
+::: {#portfolio-impact .portfolio-view-panel .d-none}
+## Impact & Outcome
 
-## Full dissertation (PDF)
+This dissertation provided an integrated evidence base for identifying where children may be at-risk of lead poisoning in Hamilton and for reassessing how municipalities evaluate lead remediation policy. The findings show that Empirical Bayesian Kriging may be preferable to land use regression for this soil contamination context, that estimated IQ loss per blood lead increase may be smaller than values often used in ROI arguments, and that permanent city-wide lead abatement can be prohibitively expensive for municipal governments. Taken together, the work supports decisions based on demonstrated need and hazard-informed targeting, rather than ROI projections alone.
+:::
 
-The complete dissertation (xxi, 192 pages) is available as a PDF. 
+<script>
+(function() {
+  var productPanel = document.getElementById('portfolio-final-product');
+  var overviewPanel = document.getElementById('portfolio-overview');
+  var approachPanel = document.getElementById('portfolio-approach');
+  var impactPanel = document.getElementById('portfolio-impact');
+  var btnProduct = document.querySelector('.portfolio-btn-product');
+  var btnOverview = document.querySelector('.portfolio-btn-overview');
+  var btnApproach = document.querySelector('.portfolio-btn-approach');
+  var btnImpact = document.querySelector('.portfolio-btn-impact');
+  if (!productPanel || !overviewPanel || !approachPanel || !impactPanel || !btnProduct || !btnOverview || !btnApproach || !btnImpact) return;
 
-[Download full dissertation (PDF)](mackay_kevin_p_finalsubmission202009_phd.pdf){target="_blank" .btn .btn-primary}
+  function setActive(btn) {
+    [btnProduct, btnOverview, btnApproach, btnImpact].forEach(function(b) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-outline-primary');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('btn-primary');
+    btn.classList.remove('btn-outline-primary');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  function showProduct() {
+    productPanel.classList.remove('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnProduct);
+  }
+  function showOverview() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.remove('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnOverview);
+  }
+  function showApproach() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.remove('d-none');
+    impactPanel.classList.add('d-none');
+    setActive(btnApproach);
+  }
+  function showImpact() {
+    productPanel.classList.add('d-none');
+    overviewPanel.classList.add('d-none');
+    approachPanel.classList.add('d-none');
+    impactPanel.classList.remove('d-none');
+    setActive(btnImpact);
+  }
+
+  btnProduct.addEventListener('click', showProduct);
+  btnOverview.addEventListener('click', showOverview);
+  btnApproach.addEventListener('click', showApproach);
+  btnImpact.addEventListener('click', showImpact);
+})();
+</script>
