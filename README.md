@@ -1,7 +1,7 @@
-# Welcome to my page
+# GitHub Pages Website
 
-This site is my online portfolio and consulting hub, built with Quarto and published on GitHub Pages.
+This repository contains a personal portfolio website built with Quarto and published on GitHub Pages.
 
-Here you can explore my background, featured projects, and selected work across data, mapping, and automation.
+The site presents professional background, selected projects, and service offerings across data analysis, mapping, and automation.
 
-If you are interested in working together, feel free to reach out through the contact details listed on the site.
+Most project pages live in the `projects/` folder. Supporting assets and shared styling are stored in folders such as `assets/`, `includes/`, and `custom.scss`.
